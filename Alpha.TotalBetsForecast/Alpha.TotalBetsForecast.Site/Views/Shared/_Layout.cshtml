@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html class="ifr-result">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Html.Raw(ViewBag.Title)</title>
+    <link href="/contents/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    
+    @RenderSection("ComponentStyles", false)
+
+    @Styles.Render(BundleConfig.ResultCoreStyleBundleUrl)
+
+    @RenderSection("Styles", false)
+
+</head>
+<body>
+    <div id="page_main">
+        <div id="page_main">
+            <div class="container-fluid">
+                <div class="">
+                    <ul class="nav nav-tabs" role="tablist">
+                        @Html.Action("Index", "Tab", new { tabName = ViewContext.RouteData.Values["controller"], area = "" })
+                    </ul>
+                    <div class="tab-content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.Hidden("RootURL", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+
+    <script type="text/javascript" src="/contents/libs/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/contents/libs/moment/moment.js"></script>
+    <script type="text/javascript" src="/contents/css/bootstrap/js/bootstrap.min.js"></script>
+
+    @RenderSection("Scripts", false)
+</body>
+</html>
+
+

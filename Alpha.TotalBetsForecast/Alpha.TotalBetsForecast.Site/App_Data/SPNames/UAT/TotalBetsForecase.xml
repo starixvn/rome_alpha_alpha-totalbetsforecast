@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Functions>
+  <Function Name="Reports">
+    <Setting Key="Age_ScoreMap_Result_Ag" SpName="Age_ScoreMap_Result_Ag" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_Result_MAg" SpName="Age_ScoreMap_Result_MAg" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_ScoreMap_Result_SAg" SpName="Age_ScoreMap_Result_SAg" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_LeagueSelByDate" SpName="Age_Result_LeagueSelByDate" DbName="DBAGE.bodb02.BODBDownlineNet">
+      <Mapping ObjectProperty="Id" DataField="leagueid" />
+    </Setting>
+    <Setting Key="Age_Result_MatchSelByLeague" SpName="Age_Result_MatchSelByLeague" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_MatchSelGoalHistory" SpName="Age_Result_MatchSelGoalHistory" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_MatchSelNumberGameByLeague" SpName="Age_Result_MatchSelNumberGameByLeague" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_Outright" SpName="Age_Result_Outright" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_RaceSelByMeeting" SpName="Age_Result_RaceSelByMeeting" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_RBRaceSelByMeeting" SpName="Age_Result_RBRaceSelByMeeting" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_SportSelByDate" SpName="Age_Result_SportSelByDate" DbName="DBAGE.bodb02.BODBDownlineNet">
+      <Mapping ObjectProperty="Id" DataField="sporttype" />
+    </Setting>
+    <Setting Key="Age_Result_VirtualHRSelByMeeting" SpName="Age_Result_VirtualHRSelByMeeting" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_Result_VSRaceSelByMeeting" SpName="Age_Result_VSRaceSelByMeeting" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="All_BetList_MatchResultDetail3rdSel" SpName="All_BetList_MatchResultDetail3rdSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="BetTypeTime" DataField="Custom1" />
+    </Setting>
+    <Setting Key="All_BetList_MatchResultGDSel" SpName="All_BetList_MatchResultGDSel" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0">
+      <Mapping ObjectProperty="Result" DataField="TransDesc" />
+    </Setting>
+    <Setting Key="Age_BetList_SelMatchResultNumberGame" SpName="Age_BetList_SelMatchResultNumberGame" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResult2" SpName="Age_BetList_SelMatchResult2" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_Result_MatchSelResultDetail" SpName="Age_Result_MatchSelResultDetail" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+    <Setting Key="Age_BetList_SelMatchResultParlay" SpName="Age_BetList_SelMatchResultParlay" DbName="DBAGE.bodb02.BODBDownlineNet" Plain="0" />
+  </Function>
+</Functions>
