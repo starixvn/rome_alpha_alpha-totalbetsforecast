@@ -198,12 +198,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecase.xml" />
+    <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecase.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecase.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecase.xml" />
     <Content Include="Content\Images\goal-icon.png" />
     <Content Include="Content\Images\sprite.png" />
+    <Content Include="Content\totalbets-forecast.css">
+      <DependentUpon>totalbets-forecast.scss</DependentUpon>
+    </Content>
+    <Content Include="Content\totalbets-forecast.min.css">
+      <DependentUpon>totalbets-forecast.css</DependentUpon>
+    </Content>
     <Content Include="Global.asax" />
+    <Content Include="Scripts\Forecast\index.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -216,10 +225,29 @@
     <Compile Include="App_Start\CssRewriteUrlTransformWrapper.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ForecastController.cs" />
+    <Compile Include="Criteria\GetMatchesCriteria.cs" />
+    <Compile Include="Criteria\GetMatchForecastCriteria.cs" />
+    <Compile Include="Criteria\GetMatchInfoCriteria.cs" />
+    <Compile Include="DataAccesses\IForecastDataAccess.cs" />
+    <Compile Include="DataAccesses\Impl\ForecastDataAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Handlers\ForecastHandler.cs" />
+    <Compile Include="Models\BetTypeForecast.cs" />
+    <Compile Include="Models\Dtos\WinLossColumnNameDto.cs" />
+    <Compile Include="Models\League.cs" />
+    <Compile Include="Models\Match.cs" />
+    <Compile Include="Models\MatchForecast.cs" />
+    <Compile Include="Models\Requests\MatchesAndLeaguesQuery.cs" />
+    <Compile Include="Models\Requests\MatchForecastQuery.cs" />
+    <Compile Include="Models\Views\MatchesAndLeaguesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\IEventService.cs" />
+    <Compile Include="Services\IForecastService.cs" />
+    <Compile Include="Services\Impl\EventService.cs" />
+    <Compile Include="Services\Impl\ForecastService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -278,6 +306,11 @@
     <Content Include="Web.ConnectionStrings.uati7.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="Views\Forecast\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -306,15 +339,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Criteria\" />
-    <Folder Include="DataAccesses\" />
-    <Folder Include="Handlers\" />
-    <Folder Include="Models\" />
-    <Folder Include="Scripts\" />
-    <Folder Include="Services\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

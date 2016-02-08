@@ -5,8 +5,12 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
+    using DataAccesses;
+    using DataAccesses.Impl;
     using Fanex.Data.Repository;
     using MediatR;
+    using Services;
+    using Services.Impl;
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
@@ -63,11 +67,14 @@
 
         private static void RegisterServices(Container container)
         {
+            container.Register<IEventService, EventService>(Lifestyle.Scoped);
+            container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);
         }
 
         private static void RegisterDataAccesses(Container container)
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
+            container.Register<IForecastDataAccess, ForecastDataAccess>(Lifestyle.Scoped);
         }
     }
 }
