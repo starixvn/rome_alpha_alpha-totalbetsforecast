@@ -2,8 +2,9 @@
 {
     using MediatR;
     using Sunplus.Agent.Model.Entities;
+    using Views;
 
-    public class MatchForecastQuery : IRequest<MatchForecast>
+    public class MatchForecastQuery : IRequest<MatchForecastViewModel>
     {
         public int CustId
         {

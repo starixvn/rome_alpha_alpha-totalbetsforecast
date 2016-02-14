@@ -59,5 +59,122 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Count.
+        /// </summary>
+        public static string BetCount {
+            get {
+                return ResourceManager.GetString("BetCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bet Type.
+        /// </summary>
+        public static string BetType {
+            get {
+                return ResourceManager.GetString("BetType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dead Ball.
+        /// </summary>
+        public static string Deadball {
+            get {
+                return ResourceManager.GetString("Deadball", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        public static string Event {
+            get {
+                return ResourceManager.GetString("Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forecast.
+        /// </summary>
+        public static string Forecast {
+            get {
+                return ResourceManager.GetString("Forecast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forecast Total.
+        /// </summary>
+        public static string ForecastTotal {
+            get {
+                return ResourceManager.GetString("ForecastTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forecast Win/Loss.
+        /// </summary>
+        public static string ForecastWinLoss {
+            get {
+                return ResourceManager.GetString("ForecastWinLoss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to League.
+        /// </summary>
+        public static string League {
+            get {
+                return ResourceManager.GetString("League", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Live!.
+        /// </summary>
+        public static string Live {
+            get {
+                return ResourceManager.GetString("Live", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Submit.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        public static string Time {
+            get {
+                return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bets.
+        /// </summary>
+        public static string totalbets {
+            get {
+                return ResourceManager.GetString("totalbets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover.
+        /// </summary>
+        public static string Turnover {
+            get {
+                return ResourceManager.GetString("Turnover", resourceCulture);
+            }
+        }
     }
 }

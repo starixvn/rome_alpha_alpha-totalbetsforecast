@@ -9,7 +9,7 @@
     using Services;
 
     public class ForecastHandler :
-        IRequestHandler<MatchForecastQuery, MatchForecast>,
+        IRequestHandler<MatchForecastQuery, MatchForecastViewModel>,
         IRequestHandler<MatchesAndLeaguesQuery, MatchesAndLeaguesViewModel>
     {
         private IForecastService _forecastService;
@@ -21,7 +21,7 @@
             _eventService = eventService;
         }
 
-        public MatchForecast Handle(MatchForecastQuery message)
+        public MatchForecastViewModel Handle(MatchForecastQuery message)
         {
             if (message == null)
             {
@@ -35,10 +35,19 @@
             };
 
             var matchForecast = _forecastService.GetMatchForecast(message);
-            matchForecast.Match = match;
-            matchForecast.League = league;
 
-            return matchForecast;
+            return new MatchForecastViewModel
+            {
+                LeagueName = league.Name,
+                HomeName = match.HomeName,
+                AwayName = match.AwayName,
+                IsLive = match.IsLive,
+                KickOffTime = match.KickOffTime,
+                LiveHomeScore = match.LiveHomeScore,
+                LiveAwayScore = match.LiveAwayScore,
+                BetTypeForecasts = matchForecast.BetTypeForecasts,
+                ForecastTotal = matchForecast.ForecastTotal
+            };
         }
 
         public MatchesAndLeaguesViewModel Handle(MatchesAndLeaguesQuery message)

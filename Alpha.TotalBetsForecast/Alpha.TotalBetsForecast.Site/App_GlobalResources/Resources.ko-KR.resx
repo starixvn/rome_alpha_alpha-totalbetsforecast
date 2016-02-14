@@ -117,4 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Live" xml:space="preserve">
+    <value>라이브</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>리그</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>경기</value>
+  </data>
+  <data name="Deadball" xml:space="preserve">
+    <value>시작전 경기</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>배팅 유형</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>시간</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>베팅카운트</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>총 배팅한 금액</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>예상</value>
+  </data>
+  <data name="totalbets" xml:space="preserve">
+    <value>총 배팅</value>
+  </data>
 </root>

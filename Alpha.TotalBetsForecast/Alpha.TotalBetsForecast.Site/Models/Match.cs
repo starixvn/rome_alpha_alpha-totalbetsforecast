@@ -1,5 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
+    using System;
     using Sunplus.Agent.Model.RemotingRef;
 
     public class Match
@@ -35,5 +36,7 @@
         public byte LiveAwayScore { get; set; }
 
         public int LeagueId { get; set; }
+
+        public DateTime KickOffTime { get; set; }
     }
 }

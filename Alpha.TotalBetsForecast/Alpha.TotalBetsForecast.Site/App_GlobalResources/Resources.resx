@@ -117,4 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ForecastTotal" xml:space="preserve">
+    <value>Forecast Total</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>Forecast Win/Loss</value>
+  </data>
+  <data name="Live" xml:space="preserve">
+    <value>Live!</value>
+  </data>
+  <data name="League" xml:space="preserve">
+    <value>League</value>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+  </data>
+  <data name="Deadball" xml:space="preserve">
+    <value>Dead Ball</value>
+  </data>
+  <data name="BetType" xml:space="preserve">
+    <value>Bet Type</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="BetCount" xml:space="preserve">
+    <value>Bet Count</value>
+  </data>
+  <data name="Turnover" xml:space="preserve">
+    <value>Turnover</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Forecast" xml:space="preserve">
+    <value>Forecast</value>
+  </data>
+  <data name="totalbets" xml:space="preserve">
+    <value>Total Bets</value>
+  </data>
 </root>

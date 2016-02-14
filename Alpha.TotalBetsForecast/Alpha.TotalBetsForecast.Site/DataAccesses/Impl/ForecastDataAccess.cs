@@ -10,13 +10,13 @@
 
     public class ForecastDataAccess : IForecastDataAccess
     {
-        public Tuple<IEnumerable<BetTypeForecast>, IEnumerable<WinLossColumnNameDto>, decimal> GetMatchForecast(ICriteria criteria)
+        public Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> GetMatchForecast(ICriteria criteria)
         {
             using (IObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 using (var queryMultiple = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    var betTypeForecasts = queryMultiple.Read<BetTypeForecast>();
+                    var betTypeForecasts = queryMultiple.Read<BetTypeForecastDto>();
 
                     var winlossColumnNames = queryMultiple.Read<WinLossColumnNameDto>();
 

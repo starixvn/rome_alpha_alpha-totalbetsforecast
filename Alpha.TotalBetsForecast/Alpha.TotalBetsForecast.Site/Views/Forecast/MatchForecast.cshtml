@@ -1,0 +1,85 @@
+﻿@model MatchForecastViewModel
+
+@{
+    Layout = null;
+    var matchHasAnyBetType = Model.BetTypeForecasts.Any();
+    if (!matchHasAnyBetType)
+    {
+        return;
+    }
+
+    var matchRowSpan = Model.BetTypeForecasts.Sum(betTypeForecast =>
+    {
+        return 1 
+        + betTypeForecast.BetChoices.Count() 
+        + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
+    });
+
+    var totalBetTypes = Model.BetTypeForecasts.Count();
+    var firstBetType = Model.BetTypeForecasts.First();
+}
+
+@helper RenderBetTypeForecast(BetTypeForecast betTypeForecast)
+{
+    var betTypeColSpan = betTypeForecast.BetChoices.Count();
+    
+    <td class="bet-type" colspan="@betTypeColSpan">
+        <span class="bet-type-name">@betTypeForecast.BetTypeName</span> 
+        <span class="handicap-value">@betTypeForecast.BetType</span>
+    </td>
+}
+
+@helper RenderBetChoiceForecast(BetChoiceForecast betChoiceForecast)
+{
+    <td class="bet-count">@betChoiceForecast.BetCount</td>
+    <td class="turn-over">@betChoiceForecast.Turnover</td>
+
+    foreach (var winloss in betChoiceForecast.WinLossValues)
+    {
+        <td class="win-loss">@winloss</td>
+    }
+}
+
+@helper RenderWinLossColumnName(BetChoiceForecast betChoiceForecast)
+{
+    <td class="bet-type"></td>
+    <td class="bet-count"></td>
+    <td class="turn-over"></td>
+
+    foreach (var winlossName in betChoiceForecast.WinLossColumnNames)
+    {
+        <td class="win-loss-name">@winlossName</td>
+    }
+}
+
+@if (!matchHasAnyBetType)
+{
+    <tr class="league-row">
+        <td colspan="9">@Model.LeagueName</td>
+    </tr>
+
+    <tr class="match-row">
+        <td rowspan="@matchRowSpan">@Model.KickOffTime</td>
+        <td rowspan="@matchRowSpan">
+            <span class="home-team">@Model.HomeName</span>
+            <span class="away-team">@Model.HomeName</span>
+        </td>
+        <td class=""></td>
+        <td></td>
+        <td></td>
+
+        <td rowspan="@matchRowSpan" class="forecast-total">@Model.ForecastTotal</td>
+    </tr>
+
+    for (int i = 1; i < totalBetTypes; i++)
+    {
+
+    }
+}
+else
+{
+    <tr class="no-info">
+        <td colspan="9">There is no data!</td>
+    </tr>
+}
+

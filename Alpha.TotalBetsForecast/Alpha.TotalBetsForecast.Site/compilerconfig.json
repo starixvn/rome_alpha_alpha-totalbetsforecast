@@ -1,6 +1,16 @@
 ﻿[
   {
     "outputFile": "Content/totalbets-forecast.css",
-    "inputFile": "Content/totalbets-forecast.scss"
+    "inputFile": "Content/totalbets-forecast.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "Scripts/Forecast/match-forecast.js",
+    "inputFile": "Scripts/Forecast/match-forecast.jsx",
+    "minify": {
+      "enabled": false
+    }
   }
 ]

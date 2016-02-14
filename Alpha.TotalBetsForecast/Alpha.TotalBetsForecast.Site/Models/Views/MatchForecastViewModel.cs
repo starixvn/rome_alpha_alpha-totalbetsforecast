@@ -1,0 +1,28 @@
+﻿namespace Alpha.TotalBetsForecast.Site.Models.Views
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+
+    public class MatchForecastViewModel
+    {
+        public string LeagueName { get; set; }
+
+        public bool IsLive { get; set; }
+
+        public DateTime KickOffTime { get; set; }
+
+        public string HomeName { get; set; }
+
+        public string AwayName { get; set; }
+
+        public byte LiveHomeScore { get; set; }
+
+        public byte LiveAwayScore { get; set; }
+
+        public decimal ForecastTotal { get; set; }
+
+        public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
+    }
+}
