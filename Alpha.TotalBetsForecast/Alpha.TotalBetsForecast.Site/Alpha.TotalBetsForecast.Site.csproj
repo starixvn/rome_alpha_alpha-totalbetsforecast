@@ -198,7 +198,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecase.xml">
+    <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecast.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecase.xml" />
@@ -226,7 +226,7 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
-    <Compile Include="Criteria\GetMatchesCriteria.cs" />
+    <Compile Include="Criteria\GetEventsCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastCriteria.cs" />
     <Compile Include="Criteria\GetMatchInfoCriteria.cs" />
     <Compile Include="DataAccesses\IForecastDataAccess.cs" />

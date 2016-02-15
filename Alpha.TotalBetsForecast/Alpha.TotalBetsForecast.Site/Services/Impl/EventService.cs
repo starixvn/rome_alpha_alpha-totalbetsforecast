@@ -18,7 +18,10 @@
 
         public IEnumerable<League> GetLeagues(bool isLive)
         {
-            return _dynamicRepository.Fetch<League>(); //// Will implement later.
+            return _dynamicRepository.Fetch<League>(new GetEventsCriteria
+            {
+                IsLive = isLive
+            });
         }
 
         public IEnumerable<Match> GetMatches(IEnumerable<League> leagues, bool isLive)
@@ -32,7 +35,7 @@
 
             var leagueIds = string.Join(",", leagues.Select(league => league.Id));
 
-            return _dynamicRepository.Fetch<Match>(new GetMatchesCriteria
+            return _dynamicRepository.Fetch<Match>(new GetEventsCriteria
             {
                 IsLive = isLive,
                 LeagueIds = leagueIds

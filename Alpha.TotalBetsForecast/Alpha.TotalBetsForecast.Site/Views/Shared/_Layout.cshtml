@@ -7,25 +7,12 @@
     
     @RenderSection("ComponentStyles", false)
 
-    @Styles.Render(BundleConfig.ResultCoreStyleBundleUrl)
-
     @RenderSection("Styles", false)
 
 </head>
 <body>
-    <div id="page_main">
-        <div id="page_main">
-            <div class="container-fluid">
-                <div class="">
-                    <ul class="nav nav-tabs" role="tablist">
-                        @Html.Action("Index", "Tab", new { tabName = ViewContext.RouteData.Values["controller"], area = "" })
-                    </ul>
-                    <div class="tab-content">
-                        @RenderBody()
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="page-main">
+        @RenderBody()
     </div>
 
     @Html.Hidden("RootURL", HttpContext.Current.Response.ApplyAppPathModifier("~/"))

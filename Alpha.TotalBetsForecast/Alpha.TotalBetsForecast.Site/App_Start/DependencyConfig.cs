@@ -8,6 +8,7 @@
     using DataAccesses;
     using DataAccesses.Impl;
     using Fanex.Data.Repository;
+    using Handlers;
     using MediatR;
     using Services;
     using Services.Impl;
@@ -56,8 +57,7 @@
 
         private static IEnumerable<Assembly> GetAssemblies()
         {
-            ////yield return typeof(NormalResultHandler).Assembly;
-            return null;
+            yield return typeof(ForecastHandler).Assembly;
         }
 
         private static void RegisterCrossCuttingConcerns(Container container)

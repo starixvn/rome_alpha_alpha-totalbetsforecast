@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetMatchesCriteria : CriteriaBase
+    public class GetEventsCriteria : CriteriaBase
     {
         [SpParam(SqlParamName = "LeagueList")]
         public string LeagueIds { get; set; }
@@ -16,7 +16,7 @@
 
         public override bool IsValid()
         {
-            return !string.IsNullOrWhiteSpace(LeagueIds);
+            return true;
         }
     }
 }
