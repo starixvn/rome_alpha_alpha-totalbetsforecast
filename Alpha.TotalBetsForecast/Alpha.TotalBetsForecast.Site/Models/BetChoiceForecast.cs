@@ -10,6 +10,8 @@
 
         public string BetChoice { get; set; }
 
+        public string HandicapValue { get; set; }
+
         public IEnumerable<string> WinLossColumnNames { get; set; }
 
         public IEnumerable<decimal> WinLossValues { get; set; }

@@ -29,6 +29,12 @@
             }
 
             var match = _eventService.GetMatchInfo(message.IsLive, message.MatchId);
+
+            if (match == null)
+            {
+                throw new ArgumentNullException(nameof(match), "match cannot be null!");
+            }
+
             var league = new League
             {
                 Id = match.LeagueId

@@ -65,6 +65,7 @@
                                 winLossColumnNames.Add(winlossColumnNameDto.FirstColumnName);
                                 winLossColumnNames.Add(winlossColumnNameDto.SecondColumnName);
                                 winLossColumnNames.Add(winlossColumnNameDto.ThirdColumnName);
+
                                 isFirstBetChoice = false;
                             }
 
@@ -79,7 +80,8 @@
                             BetCount = betTypeItem.BetCount,
                             Turnover = betTypeItem.Turnover,
                             WinLossColumnNames = winLossColumnNames,
-                            WinLossValues = winLossValues
+                            WinLossValues = winLossValues,
+                            HandicapValue = betTypeItem.BetType
                         });
                     }
                 }

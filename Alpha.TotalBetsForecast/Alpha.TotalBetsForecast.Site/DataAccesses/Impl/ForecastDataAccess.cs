@@ -16,13 +16,13 @@
             {
                 using (var queryMultiple = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
+                    var forecastTotal = queryMultiple.Read<decimal>().FirstOrDefault();
+
                     var betTypeForecasts = queryMultiple.Read<BetTypeForecastDto>();
 
                     var winlossColumnNames = queryMultiple.Read<WinLossColumnNameDto>();
 
-                    var forecastTotal = queryMultiple.Read<decimal>().FirstOrDefault();
-
-                    return Tuple.Create(betTypeForecasts, winlossColumnNames, forecastTotal);
+                    return Tuple.Create(betTypeForecasts, winlossColumnNames, (decimal)forecastTotal);
                 }
             }
         }

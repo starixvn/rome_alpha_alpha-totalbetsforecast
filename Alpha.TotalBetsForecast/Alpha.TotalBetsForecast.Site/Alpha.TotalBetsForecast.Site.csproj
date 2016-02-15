@@ -201,8 +201,8 @@
     <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecast.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="App_Data\SPNames\PRO\TotalBetsForecase.xml" />
-    <Content Include="App_Data\SPNames\UAT\TotalBetsForecase.xml" />
+    <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
+    <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
     <Content Include="Content\Images\goal-icon.png" />
     <Content Include="Content\Images\sprite.png" />
     <Content Include="Content\totalbets-forecast.css">

@@ -37,6 +37,8 @@
 
         public int LeagueId { get; set; }
 
+        public bool HasLive { get; set; }
+
         public DateTime KickOffTime { get; set; }
     }
 }

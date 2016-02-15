@@ -27,12 +27,20 @@
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        [HttpGet]
-        public JsonResult GetMatchForecast(MatchForecastQuery query)
+        ////[HttpGet]
+        ////public JsonResult GetMatchForecast(MatchForecastQuery query)
+        ////{
+        ////    var viewModel = _mediator.Send(query);
+
+        ////    return Json(viewModel, JsonRequestBehavior.AllowGet);
+        ////}
+
+        [ChildActionOnly]
+        public ActionResult MatchForecast(MatchForecastQuery query)
         {
             var viewModel = _mediator.Send(query);
 
-            return Json(viewModel, JsonRequestBehavior.AllowGet);
+            return View(viewModel);
         }
     }
 }
