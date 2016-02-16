@@ -8,6 +8,7 @@ body {
     font-size: 12px;
     background: #f4f4f4;
 }
+
 .ifr-result {
     position: absolute;
     min-width: 100%;
@@ -19,83 +20,6 @@ body {
     width: 16px;
     height: 19px;
     display: inline-block;
-}
-.tab-content {
-    padding: 15px 0;
-    .control {
-        display: inline-block;
-        width: 200px;
-        vertical-align: middle;
-        margin: 0 15px 0 5px;
-        &.date {
-            width: 130px;
-        }
-    }
-    .btn {
-        @include border-radius(2px);
-        @include box-shadow(0, 2px, 1px, rgba(0, 0, 0, 0.2));
-        margin-right: 15px;
-        min-width: 80px;
-        border: none;
-        font-size: 12px;
-        font-weight: bold;
-        outline: none;
-        &:focus {
-      -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.16);
-              box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.16);
-        }
-    }
-    .btn-default {
-        background: #e1e1e1;
-        color: #4c4c4c;
-        &:hover {
-           background: #dbdada;
-        }
-    }
-    .btn-submit {
-        background: #0b599c;
-        color: #fff;
-        &:hover {
-            background: #0b67b6;
-        }
-    }
-    .filter {
-        [class^="col-"]{
-            margin-bottom: 15px;
-        }
-        .txt-red {
-            color: #f00;
-        }
-        .sport-info {
-            .btn {
-                width: 100%;
-                text-align: left;
-                background: #fff;
-                position: relative;
-                .caret {
-                    position: absolute;
-                    right: 10px;
-                    top: 13px;
-                }
-            }
-        }
-    }
-
-    .dropdown .btn {
-        font-weight: normal;
-    }
-    .league-content {
-        width: 300px;
-    }
-    .dropdown .dropdown-menu {
-        min-width: 200px;
-        font-size: 12px;
-    }
-    .icon-excel {
-        float: right;
-        margin-top: 14px;
-        cursor: pointer;
-    }
 }
 
 .main-content {
@@ -273,19 +197,90 @@ table.fn-rs tbody .cl-match div {
     margin-top: 15px;
 }
 
-.lnk {
-    color: #045ace;
-    &:hover {
-         color: #045ace;
-    }
-    &:focus, &:visited, &:active {
-        outline: none;
-    }
-}
-
 body.keno iframe {
   position: absolute;
   width: 98%;
   height: 98%;
   overflow-x: hidden;
+}
+.totalandforecast {
+    .filter {
+        padding: 15px 0;
+    }
+    .form-group {
+        margin-right: 30px;
+        label {
+            margin-right: 8px;
+        }
+    }
+    .breadcrumb {
+        overflow: hidden;
+        padding: 15px 0;
+        margin: 0;
+        border-bottom: 1px solid #dfdfdf;
+        li {
+            float: left;
+            font-size: 15px;
+            font-weight: bold;
+            + li:before {
+                content: '\276F';
+                color: #333;
+                padding: 0 10px;
+            }
+        }
+    }
+}
+
+.home-name {
+    color: #920b12;
+}
+.live-status, .positive {
+    color: #910915;
+}
+.match-time {
+    font-weight: normal;
+    color: #313131;
+}
+.ex-text {
+    color: #666;
+}
+table * {
+    box-sizing: content-box;
+    font-weight: bold;
+}
+
+.tblRpt tr td.forecastWinLoss {
+    padding: 0;
+    [class^="col-"] {
+        padding: 0 8px;
+        box-sizing: border-box;
+        border-right: 1px solid #dfdfdf;
+        height: 33px;
+        line-height: 33px;
+        &:last-child {
+            border-right: none;
+        }
+    }
+}
+.tblRpt tr td.ex-col {
+    border-top: none;
+    border-bottom: none;
+}
+
+.tblRpt tr.last-row td.ex-col {
+    border-bottom: 1px solid #dfdfdf;
+}
+
+.tblRpt tr td.forecastWinLoss.head [class^="col-"] {
+    background: #72809a;
+    color: #fff;
+}
+
+.tblRpt tr.cl-league td {
+    text-transform: uppercase;
+    background: #f3f5e0;
+}
+
+.tblRpt tr td.odd {
+    background: #eae9ee;
 }

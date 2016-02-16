@@ -13,72 +13,6 @@
   height: 19px;
   display: inline-block; }
 
-.tab-content {
-  padding: 15px 0; }
-  .tab-content .control {
-    display: inline-block;
-    width: 200px;
-    vertical-align: middle;
-    margin: 0 15px 0 5px; }
-    .tab-content .control.date {
-      width: 130px; }
-  .tab-content .btn {
-    -webkit-border-radius: 2px;
-    -khtml-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
-    -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    -khtml-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    -ms-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    -o-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
-    margin-right: 15px;
-    min-width: 80px;
-    border: none;
-    font-size: 12px;
-    font-weight: bold;
-    outline: none; }
-    .tab-content .btn:focus {
-      -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.16);
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.18), 0 8px 16px rgba(0, 0, 0, 0.16); }
-  .tab-content .btn-default {
-    background: #e1e1e1;
-    color: #4c4c4c; }
-    .tab-content .btn-default:hover {
-      background: #dbdada; }
-  .tab-content .btn-submit {
-    background: #0b599c;
-    color: #fff; }
-    .tab-content .btn-submit:hover {
-      background: #0b67b6; }
-  .tab-content .filter [class^="col-"] {
-    margin-bottom: 15px; }
-  .tab-content .filter .txt-red {
-    color: #f00; }
-  .tab-content .filter .sport-info .btn {
-    width: 100%;
-    text-align: left;
-    background: #fff;
-    position: relative; }
-    .tab-content .filter .sport-info .btn .caret {
-      position: absolute;
-      right: 10px;
-      top: 13px; }
-  .tab-content .dropdown .btn {
-    font-weight: normal; }
-  .tab-content .league-content {
-    width: 300px; }
-  .tab-content .dropdown .dropdown-menu {
-    min-width: 200px;
-    font-size: 12px; }
-  .tab-content .icon-excel {
-    float: right;
-    margin-top: 14px;
-    cursor: pointer; }
-
 .main-content .fn-rs-content-header {
   padding-right: 0;
   border: none; }
@@ -252,16 +186,77 @@ table.fn-rs tbody .cl-match div.first-half-last-goal {
 .detail-result {
   margin-top: 15px; }
 
-.lnk {
-  color: #045ace; }
-  .lnk:hover {
-    color: #045ace; }
-  .lnk:focus, .lnk:visited, .lnk:active {
-    outline: none; }
-
 body.keno iframe {
   position: absolute;
   width: 98%;
   height: 98%;
   overflow-x: hidden; }
+
+.totalandforecast .filter {
+  padding: 15px 0; }
+
+.totalandforecast .form-group {
+  margin-right: 30px; }
+  .totalandforecast .form-group label {
+    margin-right: 8px; }
+
+.totalandforecast .breadcrumb {
+  overflow: hidden;
+  padding: 15px 0;
+  margin: 0;
+  border-bottom: 1px solid #dfdfdf; }
+  .totalandforecast .breadcrumb li {
+    float: left;
+    font-size: 15px;
+    font-weight: bold; }
+    .totalandforecast .breadcrumb li + li:before {
+      content: '\276F';
+      color: #333;
+      padding: 0 10px; }
+
+.home-name {
+  color: #920b12; }
+
+.live-status, .positive {
+  color: #910915; }
+
+.match-time {
+  font-weight: normal;
+  color: #313131; }
+
+.ex-text {
+  color: #666; }
+
+table * {
+  box-sizing: content-box;
+  font-weight: bold; }
+
+.tblRpt tr td.forecastWinLoss {
+  padding: 0; }
+  .tblRpt tr td.forecastWinLoss [class^="col-"] {
+    padding: 0 8px;
+    box-sizing: border-box;
+    border-right: 1px solid #dfdfdf;
+    height: 33px;
+    line-height: 33px; }
+    .tblRpt tr td.forecastWinLoss [class^="col-"]:last-child {
+      border-right: none; }
+
+.tblRpt tr td.ex-col {
+  border-top: none;
+  border-bottom: none; }
+
+.tblRpt tr.last-row td.ex-col {
+  border-bottom: 1px solid #dfdfdf; }
+
+.tblRpt tr td.forecastWinLoss.head [class^="col-"] {
+  background: #72809a;
+  color: #fff; }
+
+.tblRpt tr.cl-league td {
+  text-transform: uppercase;
+  background: #f3f5e0; }
+
+.tblRpt tr td.odd {
+  background: #eae9ee; }
 
