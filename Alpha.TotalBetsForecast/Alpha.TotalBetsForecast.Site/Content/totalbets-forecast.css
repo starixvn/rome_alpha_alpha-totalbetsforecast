@@ -82,16 +82,28 @@ table * {
   box-sizing: content-box;
   font-weight: bold; }
 
+#dataTotalBet {
+  min-width: 710px; }
+
 .tblRpt tr td.forecastWinLoss {
-  padding: 0; }
-  .tblRpt tr td.forecastWinLoss [class^="col-"] {
-    padding: 0 8px;
-    box-sizing: border-box;
-    border-right: 1px solid #dfdfdf;
-    height: 33px;
-    line-height: 33px; }
-    .tblRpt tr td.forecastWinLoss [class^="col-"]:last-child {
-      border-right: none; }
+  padding: 0;
+  width: 25%; }
+  .tblRpt tr td.forecastWinLoss table {
+    width: 100%;
+    table-layout: fixed; }
+    .tblRpt tr td.forecastWinLoss table thead td {
+      background: #72809a;
+      color: #fff; }
+    .tblRpt tr td.forecastWinLoss table td {
+      padding: 0 8px;
+      border: none;
+      box-sizing: border-box;
+      border-right: 1px solid #dfdfdf;
+      height: 33px;
+      line-height: 33px;
+      white-space: pre-wrap; }
+      .tblRpt tr td.forecastWinLoss table td:last-child {
+        border-right: none; }
 
 .tblRpt tr td.ex-col {
   border-top: none;
@@ -99,10 +111,6 @@ table * {
 
 .tblRpt tr.last-row td.ex-col {
   border-bottom: 1px solid #dfdfdf; }
-
-.tblRpt tr td.forecastWinLoss.head [class^="col-"] {
-  background: #72809a;
-  color: #fff; }
 
 .tblRpt tr.cl-league td {
   text-transform: uppercase;

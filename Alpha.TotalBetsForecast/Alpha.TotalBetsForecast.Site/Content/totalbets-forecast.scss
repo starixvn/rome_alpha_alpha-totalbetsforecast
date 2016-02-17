@@ -84,17 +84,30 @@ table * {
     box-sizing: content-box;
     font-weight: bold;
 }
-
+#dataTotalBet {
+    min-width: 710px;
+}
 .tblRpt tr td.forecastWinLoss {
     padding: 0;
-    [class^="col-"] {
-        padding: 0 8px;
-        box-sizing: border-box;
-        border-right: 1px solid #dfdfdf;
-        height: 33px;
-        line-height: 33px;
-        &:last-child {
-            border-right: none;
+    width: 25%;
+    table {
+        width: 100%;
+        table-layout: fixed;
+        thead td {
+            background: #72809a;
+            color: #fff;
+        }
+        td {
+            padding: 0 8px;
+            border: none;
+            box-sizing: border-box;
+            border-right: 1px solid #dfdfdf;
+            height: 33px;
+            line-height: 33px;
+            white-space:pre-wrap;
+            &:last-child {
+                border-right: none;
+            }
         }
     }
 }
@@ -105,11 +118,6 @@ table * {
 
 .tblRpt tr.last-row td.ex-col {
     border-bottom: 1px solid #dfdfdf;
-}
-
-.tblRpt tr td.forecastWinLoss.head [class^="col-"] {
-    background: #72809a;
-    color: #fff;
 }
 
 .tblRpt tr.cl-league td {
