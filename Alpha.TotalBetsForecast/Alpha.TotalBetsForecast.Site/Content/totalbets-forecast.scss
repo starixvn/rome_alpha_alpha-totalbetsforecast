@@ -106,6 +106,10 @@ table * {
     background: #f3f5e0;
 }
 
-.tblRpt tr td.odd {
+.tblRpt tr.odd td {
     background: #eae9ee;
+    &.col-time, &.col-event, &.col-forecastTotal {
+        background: #fff;
+    }
 }
+
