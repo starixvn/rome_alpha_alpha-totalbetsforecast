@@ -99,8 +99,8 @@ table * {
   text-transform: uppercase;
   background: #f3f5e0; }
 
-.tblRpt tr.odd td {
+.tblRpt tr.even td {
   background: #eae9ee; }
-  .tblRpt tr.odd td.col-time, .tblRpt tr.odd td.col-event, .tblRpt tr.odd td.col-forecastTotal {
+  .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
     background: #fff; }
 

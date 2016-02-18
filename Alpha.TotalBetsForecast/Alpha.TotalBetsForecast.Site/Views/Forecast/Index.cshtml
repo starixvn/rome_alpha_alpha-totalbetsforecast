@@ -39,20 +39,28 @@
         <table class="tblRpt col-sm-12" id="dataTotalBet">
             <thead>
                 <tr class="RptHeader">
-                    <th class="text-center">Time</th>
-                    <th class="text-center">Event</th>
-                    <th class="text-center">Bet Type</th>
-                    <th class="text-center">Bet Count</th>
-                    <th class="text-center">Turnover</th>
-                    <th class="text-center" colspan="3">Forecast Win/Loss</th>
-                    <th class="text-center">Forecast Total</th>
+                    <th class="text-center">@Resources.Time</th>
+                    <th class="text-center">@Resources.Event</th>
+                    <th class="text-center">@Resources.BetType</th>
+                    <th class="text-center">@Resources.BetCount</th>
+                    <th class="text-center">@Resources.Turnover</th>
+                    <th class="text-center" colspan="3">@Resources.ForecastWinLoss</th>
+                    <th class="text-center">@Resources.ForecastTotal</th>
                 </tr>
             </thead>
             <tbody>
+                @Html.Action("MatchForecast",
+                new
+                {
+                    MatchId = 16470785, //14649182,16470785
+                    IsLive = true,
+                    LiveHomeScore = 1,
+                    LiveAwayScore = 0
+                })
                 <tr class="cl-league">
                     <td colspan="10">English Premier league</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td rowspan="18" class="text-center col-time"><span class="live-status">LIVE</span> <br /> <span class="match-time">10/9/2015 10:30 AM</span></td>
                     <td rowspan="18" class="col-event"><span class="home-name">Arsenal</span><br /><span class="away-name">Tottenham</span> </td>
                     <td rowspan="3"><span class="pull-left">HDP</span><span class="pull-right ex-text">1.5, 2.25, 3</span></td>
@@ -63,14 +71,14 @@
                     <td class="ex-col text-center head">0</td>
                     <td rowspan="18" class="col-forecastTotal text-center">-28850.95</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col ex-text text-right">350</td>
                     <td class="ex-col text-right">6,634.44</td>
                     <td class="ex-col text-right">-5,322.19</td>
                     <td class="ex-col text-right">-5,322.19</td>
                     <td class="ex-col text-right">-5,322.19</td>
                 </tr>
-                <tr class="odd last-row">
+                <tr class="even last-row">
                     <td class="ex-col ex-text text-right">280</td>
                     <td class="ex-col text-right">6,314.98</td>
                     <td class="ex-col text-right positive">6,798.12</td>
@@ -99,7 +107,7 @@
                     <td class="ex-col text-right positive">4,356.77</td>
                     <td class="ex-col text-right positive">4,356.77</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col">&nbsp;</td>
@@ -107,7 +115,7 @@
                     <td class="ex-col text-center head">3 Goals</td>
                     <td class="ex-col text-center head">4+ Goals</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col"><span class="pull-left">OU</span><span class="pull-right ex-text">2,5 3,5</span></td>
                     <td class="ex-col ex-text text-right">260</td>
                     <td class="ex-col text-right">4,900.00</td>
@@ -115,10 +123,10 @@
                     <td class="ex-col text-right">-3,560.00</td>
                     <td class="ex-col text-right">-4,000.00</td>
                 </tr>
-                <tr class="odd last-row">
-                    <td class="ex-col text-right ex-text odd">u</td>
-                    <td class="ex-col ex-text text-right odd">140</td>
-                    <td class="ex-col text-right odd">4,905.00</td>
+                <tr class="even last-row">
+                    <td class="ex-col text-right ex-text even">u</td>
+                    <td class="ex-col ex-text text-right even">140</td>
+                    <td class="ex-col text-right even">4,905.00</td>
                     <td class="ex-col text-right positive">4,250.00</td>
                     <td class="ex-col text-right positive">4,250.00</td>
                     <td class="ex-col text-right positive">4,250.00</td>
@@ -147,19 +155,19 @@
                     <td class="ex-col text-right">-3,800.00</td>
                     <td class="ex-col text-right">-3,800.00</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col text-right ex-text">1</td>
                     <td class="ex-col ex-text text-right">260</td>
                     <td class="ex-col text-right" >2,546.00</td>
                     <td class="ex-col text-center positive" colspan="3">2,172.38</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col"><span class="pull-left">FT. 1x2</span><span class="pull-right ex-text">x</span></td>
                     <td class="ex-col text-right ex-text">140</td>
                     <td class="ex-col text-right" >2,546.00</td>
                     <td class="ex-col text-center" colspan="3">-4,356.12</td>
                 </tr>
-                <tr class="odd last-row">
+                <tr class="even last-row">
                     <td class="ex-col text-right ex-text">2</td>
                     <td class="ex-col text-right ex-text">140</td>
                     <td class="ex-col text-right" >2,546.00</td>
@@ -183,10 +191,10 @@
                     <td class="ex-col text-right">2,546.00</td>
                     <td class="ex-col text-center" colspan="3">-4,356.12</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td rowspan="18" class="text-center col-time"><span class="match-time">10/9/2015 10:30 AM</span></td>
                     <td rowspan="18" class="col-event"><span class="home-name">Arsenal</span> <br /> <span class="away-name">Tottenham</span></td>
-                    <td rowspan="3" class="odd"><span class="pull-left">HDP</span><span class="pull-right ex-text">1.5, 2.25, 3</span></td>
+                    <td rowspan="3" class="even"><span class="pull-left">HDP</span><span class="pull-right ex-text">1.5, 2.25, 3</span></td>
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col text-center head">2</td>
@@ -194,14 +202,14 @@
                     <td class="ex-col text-center head">-1</td>
                     <td rowspan="18" class="col-forecastTotal text-center">-28850.95</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col text-right ex-text">350</td>
                     <td class="ex-col text-right">6,634.44</td>
                     <td class="ex-col text-right">-3,800.00</td>
                     <td class="ex-col text-right">-3,800.00</td>
                     <td class="ex-col text-right">-3,800.00</td>
                 </tr>
-                <tr class="odd last-row">
+                <tr class="even last-row">
                     <td class="ex-col text-right ex-text">280</td>
                     <td class="ex-col text-right">6,314.98</td>
                     <td class="ex-col text-right positive">4,250.00</td>
@@ -230,7 +238,7 @@
                     <td class="ex-col text-right positive">4,250.00</td>
                     <td class="ex-col text-right positive">4,250.00</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col">&nbsp;</td>
                     <td class="ex-col">&nbsp;</td>
@@ -238,7 +246,7 @@
                     <td class="ex-col text-center head">3 Goals</td>
                     <td class="ex-col text-center head">4+ Goals</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col"><span class="pull-left">OU</span><span class="pull-right ex-text">2,5 3,5</span></td>
                     <td class="ex-col text-right ex-text">260</td>
                     <td class="ex-col text-right">4,900.00</td>
@@ -246,7 +254,7 @@
                     <td class="ex-col text-right">-3,800.00</td>
                     <td class="ex-col text-right">-3,800.00</td>
                 </tr>
-                <tr class="odd last-row">
+                <tr class="even last-row">
                     <td class="ex-col text-right ex-text">u</td>
                     <td class="ex-col text-right ex-text">140</td>
                     <td class="ex-col text-right">4,905.00</td>
@@ -278,19 +286,19 @@
                     <td class="ex-col text-right positive">4,250.00</td>
                     <td class="ex-col text-right positive">4,250.00</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col text-right ex-text">1</td>
                     <td class="ex-col text-right ex-text">260</td>
                     <td class="ex-col text-right">2,546.00</td>
                     <td class="ex-col text-center positive" colspan="3">2,172.38</td>
                 </tr>
-                <tr class="odd">
+                <tr class="even">
                     <td class="ex-col"><span class="pull-left">FT. 1x2</span><span class="pull-right ex-text">x</span></td>
                     <td class="ex-col text-right ex-text">140</td>
                     <td class="ex-col text-right">2,546.00</td>
                     <td class="ex-col text-center" colspan="3">-4,356.12</td>
                 </tr>
-                <tr class="odd last-row">
+                <tr class="even last-row">
                     <td class="ex-col text-right ex-text ">2</td>
                     <td class="ex-col text-right ex-text ">140</td>
                     <td class="ex-col text-right ">2,546.00</td>

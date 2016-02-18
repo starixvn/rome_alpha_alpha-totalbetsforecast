@@ -106,7 +106,7 @@ table * {
     background: #f3f5e0;
 }
 
-.tblRpt tr.odd td {
+.tblRpt tr.even td {
     background: #eae9ee;
     &.col-time, &.col-event, &.col-forecastTotal {
         background: #fff;

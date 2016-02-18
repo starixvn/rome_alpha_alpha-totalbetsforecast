@@ -19,6 +19,24 @@
 
         public IEnumerable<BetChoiceForecast> BetChoices { get; set; }
 
+        public bool IsHandicap
+        {
+            get
+            {
+                return BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Handicap
+                            || BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType._1st_Handicap;
+            }
+        }
+
+        public bool IsOverUnder
+        {
+            get
+            {
+                return BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType.Over_Under
+                            || BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType._1st_Over_Under;
+            }
+        }
+
         public bool IsOneXTwoBetType
         {
             get

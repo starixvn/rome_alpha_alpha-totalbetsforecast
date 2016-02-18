@@ -10,8 +10,7 @@
 
     var matchRowSpan = Model.BetTypeForecasts.Sum(betTypeForecast =>
     {
-        return 1 
-        + betTypeForecast.BetChoices.Count() 
+        return betTypeForecast.BetChoices.Count() 
         + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
     });
 
@@ -23,95 +22,154 @@
 {
     if (betChoiceForecast.WinLossColumnNames.Any())
     {
-        <td class="bet-type" colspan="4"></td>
+        <td class="ex-col">&nbsp;</td>
+        <td class="ex-col">&nbsp;</td>
+        <td class="ex-col">&nbsp;</td>
 
         foreach (var winlossName in betChoiceForecast.WinLossColumnNames)
         {
-            <td class="win-loss-name">@winlossName</td>
+            <td class="win-loss-name text-center ex-col head">@winlossName</td>
         }
     }
 }
 
-@helper RenderBetTypeForecast(BetTypeForecast betTypeForecast)
+@helper RenderBetTypeForecast(BetTypeForecast betTypeForecast, bool isEven)
 {
-    var totalBetChoice = betTypeForecast.BetChoices.Count();
+var totalBetChoice = betTypeForecast.BetChoices.Count();
 
-    <tr>
-        <td class="bet-type" rowspan="@(totalBetChoice)">
-            @betTypeForecast.BetTypeName
-        </td>
+    for (int i = 0; i < totalBetChoice; i++)
+    {
+        <tr class="@(isEven ? "even" : string.Empty)">
 
-        @RenderBetChoiceForecast(betTypeForecast.BetChoices.First(), betTypeForecast.IsOneXTwoBetType)
-    </tr>
-    <tr>
-        @for (int i = 1; i < totalBetChoice; i++)
-        {
-            @RenderBetChoiceForecast(betTypeForecast.BetChoices.ElementAt(i), betTypeForecast.IsOneXTwoBetType)
-        }
-    </tr>
+            @{
+                var betChoice = betTypeForecast.BetChoices.ElementAt(i);
+
+                if (betTypeForecast.IsHandicap)
+                {
+                    if (i == 0)
+                    {
+                        <td class="ex-col">
+                            <span class="pull-left">@betTypeForecast.BetTypeName</span>
+                            <span class="pull-right ex-text">@betChoice.HandicapValue</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="ex-col">&nbsp;</td>
+                    }
+                }
+
+
+                if (betTypeForecast.IsOverUnder)
+                {
+                    if (i == 0)
+                    {
+                        <td class="ex-col">
+                            <span class="pull-left">@betTypeForecast.BetTypeName</span>
+                            <span class="pull-right ex-text">@betChoice.HandicapValue</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="ex-col">
+                            <span class="pull-right ex-text">@betChoice.HandicapValue</span>
+                        </td>
+                    }
+                }
+
+                if (betTypeForecast.IsOneXTwoBetType)
+                {
+                    if (i == 1)
+                    {
+                        <td class="ex-col">
+                            <span class="pull-left">@betTypeForecast.BetTypeName</span>
+                            <span class="pull-right ex-text">@betChoice.HandicapValue</span>
+                        </td>
+                    }
+                    else
+                    {
+                        <td class="ex-col">
+                            <span class="pull-right ex-text">@betChoice.HandicapValue</span>
+                        </td>
+                    }
+                }
+
+                
+            }
+
+            @RenderBetChoiceForecast(betChoice, betTypeForecast.IsOneXTwoBetType)
+        </tr>
+    }
+
 }
 
 @helper RenderBetChoiceForecast(BetChoiceForecast betChoiceForecast, bool isOneXTwoBetType)
 {
-    <td class="handicap-value">
-        @betChoiceForecast.HandicapValue
-    </td>
-    <td class="bet-count">@(Formater.DecFormat(betChoiceForecast.BetCount, 0))</td>
-    <td class="turn-over">@(Formater.DecFormat(betChoiceForecast.Turnover, 2))</td>
+    
+    <td class="ex-col text-right">@(Formater.DecFormat(betChoiceForecast.BetCount, 0))</td>
+    <td class="ex-col text-right">@(Formater.DecFormat(betChoiceForecast.Turnover, 2))</td>
 
     foreach (var winloss in betChoiceForecast.WinLossValues)
     {
-        <td class="win-loss" @(isOneXTwoBetType ? "colspan=3" : string.Empty)>
+        <td class="ex-col @(isOneXTwoBetType ? "text-center" : "text-right")"
+            @(isOneXTwoBetType ? "colspan=3" : string.Empty)>
             @FormatWinLossNumber(winloss)
         </td>
     }
+    
 }
 
 @helper FormatWinLossNumber(decimal winloss)
 {
     if (winloss > 0)
     {
-        <span class="member-positive-winloss">@(Formater.DecFormat(winloss, 2))</span>
+        <span class="positive">@(Formater.DecFormat(winloss, 2))</span>
     }
     else
     {
-        <span class="member-negative-winloss">@(Formater.DecFormat(winloss, 2))</span>
+        <span >@(Formater.DecFormat(winloss, 2))</span>
     }
 }
 
 @if (matchHasAnyBetType)
 {
-    <tr class="league-row">
-        <td colspan="10">@Model.LeagueName</td>
+    <tr class="cl-league">
+        <td colspan="9">@Model.LeagueName</td>
     </tr>
 
-    <tr class="match-row">
-        <td rowspan="@matchRowSpan">@Model.KickOffTime</td>
-        <td rowspan="@matchRowSpan">
-            <span class="home-team">@Model.HomeName</span> -
-            <span class="away-team">@Model.AwayName</span>
+    <tr class="even">
+        <td rowspan="@matchRowSpan" class="col-time text-center">
+            <span class="match-time">@Model.KickOffTime</span>
+        </td>
+        <td rowspan="@matchRowSpan" class="col-event">
+            <span class="home-name">@Model.HomeName</span> <br />
+            <span class="away-name">@Model.AwayName</span>
         </td>
         
         @RenderWinLossColumnName(Model.BetTypeForecasts.First().BetChoices.First())
 
-        <td rowspan="@matchRowSpan" class="forecast-total">@(Formater.DecFormat(Model.ForecastTotal, 2))</td>
+        <td rowspan="@matchRowSpan" class="text-center col-forecastTotal">
+            @(Formater.DecFormat(Model.ForecastTotal, 2))
+        </td>
     </tr>
 
-    @RenderBetTypeForecast(Model.BetTypeForecasts.First())
+    @RenderBetTypeForecast(Model.BetTypeForecasts.First(), true)
 
     for (int i = 1; i < totalBetTypes; i++)
     {
         var currentBetTypeForecast = Model.BetTypeForecasts.ElementAt(i);
+        var isEven = i % 2 == 0;
 
         var firstBetChoice = currentBetTypeForecast.BetChoices.First();
+
         if (firstBetChoice.WinLossColumnNames.Any())
         {
-            <tr>
+            <tr class="@(isEven ? "even" : string.Empty)">
                 @RenderWinLossColumnName(firstBetChoice)
             </tr>
         }
 
-        @RenderBetTypeForecast(currentBetTypeForecast)
+        @RenderBetTypeForecast(currentBetTypeForecast, isEven)
 
     }
 }
@@ -122,34 +180,5 @@ else
     </tr>
 }
 
-@*<style type="text/css">
-    table, table tr, table td, table th {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-</style>
 
-<table>
-    <thead>
-        <tr>
-            <th>@Resources.Time</th>
-            <th>@Resources.Event</th>
-            <th colspan="2">@Resources.BetType</th>
-            <th>@Resources.BetCount</th>
-            <th>@Resources.Turnover</th>
-            <th colspan="3">@Resources.ForecastWinLoss</th>
-            <th>@Resources.ForecastTotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @Html.Action("MatchForecast",
-        new
-        {
-            MatchId = 16470785, //14649182
-            IsLive = true,
-            LiveHomeScore = 1,
-            LiveAwayScore = 0
-        })
-    </tbody>
-</table>*@
 
