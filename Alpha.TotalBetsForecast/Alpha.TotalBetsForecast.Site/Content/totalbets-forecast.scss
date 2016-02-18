@@ -87,33 +87,14 @@ table * {
 #dataTotalBet {
     min-width: 710px;
 }
-.tblRpt tr td.forecastWinLoss {
-    padding: 0;
-    width: 25%;
-    table {
-        width: 100%;
-        table-layout: fixed;
-        thead td {
-            background: #72809a;
-            color: #fff;
-        }
-        td {
-            padding: 0 8px;
-            border: none;
-            box-sizing: border-box;
-            border-right: 1px solid #dfdfdf;
-            height: 33px;
-            line-height: 33px;
-            white-space:pre-wrap;
-            &:last-child {
-                border-right: none;
-            }
-        }
-    }
-}
+
 .tblRpt tr td.ex-col {
     border-top: none;
     border-bottom: none;
+    &.head {
+        background: #72809a;
+        color: #fff;
+    }
 }
 
 .tblRpt tr.last-row td.ex-col {
