@@ -133,37 +133,38 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
 
 @if (matchHasAnyBetType)
 {
-    <tr class="cl-league">
-        <td colspan="9">@Model.LeagueName</td>
-    </tr>
+    <tbody id="match-@(Model.MatchId)">
+        <tr class="cl-league">
+            <td colspan="9">@Model.LeagueName</td>
+        </tr>
 
-    <tr class="even">
-        <td rowspan="@matchRowSpan" class="col-time text-center">
-            <span class="match-time">@Model.KickOffTime</span>
-        </td>
-        <td rowspan="@matchRowSpan" class="col-event">
-            <span class="home-name">@Model.HomeName</span> <br />
-            <span class="away-name">@Model.AwayName</span>
-        </td>
-        
-        @RenderWinLossColumnName(Model.BetTypeForecasts.First().BetChoices.First())
+        <tr class="even">
+            <td rowspan="@matchRowSpan" class="col-time text-center">
+                <span class="match-time">@Model.KickOffTime</span>
+            </td>
+            <td rowspan="@matchRowSpan" class="col-event">
+                <span class="home-name">@Model.HomeName</span> <br />
+                <span class="away-name">@Model.AwayName</span>
+            </td>
 
-        <td rowspan="@matchRowSpan" class="text-center col-forecastTotal">
-            @(Formater.DecFormat(Model.ForecastTotal, 2))
-        </td>
-    </tr>
+            @RenderWinLossColumnName(Model.BetTypeForecasts.First().BetChoices.First())
 
-    @RenderBetTypeForecast(Model.BetTypeForecasts.First(), true)
+            <td rowspan="@matchRowSpan" class="text-center col-forecastTotal">
+                @(Formater.DecFormat(Model.ForecastTotal, 2))
+            </td>
+        </tr>
 
-    for (int i = 1; i < totalBetTypes; i++)
-    {
-        var currentBetTypeForecast = Model.BetTypeForecasts.ElementAt(i);
-        var isEven = i % 2 == 0;
+        @RenderBetTypeForecast(Model.BetTypeForecasts.First(), true)
 
-        var firstBetChoice = currentBetTypeForecast.BetChoices.First();
-
-        if (firstBetChoice.WinLossColumnNames.Any())
+        @for (int i = 1; i < totalBetTypes; i++)
         {
+            var currentBetTypeForecast = Model.BetTypeForecasts.ElementAt(i);
+            var isEven = i % 2 == 0;
+
+            var firstBetChoice = currentBetTypeForecast.BetChoices.First();
+
+            if (firstBetChoice.WinLossColumnNames.Any())
+            {
             <tr class="@(isEven ? "even" : string.Empty)">
                 @RenderWinLossColumnName(firstBetChoice)
             </tr>
@@ -171,13 +172,16 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
 
         @RenderBetTypeForecast(currentBetTypeForecast, isEven)
 
-    }
+        }
+    </tbody>
 }
 else
 {
-    <tr class="no-info">
-        <td colspan="9">There is no data!</td>
-    </tr>
+    <tbody>
+        <tr class="no-info">
+            <td colspan="9">There is no data!</td>
+        </tr>
+    </tbody>
 }
 
 

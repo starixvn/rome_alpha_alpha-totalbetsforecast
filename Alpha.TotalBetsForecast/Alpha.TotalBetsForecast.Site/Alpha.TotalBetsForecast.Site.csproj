@@ -210,9 +210,6 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Forecast\index.js" />
-    <Content Include="Scripts\Forecast\match-forecast.js">
-      <DependentUpon>match-forecast.jsx</DependentUpon>
-    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -244,9 +241,11 @@
     <Compile Include="Models\League.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchForecast.cs" />
-    <Compile Include="Models\Requests\MatchesAndLeaguesQuery.cs" />
+    <Compile Include="Models\Requests\IndexQuery.cs" />
+    <Compile Include="Models\Requests\MatchesQuery.cs" />
     <Compile Include="Models\Requests\MatchForecastQuery.cs" />
-    <Compile Include="Models\Views\MatchesAndLeaguesViewModel.cs" />
+    <Compile Include="Models\Views\IndexViewModel.cs" />
+    <Compile Include="Models\Views\MatchesViewModel.cs" />
     <Compile Include="Models\Views\MatchForecastViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEventService.cs" />
@@ -316,7 +315,6 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
-    <Content Include="Scripts\Forecast\match-forecast.jsx" />
     <Content Include="Views\Forecast\MatchForecast.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

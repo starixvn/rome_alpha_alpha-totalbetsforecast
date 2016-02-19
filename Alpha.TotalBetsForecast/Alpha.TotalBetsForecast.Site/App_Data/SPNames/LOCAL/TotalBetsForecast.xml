@@ -9,7 +9,11 @@
       <Mapping ObjectProperty="SecondColumnName" DataField="ColumnName2" />
       <Mapping ObjectProperty="ThirdColumnName" DataField="ColumnName3" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DBAGE.bodb02.BODBDownlineNet" />
+    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DBAGE.bodb02.BODBDownlineNet">
+      <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
+      <Mapping ObjectProperty="Id" DataField="matchid" Class="Match" />
+      <Mapping ObjectProperty="Code" DataField="matchcode" Class="Match" />
+    </Setting>
     <Setting Key="Age_NewTotalBetsForeCast_GetMatchInfo" SpName="Age_NewTotalBetsForeCast_GetMatchInfo" DbName="DBAGE.bodb02.BODBDownlineNet" />
   </Function>
 </Functions>

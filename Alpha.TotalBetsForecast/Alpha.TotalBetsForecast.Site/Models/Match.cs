@@ -31,6 +31,14 @@
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                return $"{HomeName} - {AwayName}";
+            }
+        }
+
         public byte LiveHomeScore { get; set; }
 
         public byte LiveAwayScore { get; set; }

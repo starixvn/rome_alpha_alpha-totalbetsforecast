@@ -2,14 +2,12 @@
 {
     using System.Collections.Generic;
 
-    public class MatchesAndLeaguesViewModel
+    public class MatchesViewModel
     {
         public int MatchId { get; set; }
 
         public int LeagueId { get; set; }
 
         public IEnumerable<Match> Matches { get; set; }
-
-        public IEnumerable<League> Leagues { get; set; }
     }
 }

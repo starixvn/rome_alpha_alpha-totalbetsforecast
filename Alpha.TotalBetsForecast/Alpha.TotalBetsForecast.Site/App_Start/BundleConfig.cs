@@ -4,9 +4,9 @@
 
     public static class BundleConfig
     {
-        public const string NormalResultJavascriptBundleUrl = "~/bundles/scripts/normalresult";
+        public const string IndexForecastJavascriptBundleUrl = "~/bundles/scripts/forecast/index";
         public const string OutrightResultJavascriptBundleUrl = "~/bundles/scripts/outrightresult";
-        public const string ResultCoreStyleBundleUrl = "~/bundle/styles/resultcore";
+        public const string IndexForecastStyleBundleUrl = "~/bundle/styles/forecast/index";
 
         public static void RegisterBundles(BundleCollection bundles)
         {
@@ -16,13 +16,14 @@
 
         private static void RegisterJavascriptBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle(IndexForecastJavascriptBundleUrl)
+                .Include("~/Scripts/Forecast/Index.js"));
         }
 
         private static void RegisterStyleBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle(ResultCoreStyleBundleUrl)
-                .Include("~/Content/Fanex.Result/fanex.result.css", new CssRewriteUrlTransformWrapper())
-                .Include("~/Content/result.css", new CssRewriteUrlTransformWrapper()));
+            bundles.Add(new StyleBundle(IndexForecastStyleBundleUrl)
+                .Include("~/Content/totalbets-forecast.css", new CssRewriteUrlTransformWrapper()));
         }
     }
 }

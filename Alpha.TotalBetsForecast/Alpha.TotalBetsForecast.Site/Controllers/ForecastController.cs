@@ -14,33 +14,27 @@
         }
 
         // GET: Forecast
-        public ActionResult Index()
+        public ActionResult Index(IndexQuery query)
         {
-            return View();
+            var viewModel = _mediator.Send(query);
+
+            return View(viewModel);
         }
 
         [HttpGet]
-        public JsonResult GetMatchesAndLeagues(MatchesAndLeaguesQuery query)
+        public JsonResult GetMatches(MatchesQuery query)
         {
             var viewModel = _mediator.Send(query);
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
-        ////[HttpGet]
-        ////public JsonResult GetMatchForecast(MatchForecastQuery query)
-        ////{
-        ////    var viewModel = _mediator.Send(query);
-
-        ////    return Json(viewModel, JsonRequestBehavior.AllowGet);
-        ////}
-
-        [ChildActionOnly]
-        public ActionResult MatchForecast(MatchForecastQuery query)
+        [HttpGet]
+        public JsonResult GetMatchForecast(MatchForecastQuery query)
         {
             var viewModel = _mediator.Send(query);
 
-            return View(viewModel);
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
     }
 }
