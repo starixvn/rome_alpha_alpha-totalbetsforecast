@@ -1,6 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
     using System.Collections.Generic;
+    using App_GlobalResources;
     using Sunplus.Agent.Model.RemotingRef;
 
     public class BetTypeForecast
@@ -11,7 +12,7 @@
         {
             get
             {
-                return CacheRefFactory.CacheRef.GetBettype(BetTypeId);
+                return Resources.ResourceManager.GetString($"BetType_{BetTypeId}");
             }
         }
 

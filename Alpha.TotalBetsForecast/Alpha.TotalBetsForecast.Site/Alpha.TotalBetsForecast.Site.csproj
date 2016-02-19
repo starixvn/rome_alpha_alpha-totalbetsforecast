@@ -235,6 +235,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\ForecastHandler.cs" />
+    <Compile Include="Helpers\BetChoiceComparer.cs" />
+    <Compile Include="Helpers\BetTypeComparer.cs" />
     <Compile Include="Models\BetChoiceForecast.cs" />
     <Compile Include="Models\BetTypeForecast.cs" />
     <Compile Include="Models\Dtos\BetTypeForecastDto.cs" />

@@ -79,6 +79,60 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HDP.
+        /// </summary>
+        public static string BetType_1 {
+            get {
+                return ResourceManager.GetString("BetType_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1H 1X2.
+        /// </summary>
+        public static string BetType_15 {
+            get {
+                return ResourceManager.GetString("BetType_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OU.
+        /// </summary>
+        public static string BetType_3 {
+            get {
+                return ResourceManager.GetString("BetType_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FT. 1X2.
+        /// </summary>
+        public static string BetType_5 {
+            get {
+                return ResourceManager.GetString("BetType_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1H HDP.
+        /// </summary>
+        public static string BetType_7 {
+            get {
+                return ResourceManager.GetString("BetType_7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1H OU.
+        /// </summary>
+        public static string BetType_8 {
+            get {
+                return ResourceManager.GetString("BetType_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dead Ball.
         /// </summary>
         public static string Deadball {

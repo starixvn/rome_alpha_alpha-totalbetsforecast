@@ -156,4 +156,22 @@
   <data name="totalbets" xml:space="preserve">
     <value>Total Bets</value>
   </data>
+  <data name="BetType_1" xml:space="preserve">
+    <value>HDP</value>
+  </data>
+  <data name="BetType_15" xml:space="preserve">
+    <value>1H 1X2</value>
+  </data>
+  <data name="BetType_3" xml:space="preserve">
+    <value>OU</value>
+  </data>
+  <data name="BetType_5" xml:space="preserve">
+    <value>FT. 1X2</value>
+  </data>
+  <data name="BetType_7" xml:space="preserve">
+    <value>1H HDP</value>
+  </data>
+  <data name="BetType_8" xml:space="preserve">
+    <value>1H OU</value>
+  </data>
 </root>

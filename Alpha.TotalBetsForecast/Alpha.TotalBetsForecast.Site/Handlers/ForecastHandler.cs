@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using Helpers;
     using MediatR;
     using Models;
     using Models.Requests;
@@ -51,7 +52,7 @@
                 KickOffTime = match.KickOffTime,
                 LiveHomeScore = match.LiveHomeScore,
                 LiveAwayScore = match.LiveAwayScore,
-                BetTypeForecasts = matchForecast.BetTypeForecasts,
+                BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer()),
                 ForecastTotal = matchForecast.ForecastTotal
             };
         }

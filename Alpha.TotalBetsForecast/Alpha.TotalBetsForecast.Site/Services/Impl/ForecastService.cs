@@ -5,12 +5,18 @@
     using Criteria;
     using DataAccesses;
     using Fanex.Common.Helper;
+    using Helpers;
     using Models;
     using Models.Requests;
     using Sunplus.Agent.Model.BL.Definitions;
 
     public class ForecastService : IForecastService
     {
+        private const string HomeChoice = "h";
+        private const string AwayChoice = "a";
+        private const string OverChoice = "o";
+        private const string UnderChoice = "u"; 
+
         private IForecastDataAccess _forecastDataAccess;
 
         public ForecastService(IForecastDataAccess forecastDataAccess)
@@ -41,19 +47,31 @@
                     continue;
                 }
 
+                var betTypeForecast = new BetTypeForecast
+                {
+                    BetTypeId = betTypeDto.BetTypeId,
+                    BetType = betTypeDto.BetType
+                };
+
                 var groupedBetTypeForecastDto = matchForecastRaw.Item1.Where(betTypeForecastDto => betTypeForecastDto.BetTypeId == betTypeDto.BetTypeId);
                 var betChoices = new List<BetChoiceForecast>();
 
                 if (groupedBetTypeForecastDto.Any())
                 {
+                    groupedBetTypeForecastDto = groupedBetTypeForecastDto.OrderBy(betTypeGrouped => betTypeGrouped.BetChoice, new BetChoiceComparer());
                     var isFirstBetChoice = true;
                     foreach (var betTypeItem in groupedBetTypeForecastDto)
                     {
                         var winLossColumnNames = new List<string>();
                         var winLossValues = new List<decimal>();
+                        var betChoice = new BetChoiceForecast
+                        {
+                            BetChoice = betTypeItem.BetChoice,
+                            BetCount = betTypeItem.BetCount,
+                            Turnover = betTypeItem.Turnover
+                        };
 
-                        if (betTypeItem.BetTypeId == (int)BetType.FT_1X2
-                            || betTypeItem.BetTypeId == (int)BetType.FirstHalf_1X2)
+                        if (betTypeForecast.IsOneXTwoBetType)
                         {
                             winLossValues.Add(betTypeItem.WinLossFirstColumn);
                         }
@@ -74,26 +92,31 @@
                             winLossValues.Add(betTypeItem.WinLossThirdColumn);
                         }
 
-                        betChoices.Add(new BetChoiceForecast
+                        betChoice.WinLossValues = winLossValues;
+                        betChoice.WinLossColumnNames = winLossColumnNames;
+
+                        if (betTypeForecast.IsOneXTwoBetType)
                         {
-                            BetChoice = betTypeItem.BetChoice,
-                            BetCount = betTypeItem.BetCount,
-                            Turnover = betTypeItem.Turnover,
-                            WinLossColumnNames = winLossColumnNames,
-                            WinLossValues = winLossValues,
-                            HandicapValue = betTypeItem.BetType
-                        });
+                            betChoice.HandicapValue = betTypeItem.BetChoice;
+                        }
+                        else if (betTypeForecast.IsOverUnder 
+                            && betTypeItem.BetChoice.ToLower() == AwayChoice)
+                        {
+                            betChoice.HandicapValue = UnderChoice;
+                        }
+                        else
+                        {
+                            betChoice.HandicapValue = betTypeItem.BetType;
+                        }
+
+                        betChoices.Add(betChoice);
                     }
                 }
 
                 processedBetTypeIds.Add(betTypeDto.BetTypeId);
 
-                betTypeForecasts.Add(new BetTypeForecast
-                {
-                    BetTypeId = betTypeDto.BetTypeId,
-                    BetType = betTypeDto.BetType,
-                    BetChoices = betChoices
-                });
+                betTypeForecast.BetChoices = betChoices;
+                betTypeForecasts.Add(betTypeForecast);
             }
 
             return new MatchForecast
