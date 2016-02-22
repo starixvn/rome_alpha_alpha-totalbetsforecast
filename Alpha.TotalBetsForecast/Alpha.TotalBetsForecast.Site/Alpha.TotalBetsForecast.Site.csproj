@@ -203,13 +203,13 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
-    <Content Include="Content\Images\goal-icon.png" />
-    <Content Include="Content\Images\sprite.png" />
+    <Content Include="Content\Images\loader3.gif" />
     <Content Include="Content\totalbets-forecast.css">
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Forecast\index.js" />
+    <Content Include="Scripts\jquery.countdown.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

@@ -28,12 +28,12 @@
 
             <div class="form-group">
                 <label>@Resources.Event</label>
-                <select id="ddlMatch" multiple="multiple" data-init-lable="@Resources.SelectAMatch">
+                <select id="ddlMatch" multiple="multiple" data-init-lable="@Resources.SelectAMatch" style="display:none;">
                 </select>
             </div>
             <div class="form-group">
                 <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit"/>
-                <a class="btn btnRefresh" id="btnRefresh">48</a>
+                <a class="btn btnRefresh" id="btnRefresh"></a>
             </div>
         </form>
     </div>
@@ -57,7 +57,7 @@
 @section Scripts
 {
     <script type="text/javascript" src="/contents/components/select2/js/select2.min.js"></script>
-    <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.countdown.min.js"></script>
 
     @Scripts.Render(BundleConfig.IndexForecastJavascriptBundleUrl)
 }

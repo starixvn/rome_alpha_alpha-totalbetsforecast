@@ -1,6 +1,7 @@
 ﻿var forecast = {
     rootUrl: document.getElementById('RootURL').value,
     maxNumberOfRenderMatch: 5,
+    countDownSeconds: 60,
     urls: {
         getMatches: 'Forecast/GetMatches',
         getMatchForecast: 'Forecast/MatchForecast'
@@ -17,6 +18,7 @@
         forecast.cachedDOM();
         forecast.registerEvents();
 
+        $(document).ajaxStop($.unblockUI);
         forecast.loadMatches();
     },
     getAbsoluteUrl: function(relativeUrl) {
@@ -41,8 +43,16 @@
         forecast.domElements.btnSubmit
             .off('click.forecast')
             .on('click.forecast', function () {
+                
                 var matchIds = forecast.domElements.ddlMatch.val();
+
+                if (matchIds == null) {
+                    return;
+                }
+
+                try { $.blockUI(); } catch (e) { }
                 var matchIdsLength = matchIds.length;
+
                 for (var i = 0; i < matchIdsLength; i++) {
                     var matcheForecastQuery =
                                    {
@@ -77,7 +87,25 @@
                         });
                 }
 
+                forecast.domElements.btnRefresh.countdown({
+                    date: +(new Date) + forecast.countDownSeconds * 1000,
+                    render: function (data) {
+                        if (data.sec != 0) {
+                            forecast.domElements.btnRefresh.text(data.sec);
+                        }
+                    },
+                    onEnd: function () {
+                        forecast.refreshDone();
+                    }
+                }).off('click.forecast')
+                    .on("click.forecast", function () {
+                    forecast.refreshDone();
+                });
             });
+    },
+    refreshDone: function () {
+        forecast.domElements.btnSubmit.trigger('click.forecast');
+        forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
     },
     loadMatches: function () {
         var matchId = parseInt(forecast.domElements.ddlMatch.val());
@@ -93,6 +121,9 @@
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: matchesQuery,
+            beforeSend: function () {
+                try { $.blockUI(); } catch (e) { }
+            }
         }).done(function (viewModel) {
             if (viewModel) {
                 var options = '';
@@ -103,7 +134,7 @@
                     };
                 });
 
-                forecast.domElements.ddlMatch.val(null);
+                forecast.domElements.ddlMatch.show().val(null);
                 forecast.domElements.ddlMatch.select2({
                     data: processedMatches,
                     maximumSelectionLength: forecast.maxNumberOfRenderMatch,
@@ -111,7 +142,6 @@
                 });
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
-        }).always(function () {
         });
     }
 };
