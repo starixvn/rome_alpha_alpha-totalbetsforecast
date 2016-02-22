@@ -174,4 +174,13 @@
   <data name="BetType_8" xml:space="preserve">
     <value>1H OU</value>
   </data>
+  <data name="SelectAMatch" xml:space="preserve">
+    <value>Select a match</value>
+  </data>
+  <data name="ThereIsNoData" xml:space="preserve">
+    <value>There is no data!</value>
+  </data>
+  <data name="MatchOfferLive" xml:space="preserve">
+    <value>Live</value>
+  </data>
 </root>

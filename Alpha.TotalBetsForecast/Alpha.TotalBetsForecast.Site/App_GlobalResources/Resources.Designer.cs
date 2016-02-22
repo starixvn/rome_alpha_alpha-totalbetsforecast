@@ -196,11 +196,38 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Live.
+        /// </summary>
+        public static string MatchOfferLive {
+            get {
+                return ResourceManager.GetString("MatchOfferLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a match.
+        /// </summary>
+        public static string SelectAMatch {
+            get {
+                return ResourceManager.GetString("SelectAMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no data!.
+        /// </summary>
+        public static string ThereIsNoData {
+            get {
+                return ResourceManager.GetString("ThereIsNoData", resourceCulture);
             }
         }
         

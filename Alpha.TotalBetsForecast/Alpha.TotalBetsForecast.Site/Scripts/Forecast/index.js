@@ -1,8 +1,9 @@
 ﻿var forecast = {
     rootUrl: document.getElementById('RootURL').value,
+    maxNumberOfRenderMatch: 5,
     urls: {
         getMatches: 'Forecast/GetMatches',
-        getMatchForecast: 'Forecast/GetMatchForecast'
+        getMatchForecast: 'Forecast/MatchForecast'
     },
     domElements: {
         btnSubmit: null,
@@ -33,27 +34,49 @@
 
         forecast.domElements.ddlLeague.select2();
 
+        forecast.domElements.ddlLeague.on("change", function (e) {
+            forecast.loadMatches();
+        });
+
         forecast.domElements.btnSubmit
             .off('click.forecast')
             .on('click.forecast', function () {
-                var matcheForecastQuery =
-                   {
-                       matchId: forecast.domElements.ddlMatch.val(),
-                       isLive: forecast.domElements.ddlDeadBall.val() === '1'
-                   };
+                var matchIds = forecast.domElements.ddlMatch.val();
+                var matchIdsLength = matchIds.length;
+                for (var i = 0; i < matchIdsLength; i++) {
+                    var matcheForecastQuery =
+                                   {
+                                       matchId: matchIds[i],
+                                       isLive: forecast.domElements.ddlDeadBall.val() === 'true'
+                                   };
 
-                $.ajax({
-                    url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
-                    type: "GET",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: ajaxOption.data,
-                    beforeSend: function () {
-                    }
-                }).done(function (data) {
-                }).fail(function (jqXHR, textStatus, errorThrown) {
-                }).always(function () {
-                });
+                    $.get(forecast.getAbsoluteUrl(forecast.urls.getMatchForecast
+                        + '?'
+                        + $.param(matcheForecastQuery)),
+                        function (html) {
+                            if (html) {
+                                var league = forecast.domElements.mainContent.find('tbody[id=league-name]');
+                                if (league.length === 0) {
+                                    forecast.domElements.mainContent.append('<tbody id="league-name"><tr class="cl-league"><td colspan="9">'
+                                        + forecast.domElements.ddlLeague.find('option:selected').text()
+                                        +'</td></tr>');
+                                }
+
+                                var newMatchForecast = $(html);
+
+                                var currentMatchForecast = forecast.domElements.mainContent.find('tbody[id=' + newMatchForecast.attr('id') + ']');
+
+                                if (currentMatchForecast.length > 0) {
+                                    currentMatchForecast.html(newMatchForecast.html());
+                                }
+                                else {
+                                    forecast.domElements.mainContent.append(html);
+                                    forecast.domElements.mainContent.parent().show();
+                                }
+                            }
+                        });
+                }
+
             });
     },
     loadMatches: function () {
@@ -61,7 +84,7 @@
         var matchesQuery =
             {
                 leagueId: forecast.domElements.ddlLeague.val(),
-                isLive: forecast.domElements.ddlDeadBall.val() === '1'
+                isLive: forecast.domElements.ddlDeadBall.val() === 'true'
             };
 
         $.ajax({
@@ -80,8 +103,11 @@
                     };
                 });
 
+                forecast.domElements.ddlMatch.val(null);
                 forecast.domElements.ddlMatch.select2({
-                    data: processedMatches
+                    data: processedMatches,
+                    maximumSelectionLength: forecast.maxNumberOfRenderMatch,
+                    placeholder: forecast.domElements.ddlMatch.data('init-lable')
                 });
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {

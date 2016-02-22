@@ -78,6 +78,17 @@
 .ex-text {
   color: #666; }
 
+.tblRpt tbody.match-live {
+  background-color: #f2ab8d; }
+  .tblRpt tbody.match-live tr td {
+    background-color: #f2ab8d; }
+    .tblRpt tbody.match-live tr td.col-forecastTotal, .tblRpt tbody.match-live tr td.col-time, .tblRpt tbody.match-live tr td.col-event {
+      background-color: #f2ab8d; }
+
+.offer-live {
+  color: #920b12;
+  text-transform: uppercase; }
+
 table * {
   box-sizing: content-box;
   font-weight: bold; }

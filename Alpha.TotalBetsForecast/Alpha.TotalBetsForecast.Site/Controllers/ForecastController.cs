@@ -30,11 +30,11 @@
         }
 
         [HttpGet]
-        public JsonResult GetMatchForecast(MatchForecastQuery query)
+        public ActionResult MatchForecast(MatchForecastQuery query)
         {
             var viewModel = _mediator.Send(query);
 
-            return Json(viewModel, JsonRequestBehavior.AllowGet);
+            return View(viewModel);
         }
     }
 }

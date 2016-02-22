@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using App_GlobalResources;
     using Helpers;
     using MediatR;
     using Models;
@@ -48,11 +49,12 @@
 
             return new MatchForecastViewModel
             {
-                MatchId = match.Id,
+                MatchId = message.MatchId,
                 LeagueName = league.Name,
                 HomeName = match.HomeName,
                 AwayName = match.AwayName,
-                IsLive = match.IsLive,
+                HasLive = match.HasLive,
+                IsLive = message.IsLive,
                 KickOffTime = match.KickOffTime,
                 LiveHomeScore = match.LiveHomeScore,
                 LiveAwayScore = match.LiveAwayScore,
@@ -68,7 +70,9 @@
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var matches = _eventService.GetMatches(new List<League> { new League { Id = message.LeagueId } }, message.IsLive);
+            var matches = _eventService
+                .GetMatches(new List<League> { new League { Id = message.LeagueId } }, message.IsLive)
+                .OrderBy(match => match.Name);
             
             return new MatchesViewModel
             {
@@ -90,6 +94,22 @@
             return new IndexViewModel
             {
                 LeagueId = message.LeagueId,
+                IsLive = message.IsLive,
+                LiveValues = new List<SelectListItem>
+                {
+                    new SelectListItem
+                    {
+                        Text = Resources.Deadball,
+                        Value = "false",
+                        Selected = !message.IsLive
+                    },
+                    new SelectListItem
+                    {
+                        Text = Resources.Live,
+                        Value = "true",
+                        Selected = message.IsLive
+                    },
+                },
                 Leagues = leagues.Select(league =>
                 {
                     return new SelectListItem
@@ -98,7 +118,7 @@
                         Value = league.Id.ToString(),
                         Selected = message.LeagueId == league.Id
                     };
-                })
+                }).OrderBy(selectItem => selectItem.Text)
             };
         }
     }

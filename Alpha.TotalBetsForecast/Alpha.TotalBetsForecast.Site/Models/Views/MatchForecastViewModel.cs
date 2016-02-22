@@ -9,6 +9,8 @@
 
         public string LeagueName { get; set; }
 
+        public bool HasLive { get; set; }
+
         public bool IsLive { get; set; }
 
         public DateTime KickOffTime { get; set; }

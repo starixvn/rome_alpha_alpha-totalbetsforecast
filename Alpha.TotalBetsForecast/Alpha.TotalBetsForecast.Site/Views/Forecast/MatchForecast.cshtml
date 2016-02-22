@@ -39,7 +39,7 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
 
     for (int i = 0; i < totalBetChoice; i++)
     {
-        <tr class="@(isEven ? "even" : string.Empty)">
+        <tr class="@(isEven ? "even" : string.Empty) @(i == totalBetChoice - 1 ? "last-row" : string.Empty)">
 
             @{
                 var betChoice = betTypeForecast.BetChoices.ElementAt(i);
@@ -133,14 +133,26 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
 
 @if (matchHasAnyBetType)
 {
-    <tbody id="match-@(Model.MatchId)">
-        <tr class="cl-league">
-            <td colspan="9">@Model.LeagueName</td>
-        </tr>
-
+    <tbody id="match-@(Model.MatchId)" class="@(Model.IsLive ? "match-live" : string.Empty)">
         <tr class="even">
             <td rowspan="@matchRowSpan" class="col-time text-center">
-                <span class="match-time">@Model.KickOffTime</span>
+                @if (Model.IsLive)
+                {
+                    <span class="match-score">
+                        @Model.LiveHomeScore
+                        -
+                        @Model.LiveAwayScore
+                    </span> <br />
+                    <span class="offer-live">@Resources.Live</span>
+                }
+                else
+                {
+                    if (Model.HasLive)
+                    {
+                        <span class="offer-live">@Resources.MatchOfferLive</span> <br/>
+                    }
+                    <span class="match-time">@Model.KickOffTime</span>
+                }
             </td>
             <td rowspan="@matchRowSpan" class="col-event">
                 <span class="home-name">@Model.HomeName</span> <br />
@@ -179,7 +191,7 @@ else
 {
     <tbody>
         <tr class="no-info">
-            <td colspan="9">There is no data!</td>
+            <td colspan="9">@Resources.ThereIsNoData</td>
         </tr>
     </tbody>
 }
