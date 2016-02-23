@@ -157,6 +157,39 @@ table * {
     }
 }
 
+.btn-group button.multiselect {
+    background: #fff;
+    box-shadow: none;
+    border: 1px solid #aaa;
+    position: relative;
+    &:hover {
+        color: inherit;
+    }
+    .caret {
+        position: absolute;
+        right: 5px;
+        top: 14px;
+    }
+}
+.multiselect {
+    &.btn-default.active, &.btn-default:active{
+        background: #fff;
+    }
+}
+.multiselect-container.dropdown-menu {
+    .filter {
+        .input-group {
+            .input-group-addon, .input-group-btn {
+                display: none;
+            }
+            .form-control.multiselect-search{
+                box-shadow: none;
+                border: 1px solid #aaa;
+            }
+        }
+    }
+}
+
 .content {
     #mainContent {
         margin-top: 10px;
@@ -172,6 +205,52 @@ table * {
             font-size: 14px;
             content: '\e936' ;
             margin-right: 8px;
+        }
+    }
+}
+.note-content {
+    font-size: 12px; 
+    line-height: 28px;
+    .bold {
+        font-weight: bold;
+    }
+    .highlight {
+
+    }
+    ul {
+        list-style: none;
+        padding-left: 10px;
+        &.level1 {
+            > li:before {
+                font-family: 'Iconalpha';
+                color: #333;
+                font-size: 11px;
+                content: '\e936' ;
+                margin-right: 5px;
+            }
+        }
+        &.level2 {
+            padding-left:30px;
+            list-style-type: disc;
+            margin-right: 5px;
+        }
+        &.level3 {
+            padding-left: 0;
+            li:before {
+                content: '-';
+                margin-right: 5px;
+                font-weight: bold;
+            }
+        }
+    }
+    .note {
+        color: #666;
+        font-style: italic;
+        margin-left: 25px;
+        &:before {
+            content: '*';
+            color: #9d2c2e;
+            margin-right: 5px;
         }
     }
 }

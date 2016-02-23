@@ -125,6 +125,28 @@ table * {
   .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
     background: #fff; }
 
+.btn-group button.multiselect {
+  background: #fff;
+  box-shadow: none;
+  border: 1px solid #aaa;
+  position: relative; }
+  .btn-group button.multiselect:hover {
+    color: inherit; }
+  .btn-group button.multiselect .caret {
+    position: absolute;
+    right: 5px;
+    top: 14px; }
+
+.multiselect.btn-default.active, .multiselect.btn-default:active {
+  background: #fff; }
+
+.multiselect-container.dropdown-menu .filter .input-group .input-group-addon, .multiselect-container.dropdown-menu .filter .input-group .input-group-btn {
+  display: none; }
+
+.multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
+  box-shadow: none;
+  border: 1px solid #aaa; }
+
 .content #mainContent {
   margin-top: 10px; }
 
@@ -139,4 +161,37 @@ table * {
     font-size: 14px;
     content: '\e936';
     margin-right: 8px; }
+
+.note-content {
+  font-size: 12px;
+  line-height: 28px; }
+  .note-content .bold {
+    font-weight: bold; }
+  .note-content ul {
+    list-style: none;
+    padding-left: 10px; }
+    .note-content ul.level1 > li:before {
+      font-family: 'Iconalpha';
+      color: #333;
+      font-size: 11px;
+      content: '\e936';
+      margin-right: 5px; }
+    .note-content ul.level2 {
+      padding-left: 30px;
+      list-style-type: disc;
+      margin-right: 5px; }
+    .note-content ul.level3 {
+      padding-left: 0; }
+      .note-content ul.level3 li:before {
+        content: '-';
+        margin-right: 5px;
+        font-weight: bold; }
+  .note-content .note {
+    color: #666;
+    font-style: italic;
+    margin-left: 25px; }
+    .note-content .note:before {
+      content: '*';
+      color: #9d2c2e;
+      margin-right: 5px; }
 
