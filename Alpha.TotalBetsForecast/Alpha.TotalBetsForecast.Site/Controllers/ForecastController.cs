@@ -4,7 +4,7 @@
     using MediatR;
     using Models.Requests;
 
-    public class ForecastController : Controller
+    public class ForecastController : BaseController
     {
         private IMediator _mediator;
 

@@ -11,7 +11,7 @@
     using Models.Requests;
     using Models.Views;
     using Services;
-
+    using Sunplus.Agent.Utilities;
     public class ForecastHandler :
         IRequestHandler<MatchForecastQuery, MatchForecastViewModel>,
         IRequestHandler<MatchesQuery, MatchesViewModel>,
@@ -45,9 +45,7 @@
                 Id = match.LeagueId
             };
 
-            var matchForecast = _forecastService.GetMatchForecast(message);
-
-            return new MatchForecastViewModel
+            var viewModel = new MatchForecastViewModel
             {
                 MatchId = message.MatchId,
                 LeagueName = league.Name,
@@ -58,9 +56,21 @@
                 KickOffTime = match.KickOffTime,
                 LiveHomeScore = match.LiveHomeScore,
                 LiveAwayScore = match.LiveAwayScore,
-                BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer()),
-                ForecastTotal = matchForecast.ForecastTotal
+                BetTypeForecasts = Enumerable.Empty<BetTypeForecast>()
             };
+
+            try
+            {
+                var matchForecast = _forecastService.GetMatchForecast(message);
+                viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
+                viewModel.ForecastTotal = matchForecast.ForecastTotal;
+            }
+            catch (Exception ex)
+            {
+                Logs.FilterInfoWarnOrError(ex);
+            }
+
+            return viewModel;
         }
 
         public MatchesViewModel Handle(MatchesQuery message)

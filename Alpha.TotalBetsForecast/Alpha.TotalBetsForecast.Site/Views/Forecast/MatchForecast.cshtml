@@ -2,20 +2,23 @@
 
 @{
     Layout = null;
+
+    var matchRowSpan = 0;
+    var totalBetTypes = 0;
+    var firstBetType = new BetTypeForecast();
     var matchHasAnyBetType = Model.BetTypeForecasts.Any();
-    if (!matchHasAnyBetType)
+
+    if (matchHasAnyBetType)
     {
-        return;
+        matchRowSpan = Model.BetTypeForecasts.Sum(betTypeForecast =>
+        {
+            return betTypeForecast.BetChoices.Count()
+            + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
+        });
+
+        totalBetTypes = Model.BetTypeForecasts.Count();
+        firstBetType = Model.BetTypeForecasts.First();
     }
-
-    var matchRowSpan = Model.BetTypeForecasts.Sum(betTypeForecast =>
-    {
-        return betTypeForecast.BetChoices.Count() 
-        + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
-    });
-
-    var totalBetTypes = Model.BetTypeForecasts.Count();
-    var firstBetType = Model.BetTypeForecasts.First();
 }
 
 @helper RenderWinLossColumnName(BetChoiceForecast betChoiceForecast)
@@ -189,8 +192,8 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
 }
 else
 {
-    <tbody>
-        <tr class="no-info">
+    <tbody id="no-info-body">
+        <tr class="no-info text-center">
             <td colspan="9">@Resources.ThereIsNoData</td>
         </tr>
     </tbody>

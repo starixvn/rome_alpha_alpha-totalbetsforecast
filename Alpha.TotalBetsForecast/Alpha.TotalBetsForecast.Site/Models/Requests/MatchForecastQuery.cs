@@ -10,8 +10,7 @@
         {
             get
             {
-                //return UserSession.Current.CustId;
-                return 14649182;
+                return UserSession.Current.CustId;
             }
         }
 

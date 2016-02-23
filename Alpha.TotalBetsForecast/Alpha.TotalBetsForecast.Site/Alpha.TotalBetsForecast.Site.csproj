@@ -209,7 +209,6 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Forecast\index.js" />
-    <Content Include="Scripts\jquery.countdown.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +221,7 @@
     <Compile Include="App_Start\CssRewriteUrlTransformWrapper.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Criteria\GetEventsCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastCriteria.cs" />
@@ -344,7 +344,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
