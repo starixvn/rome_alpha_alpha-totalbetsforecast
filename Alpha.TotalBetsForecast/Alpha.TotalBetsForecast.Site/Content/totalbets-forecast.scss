@@ -171,15 +171,25 @@ table * {
         top: 14px;
     }
 }
-.btn-group  .open > .dropdown-toggle.btn-default {
+
+.btn-group.open > .dropdown-toggle.btn-default {
      background: #fff;
+}
+.btn-group.open > .dropdown-toggle {
+    box-shadow: none;
 }
 .multiselect {
     &.btn-default.active, &.btn-default:active{
         background: #fff;
     }
 }
+.form-inline .multiselect-container label.checkbox {
+    padding: 3px 20px 3px 35px;
+}
 .multiselect-container.dropdown-menu {
+    li:hover {
+        background: #5897fb;
+    }
     .filter {
         .input-group {
             .input-group-addon, .input-group-btn {
