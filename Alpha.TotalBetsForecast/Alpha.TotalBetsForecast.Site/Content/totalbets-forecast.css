@@ -137,6 +137,9 @@ table * {
     right: 5px;
     top: 14px; }
 
+.btn-group .open > .dropdown-toggle.btn-default {
+  background: #fff; }
+
 .multiselect.btn-default.active, .multiselect.btn-default:active {
   background: #fff; }
 
