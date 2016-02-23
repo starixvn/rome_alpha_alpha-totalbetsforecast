@@ -37,6 +37,9 @@
                 <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit"/>
                 <a class="btn btnRefresh" id="btnRefresh"></a>
             </div>
+            <div class="form-group">
+                <input type="button" class="btn btnHelp" id="btnSubmit" value="Help" data-toggle="modal" data-target="#helpModal"/>
+            </div>
         </form>
     </div>
     <div class="content" style="display:none;">
@@ -56,56 +59,77 @@
         </table>
     </div>
 </div>
-<div class="popup">
-    <div class="modal-body note-content">
-        <ul class="level1">
-            <li><span class="bold">Time:</span> kick-off time (in Deadball events) or Live score (in Live events).</li>
-            <li><span class="bold">Event:</span> names of <span class="bold positive">Home</span>/<span class="bold">Away</span> teams.</li>
-            <li><span class="bold">Bet Type:</span> all available bet types and selected choices for that event.</li>
-            <li><span class="bold">Bet Count:</span> number of bet tickets.
-                <ul class="level2">
-                    <li><span class="bold">Handicap:</span> number of tickets bet on Home/Away team.</li>
-                    <li><span class="bold">Over Under:</span> number of tickets bet on Over/Under choice.</li>
-                    <li><span class="bold">1X2:</span> number of tickets bet on Home team/Draw/Away team.</li>
-                </ul>
-            </li>
-            <li>
-                <span class="bold">Turnover</span>
-                <ul class="level2">
-                    <li><span class="bold">Handicap:</span> amount of stakes bet on Home/Away team.</li>
-                    <li><span class="bold">Over Under:</span> amount of stakes bet on Over/Under choice.</li>
-                    <li><span class="bold">1X2:</span> amount of stakes bet on Home team/Draw/Away team.</li>
-                </ul>
-            </li>
-            <li><span class="bold">Forecast Win/Loss:</span> predicts win loss amount on running tickets of the event (the <span class="bold">Black Negative Number</span> indicates the amount you may win and members may lose, whereas, the <span class="bold positive">Red Positive Number</span> indicates the amount you may lose and members may win).
-                <ul class="level2">
-                    <li><span class="bold">Hadicap</span>
-                        <ul class="level3">
-                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
-                            <li><span class="bold">Live:</span> predicts win loss amount of three cases (current score, one more goal scored by Home team, and one more goal scored by Away team).</li>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <div class="popup">
+                    <div class="modal-body note-content">
+                        <ul class="level1">
+                            <li><span class="bold">Time:</span> kick-off time (in Deadball events) or Live score (in Live events).</li>
+                            <li><span class="bold">Event:</span> names of <span class="bold positive">Home</span>/<span class="bold">Away</span> teams.</li>
+                            <li><span class="bold">Bet Type:</span> all available bet types and selected choices for that event.</li>
+                            <li>
+                                <span class="bold">Bet Count:</span> number of bet tickets.
+                                <ul class="level2">
+                                    <li><span class="bold">Handicap:</span> number of tickets bet on Home/Away team.</li>
+                                    <li><span class="bold">Over Under:</span> number of tickets bet on Over/Under choice.</li>
+                                    <li><span class="bold">1X2:</span> number of tickets bet on Home team/Draw/Away team.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="bold">Turnover</span>
+                                <ul class="level2">
+                                    <li><span class="bold">Handicap:</span> amount of stakes bet on Home/Away team.</li>
+                                    <li><span class="bold">Over Under:</span> amount of stakes bet on Over/Under choice.</li>
+                                    <li><span class="bold">1X2:</span> amount of stakes bet on Home team/Draw/Away team.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="bold">Forecast Win/Loss:</span> predicts win loss amount on running tickets of the event (the <span class="bold">Black Negative Number</span> indicates the amount you may win and members may lose, whereas, the <span class="bold positive">Red Positive Number</span> indicates the amount you may lose and members may win).
+                                <ul class="level2">
+                                    <li>
+                                        <span class="bold">Hadicap</span>
+                                        <ul class="level3">
+                                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
+                                            <li><span class="bold">Live:</span> predicts win loss amount of three cases (current score, one more goal scored by Home team, and one more goal scored by Away team).</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="bold">Over Under</span>
+                                        <ul class="level3">
+                                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
+                                            <li><span class="bold">Live:</span> predicts win loss amount of 3 cases (current score, current score + 1, and current score + 2)</li>
+                                        </ul>
+                                    </li>
+                                    <li><span class="bold">1X2:</span>predicts win loss amount of three cases: Home wins, Draw and Away wins.</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="bold">Forecast Total:</span> summarizes total Forecast Win Loss amount on running tickets of the event.
+                                <ul class="level2">
+                                    <li><span class="bold">Deadball:</span> the total Forecast Win Loss amount on the event before kick-off.</li>
+                                    <li><span class="bold">Live:</span> the total Forecast Win Loss amount on the event with the current live score.</li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <span class="bold">Over Under</span>
-                        <ul class="level3">
-                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
-                            <li><span class="bold">Live:</span> predicts win loss amount of 3 cases (current score, current score + 1, and current score + 2)</li>
-                        </ul>
-                    </li>
-                    <li><span class="bold">1X2:</span>predicts win loss amount of three cases: Home wins, Draw and Away wins.</li>
-                </ul>
-            </li>
-            <li>
-                <span class="bold">Forecast Total:</span> summarizes total Forecast Win Loss amount on running tickets of the event.
-                <ul class="level2">
-                    <li><span class="bold">Deadball:</span> the total Forecast Win Loss amount on the event before kick-off.</li>
-                    <li><span class="bold">Live:</span> the total Forecast Win Loss amount on the event with the current live score.</li>
-                </ul>
-            </li>
-        </ul>
-        <div class="note">Note: All figures of Turnover and Forecast above are after deducting Position Taking.</div>
+                        <div class="note">Note: All figures of Turnover and Forecast above are after deducting Position Taking.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
+
 
 @section Scripts
 {
