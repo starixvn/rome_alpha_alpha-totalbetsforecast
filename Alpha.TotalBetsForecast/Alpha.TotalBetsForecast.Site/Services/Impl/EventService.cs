@@ -3,42 +3,50 @@
     using System.Collections.Generic;
     using System.Linq;
     using Criteria;
+    using Fanex.Caching;
     using Fanex.Common.Helper;
     using Fanex.Data.Repository;
     using Models;
 
     public class EventService : IEventService
     {
-        private readonly IDynamicRepository _dynamicRepository;
+        private const string LeaguesCachingKey = " Alpha.TotalBetsForecast.Site.LeagueCaching_{0}";
 
-        public EventService(IDynamicRepository dynamicRepository)
+        private readonly IDynamicRepository _dynamicRepository;
+        private readonly ICache _cacheManager;
+
+        public EventService(IDynamicRepository dynamicRepository, ICache cacheManager)
         {
             _dynamicRepository = dynamicRepository;
+            _cacheManager = cacheManager;
         }
 
         public IEnumerable<League> GetLeagues(bool isLive)
         {
-            return _dynamicRepository.Fetch<League>(new GetEventsCriteria
-            {
-                IsLive = isLive
-            });
-        }
+            var leagues = _cacheManager.Get<IEnumerable<League>>(string.Format(LeaguesCachingKey, isLive));
 
-        public IEnumerable<Match> GetMatches(IEnumerable<League> leagues, bool isLive)
-        {
-            Check.Argument.IsNotNull(leagues, nameof(leagues));
-
-            if (!leagues.Any())
+            if (leagues == null
+                || !leagues.Any())
             {
-                return Enumerable.Empty<Match>();
+                leagues =  _dynamicRepository.Fetch<League>(new GetEventsCriteria
+                {
+                    IsLive = isLive
+                });
+
+                _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, 60 * 60 * 24);
             }
 
-            var leagueIds = string.Join(",", leagues.Select(league => league.Id));
+            return leagues;
+        }
+
+        public IEnumerable<Match> GetMatches(int leagueId, bool isLive)
+        {
+            Check.Argument.IsNotNegative(leagueId, nameof(leagueId));
 
             return _dynamicRepository.Fetch<Match>(new GetEventsCriteria
             {
                 IsLive = isLive,
-                LeagueIds = leagueIds
+                LeagueId = leagueId
             });
         }
 

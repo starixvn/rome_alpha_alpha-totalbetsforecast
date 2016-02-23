@@ -81,8 +81,8 @@
             }
 
             var matches = _eventService
-                .GetMatches(new List<League> { new League { Id = message.LeagueId } }, message.IsLive)
-                .OrderBy(match => match.Name);
+                .GetMatches(message.LeagueId, message.IsLive)
+                .OrderBy(match => match.KickOffTime);
             
             return new MatchesViewModel
             {
@@ -109,16 +109,16 @@
                 {
                     new SelectListItem
                     {
-                        Text = Resources.Deadball,
-                        Value = "false",
-                        Selected = !message.IsLive
-                    },
-                    new SelectListItem
-                    {
-                        Text = Resources.Live,
+                        Text = Resources.MatchOfferLive,
                         Value = "true",
                         Selected = message.IsLive
                     },
+                    new SelectListItem
+                    {
+                        Text = Resources.Deadball,
+                        Value = "false",
+                        Selected = !message.IsLive
+                    }
                 },
                 Leagues = leagues.Select(league =>
                 {

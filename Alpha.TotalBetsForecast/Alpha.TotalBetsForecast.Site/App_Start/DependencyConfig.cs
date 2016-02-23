@@ -7,6 +7,7 @@
     using System.Web.Mvc;
     using DataAccesses;
     using DataAccesses.Impl;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Handlers;
     using MediatR;
@@ -62,7 +63,7 @@
 
         private static void RegisterCrossCuttingConcerns(Container container)
         {
-            ////container.Register(() => CacheService.CreateInstance(CacheType.MemoryCache), Lifestyle.Singleton);
+            container.Register(() => CacheService.CreateInstance(CacheType.MemoryCache), Lifestyle.Singleton);
         }
 
         private static void RegisterServices(Container container)

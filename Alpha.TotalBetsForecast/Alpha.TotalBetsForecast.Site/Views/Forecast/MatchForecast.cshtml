@@ -31,7 +31,7 @@
 
         foreach (var winlossName in betChoiceForecast.WinLossColumnNames)
         {
-            <td class="win-loss-name text-center ex-col head">@winlossName</td>
+            <td class="win-loss-name text-center ex-col head">@(winlossName)</td>
         }
     }
 }
@@ -154,7 +154,7 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
                     {
                         <span class="offer-live">@Resources.MatchOfferLive</span> <br/>
                     }
-                    <span class="match-time">@Model.KickOffTime</span>
+                    <span class="match-time">@Model.KickOffTime.ToString("M/dd/yyyy hh:mm tt")</span>
                 }
             </td>
             <td rowspan="@matchRowSpan" class="col-event">

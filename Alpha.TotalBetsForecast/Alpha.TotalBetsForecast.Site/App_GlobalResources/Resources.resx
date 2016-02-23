@@ -186,4 +186,7 @@
   <data name="SelectedEvents" xml:space="preserve">
     <value>Selected Event(s)</value>
   </data>
+  <data name="Goals" xml:space="preserve">
+    <value></value>
+  </data>
 </root>

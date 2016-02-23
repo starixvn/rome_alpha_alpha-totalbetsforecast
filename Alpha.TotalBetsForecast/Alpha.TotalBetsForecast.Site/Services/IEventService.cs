@@ -7,7 +7,7 @@
     {
         IEnumerable<League> GetLeagues(bool isLive);
 
-        IEnumerable<Match> GetMatches(IEnumerable<League> leagues, bool isLive);
+        IEnumerable<Match> GetMatches(int leagueId, bool isLive);
 
         Match GetMatchInfo(bool isLive, int matchId);
     }

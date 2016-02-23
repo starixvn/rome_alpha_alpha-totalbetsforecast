@@ -6,12 +6,20 @@
 
     public class MatchForecastQuery : IRequest<MatchForecastViewModel>
     {
+        public MatchForecastQuery()
+        {
+            CustId = UserSession.Current.CustId;
+        }
+
+        internal MatchForecastQuery(int custId)
+        {
+            custId = custId;
+        }
+
         public int CustId
         {
-            get
-            {
-                return UserSession.Current.CustId;
-            }
+            get;
+            private set;
         }
 
         public int MatchId { get; set; }

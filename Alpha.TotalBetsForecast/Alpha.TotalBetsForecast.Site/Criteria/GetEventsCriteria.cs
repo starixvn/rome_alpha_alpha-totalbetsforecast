@@ -4,8 +4,7 @@
 
     public class GetEventsCriteria : CriteriaBase
     {
-        [SpParam(SqlParamName = "LeagueList")]
-        public string LeagueIds { get; set; }
+        public int LeagueId { get; set; }
 
         public bool IsLive { get; set; }
 
