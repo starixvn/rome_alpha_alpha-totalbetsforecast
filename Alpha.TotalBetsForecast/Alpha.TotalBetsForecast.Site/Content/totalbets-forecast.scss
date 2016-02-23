@@ -1,21 +1,12 @@
 ﻿//@import "Super/variables";
 @import "mixins";
 
-$goal-icon: "images/goal-icon.png";
 $primary-color: #666;
 
 body {
     font-size: 12px;
     background: #f4f4f4;
 }
-
-.ifr-result {
-    position: absolute;
-    min-width: 100%;
-    height: 100%;
-}
-
-
 
 /************************** Select2 ****************************/
 .dropdown {
@@ -41,6 +32,7 @@ body {
 
 .select2-container {
     line-height: 20px;
+    max-width: 300px;
 }
 
 .select2-container .select2-selection--single

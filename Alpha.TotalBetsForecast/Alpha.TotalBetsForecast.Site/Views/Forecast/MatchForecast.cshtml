@@ -21,7 +21,7 @@
     }
 }
 
-@helper RenderWinLossColumnName(BetChoiceForecast betChoiceForecast)
+@helper RenderWinLossColumnName(BetChoiceForecast betChoiceForecast, bool isOverUnder)
 {
     if (betChoiceForecast.WinLossColumnNames.Any())
     {
@@ -31,7 +31,9 @@
 
         foreach (var winlossName in betChoiceForecast.WinLossColumnNames)
         {
-            <td class="win-loss-name text-center ex-col head">@(winlossName)</td>
+            <td class="win-loss-name text-center ex-col head">
+                @(isOverUnder ? $"{winlossName} {Resources.Goals}" : winlossName)
+            </td>
         }
     }
 }
@@ -154,7 +156,7 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
                     {
                         <span class="offer-live">@Resources.MatchOfferLive</span> <br/>
                     }
-                    <span class="match-time">@Model.KickOffTime.ToString("M/dd/yyyy hh:mm tt")</span>
+                    <span class="match-time">@Model.KickOffTimeString</span>
                 }
             </td>
             <td rowspan="@matchRowSpan" class="col-event">
@@ -162,7 +164,7 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
                 <span class="away-name">@Model.AwayName</span>
             </td>
 
-            @RenderWinLossColumnName(Model.BetTypeForecasts.First().BetChoices.First())
+            @RenderWinLossColumnName(Model.BetTypeForecasts.First().BetChoices.First(), false)
 
             <td rowspan="@matchRowSpan" class="text-center col-forecastTotal">
                 @(Formater.DecFormat(Model.ForecastTotal, 2))
@@ -181,7 +183,7 @@ var totalBetChoice = betTypeForecast.BetChoices.Count();
             if (firstBetChoice.WinLossColumnNames.Any())
             {
             <tr class="@(isEven ? "even" : string.Empty)">
-                @RenderWinLossColumnName(firstBetChoice)
+                @RenderWinLossColumnName(firstBetChoice, currentBetTypeForecast.IsOverUnder)
             </tr>
         }
 

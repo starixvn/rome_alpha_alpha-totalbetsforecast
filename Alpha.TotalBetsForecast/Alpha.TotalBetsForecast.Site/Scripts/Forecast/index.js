@@ -45,6 +45,8 @@
 
         forecast.domElements.ddlLeague.on("change", function (e) {
             forecast.loadMatches();
+            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
+            forecast.stopCountdown();
         });
 
         forecast.domElements.btnSubmit
@@ -54,7 +56,7 @@
                 var matchIds = forecast.domElements.ddlMatch.val();
 
                 if (matchIds == null) {
-                    forecast.isStartCountdown = false;
+                    forecast.stopCountdown();
                     return;
                 }
 
@@ -100,7 +102,7 @@
         }
 
         if (!forecast.isStartCountdown) {
-            forecast.startRefrestCountdown();
+            forecast.startCountdown();
         }
 
         forecast.domElements.mainContent.find('tbody[id=no-info-body]').remove();
@@ -122,7 +124,7 @@
         }
     },
 
-    startRefrestCountdown: function () {
+    startCountdown: function () {
         forecast.domElements.btnRefresh.countdown({
             date: +(new Date) + forecast.countDownSeconds * 1000,
             render: function (data) {
@@ -149,6 +151,14 @@
         forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
     },
 
+    stopCountdown: function () {
+        forecast.isStartCountdown = false;
+        var countDown = forecast.domElements.btnRefresh.data('countdown');
+        if (countDown) {
+            countDown.stop();
+        }
+    },
+
     loadMatches: function () {
         var matchId = parseInt(forecast.domElements.ddlMatch.val());
         var matchesQuery =
@@ -168,54 +178,57 @@
             }
         }).done(function (viewModel) {
             if (viewModel) {
-                var options = '';
-                var processedMatches = _.map(viewModel.Matches, function (match) {
-                    return {
-                        label: match.Name,
-                        value: match.Id
-                    };
-                });
-
-                forecast.domElements.ddlMatch.multiselect({
-                    maxHeight: 300,
-                    enableFiltering: true,
-                    numberDisplayed: 1,
-                    enableCaseInsensitiveFiltering: true,
-                    nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
-                    nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
-                    onChange: function (option, checked) {
-                        // Get selected options.
-                        var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
-
-                        if (selectedOptions.length >= forecast.maxNumberOfRenderMatch) {
-                            // Disable all other checkboxes.
-                            var nonSelectedOptions = forecast.domElements.ddlMatch.find('option').filter(function () {
-                                return !$(this).is(':selected');
-                            });
-
-                            var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
-                            nonSelectedOptions.each(function () {
-                                var input = $('input[value="' + $(this).val() + '"]');
-                                input.prop('disabled', true);
-                                input.parent('li').addClass('disabled');
-                            });
-                        }
-                        else {
-                            // Enable all checkboxes.
-                            var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
-                            forecast.domElements.ddlMatch.find('option').each(function () {
-                                var input = $('input[value="' + $(this).val() + '"]');
-                                input.prop('disabled', false);
-                                input.parent('li').addClass('disabled');
-                            });
-                        }
-                    }
-                });
-
-                forecast.domElements.ddlMatch.multiselect('dataprovider', processedMatches);
+                forecast.renderMatchList(viewModel);
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
         });
+    },
+    renderMatchList: function (viewModel) {
+        var options = '';
+        var processedMatches = _.map(viewModel.Matches, function (match) {
+            return {
+                label: match.Name,
+                value: match.Id
+            };
+        });
+
+        forecast.domElements.ddlMatch.multiselect({
+            maxHeight: 300,
+            enableFiltering: true,
+            numberDisplayed: 1,
+            enableCaseInsensitiveFiltering: true,
+            nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
+            nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
+            onChange: function (option, checked) {
+                // Get selected options.
+                var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
+
+                if (selectedOptions.length >= forecast.maxNumberOfRenderMatch) {
+                    // Disable all other checkboxes.
+                    var nonSelectedOptions = forecast.domElements.ddlMatch.find('option').filter(function () {
+                        return !$(this).is(':selected');
+                    });
+
+                    var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                    nonSelectedOptions.each(function () {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.prop('disabled', true);
+                        input.parent('li').addClass('disabled');
+                    });
+                }
+                else {
+                    // Enable all checkboxes.
+                    var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                    forecast.domElements.ddlMatch.find('option').each(function () {
+                        var input = $('input[value="' + $(this).val() + '"]');
+                        input.prop('disabled', false);
+                        input.parent('li').addClass('disabled');
+                    });
+                }
+            }
+        });
+
+        forecast.domElements.ddlMatch.multiselect('dataprovider', processedMatches);
     }
 };
 

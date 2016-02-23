@@ -2,11 +2,6 @@
   font-size: 12px;
   background: #f4f4f4; }
 
-.ifr-result {
-  position: absolute;
-  min-width: 100%;
-  height: 100%; }
-
 /************************** Select2 ****************************/
 .dropdown .select2-container--default .select2-selection--single {
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
@@ -44,7 +39,8 @@
     padding: 5px; }
 
 .select2-container {
-  line-height: 20px; }
+  line-height: 20px;
+  max-width: 300px; }
 
 .select2-container .select2-selection--single {
   height: 32px; }

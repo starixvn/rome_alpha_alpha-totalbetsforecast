@@ -70,6 +70,24 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bets &amp; Forecast.
+        /// </summary>
+        public static string BetsAndForecast {
+            get {
+                return ResourceManager.GetString("BetsAndForecast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bets &amp; Forecast Guidelines.
+        /// </summary>
+        public static string BetsAndForecastGuidelines {
+            get {
+                return ResourceManager.GetString("BetsAndForecastGuidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Type.
         /// </summary>
         public static string BetType {
@@ -178,7 +196,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Goal(s).
         /// </summary>
         public static string Goals {
             get {

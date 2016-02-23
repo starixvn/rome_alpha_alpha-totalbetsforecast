@@ -13,7 +13,7 @@
 
         public bool IsLive { get; set; }
 
-        public DateTime KickOffTime { get; set; }
+        public string KickOffTimeString { get; set; }
 
         public string HomeName { get; set; }
 

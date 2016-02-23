@@ -33,7 +33,7 @@
                     IsLive = isLive
                 });
 
-                _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, 60 * 60 * 24);
+                _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, 60 * 15);
             }
 
             return leagues;
