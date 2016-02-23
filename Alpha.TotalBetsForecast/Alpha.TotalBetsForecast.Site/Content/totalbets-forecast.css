@@ -125,3 +125,18 @@ table * {
   .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
     background: #fff; }
 
+.content #mainContent {
+  margin-top: 10px; }
+
+.content .text-status {
+  color: #9d2c2e;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold; }
+  .content .text-status:before {
+    font-family: 'Iconalpha';
+    color: #9d2c2e;
+    font-size: 14px;
+    content: '\e936';
+    margin-right: 8px; }
+
