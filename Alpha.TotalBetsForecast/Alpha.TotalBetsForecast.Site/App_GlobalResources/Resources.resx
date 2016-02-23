@@ -183,4 +183,7 @@
   <data name="MatchOfferLive" xml:space="preserve">
     <value>Live</value>
   </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>Selected Event(s)</value>
+  </data>
 </root>

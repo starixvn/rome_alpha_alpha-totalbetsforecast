@@ -171,17 +171,48 @@
                 var options = '';
                 var processedMatches = _.map(viewModel.Matches, function (match) {
                     return {
-                        id: match.Id,
-                        text: match.Name
+                        label: match.Name,
+                        value: match.Id
                     };
                 });
 
-                forecast.domElements.ddlMatch.show().val(null);
-                forecast.domElements.ddlMatch.select2({
-                    data: processedMatches,
-                    maximumSelectionLength: forecast.maxNumberOfRenderMatch,
-                    placeholder: forecast.domElements.ddlMatch.data('init-lable')
+                forecast.domElements.ddlMatch.multiselect({
+                    maxHeight: 300,
+                    enableFiltering: true,
+                    numberDisplayed: 1,
+                    enableCaseInsensitiveFiltering: true,
+                    nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
+                    nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
+                    onChange: function (option, checked) {
+                        // Get selected options.
+                        var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
+
+                        if (selectedOptions.length >= forecast.maxNumberOfRenderMatch) {
+                            // Disable all other checkboxes.
+                            var nonSelectedOptions = forecast.domElements.ddlMatch.find('option').filter(function () {
+                                return !$(this).is(':selected');
+                            });
+
+                            var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                            nonSelectedOptions.each(function () {
+                                var input = $('input[value="' + $(this).val() + '"]');
+                                input.prop('disabled', true);
+                                input.parent('li').addClass('disabled');
+                            });
+                        }
+                        else {
+                            // Enable all checkboxes.
+                            var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                            forecast.domElements.ddlMatch.find('option').each(function () {
+                                var input = $('input[value="' + $(this).val() + '"]');
+                                input.prop('disabled', false);
+                                input.parent('li').addClass('disabled');
+                            });
+                        }
+                    }
                 });
+
+                forecast.domElements.ddlMatch.multiselect('dataprovider', processedMatches);
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
         });

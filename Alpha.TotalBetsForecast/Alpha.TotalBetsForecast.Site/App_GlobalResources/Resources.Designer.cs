@@ -214,6 +214,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Event(s).
+        /// </summary>
+        public static string SelectedEvents {
+            get {
+                return ResourceManager.GetString("SelectedEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {

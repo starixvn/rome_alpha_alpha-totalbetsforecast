@@ -316,6 +316,7 @@
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
     <Content Include="Views\Forecast\MatchForecast.cshtml" />
+    <None Include="Properties\PublishProfiles\Local202.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -344,9 +345,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Base\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
