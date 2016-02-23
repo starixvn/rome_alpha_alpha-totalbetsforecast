@@ -40,7 +40,7 @@
         </form>
     </div>
     <div class="content" style="display:none;">
-        <span class="text-status">Live</span>
+        <span class="text-status">@(Model.IsLive ? Resources.MatchOfferLive : Resources.Deadball )</span>
         <table class="tblRpt col-sm-12" id="mainContent">
             <thead>
                 <tr class="RptHeader">
