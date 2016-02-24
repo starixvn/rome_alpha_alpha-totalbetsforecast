@@ -2,6 +2,7 @@
     rootUrl: document.getElementById('RootURL').value,
     maxNumberOfRenderMatch: 5,
     countDownSeconds: 60,
+    loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
 
     urls: {
@@ -24,6 +25,8 @@
 
         $(document).ajaxStop($.unblockUI);
         forecast.loadMatches();
+
+        setInterval(forecast.loadMatches, forecast.loadMatchesInterval);
     },
 
     getAbsoluteUrl: function(relativeUrl) {
@@ -178,7 +181,6 @@
     },
 
     loadMatches: function () {
-        var matchId = parseInt(forecast.domElements.ddlMatch.val());
         var matchesQuery =
             {
                 leagueId: forecast.domElements.ddlLeague.val(),
@@ -198,15 +200,17 @@
             if (viewModel) {
                 forecast.renderMatchList(viewModel);
             }
-        }).fail(function (jqXHR, textStatus, errorThrown) {
         });
     },
     renderMatchList: function (viewModel) {
+        var matchIds = forecast.domElements.ddlMatch.val() || [];
+
         var options = '';
         var processedMatches = _.map(viewModel.Matches, function (match) {
             return {
                 label: match.Name,
-                value: match.Id
+                value: match.Id,
+                selected: _.contains(matchIds, match.Id.toString())
             };
         });
 
