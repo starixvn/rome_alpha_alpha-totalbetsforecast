@@ -48,6 +48,7 @@ body {
 .totalandforecast {
     .filter {
         padding: 15px 0;
+        overflow: hidden;
         .help {
             float: right;
             &:before {
@@ -55,6 +56,7 @@ body {
                 font-family: 'Iconalpha';
                 font-size: 26px;
                 cursor: pointer;
+                color: #0f82c4;
             }
             &:hover {
                 color:#666; 

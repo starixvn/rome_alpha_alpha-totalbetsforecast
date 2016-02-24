@@ -49,14 +49,16 @@
   line-height: 32px; }
 
 .totalandforecast .filter {
-  padding: 15px 0; }
+  padding: 15px 0;
+  overflow: hidden; }
   .totalandforecast .filter .help {
     float: right; }
     .totalandforecast .filter .help:before {
       content: '\e92a';
       font-family: 'Iconalpha';
       font-size: 26px;
-      cursor: pointer; }
+      cursor: pointer;
+      color: #0f82c4; }
     .totalandforecast .filter .help:hover {
       color: #666; }
   .totalandforecast .filter .form-inline {
