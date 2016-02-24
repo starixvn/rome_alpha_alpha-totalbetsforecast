@@ -240,6 +240,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Criteria\GetEventsCriteria.cs" />
+    <Compile Include="Criteria\GetLeaguesCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastCriteria.cs" />
     <Compile Include="Criteria\GetMatchInfoCriteria.cs" />
     <Compile Include="DataAccesses\IForecastDataAccess.cs" />

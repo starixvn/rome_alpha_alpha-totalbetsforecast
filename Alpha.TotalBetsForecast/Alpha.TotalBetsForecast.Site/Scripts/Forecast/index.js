@@ -61,6 +61,7 @@
 
                 if (matchIds == null) {
                     forecast.stopCountdown();
+                    forecast.domElements.mainContent.parent().hide().find('tbody').remove();
                     return;
                 }
 
@@ -151,8 +152,13 @@
     },
 
     refreshDone: function () {
-        forecast.domElements.btnSubmit.trigger('click.forecast');
-        forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
+        if (forecast.isStartCountdown) {
+            forecast.domElements.btnSubmit.trigger('click.forecast');
+            forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
+        }
+        else {
+            forecast.stopCountdown();
+        }
     },
 
     stopCountdown: function () {
