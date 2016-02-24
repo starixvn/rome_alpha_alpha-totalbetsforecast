@@ -49,7 +49,7 @@
   line-height: 32px; }
 
 .totalandforecast .filter {
-  padding: 15px 0; }
+  padding-top: 15px; }
   .totalandforecast .filter .help {
     float: right; }
     .totalandforecast .filter .help:before {
@@ -64,7 +64,7 @@
     display: inline-block; }
 
 .totalandforecast .form-group {
-  margin-right: 30px; }
+  margin: 0 30px 15px 0; }
   .totalandforecast .form-group label {
     margin-right: 8px; }
 

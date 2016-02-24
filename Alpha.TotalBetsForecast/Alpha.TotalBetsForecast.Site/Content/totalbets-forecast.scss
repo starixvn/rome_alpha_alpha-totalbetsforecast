@@ -47,7 +47,7 @@ body {
 
 .totalandforecast {
     .filter {
-        padding: 15px 0;
+        padding-top: 15px;
         .help {
             float: right;
             &:before {
@@ -67,7 +67,7 @@ body {
     }
 
     .form-group {
-        margin-right: 30px;
+        margin: 0 30px 15px 0;
 
         label {
             margin-right: 8px;
