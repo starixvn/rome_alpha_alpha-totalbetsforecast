@@ -48,7 +48,6 @@ body {
 .totalandforecast {
     .filter {
         padding: 15px 0;
-        overflow: hidden;
         .help {
             float: right;
             &:before {
@@ -63,7 +62,7 @@ body {
             }
         }
         .form-inline {
-            float: left;
+            display: inline-block;
         }
     }
 
@@ -216,7 +215,7 @@ table * {
 
 .content {
     #mainContent {
-        margin-top: 10px;
+        margin: 10px 0;
     }
     .text-status {
         color: #9d2c2e;

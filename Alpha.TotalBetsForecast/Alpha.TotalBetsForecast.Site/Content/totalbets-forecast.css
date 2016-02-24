@@ -49,8 +49,7 @@
   line-height: 32px; }
 
 .totalandforecast .filter {
-  padding: 15px 0;
-  overflow: hidden; }
+  padding: 15px 0; }
   .totalandforecast .filter .help {
     float: right; }
     .totalandforecast .filter .help:before {
@@ -62,7 +61,7 @@
     .totalandforecast .filter .help:hover {
       color: #666; }
   .totalandforecast .filter .form-inline {
-    float: left; }
+    display: inline-block; }
 
 .totalandforecast .form-group {
   margin-right: 30px; }
@@ -172,7 +171,7 @@ table * {
       border: 1px solid #aaa; }
 
 .content #mainContent {
-  margin-top: 10px; }
+  margin: 10px 0; }
 
 .content .text-status {
   color: #9d2c2e;
