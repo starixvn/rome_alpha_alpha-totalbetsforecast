@@ -41,12 +41,16 @@
 
     registerEvents: function () {
 
-        forecast.domElements.ddlLeague.select2();
-
-        forecast.domElements.ddlLeague.on("change", function (e) {
-            forecast.loadMatches();
-            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
-            forecast.stopCountdown();
+        forecast.domElements.ddlLeague.multiselect({
+            maxHeight: 300,
+            enableFiltering: true,
+            numberDisplayed: 1,
+            enableCaseInsensitiveFiltering: true,
+            onChange: function (option, checked) {
+                forecast.loadMatches();
+                forecast.domElements.mainContent.parent().hide().find('tbody').remove();
+                forecast.stopCountdown();
+            }
         });
 
         forecast.domElements.btnSubmit
