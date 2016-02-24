@@ -50,11 +50,11 @@ body {
         padding-top: 15px;
         .help {
             float: right;
+            cursor: pointer;
             &:before {
                 content: '\e92a';
                 font-family: 'Iconalpha';
                 font-size: 26px;
-                cursor: pointer;
                 color: #0f82c4;
             }
             &:hover {
@@ -225,9 +225,11 @@ table * {
         &:before{
             font-family: 'Iconalpha';
             color: #9d2c2e;
-            font-size: 14px;
-            content: '\e936' ;
-            margin-right: 8px;
+            font-size: 22px;
+            content: '\e929';
+            margin-right: 2px;
+            position: relative;
+            top: 4px;
         }
     }
 }
