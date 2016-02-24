@@ -381,7 +381,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Resources.th-TH.resx" />
+    <EmbeddedResource Include="App_GlobalResources\Resources.th-TH.resx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.zh-CN.resx" />
