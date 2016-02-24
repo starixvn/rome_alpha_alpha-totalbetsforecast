@@ -124,6 +124,15 @@
         var noInfo = forecast.domElements.mainContent.find('tbody');
         if (noInfo.length === 0) {
             forecast.domElements.mainContent.append(html);
+            forecast.domElements.mainContent.find('tbody').attr('data-match-id', '');
+        }
+        else {
+            var noInfoHtml = $(html);
+            var noInfoMatch = forecast.domElements.mainContent.find('tbody[id=' + noInfoHtml.attr('data-match-id') + ']')
+            if (noInfoMatch.length > 0) {
+                noInfoMatch.remove();
+                forecast.addNoInfoRow();
+            }
         }
     },
 
