@@ -70,13 +70,14 @@
 
 .totalandforecast .breadcrumb {
   overflow: hidden;
-  padding: 15px 0;
+  padding: 10px 0 5px;
   margin: 0;
-  border-bottom: 1px solid #dfdfdf; }
+  border-bottom: 1px solid #cecece;
+  border-radius: 0; }
   .totalandforecast .breadcrumb li {
-    float: left;
-    font-size: 15px;
-    font-weight: bold; }
+    color: #9d1c1c;
+    font-weight: 700;
+    text-transform: uppercase; }
     .totalandforecast .breadcrumb li + li:before {
       content: '\276F';
       color: #333;
@@ -168,7 +169,8 @@ table * {
       display: none; }
     .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
       box-shadow: none;
-      border: 1px solid #aaa; }
+      border: 1px solid #aaa;
+      line-height: 18px; }
 
 .content #mainContent {
   margin: 10px 0; }

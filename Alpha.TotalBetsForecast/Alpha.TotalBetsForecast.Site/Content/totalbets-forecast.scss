@@ -76,15 +76,14 @@ body {
 
     .breadcrumb {
         overflow: hidden;
-        padding: 15px 0;
+        padding: 10px 0 5px;
         margin: 0;
-        border-bottom: 1px solid #dfdfdf;
-
+        border-bottom: 1px solid #cecece;
+        border-radius: 0;
         li {
-            float: left;
-            font-size: 15px;
-            font-weight: bold;
-
+            color: #9d1c1c;
+            font-weight: 700;
+            text-transform: uppercase;
             + li:before {
                 content: '\276F';
                 color: #333;
@@ -208,6 +207,7 @@ table * {
             .form-control.multiselect-search{
                 box-shadow: none;
                 border: 1px solid #aaa;
+                line-height: 18px;
             }
         }
     }
