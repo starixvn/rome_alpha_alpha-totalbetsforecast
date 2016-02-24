@@ -48,6 +48,21 @@ body {
 .totalandforecast {
     .filter {
         padding: 15px 0;
+        .help {
+            float: right;
+            &:before {
+                content: '\e92a';
+                font-family: 'Iconalpha';
+                font-size: 26px;
+                cursor: pointer;
+            }
+            &:hover {
+                color:#666; 
+            }
+        }
+        .form-inline {
+            float: left;
+        }
     }
 
     .form-group {

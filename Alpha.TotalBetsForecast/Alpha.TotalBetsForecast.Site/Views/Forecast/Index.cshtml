@@ -37,10 +37,8 @@
                 <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit"/>
                 <a class="btn btnRefresh" id="btnRefresh"></a>
             </div>
-            <div class="form-group">
-                <input type="button" class="btn btnHelp" id="btnSubmit" value="Help" data-toggle="modal" data-target="#helpModal"/>
-            </div>
         </form>
+        <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
     </div>
     <div class="content" style="display:none;">
         <span class="text-status">@(Model.IsLive ? Resources.MatchOfferLive : Resources.Deadball )</span>

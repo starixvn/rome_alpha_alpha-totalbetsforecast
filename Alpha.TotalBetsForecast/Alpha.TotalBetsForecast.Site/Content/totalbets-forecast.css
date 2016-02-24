@@ -50,6 +50,17 @@
 
 .totalandforecast .filter {
   padding: 15px 0; }
+  .totalandforecast .filter .help {
+    float: right; }
+    .totalandforecast .filter .help:before {
+      content: '\e92a';
+      font-family: 'Iconalpha';
+      font-size: 26px;
+      cursor: pointer; }
+    .totalandforecast .filter .help:hover {
+      color: #666; }
+  .totalandforecast .filter .form-inline {
+    float: left; }
 
 .totalandforecast .form-group {
   margin-right: 30px; }
