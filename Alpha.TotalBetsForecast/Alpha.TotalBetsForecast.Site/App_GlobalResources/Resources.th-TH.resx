@@ -130,4 +130,7 @@
   <data name="totalbets" xml:space="preserve">
     <value>จำนวนการวางเดิมพันทั้งหมด</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>ไม่พบข้อมูลเป็น</value>
+  </data>
 </root>

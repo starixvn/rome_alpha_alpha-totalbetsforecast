@@ -150,4 +150,7 @@
   <data name="totalbets" xml:space="preserve">
     <value>총 배팅</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>데이터가 없습니다.</value>
+  </data>
 </root>

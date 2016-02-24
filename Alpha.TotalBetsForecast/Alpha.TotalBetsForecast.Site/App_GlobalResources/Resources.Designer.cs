@@ -232,6 +232,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There is no data.
+        /// </summary>
+        public static string NoData {
+            get {
+                return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a match.
         /// </summary>
         public static string SelectAMatch {
@@ -255,15 +264,6 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         public static string Submit {
             get {
                 return ResourceManager.GetString("Submit", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There is no data!.
-        /// </summary>
-        public static string ThereIsNoData {
-            get {
-                return ResourceManager.GetString("ThereIsNoData", resourceCulture);
             }
         }
         

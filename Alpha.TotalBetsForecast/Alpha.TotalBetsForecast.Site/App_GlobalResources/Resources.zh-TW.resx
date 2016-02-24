@@ -130,4 +130,7 @@
   <data name="totalbets" xml:space="preserve">
     <value>總投注</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>沒有數據</value>
+  </data>
 </root>

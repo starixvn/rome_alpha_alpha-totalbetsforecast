@@ -130,4 +130,7 @@
   <data name="totalbets" xml:space="preserve">
     <value>Tổng Cược</value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>There is no data</value>
+  </data>
 </root>

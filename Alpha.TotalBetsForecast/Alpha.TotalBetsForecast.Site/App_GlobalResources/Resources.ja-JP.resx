@@ -131,4 +131,7 @@
     <value>合計ベット数
 </value>
   </data>
+  <data name="NoData" xml:space="preserve">
+    <value>There is no data</value>
+  </data>
 </root>
