@@ -61,7 +61,6 @@
 
                 if (matchIds == null) {
                     forecast.stopCountdown();
-                    forecast.domElements.mainContent.parent().hide().find('tbody').remove();
                     return;
                 }
 
@@ -91,6 +90,9 @@
                                 }
 
                                 forecast.domElements.mainContent.parent().show();
+                                if (!forecast.isStartCountdown) {
+                                    forecast.startCountdown();
+                                }
                             }
                         });
                 }
@@ -104,10 +106,6 @@
         }
         else {
             forecast.domElements.mainContent.append(rawHtml);
-        }
-
-        if (!forecast.isStartCountdown) {
-            forecast.startCountdown();
         }
 
         forecast.domElements.mainContent.find('tbody[id=no-info-body]').remove();
@@ -152,7 +150,8 @@
     },
 
     refreshDone: function () {
-        if (forecast.isStartCountdown) {
+        if (forecast.isStartCountdown
+            && forecast.domElements.ddlMatch.find('option:selected').length > 0) {
             forecast.domElements.btnSubmit.trigger('click.forecast');
             forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
         }
@@ -166,6 +165,8 @@
         var countDown = forecast.domElements.btnRefresh.data('countdown');
         if (countDown) {
             countDown.stop();
+            forecast.domElements.btnRefresh.text(forecast.countDownSeconds);
+            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
         }
     },
 
