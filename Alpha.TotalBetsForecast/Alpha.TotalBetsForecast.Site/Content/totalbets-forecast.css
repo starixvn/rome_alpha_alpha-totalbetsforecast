@@ -150,11 +150,13 @@ table * {
 
 .multiselect-container.dropdown-menu .filter {
   padding: 0; }
-  .multiselect-container.dropdown-menu .filter .input-group .input-group-addon, .multiselect-container.dropdown-menu .filter .input-group .input-group-btn {
-    display: none; }
-  .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
-    box-shadow: none;
-    border: 1px solid #aaa; }
+  .multiselect-container.dropdown-menu .filter .input-group {
+    width: 91%; }
+    .multiselect-container.dropdown-menu .filter .input-group .input-group-addon, .multiselect-container.dropdown-menu .filter .input-group .input-group-btn {
+      display: none; }
+    .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
+      box-shadow: none;
+      border: 1px solid #aaa; }
 
 .content #mainContent {
   margin-top: 10px; }
