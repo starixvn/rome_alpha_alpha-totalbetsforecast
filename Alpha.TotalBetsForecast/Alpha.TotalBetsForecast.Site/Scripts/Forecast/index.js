@@ -136,16 +136,14 @@
                 }
             },
             onEnd: function () {
-                if (!forecast.isStartCountdown) {
-                    return;
-                }
-
                 forecast.refreshDone();
             }
         }).off('click.forecast')
-                    .on("click.forecast", function () {
-                        forecast.refreshDone();
-                    });
+                        .on("click.forecast", function () {
+                            forecast.refreshDone();
+                        });
+        forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
+
         forecast.isStartCountdown = true;
     },
 
