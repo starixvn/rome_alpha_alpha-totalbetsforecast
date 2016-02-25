@@ -35,8 +35,7 @@ body {
     max-width: 300px;
 }
 
-.select2-container .select2-selection--single
-{
+.select2-container .select2-selection--single {
     height: 32px;
 }
 
@@ -48,19 +47,23 @@ body {
 .totalandforecast {
     .filter {
         padding-top: 15px;
+
         .help {
             float: right;
             cursor: pointer;
+
             &:before {
                 content: '\e92a';
                 font-family: 'Iconalpha';
                 font-size: 26px;
                 color: #0f82c4;
             }
+
             &:hover {
-                color:#666; 
+                color: #666;
             }
         }
+
         .form-inline {
             display: inline-block;
         }
@@ -80,10 +83,12 @@ body {
         margin: 0;
         border-bottom: 1px solid #cecece;
         border-radius: 0;
+
         li {
             color: #9d1c1c;
             font-weight: 700;
             text-transform: uppercase;
+
             + li:before {
                 content: '\276F';
                 color: #333;
@@ -169,9 +174,11 @@ table * {
     box-shadow: none;
     border: 1px solid #aaa;
     position: relative;
+
     &:hover {
         color: inherit;
     }
+
     .caret {
         position: absolute;
         right: 5px;
@@ -180,31 +187,41 @@ table * {
 }
 
 .btn-group.open > .dropdown-toggle.btn-default {
-     background: #fff;
+    background: #fff;
 }
+
 .btn-group.open > .dropdown-toggle {
     box-shadow: none;
 }
+
 .multiselect {
-    &.btn-default.active, &.btn-default:active{
+    height: auto;
+
+    &.btn-default.active, &.btn-default:active {
         background: #fff;
     }
 }
+
 .form-inline .multiselect-container label.checkbox {
     padding: 3px 20px 3px 35px;
 }
+
 .multiselect-container.dropdown-menu {
     li:hover {
         background: #5897fb;
     }
+
     .filter {
         padding: 0;
+
         .input-group {
             width: 91%;
+
             .input-group-addon, .input-group-btn {
                 display: none;
             }
-            .form-control.multiselect-search{
+
+            .form-control.multiselect-search {
                 box-shadow: none;
                 border: 1px solid #aaa;
                 line-height: 18px;
@@ -213,16 +230,25 @@ table * {
     }
 }
 
+.multiselect-selected-text {
+    max-width: 180px;
+    display: inline-block;
+    text-overflow: initial;
+    white-space: normal;
+}
+
 .content {
     #mainContent {
         margin: 10px 0;
     }
+
     .text-status {
         color: #9d2c2e;
         text-transform: uppercase;
         font-size: 14px;
         font-weight: bold;
-        &:before{
+
+        &:before {
             font-family: 'Iconalpha';
             color: #9d2c2e;
             font-size: 22px;
@@ -233,34 +259,41 @@ table * {
         }
     }
 }
+
 .note-content {
-    font-size: 12px; 
+    font-size: 12px;
     line-height: 28px;
+
     .bold {
         font-weight: bold;
     }
-    .highlight {
 
+    .highlight {
     }
+
     ul {
         list-style: none;
         padding-left: 10px;
+
         &.level1 {
             > li:before {
                 font-family: 'Iconalpha';
                 color: #333;
                 font-size: 11px;
-                content: '\e936' ;
+                content: '\e936';
                 margin-right: 5px;
             }
         }
+
         &.level2 {
-            padding-left:30px;
+            padding-left: 30px;
             list-style-type: disc;
             margin-right: 5px;
         }
+
         &.level3 {
             padding-left: 0;
+
             li:before {
                 content: '-';
                 margin-right: 5px;
@@ -268,10 +301,12 @@ table * {
             }
         }
     }
+
     .note {
         color: #666;
         font-style: italic;
         margin-left: 25px;
+
         &:before {
             content: '*';
             color: #9d2c2e;
@@ -279,4 +314,3 @@ table * {
         }
     }
 }
-
