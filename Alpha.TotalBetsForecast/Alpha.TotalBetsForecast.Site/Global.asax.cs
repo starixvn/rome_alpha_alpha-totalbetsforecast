@@ -47,7 +47,7 @@
 
         protected void Application_End()
         {
-            HttpRuntime runtime = (HttpRuntime)typeof(HttpRuntime).InvokeMember(
+            HttpRuntime runtime = (HttpRuntime)typeof(System.Web.HttpRuntime).InvokeMember(
                 "_theRuntime",
                 BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.GetField,
                 null,
@@ -73,12 +73,7 @@
                 runtime,
                 null);
 
-            var logMessage = string.Format(
-                "\r\n\r\n_shutDownMessage={0}\r\n\r\n_shutDownStack={1}",
-                shutDownMessage,
-                shutDownStack);
-
-            Logs.WriteInfo(logMessage);
+            Logs.WriteInfo($"\r\n\r\n_shutDownMessage={shutDownMessage}\r\n\r\n_shutDownStack={shutDownStack}");
         }
     }
 }

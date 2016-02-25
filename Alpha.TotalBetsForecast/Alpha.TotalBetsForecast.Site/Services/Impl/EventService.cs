@@ -28,10 +28,11 @@
             if (leagues == null
                 || !leagues.Any())
             {
-                leagues =  _dynamicRepository.Fetch<League>(new GetLeaguesCriteria
-                {
-                    IsLive = isLive
-                });
+                leagues = _dynamicRepository.Fetch<League>(
+                    new GetLeaguesCriteria
+                    {
+                        IsLive = isLive
+                    });
 
                 _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, 60 * 30);
             }

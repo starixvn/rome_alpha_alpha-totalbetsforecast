@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using App_GlobalResources;
-    using Sunplus.Agent.Model.RemotingRef;
 
     public class BetTypeForecast
     {
@@ -46,6 +45,5 @@
                             || BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType.FirstHalf_1X2;
             }
         }
-
     }
 }

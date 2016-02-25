@@ -12,6 +12,7 @@
     using Models.Views;
     using Services;
     using Sunplus.Agent.Utilities;
+
     public class ForecastHandler :
         IRequestHandler<MatchForecastQuery, MatchForecastViewModel>,
         IRequestHandler<MatchesQuery, MatchesViewModel>,
@@ -82,8 +83,8 @@
 
             var matches = _eventService
                 .GetMatches(message.LeagueId, message.IsLive)
-                .OrderBy(match => match.KickOffTime);
-            
+                .OrderByDescending(match => match.KickOffTime);
+
             return new MatchesViewModel
             {
                 LeagueId = message.LeagueId,
