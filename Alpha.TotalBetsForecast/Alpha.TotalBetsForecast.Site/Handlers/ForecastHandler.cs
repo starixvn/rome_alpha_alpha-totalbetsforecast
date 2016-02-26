@@ -62,6 +62,8 @@
 
             try
             {
+                message.LiveHomeScore = match.LiveHomeScore;
+                message.LiveAwayScore = match.LiveAwayScore;
                 var matchForecast = _forecastService.GetMatchForecast(message);
                 viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
                 viewModel.ForecastTotal = matchForecast.ForecastTotal;
