@@ -1,5 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Controllers
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Web.Mvc;
     using MediatR;
     using Models.Requests;
@@ -13,7 +14,7 @@
             _mediator = mediator;
         }
 
-        // GET: Forecast
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         public ActionResult Index(IndexQuery query)
         {
             var viewModel = _mediator.Send(query);
@@ -21,6 +22,7 @@
             return View(viewModel);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         [HttpGet]
         public JsonResult GetMatches(MatchesQuery query)
         {
@@ -29,6 +31,7 @@
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         [HttpGet]
         public ActionResult MatchForecast(MatchForecastQuery query)
         {

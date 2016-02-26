@@ -15,10 +15,10 @@
     [TestFixture]
     public class ForecastHandlerTests
     {
+        private const int CustId = 12345;
         private IForecastService _forecastService;
         private IEventService _eventService;
         private ForecastHandler _forecastHandler;
-        private const int CustId = 12345;
 
         [SetUp]
         public void SetUp()
@@ -49,6 +49,7 @@
                 IsLive = true
             };
 
+            //// Act
             _forecastHandler.Handle(query);
 
             _eventService.Received().GetLeagues(true);
@@ -57,28 +58,35 @@
         [Test]
         public void HandleIndexQuery_ReturnIndexViewModel()
         {
+            //// Arrange
             var query = new IndexQuery
             {
                 IsLive = true,
                 LeagueId = 2
             };
 
+            //// Act
             var indexViewModel = _forecastHandler.Handle(query);
 
-            Assert.IsTrue(indexViewModel.IsLive && indexViewModel.LeagueId == query.LeagueId);
+            //// Assert
+            Assert.IsTrue(indexViewModel.IsLive 
+                && indexViewModel.LeagueId == query.LeagueId);
         }
 
         [Test]
-        public void HandleIndexQuery_ReturnDealballLiveList()
+        public void HandleIndexQuery_ReturnDealballLiveSelectItemList()
         {
+            //// Arrange
             var query = new IndexQuery
             {
                 IsLive = true,
                 LeagueId = 2
             };
 
+            //// Act
             var dealBallLiveValues = _forecastHandler.Handle(query).LiveValues;
 
+            //// Assert
             Assert.IsTrue(
                 dealBallLiveValues.ElementAt(0).Value == "true"
                 && dealBallLiveValues.ElementAt(0).Text == Resources.MatchOfferLive
@@ -89,8 +97,9 @@
         }
 
         [Test]
-        public void HandleIndexQuery_ReturnSortedLeagues()
+        public void HandleIndexQuery_ReturnSortedLeaguesByName()
         {
+            //// Arrange
             var query = new IndexQuery
             {
                 IsLive = true,
@@ -112,8 +121,10 @@
             CacheRefFactory.CacheRef.GetLeagueName(1).Returns("B");
             CacheRefFactory.CacheRef.GetLeagueName(3).Returns("A");
 
+            //// Act
             var leagues = _forecastHandler.Handle(query).Leagues;
 
+            //// Assert
             Assert.IsTrue(
                 leagues.Count() == 2
                 && leagues.ElementAt(0).Text == "A"
@@ -135,6 +146,7 @@
         [Test]
         public void HandleMatchesQuery_ExecuteGetMatches()
         {
+            //// Arrange
             var query = new MatchesQuery
             {
                 MatchId = 1,
@@ -142,8 +154,10 @@
                 IsLive = true
             };
 
+            //// Act
             _forecastHandler.Handle(query);
 
+            //// Assert
             _eventService.Received().GetMatches(1, true);
         }
 
@@ -196,7 +210,9 @@
             var viewModel = _forecastHandler.Handle(query);
 
             //// Assert
-            Assert.IsTrue(viewModel.Matches.ElementAt(0).Id == 2);
+            Assert.IsTrue(
+                viewModel.Matches.ElementAt(0).Id == 2
+                && viewModel.Matches.ElementAt(1).Id == 1);
         }
 
         #endregion Query Dropdown list of match
@@ -220,6 +236,7 @@
                 MatchId = 1,
                 IsLive = true
             };
+
             _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(new Match());
 
             //// Act
@@ -239,16 +256,11 @@
                 IsLive = true
             };
             Match match = null;
+
             _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(match);
 
             //// Assert
             Assert.Throws<ArgumentNullException>(() => _forecastHandler.Handle(query));
-        }
-
-        [Test]
-        public void HandleMatchForecastQuery_MatchHasData_UseMatchDataToQueryMatchForecast()
-        {
-
         }
 
         [Test]
@@ -260,6 +272,7 @@
                 MatchId = 1,
                 IsLive = true
             };
+
             _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(new Match());
 
             //// Act
@@ -267,6 +280,35 @@
 
             //// Assert
             _forecastService.Received().GetMatchForecast(query);
+        }
+
+        [Test]
+        public void HandleMatchForecastQuery_MatchHasData_UseMatchDataToQueryMatchForecast()
+        {
+            //// Arrange
+            var query = new MatchForecastQuery(CustId)
+            {
+                MatchId = 1,
+                IsLive = true
+            };
+
+            var returnMatch = new Match
+            {
+                Id = 1,
+                LiveAwayScore = 3,
+                LiveHomeScore = 4
+            };
+
+            _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(returnMatch);
+
+            //// Act
+            _forecastHandler.Handle(query);
+
+            //// Assert
+            _forecastService.Received().GetMatchForecast(
+                Arg.Is<MatchForecastQuery>(actualQuery => 
+                actualQuery.LiveAwayScore == returnMatch.LiveAwayScore
+                && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore));
         }
 
         [Test]
@@ -278,6 +320,7 @@
                 MatchId = 1,
                 IsLive = true
             };
+
             Match match = new Match
             {
                 Id = 1,

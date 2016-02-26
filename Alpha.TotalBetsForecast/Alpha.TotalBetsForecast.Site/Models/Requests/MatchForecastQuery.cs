@@ -13,7 +13,7 @@
 
         internal MatchForecastQuery(int custId)
         {
-            custId = custId;
+            CustId = custId;
         }
 
         public int CustId

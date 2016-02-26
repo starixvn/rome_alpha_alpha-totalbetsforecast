@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetLeaguesCriteria : CriteriaBase
+    internal class GetLeaguesCriteria : CriteriaBase
     {
         public bool IsLive { get; set; }
 

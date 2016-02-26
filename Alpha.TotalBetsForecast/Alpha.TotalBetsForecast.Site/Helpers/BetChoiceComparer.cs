@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class BetChoiceComparer : IComparer<string>
+    internal class BetChoiceComparer : IComparer<string>
     {
         private static IDictionary<string, int> _betChoiceOrders = new Dictionary<string, int>
         {
@@ -15,7 +15,10 @@
 
         public int Compare(string x, string y)
         {
-            if (_betChoiceOrders.ContainsKey(x.ToLower()) && _betChoiceOrders.ContainsKey(y.ToLower()))
+            if (!string.IsNullOrEmpty(x) 
+                && !string.IsNullOrEmpty(y)
+                && _betChoiceOrders.ContainsKey(x.ToLower()) 
+                && _betChoiceOrders.ContainsKey(y.ToLower()))
             {
                 return _betChoiceOrders[x.ToLower()] - _betChoiceOrders[y.ToLower()];
             }

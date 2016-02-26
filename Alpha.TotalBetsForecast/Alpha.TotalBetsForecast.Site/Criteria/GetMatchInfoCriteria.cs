@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetMatchInfoCriteria : CriteriaBase
+    internal class GetMatchInfoCriteria : CriteriaBase
     {
         public int MatchId { get; set; }
 

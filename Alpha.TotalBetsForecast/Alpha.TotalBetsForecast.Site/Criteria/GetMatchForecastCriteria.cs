@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetMatchForecastCriteria : CriteriaBase
+    internal class GetMatchForecastCriteria : CriteriaBase
     {
         public int CustId { get; set; }
 

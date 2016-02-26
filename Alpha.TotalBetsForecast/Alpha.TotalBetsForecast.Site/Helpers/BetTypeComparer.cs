@@ -1,10 +1,9 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Helpers
 {
     using System.Collections.Generic;
-    using Alpha.TotalBetsForecast.Site.Models;
     using Sunplus.Agent.Model.BL.Definitions;
 
-    public class BetTypeComparer : IComparer<int>
+    internal class BetTypeComparer : IComparer<int>
     {
         private static IDictionary<int, int> _betTypeOrders = new Dictionary<int, int>
         {

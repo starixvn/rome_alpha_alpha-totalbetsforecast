@@ -2,7 +2,7 @@
 {
     using Fanex.Data.Repository;
 
-    public class GetEventsCriteria : CriteriaBase
+    internal class GetEventsCriteria : CriteriaBase
     {
         public int LeagueId { get; set; }
 

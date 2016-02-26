@@ -1,6 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web;
     using System.Web.Mvc;
@@ -23,7 +24,7 @@
 
             ShareSession.Init();
 
-            Logs.WriteInfo("Alpha - Results - Application Start");
+            Logs.WriteInfo("Alpha - New TotalBets Forecast - Application Start");
         }
 
         /// <summary>
@@ -45,6 +46,11 @@
             }
         }
 
+        [SuppressMessage(
+            "Microsoft.Globalization", 
+            "CA1303:Do not pass literals as localized parameters", 
+            MessageId = "Sunplus.Agent.Utilities.Logs.WriteInfo(System.String)", 
+            Justification = "Reviewed!")]
         protected void Application_End()
         {
             HttpRuntime runtime = (HttpRuntime)typeof(System.Web.HttpRuntime).InvokeMember(

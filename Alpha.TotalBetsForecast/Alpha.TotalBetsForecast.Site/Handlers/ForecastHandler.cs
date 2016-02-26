@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using System.Web.Mvc;
     using App_GlobalResources;
@@ -18,8 +19,8 @@
         IRequestHandler<MatchesQuery, MatchesViewModel>,
         IRequestHandler<IndexQuery, IndexViewModel>
     {
-        private IForecastService _forecastService;
-        private IEventService _eventService;
+        private readonly IForecastService _forecastService;
+        private readonly IEventService _eventService;
 
         public ForecastHandler(IForecastService forecastService, IEventService eventService)
         {
@@ -27,6 +28,7 @@
             _eventService = eventService;
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed!")]
         public MatchForecastViewModel Handle(MatchForecastQuery message)
         {
             if (message == null)
@@ -64,7 +66,9 @@
             {
                 message.LiveHomeScore = match.LiveHomeScore;
                 message.LiveAwayScore = match.LiveAwayScore;
+
                 var matchForecast = _forecastService.GetMatchForecast(message);
+
                 viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
                 viewModel.ForecastTotal = matchForecast.ForecastTotal;
             }
