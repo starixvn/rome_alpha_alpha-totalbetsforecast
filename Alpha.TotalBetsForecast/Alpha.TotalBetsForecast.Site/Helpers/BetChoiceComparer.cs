@@ -9,8 +9,8 @@
             { "h", 1 },
             { "a", 2 },
             { "1", 3 },
-            { "x", 4 },
-            { "2", 5 }
+            { "2", 4 },
+            { "x", 5 }
         };
 
         public int Compare(string x, string y)

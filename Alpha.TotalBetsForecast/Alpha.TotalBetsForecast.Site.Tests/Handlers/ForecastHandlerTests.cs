@@ -246,6 +246,12 @@
         }
 
         [Test]
+        public void HandleMatchForecastQuery_MatchHasData_UseMatchDataToQueryMatchForecast()
+        {
+
+        }
+
+        [Test]
         public void HandleMatchForecastQuery_ExecuteGetMatchForecast()
         {
             //// Arrange
