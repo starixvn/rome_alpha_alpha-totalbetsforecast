@@ -338,14 +338,7 @@
             _forecastService.GetMatchForecast(Arg.Any<MatchForecastQuery>()).Returns(new MatchForecast
             {
                 ForecastTotal = 101,
-                BetTypeForecasts = new List<BetTypeForecast>
-                {
-                    new BetTypeForecast
-                    {
-                        BetTypeId = 1,
-                        BetType = "aaaaa"
-                    }
-                }
+                BetTypeForecasts = new List<BetTypeForecast> { new BetTypeForecast { BetTypeId = 1, BetType = "aaaaa" } }
             });
 
             _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(match);

@@ -17,7 +17,7 @@
         <form class="form-inline" role="form">
 
             <div class="form-group">
-                <label class="">@Resources.Deadball/@Resources.Live</label>
+                <label class="">@Resources.MatchOfferLive/@Resources.Deadball</label>
                 @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "form-control", @id = "ddlDeadBall", @onchange = "this.form.submit()" })
             </div>
 
