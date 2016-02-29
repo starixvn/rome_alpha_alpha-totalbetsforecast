@@ -51,9 +51,11 @@
                     continue;
                 }
 
-                var betTypeForecast = BuildBetTypeForecast(matchForecastRaw, processedBetTypeIds, betTypeDto);
+                var betTypeForecast = BuildBetTypeForecast(matchForecastRaw, betTypeDto);
 
                 betTypeForecasts.Add(betTypeForecast);
+
+                processedBetTypeIds.Add(betTypeDto.BetTypeId);
             }
 
             return new MatchForecast
@@ -65,7 +67,6 @@
 
         private BetTypeForecast BuildBetTypeForecast(
             Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> matchForecastRaw, 
-            List<int> processedBetTypeIds,
             BetTypeForecastDto betTypeDto)
         {
             var betTypeForecast = new BetTypeForecast
@@ -108,8 +109,6 @@
                     betChoices.Add(betChoice);
                 }
             }
-
-            processedBetTypeIds.Add(betTypeDto.BetTypeId);
 
             betTypeForecast.BetChoices = betChoices;
 
