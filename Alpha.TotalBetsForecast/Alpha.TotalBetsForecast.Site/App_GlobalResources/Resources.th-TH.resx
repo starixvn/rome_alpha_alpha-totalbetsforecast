@@ -153,4 +153,10 @@
   <data name="NoData" xml:space="preserve">
     <value>ไม่พบข้อมูลเป็น</value>
   </data>
+  <data name="BetType_1" xml:space="preserve">
+    <value>HDP</value>
+  </data>
+  <data name="BetType_15" xml:space="preserve">
+    <value>1H 1X2</value>
+  </data>
 </root>
