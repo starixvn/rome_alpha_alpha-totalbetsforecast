@@ -196,7 +196,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Goal(s).
+        ///   Looks up a localized string similar to Goal.
         /// </summary>
         public static string Goals {
             get {
