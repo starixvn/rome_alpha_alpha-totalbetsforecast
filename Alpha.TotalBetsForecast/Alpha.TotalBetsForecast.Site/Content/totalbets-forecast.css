@@ -152,10 +152,8 @@ table * {
 .btn-group.open > .dropdown-toggle {
   box-shadow: none; }
 
-.multiselect {
-  height: auto; }
-  .multiselect.btn-default.active, .multiselect.btn-default:active {
-    background: #fff; }
+.multiselect.btn-default.active, .multiselect.btn-default:active {
+  background: #fff; }
 
 .form-inline .multiselect-container label.checkbox {
   padding: 3px 20px 3px 35px; }
@@ -177,8 +175,9 @@ table * {
 .multiselect-selected-text {
   max-width: 180px;
   display: inline-block;
-  text-overflow: initial;
-  white-space: normal; }
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
 
 .content #mainContent {
   margin: 10px 0; }

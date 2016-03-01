@@ -195,7 +195,6 @@ table * {
 }
 
 .multiselect {
-    height: auto;
 
     &.btn-default.active, &.btn-default:active {
         background: #fff;
@@ -233,8 +232,9 @@ table * {
 .multiselect-selected-text {
     max-width: 180px;
     display: inline-block;
-    text-overflow: initial;
-    white-space: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .content {

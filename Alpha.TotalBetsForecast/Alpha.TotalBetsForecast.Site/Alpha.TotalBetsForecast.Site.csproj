@@ -240,6 +240,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
+    <Compile Include="Controllers\IntroductionController.cs" />
     <Compile Include="Criteria\GetEventsCriteria.cs" />
     <Compile Include="Criteria\GetLeaguesCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastCriteria.cs" />
@@ -336,6 +337,13 @@
     <Content Include="Views\Forecast\Index.cshtml" />
     <Content Include="Views\Forecast\MatchForecast.cshtml" />
     <None Include="Properties\PublishProfiles\Local202.pubxml" />
+    <Content Include="Views\Introduction\Index.en-US.cshtml" />
+    <Content Include="Views\Introduction\Index.ja-JP.cshtml" />
+    <Content Include="Views\Introduction\Index.ko-KR.cshtml" />
+    <Content Include="Views\Introduction\Index.th-TH.cshtml" />
+    <Content Include="Views\Introduction\Index.vi-VN.cshtml" />
+    <Content Include="Views\Introduction\Index.zh-CN.cshtml" />
+    <Content Include="Views\Introduction\Index.zh-TW.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
