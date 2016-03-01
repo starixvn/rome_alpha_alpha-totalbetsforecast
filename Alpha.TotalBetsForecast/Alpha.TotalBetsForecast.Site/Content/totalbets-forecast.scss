@@ -221,6 +221,9 @@ table * {
 
         .input-group {
             width: 91%;
+            .form-control.multiselect-search {
+                width: 100%;
+            }
 
             .input-group-addon, .input-group-btn {
                 display: none;
@@ -321,9 +324,8 @@ table * {
     }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+@media only screen and (min-width: 796px) and (max-width: 1051px) {
     .totalandforecast{
-        //min-width: 1025px;
         .filter {
              .form-group {
                  margin: 0 5px 15px 0;
@@ -337,6 +339,9 @@ table * {
             .multiselect-selected-text {
                 max-width: 120px;
             }
+            .btn-group button.multiselect {
+                padding-left: 5px;
+            } 
         }
            
     }
