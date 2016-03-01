@@ -43,6 +43,52 @@ body {
     line-height: 32px;
 }
 
+.note-browser {
+    background: #faf9dd;
+    border: 1px solid #bcba7d;
+    color: #803f00;
+    padding: 0 15px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    .textnote-box {
+        padding-left: 10px;
+        display: inline-block;
+    }
+    .icon-alert {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+    }
+    .icon-alert:before {
+        font-family: 'Iconalpha';
+        content: '\e937';
+        color: #fe7e01;
+        font-size: 28px;
+    }
+    .text-note, a {
+        position: relative;
+        top: -7px;
+    }
+    a {
+        font-weight: bold;
+        color: #045bce;
+        text-decoration: underline;
+        white-space: nowrap;
+    }
+    .icon-closed:before {
+        font-family: 'Iconalpha';
+        content: '\e92c';
+        color: #bcba7d;
+        font-size: 18px;
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        cursor: pointer;
+    }
+}
 
 .totalandforecast {
     .filter {
@@ -346,4 +392,13 @@ table * {
            
     }
 
+}
+
+@media only screen and (max-width: 1152px) {
+    .note-browser .text-note, .note-browser a {
+        top: -28px;
+    }
+    .note-browser .textnote-box {
+        padding-left: 40px;
+    }
 }
