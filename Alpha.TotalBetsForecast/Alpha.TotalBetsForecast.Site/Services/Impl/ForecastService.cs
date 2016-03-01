@@ -11,6 +11,7 @@
     using Models;
     using Models.Dtos;
     using Models.Requests;
+    using Sunplus.Agent.Model.BL.Definitions;
 
     public class ForecastService : IForecastService
     {
@@ -18,6 +19,7 @@
         private const string AwayChoice = "a";
         private const string OverChoice = "o";
         private const string UnderChoice = "u";
+        private const int HalftimeMinutes = 45;
 
         private readonly IForecastDataAccess _forecastDataAccess;
 
@@ -27,7 +29,7 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Reviewed!")]
-        public MatchForecast GetMatchForecast(MatchForecastQuery query)
+        public MatchForecast GetMatchForecast(MatchForecastQuery query, DateTime kickOffTime)
         {
             Check.Argument.IsNotNull(query, nameof(query));
 
@@ -40,10 +42,19 @@
                 MatchId = query.MatchId
             });
 
+            var betTypeForecastDtos = matchForecastRaw.Item1;
+            var winLossColumnNameDtos = matchForecastRaw.Item2;
+
+            //// Remove haft-time forecast when now is second half
+            if (kickOffTime.AddMinutes(HalftimeMinutes) < DateTime.Now)
+            {
+                betTypeForecastDtos = betTypeForecastDtos.Where(betTypeForcastDto => IsFullTimeBetType(betTypeForcastDto.BetTypeId));
+            }
+
             var processedBetTypeIds = new List<int>();
             var betTypeForecasts = new List<BetTypeForecast>();
 
-            foreach (var betTypeDto in matchForecastRaw.Item1)
+            foreach (var betTypeDto in betTypeForecastDtos)
             {
                 if (processedBetTypeIds.Contains(betTypeDto.BetTypeId))
                 {
@@ -51,7 +62,7 @@
                     continue;
                 }
 
-                var betTypeForecast = BuildBetTypeForecast(matchForecastRaw, betTypeDto);
+                var betTypeForecast = BuildBetTypeForecast(betTypeForecastDtos, winLossColumnNameDtos, betTypeDto);
 
                 betTypeForecasts.Add(betTypeForecast);
 
@@ -66,7 +77,8 @@
         }
 
         private BetTypeForecast BuildBetTypeForecast(
-            Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> matchForecastRaw, 
+            IEnumerable<BetTypeForecastDto> betTypeForecastDtos,
+            IEnumerable<WinLossColumnNameDto> winLossColumnNameDtos,
             BetTypeForecastDto betTypeDto)
         {
             var betTypeForecast = new BetTypeForecast
@@ -75,7 +87,7 @@
                 BetType = betTypeDto.BetType
             };
 
-            var groupedBetTypeForecastDto = matchForecastRaw.Item1.Where(
+            var groupedBetTypeForecastDto = betTypeForecastDtos.Where(
                 betTypeForecastDto => betTypeForecastDto.BetTypeId == betTypeDto.BetTypeId);
 
             var betChoices = new List<BetChoiceForecast>();
@@ -83,7 +95,7 @@
             if (groupedBetTypeForecastDto.Any())
             {
                 groupedBetTypeForecastDto = groupedBetTypeForecastDto.OrderBy(
-                    betTypeGrouped => betTypeGrouped.BetChoice, 
+                    betTypeGrouped => betTypeGrouped.BetChoice,
                     new BetChoiceComparer());
 
                 var isFirstBetChoice = true;
@@ -98,7 +110,7 @@
                     };
 
                     BuildWinLossNameAndValue(
-                        matchForecastRaw.Item2,
+                        winLossColumnNameDtos,
                         betChoice,
                         betTypeItem,
                         betTypeForecast.IsOneXTwoBetType,
@@ -116,7 +128,7 @@
         }
 
         private void BuildWinLossNameAndValue(
-            IEnumerable<WinLossColumnNameDto> winlossColumnNameDtoData,
+            IEnumerable<WinLossColumnNameDto> winLossColumnNameDtos,
             BetChoiceForecast betChoice,
             BetTypeForecastDto betTypeItem,
             bool isOneXTwo,
@@ -133,7 +145,7 @@
             {
                 if (isFirstBetChoice)
                 {
-                    var winlossColumnNameDto = winlossColumnNameDtoData.First(
+                    var winlossColumnNameDto = winLossColumnNameDtos.First(
                         winLossColumnName => winLossColumnName.BetTypeId == betTypeItem.BetTypeId);
 
                     winLossColumnNames.Add(winlossColumnNameDto.FirstColumnName);
@@ -159,13 +171,20 @@
                 return betTypeItem.BetChoice;
             }
 
-            if (betTypeForecast.IsOverUnder 
+            if (betTypeForecast.IsOverUnder
                 && betTypeItem.BetChoice.ToLower() == AwayChoice)
             {
                 return UnderChoice;
             }
 
             return betTypeItem.BetType;
+        }
+
+        private bool IsFullTimeBetType(int betTypeId)
+        {
+            return betTypeId == (int)BetType.Handicap
+                || betTypeId == (int)BetType.Over_Under
+                || betTypeId == (int)BetType.FT_1X2;
         }
     }
 }

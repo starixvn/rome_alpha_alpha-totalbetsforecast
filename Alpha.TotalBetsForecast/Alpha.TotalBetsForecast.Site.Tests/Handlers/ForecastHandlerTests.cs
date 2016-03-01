@@ -272,14 +272,14 @@
                 MatchId = 1,
                 IsLive = true
             };
-
-            _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(new Match());
+            var match = new Match();
+            _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(match);
 
             //// Act
             _forecastHandler.Handle(query);
 
             //// Assert
-            _forecastService.Received().GetMatchForecast(query);
+            _forecastService.Received().GetMatchForecast(query, match.KickOffTime);
         }
 
         [Test]
@@ -308,7 +308,8 @@
             _forecastService.Received().GetMatchForecast(
                 Arg.Is<MatchForecastQuery>(actualQuery => 
                 actualQuery.LiveAwayScore == returnMatch.LiveAwayScore
-                && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore));
+                && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore), 
+                returnMatch.KickOffTime);
         }
 
         [Test]
@@ -335,7 +336,7 @@
                 LiveHomeScore = 4
             };
 
-            _forecastService.GetMatchForecast(Arg.Any<MatchForecastQuery>()).Returns(new MatchForecast
+            _forecastService.GetMatchForecast(Arg.Any<MatchForecastQuery>(), Arg.Any<DateTime>()).Returns(new MatchForecast
             {
                 ForecastTotal = 101,
                 BetTypeForecasts = new List<BetTypeForecast> { new BetTypeForecast { BetTypeId = 1, BetType = "aaaaa" } }

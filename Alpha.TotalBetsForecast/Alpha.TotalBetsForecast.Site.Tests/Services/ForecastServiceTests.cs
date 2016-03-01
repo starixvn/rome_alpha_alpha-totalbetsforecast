@@ -32,7 +32,7 @@
         {
             MatchForecastQuery query = null;
 
-            Assert.Throws<ArgumentNullException>(() => _forecastService.GetMatchForecast(query));
+            Assert.Throws<ArgumentNullException>(() => _forecastService.GetMatchForecast(query, DateTime.Now));
         }
 
         [Test]
@@ -46,12 +46,13 @@
                 LiveAwayScore = 1,
                 MatchId = 1
             };
+            var kickOffTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
             var forecastData = Tuple.Create(Enumerable.Empty<BetTypeForecastDto>(), Enumerable.Empty<WinLossColumnNameDto>(), 1m);
 
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            _forecastService.GetMatchForecast(query);
+            _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             _forecastDataAccess.Received().GetMatchForecast(
@@ -68,11 +69,12 @@
         {
             //// Arrange
             var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.AddDays(1);
             var rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto { BetTypeId = (int)BetType.Handicap, BetChoice = "h" },
                 new BetTypeForecastDto { BetTypeId = (int)BetType.Handicap, BetChoice = "a" },
-                new BetTypeForecastDto { BetTypeId = (int)BetType.Over_Under, BetChoice = "a" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType._1st_Over_Under, BetChoice = "a" },
                 new BetTypeForecastDto { BetTypeId = (int)BetType.FT_1X2, BetChoice = "1" },
                 new BetTypeForecastDto { BetTypeId = (int)BetType.FT_1X2, BetChoice = "x" }
             };
@@ -85,7 +87,7 @@
                 },
                 new WinLossColumnNameDto
                 {
-                    BetTypeId = (int)BetType.Over_Under
+                    BetTypeId = (int)BetType._1st_Over_Under
                 }
             };
 
@@ -94,13 +96,13 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query);
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             Assert.True(matchForcast.BetTypeForecasts.Count() == 3
                 && matchForcast.BetTypeForecasts.ElementAt(0).BetTypeId == (int)BetType.Handicap
                 && matchForcast.BetTypeForecasts.ElementAt(0).BetChoices.Count() == 2
-                && matchForcast.BetTypeForecasts.ElementAt(1).BetTypeId == (int)BetType.Over_Under
+                && matchForcast.BetTypeForecasts.ElementAt(1).BetTypeId == (int)BetType._1st_Over_Under
                 && matchForcast.BetTypeForecasts.ElementAt(1).BetChoices.Count() == 1
                 && matchForcast.BetTypeForecasts.ElementAt(2).BetTypeId == (int)BetType.FT_1X2
                 && matchForcast.BetTypeForecasts.ElementAt(2).BetChoices.Count() == 2);
@@ -114,6 +116,7 @@
         {
             //// Arrange
             var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.AddDays(1);
             var rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto
@@ -144,7 +147,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query);
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             Assert.True(
@@ -161,6 +164,7 @@
         {
             //// Arrange
             var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.AddDays(1);
             var rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto
@@ -184,10 +188,53 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query);
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             Assert.IsEmpty(matchForcast.BetTypeForecasts.ElementAt(0).BetChoices.First().WinLossColumnNames);
+        }
+
+        [Test]
+        public void GetMatchForecast_CurrentTimeIsSecondHaft_RemoveFirstHaftForecast()
+        {
+            //// Arrange
+            var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
+            var rawData = new List<BetTypeForecastDto>
+            {
+                new BetTypeForecastDto { BetTypeId = (int)BetType.Handicap, BetChoice = "h" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType._1st_Handicap, BetChoice = "a" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType.Over_Under, BetChoice = "a" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType._1st_Over_Under, BetChoice = "a" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType.FT_1X2, BetChoice = "1" },
+                new BetTypeForecastDto { BetTypeId = (int)BetType.FirstHalf_1X2, BetChoice = "x" }
+            };
+
+            var columnNameData = new List<WinLossColumnNameDto>
+            {
+                new WinLossColumnNameDto { BetTypeId = (int)BetType.Handicap },
+                new WinLossColumnNameDto { BetTypeId = (int)BetType._1st_Handicap },
+                new WinLossColumnNameDto { BetTypeId = (int)BetType.Over_Under },
+                new WinLossColumnNameDto { BetTypeId = (int)BetType._1st_Over_Under },
+                new WinLossColumnNameDto { BetTypeId = (int)BetType.FT_1X2 },
+                new WinLossColumnNameDto { BetTypeId = (int)BetType.FirstHalf_1X2 },
+            };
+
+            var forecastData = Tuple.Create(rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>, 1m);
+
+            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
+
+            //// Act
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+
+            //// Assert
+            Assert.True(matchForcast.BetTypeForecasts.Count() == 3
+                && matchForcast.BetTypeForecasts.ElementAt(0).BetTypeId == (int)BetType.Handicap
+                && matchForcast.BetTypeForecasts.ElementAt(0).BetChoices.Count() == 1
+                && matchForcast.BetTypeForecasts.ElementAt(1).BetTypeId == (int)BetType.Over_Under
+                && matchForcast.BetTypeForecasts.ElementAt(1).BetChoices.Count() == 1
+                && matchForcast.BetTypeForecasts.ElementAt(2).BetTypeId == (int)BetType.FT_1X2
+                && matchForcast.BetTypeForecasts.ElementAt(2).BetChoices.Count() == 1);
         }
 
         [TestCase(BetType.Handicap, "h", "1.5,2", "1.5,2")]
@@ -212,6 +259,7 @@
         {
             //// Arrange
             var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.AddDays(1);
             var rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto
@@ -235,7 +283,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query);
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             Assert.True(matchForcast.BetTypeForecasts.Count() == 1
@@ -247,6 +295,7 @@
         {
             //// Arrange
             var query = new MatchForecastQuery(1);
+            var kickOffTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
             var rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto
@@ -277,7 +326,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query);
+            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
 
             //// Assert
             Assert.IsTrue(

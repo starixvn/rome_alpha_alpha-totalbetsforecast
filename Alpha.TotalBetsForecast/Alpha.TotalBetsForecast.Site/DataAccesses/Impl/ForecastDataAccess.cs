@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.Data.Repository;
     using Models;
@@ -12,6 +13,8 @@
     {
         public Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> GetMatchForecast(ICriteria criteria)
         {
+            Check.Argument.IsNotNull(criteria, "criteria");
+
             using (IObjectDb objectDb = new ObjectDb(criteria.GetSettingKey()))
             {
                 using (var queryMultiple = objectDb.QueryMultiple(criteria.GetSpParams()))
