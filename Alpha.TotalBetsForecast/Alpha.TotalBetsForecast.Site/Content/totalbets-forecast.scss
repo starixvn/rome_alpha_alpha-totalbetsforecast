@@ -47,11 +47,12 @@ body {
 .totalandforecast {
     .filter {
         padding-top: 15px;
-
+        position: relative;
         .help {
-            float: right;
+            position: absolute;
+            right: 0px;
+            top: 18px;
             cursor: pointer;
-
             &:before {
                 content: '\e92a';
                 font-family: 'Iconalpha';
@@ -71,6 +72,11 @@ body {
 
     .form-group {
         margin: 0 15px 15px 0;
+        display: inline-block;
+        .form-control {
+            display: inline-block;
+            width: auto;
+        }
 
         label {
             margin-right: 8px;
@@ -313,4 +319,26 @@ table * {
             margin-right: 5px;
         }
     }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1280px) {
+    .totalandforecast{
+        //min-width: 1025px;
+        .filter {
+             .form-group {
+                 margin: 0 5px 15px 0;
+                 .form-control {
+                    padding: 6px 0px;
+                    #ddlDeadBall {
+                        width: 120px;
+                    }
+                }
+            }
+            .multiselect-selected-text {
+                max-width: 120px;
+            }
+        }
+           
+    }
+
 }
