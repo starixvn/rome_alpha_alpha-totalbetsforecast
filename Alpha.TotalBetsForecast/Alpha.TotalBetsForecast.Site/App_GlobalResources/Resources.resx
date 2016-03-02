@@ -195,4 +195,10 @@
   <data name="NoData" xml:space="preserve">
     <value>There is no data</value>
   </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>Click here to update your browser</value>
+  </data>
 </root>
