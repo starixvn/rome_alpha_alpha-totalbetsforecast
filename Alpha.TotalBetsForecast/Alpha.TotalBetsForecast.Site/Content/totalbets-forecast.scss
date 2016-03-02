@@ -49,24 +49,16 @@ body {
     color: #803f00;
     padding: 0 15px;
     width: 100%;
-    .textnote-box {
-        padding-left: 10px;
-        display: inline-block;
-    }
-    .icon-alert {
-        width: 30px;
-        height: 30px;
-        display: inline-block;
+    display: table;
+    .textnote-box, .icon-alert {
+        display: table-cell;
+        vertical-align: middle;
     }
     .icon-alert:before {
         font-family: 'Iconalpha';
         content: '\e937';
         color: #fe7e01;
         font-size: 28px;
-    }
-    .text-note, a {
-        position: relative;
-        top: -7px;
     }
     a {
         font-weight: bold;
@@ -391,10 +383,8 @@ table * {
 }
 
 @media only screen and (max-width: 1152px) {
-    .note-browser .text-note, .note-browser a {
-        top: -28px;
-    }
+
     .note-browser .textnote-box {
-        padding-left: 40px;
+        padding-left: 10px;
     }
 }

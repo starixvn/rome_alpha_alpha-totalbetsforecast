@@ -53,22 +53,16 @@
   border: 1px solid #bcba7d;
   color: #803f00;
   padding: 0 15px;
-  width: 100%; }
-  .note-browser .textnote-box {
-    padding-left: 10px;
-    display: inline-block; }
-  .note-browser .icon-alert {
-    width: 30px;
-    height: 30px;
-    display: inline-block; }
+  width: 100%;
+  display: table; }
+  .note-browser .textnote-box, .note-browser .icon-alert {
+    display: table-cell;
+    vertical-align: middle; }
   .note-browser .icon-alert:before {
     font-family: 'Iconalpha';
     content: '\e937';
     color: #fe7e01;
     font-size: 28px; }
-  .note-browser .text-note, .note-browser a {
-    position: relative;
-    top: -7px; }
   .note-browser a {
     font-weight: bold;
     color: #045bce;
@@ -287,8 +281,6 @@ table * {
     padding-left: 5px; } }
 
 @media only screen and (max-width: 1152px) {
-  .note-browser .text-note, .note-browser a {
-    top: -28px; }
   .note-browser .textnote-box {
-    padding-left: 40px; } }
+    padding-left: 10px; } }
 
