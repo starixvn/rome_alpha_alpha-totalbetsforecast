@@ -143,7 +143,10 @@
                 -
                 @Model.LiveAwayScore
             </span> <br />
-                <span class="offer-live">@Resources.Live</span>
+            if (Model.HasLive)
+            {
+                <span class="offer-live">@Resources.MatchOfferLive</span>
+            }
         }
         else
         {
