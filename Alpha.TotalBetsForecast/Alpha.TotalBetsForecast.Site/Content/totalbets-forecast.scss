@@ -50,22 +50,30 @@ body {
     padding: 0 15px;
     width: 100%;
     display: table;
+
     .textnote-box, .icon-alert {
         display: table-cell;
         vertical-align: middle;
     }
+
     .icon-alert:before {
         font-family: 'Iconalpha';
         content: '\e937';
         color: #fe7e01;
         font-size: 28px;
     }
+
     a {
         font-weight: bold;
         color: #045bce;
         text-decoration: underline;
         white-space: nowrap;
     }
+
+    .icon-closed {
+        cursor: pointer;
+    }
+
     .icon-closed:before {
         font-family: 'Iconalpha';
         content: '\e92c';
@@ -82,11 +90,13 @@ body {
     .filter {
         padding-top: 15px;
         position: relative;
+
         .help {
             position: absolute;
             right: 0px;
             top: 18px;
             cursor: pointer;
+
             &:before {
                 content: '\e92a';
                 font-family: 'Iconalpha';
@@ -107,6 +117,7 @@ body {
     .form-group {
         margin: 0 15px 15px 0;
         display: inline-block;
+
         .form-control {
             display: inline-block;
             width: auto;
@@ -255,6 +266,7 @@ table * {
 
         .input-group {
             width: 91%;
+
             .form-control.multiselect-search {
                 width: 100%;
             }
@@ -359,27 +371,29 @@ table * {
 }
 
 @media only screen and (min-width: 796px) and (max-width: 1051px) {
-    .totalandforecast{
+    .totalandforecast {
         .filter {
-             .form-group {
-                 margin: 0 5px 15px 0;
-                 .form-control {
+            .form-group {
+                margin: 0 5px 15px 0;
+
+                .form-control {
                     padding: 6px 0px;
+
                     #ddlDeadBall {
                         width: 120px;
                     }
                 }
             }
+
             .multiselect-selected-text {
                 max-width: 120px;
             }
+
             .btn-group button.multiselect {
                 padding-left: 5px;
-            } 
+            }
         }
-           
     }
-
 }
 
 @media only screen and (max-width: 1152px) {

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Criteria
 {
+    using System;
     using Fanex.Data.Repository;
 
     internal class GetMatchForecastCriteria : CriteriaBase
@@ -13,6 +14,8 @@
         public short LiveHomeScore { get; set; }
 
         public short LiveAwayScore { get; set; }
+
+        public DateTime KickOffTime { get; set; }
 
         public override string GetSettingKey()
         {

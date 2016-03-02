@@ -39,7 +39,8 @@
                 IsLive = query.IsLive,
                 LiveAwayScore = query.LiveAwayScore,
                 LiveHomeScore = query.LiveHomeScore,
-                MatchId = query.MatchId
+                MatchId = query.MatchId,
+                KickOffTime = kickOffTime
             });
 
             var betTypeForecastDtos = matchForecastRaw.Item1;

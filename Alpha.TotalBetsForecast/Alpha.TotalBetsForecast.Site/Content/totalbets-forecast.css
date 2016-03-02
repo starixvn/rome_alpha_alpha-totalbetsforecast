@@ -68,6 +68,8 @@
     color: #045bce;
     text-decoration: underline;
     white-space: nowrap; }
+  .note-browser .icon-closed {
+    cursor: pointer; }
   .note-browser .icon-closed:before {
     font-family: 'Iconalpha';
     content: '\e92c';

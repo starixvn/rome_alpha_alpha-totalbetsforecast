@@ -8,13 +8,13 @@
 
     @Styles.Render(BundleConfig.IndexForecastStyleBundleUrl)
 }
-<div class="note-browser" style="display:none;">
+<div id="browser-warning" class="note-browser" style="display:none;">
     <span class="icon-alert"></span>
     <div class="textnote-box">
         <span class="text-note">@Resources.BrowserIsOutOfDate</span>
-        <a href="#">@Resources.ClickToUpdateBrowser</a>
+        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" target="_blank">@Resources.ClickToUpdateBrowser</a>
     </div>
-    <span class="icon-closed"></span>
+    <span class="icon-closed" id="close-warning"></span>
 </div>
 <div class="container-fluid totalandforecast">
     <ul class="breadcrumb">

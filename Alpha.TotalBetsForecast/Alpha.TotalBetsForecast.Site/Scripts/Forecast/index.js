@@ -16,7 +16,9 @@
         ddlLeague: null,
         ddlMatch: null,
         btnRefresh: null,
-        mainContent: null
+        mainContent: null,
+        browserWarning: null,
+        closeWarning: null
     },
 
     init: function () {
@@ -40,9 +42,13 @@
         forecast.domElements.ddlLeague = $('#LeagueId');
         forecast.domElements.ddlDeadBall = $('#ddlDeadBall');
         forecast.domElements.mainContent = $('#mainContent');
+        forecast.domElements.browserWarning = $('#browser-warning');
+        forecast.domElements.closeWarning = $('#close-warning');
     },
 
     registerEvents: function () {
+
+        forecast.checkIEBrowserAndShowWarning();
 
         forecast.domElements.ddlLeague.multiselect({
             maxHeight: 300,
@@ -74,7 +80,8 @@
                     var matcheForecastQuery =
                                    {
                                        matchId: matchIds[i],
-                                       isLive: forecast.domElements.ddlDeadBall.val() === 'true'
+                                       isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                                       version: Math.random()
                                    };
 
                     $.get(forecast.getAbsoluteUrl(forecast.urls.getMatchForecast
@@ -184,7 +191,8 @@
         var matchesQuery =
             {
                 leagueId: forecast.domElements.ddlLeague.val(),
-                isLive: forecast.domElements.ddlDeadBall.val() === 'true'
+                isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                version: Math.random()
             };
 
         $.ajax({
@@ -251,6 +259,20 @@
         });
 
         forecast.domElements.ddlMatch.multiselect('dataprovider', processedMatches);
+    },
+
+    checkIEBrowserAndShowWarning: function () {
+        var myNav = navigator.userAgent.toLowerCase();
+        var ieVersion = (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : 10;
+
+        if (ieVersion <= 9) {
+            forecast.domElements.browserWarning.show();
+            forecast.domElements.closeWarning
+                .off('click.forecast')
+                .on('click.forecast', function () {
+                    forecast.domElements.browserWarning.hide();
+                });
+        }
     }
 };
 
