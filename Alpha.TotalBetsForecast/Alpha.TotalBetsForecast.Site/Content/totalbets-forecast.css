@@ -53,8 +53,7 @@
   border: 1px solid #bcba7d;
   color: #803f00;
   padding: 0 15px;
-  width: 100%;
-  z-index: 9999; }
+  width: 100%; }
   .note-browser .textnote-box {
     padding-left: 10px;
     display: inline-block; }
