@@ -1,6 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Criteria
 {
     using Fanex.Data.Repository;
+    using Sunplus.Agent.Model.BL.Definitions;
 
     internal class GetLeaguesCriteria : CriteriaBase
     {
@@ -9,6 +10,14 @@
         public override string GetSettingKey()
         {
             return "Age_NewTotalBetsForeCast_LeagueSel";
+        }
+
+        public bool IsShowAll
+        {
+            get
+            {
+                return AppSettings.LocalTest;
+            }
         }
 
         public override bool IsValid()
