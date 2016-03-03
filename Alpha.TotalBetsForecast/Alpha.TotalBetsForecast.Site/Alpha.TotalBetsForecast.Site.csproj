@@ -344,6 +344,7 @@
     <Content Include="Views\Introduction\Index.vi-VN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-CN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-TW.cshtml" />
+    <Content Include="Views\Forecast\Template.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -18,7 +18,8 @@
         btnRefresh: null,
         mainContent: null,
         browserWarning: null,
-        closeWarning: null
+        closeWarning: null,
+        btnMatchSelect: null
     },
 
     init: function () {
@@ -69,6 +70,7 @@
                 var matchIds = forecast.domElements.ddlMatch.val();
 
                 if (matchIds == null) {
+                    forecast.domElements.btnMatchSelect.attr('title', forecast.domElements.ddlMatch.data('select-at-least')).tooltip('show');
                     forecast.stopCountdown();
                     return;
                 }
@@ -230,6 +232,7 @@
             nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
             nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
             onChange: function (option, checked) {
+                forecast.domElements.btnMatchSelect.tooltip('destroy');
                 // Get selected options.
                 var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
 
@@ -259,6 +262,7 @@
         });
 
         forecast.domElements.ddlMatch.multiselect('dataprovider', processedMatches);
+        forecast.domElements.btnMatchSelect = forecast.domElements.ddlMatch.next().find('button.multiselect');
     },
 
     checkIEBrowserAndShowWarning: function () {
