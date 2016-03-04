@@ -88,9 +88,9 @@
                                    };
 
                     $.get(forecast.getAbsoluteUrl(
-                        forecast.urls.getMatchForecast
+                        forecast.urls.getJsonMatchForecast
                         + '?'
-                        + $.param(getJsonMatchForecast)),
+                        + $.param(matcheForecastQuery)),
                         function (html) {
                             if (html) {
                                 var newMatchForecast = $(html);
