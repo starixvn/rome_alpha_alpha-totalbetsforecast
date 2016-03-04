@@ -139,4 +139,10 @@
   <data name="BetType_15" xml:space="preserve">
     <value>1H 1X2</value>
   </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>您的浏览器已过期，可能无法与我们的网站正常操作。为了提供更好的支援，我们强烈建议您升级至新的版本。</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>请点击这里以升级您的浏览器。</value>
+  </data>
 </root>

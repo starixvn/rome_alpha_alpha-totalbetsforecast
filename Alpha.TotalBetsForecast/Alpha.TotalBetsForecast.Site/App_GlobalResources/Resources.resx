@@ -201,4 +201,7 @@
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>Click here to update your browser</value>
   </data>
+  <data name="SelectAtLeastOneMatch" xml:space="preserve">
+    <value>Please select at least one match</value>
+  </data>
 </root>

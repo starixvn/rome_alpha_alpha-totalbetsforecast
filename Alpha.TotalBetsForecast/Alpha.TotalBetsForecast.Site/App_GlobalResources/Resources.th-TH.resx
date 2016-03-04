@@ -159,4 +159,10 @@
   <data name="BetType_15" xml:space="preserve">
     <value>1H 1X2</value>
   </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>เบราว์เซอร์ของท่านตกรุ่น ซึ่งอาจทำงานได้อย่างไม่เหมาะสมกับเวปไซค์ของทางบริษัท. เพื่อตอบสนองการใช้งานที่ดียิ่งขึ้น ทางเราใคร่ขอแนะนำให้ท่าน ทำการอัพเกรดให้เป็นเวอร์ชั่นที่ใหม่กว่าเดิม</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>คลิ๊กตรงนี้เพื่อทำการอัพเกรด เบราว์เซอร์ของท่าน</value>
+  </data>
 </root>

@@ -268,6 +268,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please select at least one match.
+        /// </summary>
+        public static string SelectAtLeastOneMatch {
+            get {
+                return ResourceManager.GetString("SelectAtLeastOneMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected Event(s).
         /// </summary>
         public static string SelectedEvents {
