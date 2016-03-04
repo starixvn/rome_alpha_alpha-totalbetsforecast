@@ -40,7 +40,7 @@
 
 .select2-container {
   line-height: 20px;
-  max-width: 300px; }
+  width: 300px; }
 
 .select2-container .select2-selection--single {
   height: 32px; }
@@ -214,11 +214,12 @@ table * {
       line-height: 18px; }
 
 .multiselect-selected-text {
-  max-width: 180px;
+  width: 180px;
   display: inline-block;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: left; }
 
 .content #mainContent {
   margin: 10px 0; }
@@ -278,7 +279,7 @@ table * {
       .totalandforecast .filter .form-group .form-control #ddlDeadBall {
         width: 120px; }
   .totalandforecast .filter .multiselect-selected-text {
-    max-width: 120px; }
+    width: 120px; }
   .totalandforecast .filter .btn-group button.multiselect {
     padding-left: 5px; } }
 

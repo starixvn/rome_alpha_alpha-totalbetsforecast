@@ -32,7 +32,7 @@ body {
 
 .select2-container {
     line-height: 20px;
-    max-width: 300px;
+    width: 300px;
 }
 
 .select2-container .select2-selection--single {
@@ -285,11 +285,12 @@ table * {
 }
 
 .multiselect-selected-text {
-    max-width: 180px;
+    width: 180px;
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    text-align: left;
 }
 
 .content {
@@ -386,7 +387,7 @@ table * {
             }
 
             .multiselect-selected-text {
-                max-width: 120px;
+                width: 120px;
             }
 
             .btn-group button.multiselect {
