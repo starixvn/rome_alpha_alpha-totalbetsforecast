@@ -91,24 +91,6 @@ body {
         padding-top: 15px;
         position: relative;
 
-        .help {
-            position: absolute;
-            right: 0px;
-            top: 18px;
-            cursor: pointer;
-
-            &:before {
-                content: '\e92a';
-                font-family: 'Iconalpha';
-                font-size: 26px;
-                color: #0f82c4;
-            }
-
-            &:hover {
-                color: #666;
-            }
-        }
-
         .form-inline {
             display: inline-block;
         }
@@ -139,11 +121,30 @@ body {
             color: #9d1c1c;
             font-weight: 700;
             text-transform: uppercase;
+            position:relative;
 
             + li:before {
                 content: '\276F';
                 color: #333;
                 padding: 0 10px;
+            }
+
+            .help {
+                position: absolute;
+                right: -34px;
+                top: -10px;
+                cursor: pointer;
+
+                &:before {
+                    content: '\e92a';
+                    font-family: 'Iconalpha';
+                    font-size: 26px;
+                    color: #0f82c4;
+                }
+
+                &:hover {
+                    color: #666;
+                }
             }
         }
     }

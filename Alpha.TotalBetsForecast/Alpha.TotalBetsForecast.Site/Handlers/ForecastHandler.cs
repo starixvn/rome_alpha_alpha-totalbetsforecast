@@ -71,6 +71,11 @@
 
                 viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
                 viewModel.ForecastTotal = matchForecast.ForecastTotal;
+                viewModel.MatchRowSpan = viewModel.BetTypeForecasts.Sum(betTypeForecast =>
+                {
+                    return betTypeForecast.BetChoices.Count()
+                    + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
+                });
             }
             catch (Exception ex)
             {

@@ -1,0 +1,34 @@
+﻿
+<tbody ng-repeat="match in matchList" id="match-{{match.Id}}" ng-class="match-live: match.IsLive">
+    <tr ng-if="$index==0" class="even">
+        <td ng-if="match.IsLive" rowspan="{{match.MatchRowSpan}}" class="col-time text-center">
+            <span class="match-score">
+                {{match.LiveHomeScore}}
+                -
+                {{match.LiveAwayScore}}
+            </span> <br />
+            <span ng-if="match.HasLive" class="offer-live">@Resources.MatchOfferLive</span>
+        </td>
+
+        <td ng-if="!match.IsLive" rowspan="{{match.MatchRowSpan}}" class="col-time text-center">
+            <span ng-if="match.HasLive" class="offer-live">@Resources.MatchOfferLive</span> <br />
+            <span class="match-time">@Model.KickOffTimeString</span>
+        </td>
+
+        <td rowspan="{{match.MatchRowSpan}}" class="col-event">
+            <span class="home-name">@Model.HomeName</span> <br />
+            <span class="away-name">@Model.AwayName</span>
+        </td>
+
+        <winlossColumnName winlossColumnNames="match.BetTypeForecasts[0].BetChoices[0].WinlossColumnNames" />
+
+        <td rowspan="{{matchrowspan}}" class="text-center col-forecastTotal">
+            @(Formater.DecFormat(Model.ForecastTotal, 2))
+        </td>
+    </tr>
+
+    <tr ng-repeat="betType in match.BetTypeForecasts">
+        <winlossColumnName ng-if="$index==0" winlossColumnNames="betType.BetChoices[0].WinlossColumnNames" />
+        <betTypeForecast ng-if="$index!=0"  betType="betType" />
+    </tr>
+</tbody>

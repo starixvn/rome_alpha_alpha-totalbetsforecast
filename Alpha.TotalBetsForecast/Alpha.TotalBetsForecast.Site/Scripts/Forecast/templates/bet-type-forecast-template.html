@@ -1,0 +1,27 @@
+﻿<tr ng-class="even: isEvent, last-row: isLastRow">
+
+    <td class="ex-col" ng-if="betType.IsHandicap">
+        <span class="pull-left">{{betType.BetTypeName}}</span>
+        <span class="pull-right ex-text">{{betType.BetChoice.HandicapValue}}</span>
+    </td>
+    <td class="ex-col" ng-if="!betType.IsHandicap">&nbsp;</td>
+
+    <td class="ex-col" ng-if="betType.IsOverUnder">
+        <span class="pull-left">{{betType.BetTypeName}}</span>
+        <span class="pull-right ex-text">{{betChoice.HandicapValue}}</span>
+    </td>
+    <td class="ex-col" ng-if="!betType.IsOverUnder">
+        <span class="pull-right ex-text">{{betChoice.HandicapValue}}</span>
+    </td>
+
+    <td class="ex-col" ng-if="betType.IsOneXTwoBetType">
+        <span class="pull-left">{{betTypeForecast.BetTypeName}}</span>
+        <span class="pull-right ex-text">{{betChoice.HandicapValue}}</span>
+    </td>
+
+    <td class="ex-col" ng-if="!betType.IsOneXTwoBetType">
+        <span class="pull-right ex-text">{{betChoice.HandicapValue}}</span>
+    </td>
+
+    <betChoiceForecast ng-repeat="betChoice in betType.BetChoices" betChoice="betChoice" />
+</tr>

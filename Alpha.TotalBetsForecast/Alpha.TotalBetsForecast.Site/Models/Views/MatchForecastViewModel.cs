@@ -26,5 +26,7 @@
         public decimal ForecastTotal { get; set; }
 
         public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
+
+        public int MatchRowSpan { get; set; }
     }
 }

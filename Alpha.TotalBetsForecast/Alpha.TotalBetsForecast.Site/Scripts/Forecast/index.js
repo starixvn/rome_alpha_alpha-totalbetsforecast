@@ -7,7 +7,8 @@
 
     urls: {
         getMatches: 'Forecast/GetMatches',
-        getMatchForecast: 'Forecast/MatchForecast'
+        getMatchForecast: 'Forecast/MatchForecast',
+        getJsonMatchForecast: 'Forecast/GetMatchForecast'
     },
 
     domElements: {
@@ -86,9 +87,10 @@
                                        version: Math.random()
                                    };
 
-                    $.get(forecast.getAbsoluteUrl(forecast.urls.getMatchForecast
+                    $.get(forecast.getAbsoluteUrl(
+                        forecast.urls.getMatchForecast
                         + '?'
-                        + $.param(matcheForecastQuery)),
+                        + $.param(getJsonMatchForecast)),
                         function (html) {
                             if (html) {
                                 var newMatchForecast = $(html);

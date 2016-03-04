@@ -2,12 +2,13 @@
 
 @section Styles 
 {
-    <link href='/contents/css/Fonts/Iconalpha/Iconalpha.css' rel='stylesheet' type='text/css'>
+    <link href='/contents/css/Fonts/Iconalpha/Iconalpha.min.css' rel='stylesheet' type='text/css'>
     <link href="/contents/css/sass/component.min.css" rel="stylesheet" />
-    <link href="/contents/components/mutipleselect/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="/contents/components/mutipleselect/css/bootstrap-multiselect.min.css" rel="stylesheet" />
 
     @Styles.Render(BundleConfig.IndexForecastStyleBundleUrl)
 }
+
 <div id="browser-warning" class="note-browser" style="display:none;">
     <span class="icon-alert"></span>
     <div class="textnote-box">
@@ -16,10 +17,15 @@
     </div>
     <span class="icon-closed" id="close-warning"></span>
 </div>
+
 <div class="container-fluid totalandforecast">
     <ul class="breadcrumb">
         <li>@Resources.BetsAndForecast</li>
-        <li>@Sunplus.Agent.Model.RemotingRef.CacheRefFactory.CacheRef.GetSportName(1)</li>
+        <li>
+            @Sunplus.Agent.Model.RemotingRef.CacheRefFactory.CacheRef.GetSportName(1) 
+            <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
+        </li>
+
     </ul>
     <div class="filter">
         <form class="" role="form">
@@ -46,11 +52,10 @@
                 <a class="btn btnRefresh" id="btnRefresh"></a>
             </div>
         </form>
-        <span class="help" data-toggle="modal" data-target="#helpModal" title="Help"></span>
     </div>
     <div class="content" style="display:none;">
         <span class="text-status">@(Model.IsLive ? Resources.MatchOfferLive : Resources.Deadball )</span>
-        <table class="tblRpt col-sm-12" id="mainContent">
+        <table class="tblRpt col-sm-12" id="mainContent" ng-controller="matchForecastController">
             <thead>
                 <tr class="RptHeader">
                     <th class="text-center">@Resources.Time</th>
@@ -63,6 +68,7 @@
                 </tr>
             </thead>
         </table>
+        <match-forecast match-list="matchList" />
     </div>
 </div>
 <!-- Button trigger modal -->
@@ -87,6 +93,8 @@
 
 @section Scripts
 {
+    <script type="text/javascript" src="/contents/libs/angular/angular.v1.5.0.min.js"></script>
+    <script type="text/javascript" src="/contents/libs/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.min.js"></script>
 
     <!--[if !IE]> -->

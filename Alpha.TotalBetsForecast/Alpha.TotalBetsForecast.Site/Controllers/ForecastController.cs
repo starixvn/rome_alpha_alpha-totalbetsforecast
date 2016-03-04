@@ -39,5 +39,14 @@
 
             return View(viewModel);
         }
+
+        [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
+        [HttpGet]
+        public JsonResult GetMatchForecast(MatchForecastQuery query)
+        {
+            var viewModel = _mediator.Send(query);
+
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
+        }
     }
 }

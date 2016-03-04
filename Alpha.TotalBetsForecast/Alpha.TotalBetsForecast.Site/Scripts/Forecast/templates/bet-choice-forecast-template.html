@@ -1,0 +1,9 @@
+﻿<td class="ex-col text-right">@(Formater.DecFormat(betChoiceForecast.BetCount, 0))</td>
+<td class="ex-col text-right">@(Formater.DecFormat(betChoiceForecast.Turnover, 2))</td>
+
+<td ng-repeat="value in betChoice.WinLossValues"
+    ng-class="text-center: isOneXTwoBetType, text-right: !isOneXTwoBetType"
+    colspan="{{isOneXTwoBetType ? "3" : "1"}}">
+    @FormatWinLossNumber(winloss)
+</td>
+
