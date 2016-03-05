@@ -225,15 +225,8 @@
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Forecast\directives\bet-choice-forecast-directive.js" />
-    <Content Include="Scripts\Forecast\directives\winloss-column-name-directive.js" />
-    <Content Include="Scripts\Forecast\directives\bet-type-forecast-directive.js" />
     <Content Include="Scripts\Forecast\index.js" />
-    <Content Include="Scripts\Forecast\match-forecast-controller.js" />
     <Content Include="Scripts\Forecast\match-forecast-renderer.js" />
-    <Content Include="Scripts\Forecast\templates\bet-choice-forecast.html" />
-    <Content Include="Scripts\Forecast\templates\bet-type-forecast.html" />
-    <Content Include="Scripts\Forecast\templates\winloss-column-name.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
