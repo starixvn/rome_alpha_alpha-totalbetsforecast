@@ -1,10 +1,12 @@
-﻿var forecast = {
+﻿/// <reference path="match-forecast-renderer.js" />
+
+var forecast = {
     rootUrl: document.getElementById('RootURL').value,
     maxNumberOfRenderMatch: 5,
     countDownSeconds: 60,
     loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
-
+    matchForecasts: [],
     urls: {
         getMatches: 'Forecast/GetMatches',
         getMatchForecast: 'Forecast/MatchForecast',
@@ -33,7 +35,7 @@
         setInterval(forecast.loadMatches, forecast.loadMatchesInterval);
     },
 
-    getAbsoluteUrl: function(relativeUrl) {
+    getAbsoluteUrl: function (relativeUrl) {
         return forecast.rootUrl + relativeUrl;
     },
 
@@ -67,7 +69,7 @@
         forecast.domElements.btnSubmit
             .off('click.forecast')
             .on('click.forecast', function () {
-                
+
                 var matchIds = forecast.domElements.ddlMatch.val();
 
                 if (matchIds == null) {
@@ -76,7 +78,7 @@
                     return;
                 }
 
-                try { $.blockUI(); } catch (e) { }
+                //try { $.blockUI(); } catch (e) { }
                 var matchIdsLength = matchIds.length;
 
                 for (var i = 0; i < matchIdsLength; i++) {
@@ -87,28 +89,41 @@
                                        version: Math.random()
                                    };
 
-                    $.get(forecast.getAbsoluteUrl(
-                        forecast.urls.getJsonMatchForecast
-                        + '?'
-                        + $.param(matcheForecastQuery)),
-                        function (html) {
-                            if (html) {
-                                var newMatchForecast = $(html);
-                                var isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
+                    //$.get(forecast.getAbsoluteUrl(
+                    //    forecast.urls.getJsonMatchForecast
+                    //    + '?'
+                    //    + $.param(matcheForecastQuery)),
+                    //    function (html) {
+                    //        if (html) {
+                   
+                    //        }
+                    //    });
+                    $.ajax({
+                        url: forecast.getAbsoluteUrl(forecast.urls.getJsonMatchForecast),
+                        type: "GET",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: matcheForecastQuery,
+                    }).done(function (matchForecast) {
+                        if (matchForecast) {
+                            var html = matchForecastRenderer.renderMatchForecast(matchForecast);
+                            var newMatchForecast = $(html);
+                            var isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
-                                if (isNoInfoBody) {
-                                    forecast.addNoInfoRow(html);
-                                } else {
-                                    forecast.addLeagueRow();
-                                    forecast.addMatchForecast(newMatchForecast, html);
-                                }
-
-                                forecast.domElements.mainContent.parent().show();
-                                if (!forecast.isStartCountdown) {
-                                    forecast.startCountdown();
-                                }
+                            if (isNoInfoBody) {
+                                forecast.addNoInfoRow(html);
+                            } else {
+                                forecast.addLeagueRow();
+                                forecast.addMatchForecast(newMatchForecast, html);
                             }
-                        });
+
+                            forecast.domElements.mainContent.parent().show();
+
+                            //if (!forecast.isStartCountdown) {
+                            //    forecast.startCountdown();
+                            //}
+                        }
+                    });
                 }
             });
     },

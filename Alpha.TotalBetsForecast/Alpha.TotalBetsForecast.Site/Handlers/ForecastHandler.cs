@@ -56,7 +56,8 @@
                 AwayName = match.AwayName,
                 HasLive = match.HasLive,
                 IsLive = message.IsLive,
-                KickOffTimeString = match.KickOffTime.ToString("MM/dd/yyyy hh:mm tt"),
+                KickOffTimeString = match.KickOffTime.ToString("hh:mm tt"),
+                KickOffDateString = match.KickOffTime.ToString("MM/dd/yyyy"),
                 LiveHomeScore = match.LiveHomeScore,
                 LiveAwayScore = match.LiveAwayScore,
                 BetTypeForecasts = Enumerable.Empty<BetTypeForecast>()

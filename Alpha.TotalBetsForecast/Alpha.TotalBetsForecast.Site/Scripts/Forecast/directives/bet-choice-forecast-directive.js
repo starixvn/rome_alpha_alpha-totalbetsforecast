@@ -5,7 +5,7 @@
                 restrict: 'E',
                 replace: true,
                 controller: 'matchForecastController',
-                templateUrl: builtUrlTemplate('.htm'),
+                templateUrl: builtUrlTemplate('Scripts/Forecast/templates/bet-choice-forecast.html'),
                 link: function ($scope) {
 
                 }

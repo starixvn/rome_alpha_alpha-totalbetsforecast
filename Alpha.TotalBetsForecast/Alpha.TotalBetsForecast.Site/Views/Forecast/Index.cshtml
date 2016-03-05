@@ -55,7 +55,7 @@
     </div>
     <div class="content" style="display:none;">
         <span class="text-status">@(Model.IsLive ? Resources.MatchOfferLive : Resources.Deadball )</span>
-        <table class="tblRpt col-sm-12" id="mainContent" ng-controller="matchForecastController">
+        <table class="tblRpt col-sm-12" id="mainContent">
             <thead>
                 <tr class="RptHeader">
                     <th class="text-center">@Resources.Time</th>
@@ -67,8 +67,45 @@
                     <th class="text-center">@Resources.ForecastTotal</th>
                 </tr>
             </thead>
+            @*<tbody ng-repeat="match in matchList" id="match-{{match.MatchId}}" ng-class="{'match-live': match.IsLive}">
+                <tr class="even">
+                    <td ng-if="match.IsLive" rowspan="{{match.MatchRowSpan}}" class="col-time text-center">
+                        <span class="match-score">
+                            {{match.LiveHomeScore}}
+                            -
+                            {{match.LiveAwayScore}}
+                        </span> <br />
+                        <span ng-if="match.HasLive" class="offer-live">@Resources.MatchOfferLive</span>
+                    </td>
+
+                    <td ng-if="!match.IsLive" rowspan="{{match.MatchRowSpan}}" class="col-time text-center">
+                        <span ng-if="match.HasLive" class="offer-live">@Resources.MatchOfferLive</span> <br />
+                        <span class="match-time">Model.KickOffTimeString</span>
+                    </td>
+
+                    <td rowspan="{{match.MatchRowSpan}}" class="col-event">
+                        <span class="home-name">{{match.HomeName}}</span> <br />
+                        <span class="away-name">{{match.AwayName}}</span>
+                    </td>
+
+                    <td class="ex-col">&nbsp;</td>
+                    <td class="ex-col">&nbsp;</td>
+                    <td class="ex-col">&nbsp;</td>
+
+                    <td ng-repeat="winlossName in match.BetTypeForecasts[0].BetChoices[0].WinLossColumnNames" class="win-loss-name text-center ex-col head">
+                        {{winlossName}}
+                    </td>
+
+                    <td rowspan="{{matchrowspan}}" class="text-center col-forecastTotal">
+                        {{match.ForecastTotal}}
+                    </td>
+                </tr>
+
+                <tr bet-type-forecast ng-repeat="betType in match.BetTypeForecasts" bet-type="betType" />
+                
+            </tbody>*@
         </table>
-        <match-forecast match-list="matchList" />
+        
     </div>
 </div>
 <!-- Button trigger modal -->
@@ -93,7 +130,6 @@
 
 @section Scripts
 {
-    <script type="text/javascript" src="/contents/libs/angular/angular.v1.5.0.min.js"></script>
     <script type="text/javascript" src="/contents/libs/underscore/underscore-min.js"></script>
     <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.min.js"></script>
 
@@ -105,7 +141,6 @@
     <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.ie8.min.js"></script>
     <script type="text/javascript" src="/contents/components/mutipleselect/js/bootstrap-multiselect.ie8.min.js"></script>
     <![endif]-->
-
 
     @Scripts.Render(BundleConfig.IndexForecastJavascriptBundleUrl)
 }

@@ -2,11 +2,16 @@
         function () {
             'use strict';
             return {
-                restrict: 'E',
+                restrict: 'A',
                 replace: true,
+                scope:
+                    {
+                        betType: '='
+                    },
                 controller: 'matchForecastController',
-                templateUrl: builtUrlTemplate('.htm'),
+                templateUrl: alpha.matchForecast.buildTemplateUrlWithVersion('Scripts/Forecast/templates/bet-type-forecast.html'),
                 link: function ($scope) {
+                    var demo = $scope.betType;
 
                 }
             };

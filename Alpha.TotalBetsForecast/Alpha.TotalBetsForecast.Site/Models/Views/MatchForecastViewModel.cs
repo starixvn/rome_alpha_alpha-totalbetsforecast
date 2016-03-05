@@ -15,6 +15,8 @@
 
         public string KickOffTimeString { get; set; }
 
+        public string KickOffDateString { get; set; }
+
         public string HomeName { get; set; }
 
         public string AwayName { get; set; }

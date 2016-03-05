@@ -4,8 +4,12 @@
             return {
                 restrict: 'E',
                 replace: true,
+                scope:
+                    {
+                        winLossColumnNames: '='
+                    },
                 controller: 'matchForecastController',
-                templateUrl: builtUrlTemplate('.htm'),
+                templateUrl: alpha.matchForecast.buildTemplateUrlWithVersion('Scripts/Forecast/templates/winloss-column-name.html'),
                 link: function ($scope) {
 
                 }
