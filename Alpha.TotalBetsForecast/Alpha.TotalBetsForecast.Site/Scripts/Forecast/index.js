@@ -106,22 +106,30 @@ var forecast = {
                         data: matcheForecastQuery,
                     }).done(function (matchForecast) {
                         if (matchForecast) {
-                            var html = matchForecastRenderer.renderMatchForecast(matchForecast);
-                            var newMatchForecast = $(html);
-                            var isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
-                            if (isNoInfoBody) {
-                                forecast.addNoInfoRow(html);
-                            } else {
-                                forecast.addLeagueRow();
-                                forecast.addMatchForecast(newMatchForecast, html);
+                            var isChanged = matchForecastRenderer.trackChanged(matchForecast);
+
+                            if (isChanged) {
+                                
                             }
+                            else {
+                                var html = matchForecastRenderer.renderMatchForecast(matchForecast);
+                                var newMatchForecast = $(html);
+                                var isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
-                            forecast.domElements.mainContent.parent().show();
+                                if (isNoInfoBody) {
+                                    forecast.addNoInfoRow(html);
+                                } else {
+                                    forecast.addLeagueRow();
+                                    forecast.addMatchForecast(newMatchForecast, html);
+                                }
 
-                            //if (!forecast.isStartCountdown) {
-                            //    forecast.startCountdown();
-                            //}
+                                forecast.domElements.mainContent.parent().show();
+
+                                //if (!forecast.isStartCountdown) {
+                                //    forecast.startCountdown();
+                                //}
+                            }
                         }
                     });
                 }
