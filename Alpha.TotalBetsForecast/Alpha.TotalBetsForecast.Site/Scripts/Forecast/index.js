@@ -9,8 +9,8 @@ var forecast = {
     matchForecasts: [],
     urls: {
         getMatches: 'Forecast/GetMatches',
-        getMatchForecast: 'Forecast/MatchForecast',
-        getJsonMatchForecast: 'Forecast/GetMatchForecast'
+        getMatchForecast: 'Forecast/GetMatchForecast',
+        getLeagues: 'Forecast/GetLeagues'
     },
 
     domElements: {
@@ -22,15 +22,17 @@ var forecast = {
         mainContent: null,
         browserWarning: null,
         closeWarning: null,
-        btnMatchSelect: null
+        btnMatchSelect: null,
+        txtStatus: null,
     },
 
     init: function () {
+        $(document).ajaxStop($.unblockUI);
+
         forecast.cachedDOM();
         forecast.registerEvents();
 
-        $(document).ajaxStop($.unblockUI);
-        forecast.loadMatches();
+        forecastRenderer.init();
 
         setInterval(forecast.loadMatches, forecast.loadMatchesInterval);
     },
@@ -43,28 +45,28 @@ var forecast = {
         forecast.domElements.btnSubmit = $('#btnSubmit');
         forecast.domElements.btnRefresh = $('#btnRefresh');
         forecast.domElements.ddlMatch = $('#ddlMatch');
-        forecast.domElements.ddlLeague = $('#LeagueId');
+        forecast.domElements.ddlLeague = $('#ddlLeague');
         forecast.domElements.ddlDeadBall = $('#ddlDeadBall');
         forecast.domElements.mainContent = $('#mainContent');
         forecast.domElements.browserWarning = $('#browser-warning');
         forecast.domElements.closeWarning = $('#close-warning');
+        forecast.domElements.txtStatus = $('#text-status');
     },
 
     registerEvents: function () {
 
         forecast.checkIEBrowserAndShowWarning();
 
-        forecast.domElements.ddlLeague.multiselect({
-            maxHeight: 300,
-            enableFiltering: true,
-            numberDisplayed: 1,
-            enableCaseInsensitiveFiltering: true,
-            onChange: function (option, checked) {
-                forecast.loadMatches();
+        forecast.domElements.ddlDeadBall
+            .off('change.forecast')
+            .on('change.forecast', function () {
                 forecast.domElements.mainContent.parent().hide().find('tbody').remove();
-                forecast.stopCountdown();
-            }
-        });
+                forecast.loadLeagues();
+                forecast.domElements.txtStatus.text(
+                    forecast.domElements.ddlDeadBall.val() === 'true'
+                    ? forecast.domElements.txtStatus.data('offer-live')
+                    : forecast.domElements.txtStatus.data('dead-ball'))
+            }).trigger('change');
 
         forecast.domElements.btnSubmit
             .off('click.forecast')
@@ -75,47 +77,34 @@ var forecast = {
                 if (matchIds == null) {
                     forecast.domElements.btnMatchSelect.attr('title', forecast.domElements.ddlMatch.data('select-at-least')).tooltip('show');
                     forecast.stopCountdown();
+
                     return;
                 }
 
-                //try { $.blockUI(); } catch (e) { }
+                try { $.blockUI(); } catch (e) { }
                 var matchIdsLength = matchIds.length;
 
                 for (var i = 0; i < matchIdsLength; i++) {
-                    var matcheForecastQuery =
-                                   {
-                                       matchId: matchIds[i],
-                                       isLive: forecast.domElements.ddlDeadBall.val() === 'true',
-                                       version: Math.random()
-                                   };
 
-                    //$.get(forecast.getAbsoluteUrl(
-                    //    forecast.urls.getJsonMatchForecast
-                    //    + '?'
-                    //    + $.param(matcheForecastQuery)),
-                    //    function (html) {
-                    //        if (html) {
-                   
-                    //        }
-                    //    });
                     $.ajax({
-                        url: forecast.getAbsoluteUrl(forecast.urls.getJsonMatchForecast),
+                        url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
                         type: "GET",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
-                        data: matcheForecastQuery,
+                        data: {
+                            matchId: matchIds[i],
+                            isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                            version: Math.random()
+                        },
                     }).done(function (matchForecast) {
                         if (matchForecast) {
 
-                            var isChanged = matchForecastRenderer.trackChanged(matchForecast);
+                            var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
 
-                            if (isChanged) {
-                                
-                            }
-                            else {
-                                var html = matchForecastRenderer.renderMatchForecast(matchForecast);
-                                var newMatchForecast = $(html);
-                                var isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
+                            if (!isUpdated) {
+                                var html = forecastRenderer.renderMatchForecast(matchForecast),
+                                    newMatchForecast = $(html),
+                                    isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
                                 if (isNoInfoBody) {
                                     forecast.addNoInfoRow(html);
@@ -126,9 +115,9 @@ var forecast = {
 
                                 forecast.domElements.mainContent.parent().show();
 
-                                //if (!forecast.isStartCountdown) {
-                                //    forecast.startCountdown();
-                                //}
+                                if (!forecast.isStartCountdown) {
+                                    forecast.startCountdown();
+                                }
                             }
                         }
                     });
@@ -138,12 +127,10 @@ var forecast = {
 
     addMatchForecast: function (newMatchForecast, rawHtml) {
         var currentMatchForecast = forecast.domElements.mainContent.find('tbody[id=' + newMatchForecast.attr('id') + ']');
-        if (currentMatchForecast.length > 0) {
-            currentMatchForecast.html(newMatchForecast.html());
-        }
-        else {
-            forecast.domElements.mainContent.append(rawHtml);
-        }
+
+        currentMatchForecast.length > 0
+                ? currentMatchForecast.html(newMatchForecast.html())
+                : forecast.domElements.mainContent.append(rawHtml)
 
         forecast.domElements.mainContent.find('tbody[id=no-info-body]').remove();
     },
@@ -159,13 +146,15 @@ var forecast = {
 
     addNoInfoRow: function (html) {
         var noInfo = forecast.domElements.mainContent.find('tbody');
+
         if (noInfo.length === 0) {
             forecast.domElements.mainContent.append(html);
             forecast.domElements.mainContent.find('tbody').attr('data-match-id', '');
         }
         else {
-            var noInfoHtml = $(html);
-            var noInfoMatch = forecast.domElements.mainContent.find('tbody[id=' + noInfoHtml.attr('data-match-id') + ']')
+            var noInfoHtml = $(html),
+                noInfoMatch = forecast.domElements.mainContent.find('tbody[id=' + noInfoHtml.attr('data-match-id') + ']');
+
             if (noInfoMatch.length > 0) {
                 noInfoMatch.remove();
                 forecast.addNoInfoRow();
@@ -184,10 +173,8 @@ var forecast = {
             onEnd: function () {
                 forecast.refreshDone();
             }
-        }).off('click.forecast')
-                        .on("click.forecast", function () {
-                            forecast.refreshDone();
-                        });
+        });
+
         forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
 
         forecast.isStartCountdown = true;
@@ -214,40 +201,84 @@ var forecast = {
         }
     },
 
-    loadMatches: function () {
-        var matchesQuery =
-            {
-                leagueId: forecast.domElements.ddlLeague.val(),
+    loadLeagues: function () {
+        $.ajax({
+            url: forecast.getAbsoluteUrl(forecast.urls.getLeagues),
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
                 isLive: forecast.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
-            };
+            },
+            beforeSend: function () {
+                try { $.blockUI(); } catch (e) { }
+            }
+        }).done(function (leagues) {
+            if (leagues) {
+                forecast.renderLeagues(leagues);
+                forecast.loadMatches();
+            }
+        });
+    },
 
+    renderLeagues: function(leagues){
+        var leagueId = forecast.domElements.ddlLeague.val() || leagues[0].Id,
+            options = '',
+            processedLeagues = _.map(leagues, function (league) {
+                return {
+                    label: league.Name,
+                    value: league.Id,
+                    selected: league.Id === parseInt(leagueId)
+                };
+            });
+
+        forecast.domElements.ddlLeague.multiselect({
+            maxHeight: 300,
+            enableFiltering: true,
+            numberDisplayed: 1,
+            enableCaseInsensitiveFiltering: true,
+            onChange: function (option, checked) {
+                forecast.loadMatches();
+                forecast.domElements.mainContent.parent().hide().find('tbody').remove();
+                forecast.stopCountdown();
+            }
+        });
+
+        forecast.domElements.ddlLeague.multiselect('dataprovider', processedLeagues);
+    },
+
+    loadMatches: function () {
         $.ajax({
             url: forecast.getAbsoluteUrl(forecast.urls.getMatches),
             type: "GET",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            data: matchesQuery,
+            data: {
+                leagueId: forecast.domElements.ddlLeague.val(),
+                isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                version: Math.random()
+            },
             beforeSend: function () {
                 try { $.blockUI(); } catch (e) { }
             }
-        }).done(function (viewModel) {
-            if (viewModel) {
-                forecast.renderMatchList(viewModel);
+        }).done(function (matches) {
+            if (matches) {
+                forecast.renderMatches(matches);
             }
         });
     },
-    renderMatchList: function (viewModel) {
-        var matchIds = forecast.domElements.ddlMatch.val() || [];
 
-        var options = '';
-        var processedMatches = _.map(viewModel.Matches, function (match) {
-            return {
-                label: match.Name,
-                value: match.Id,
-                selected: _.contains(matchIds, match.Id.toString())
-            };
-        });
+    renderMatches: function (matches) {
+        var matchIds = forecast.domElements.ddlMatch.val() || [],
+            options = '',
+            processedMatches = _.map(matches, function (match) {
+                return {
+                    label: match.Name,
+                    value: match.Id,
+                    selected: _.contains(matchIds, match.Id.toString())
+                };
+            });
 
         forecast.domElements.ddlMatch.multiselect({
             maxHeight: 300,

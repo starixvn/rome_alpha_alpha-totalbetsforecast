@@ -30,12 +30,12 @@
     <div class="filter">
         <form class="" role="form">
             <div class="form-group">
-                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "form-control", @id = "ddlDeadBall", @onchange = "this.form.submit()" })
+                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "form-control", @id = "ddlDeadBall"})
             </div>
 
             <div class="form-group">
                 <label>@Resources.League</label>
-                @Html.DropDownListFor(model => model.LeagueId, Model.Leagues)
+                <select id="ddlLeague" style="display:none;"></select>
             </div>
 
             <div class="form-group">
@@ -54,8 +54,13 @@
         </form>
     </div>
     <div class="content" style="display:none;">
-        <span class="text-status">@(Model.IsLive ? Resources.MatchOfferLive : Resources.Deadball )</span>
-        <table class="tblRpt col-sm-12" id="mainContent">
+        <span id="text-status" class="text-status" 
+              data-offer-live="@Resources.MatchOfferLive"
+              data-dead-ball="@Resources.Deadball">@Resources.MatchOfferLive</span>
+        <table class="tblRpt col-sm-12" id="mainContent"
+               data-no-data-text="@Resources.NoData"
+               data-offer-live="@Resources.MatchOfferLive"
+               data-goal="@Resources.Goals">
             <thead>
                 <tr class="RptHeader">
                     <th class="text-center">@Resources.Time</th>

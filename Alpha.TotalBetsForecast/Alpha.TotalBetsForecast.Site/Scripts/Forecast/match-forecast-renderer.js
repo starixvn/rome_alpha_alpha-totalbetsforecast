@@ -9,6 +9,14 @@
         goal: 'Goal'
     },
 
+    init: function () {
+        var mainContent = $('#mainContent');
+
+        forecastRenderer.resources.noDataText = mainContent.data('no-data-text');
+        forecastRenderer.resources.mathcOfferLive = mainContent.data('offer-live');
+        forecastRenderer.resources.goal = mainContent.data('goal');
+    },
+
     formatNumber: function (number, formatString) {
         return numeral(number).format(formatString || '0,0.00');
     },
@@ -21,11 +29,16 @@
     renderNoInfo: function (matchId) {
         return forecastRenderer.noInfoTemplate({
             matchId: matchId,
-            noDataText: matchForecast.resources.noDataText
+            noDataText: forecastRenderer.resources.noDataText
         });
     },
 
-    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head winloss-name-<%= betTypeId %>-<%= winLossIndex %>"><%= winLossName %></td>'),
+    combineWinLossName: function (winlossName, isOverUnder) {
+        return isOverUnder ? (winlossName + ' ' + forecastRenderer.resources.goal) : winlossName
+    },
+    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head winloss-name-<%= betTypeId %>-<%= winLossIndex %>">\
+                                            <%= winLossName %>\
+                                        </td>'),
     renderWinLossColumnName: function (betChoiceForecast, betTypeForecast) {
         var html = [];
         if (betChoiceForecast.WinLossColumnNames.length > 0) {
@@ -40,7 +53,7 @@
                 html.push(forecastRenderer.winLossColumnNameTemplate({
                     betTypeId: betTypeForecast.BetTypeId,
                     winLossIndex: i,
-                    winLossName: (betTypeForecast.IsOverUnder ? (winlossName + ' ' + forecastRenderer.resources.goal) : winlossName)
+                    winLossName: forecastRenderer.combineWinLossName(winlossName, betTypeForecast.IsOverUnder)
                 }));
             }
         }
@@ -94,19 +107,19 @@
                                             <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span>\
                                         </td>'),
     overChoiceTemplate: _.template('<td class="ex-col"> \
-                                    <span class="pull-left"><%= betTypeName %></span> \
-                                    <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
-                                </td>'),
+                                        <span class="pull-left"><%= betTypeName %></span> \
+                                        <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                    </td>'),
     underChoiceTemplate: _.template('<td class="ex-col"> \
-                                    <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
-                                </td>'),
+                                        <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                    </td>'),
     oneXTwoMiddleChoiceTemplate: _.template('<td class="ex-col"> \
-                                <span class="pull-left"><%= betTypeName %></span> \
-                                <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
-                            </td>'),
+                                                <span class="pull-left"><%= betTypeName %></span> \
+                                                <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                            </td>'),
     oneXTwoNotMiddleChoiceTemplate: _.template('<td class="ex-col"> \
-                                <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
-                            </td>'),
+                                                    <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                                </td>'),
     renderBetTypeForecast: function (betTypeForecast, isEven) {
         var html = [],
             totalBetChoice = betTypeForecast.BetChoices.length,
@@ -155,8 +168,8 @@
     },
 
     liveMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center"><span class="match-score">\
-                        <span class="home-score"><%= homeScore %> </span>-<span class="away-score"> <%= awayScore %></span></span><br />\
-                        <span class="offer-live"><%= liveText %></span></td>'),
+                            <span class="home-score"><%= homeScore %> </span>-<span class="away-score"> <%= awayScore %></span></span><br />\
+                            <span class="offer-live"><%= liveText %></span></td>'),
     deadballMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center">\
                                             <span class="offer-live"><%= liveText %></span><br/>\
                                             <span class="match-time"><%= dateString %><br/><%= timeString %></span>\
@@ -169,31 +182,27 @@
         var html = [];
 
         if (matchForecast.IsLive) {
-            var liveMatchTemplateData = {
+            html.push(forecastRenderer.liveMatchInfoTemplate({
                 matchRowSpan: matchForecast.MatchRowSpan,
                 homeScore: matchForecast.LiveHomeScore,
                 awayScore: matchForecast.LiveAwayScore,
                 liveText: matchForecast.HasLive ? forecastRenderer.resources.mathcOfferLive : ''
-            };
-
-            html.push(forecastRenderer.liveMatchInfoTemplate(liveMatchTemplateData));
+            }));
         }
         else {
-            var deadballMatchTemplateData = {
+            html.push(forecastRenderer.deadballMatchInfoTemplate({
+                matchRowSpan: matchForecast.MatchRowSpan,
                 liveText: matchForecast.HasLive ? forecastRenderer.resources.mathcOfferLive : '',
                 dateString: matchForecast.KickOffDateString,
                 timeString: matchForecast.KickOffTimeString
-            };
-
-            html.push(forecastRenderer.deadballMatchInfoTemplate(liveMatchTemplateData));
+            }));
         }
 
-        var matchNameTemplateData = {
+        html.push(forecastRenderer.matchNameTemplate({
             matchRowSpan: matchForecast.MatchRowSpan,
             homeName: matchForecast.HomeName,
             awayName: matchForecast.AwayName
-        };
-        html.push(forecastRenderer.matchNameTemplate(matchNameTemplateData));
+        }));
 
         return html.join('');
     },
@@ -204,8 +213,6 @@
                         <td rowspan="<%= matchRowSpan %>" class="text-center col-forecastTotal"><%= forecastTotal %></td>\
                     </tr><%= firstBetTypeForecastHtml %>'),
     renderFirstBetTypeRow: function (matchForecast) {
-        var html = [];
-
         var firstBetTypeTemplateData = {
             matchRowSpan: matchForecast.MatchRowSpan,
             matchId: matchForecast.MatchId,
@@ -221,6 +228,10 @@
 
     firstWinLossColumnNameTemplate: _.template('<tr class="<%= even %>"><%= winLossColumnNameHtml %></tr>'),
     renderMatchForecast: function (matchForecast) {
+        if (matchForecast.BetTypeForecasts.length === 0) {
+            return forecastRenderer.renderNoInfo(matchForecast.MatchId);
+        }
+
         var html = [];
 
         html.push(forecastRenderer.renderFirstBetTypeRow(matchForecast));
@@ -259,9 +270,9 @@
 
     trackMatchInfoChanged: function (matchForecastElement, matchForecast) {
         var matchScore = matchForecastElement.find('.match-score'),
-                homeScore = matchScore.find('.home-score'),
-                awayScore = matchScore.find('.away-score'),
-                forecastTotal = matchForecastElement.find('.col-forecastTotal');
+            homeScore = matchScore.find('.home-score'),
+            awayScore = matchScore.find('.away-score'),
+            forecastTotal = matchForecastElement.find('.col-forecastTotal');
 
         if (parseInt(homeScore.text()) !== matchForecast.LiveHomeScore
             || parseInt(awayScore.text()) !== matchForecast.LiveAwayScore) {
@@ -280,13 +291,13 @@
             value = forecastRenderer.formatNumber(value, formatString);
         }
         
-        if (element.text() !== value) {
+        if (element.text().trim() !== value.trim()) {
             element.text(value);
             forecastRenderer.highlightChanged(element);
         }
     },
 
-    trackChanged: function (matchForecast) {
+    trackChangedAndUpdatedValues: function (matchForecast) {
         var matchForecastElement = $('#match-' + matchForecast.MatchId);
 
         if (matchForecastElement.length > 0) {
@@ -298,29 +309,28 @@
 
                 for (var betChoiceIndex = 0; betChoiceIndex < currentBetType.BetChoices.length; betChoiceIndex++) {
                     var currentBetChoice = currentBetType.BetChoices[betChoiceIndex],
-                        choiceIdentify = currentBetType.BetTypeId + '-' + betChoiceIndex,
-                        handicapValueElement = matchForecastElement.find('.handicap-value-' + choiceIdentify),
-                        betCountElement = matchForecastElement.find('.bet-count-' + choiceIdentify),
-                        turnoverElement = matchForecastElement.find('.turnover-' + choiceIdentify);
+                        choiceIdentify = currentBetType.BetTypeId + '-' + betChoiceIndex;;
 
-                    forecastRenderer.checkChangedAndHighlight(handicapValueElement, currentBetChoice.HandicapValue);
-                    forecastRenderer.checkChangedAndHighlight(betCountElement, currentBetChoice.BetCount, '0,0');
-                    forecastRenderer.checkChangedAndHighlight(turnoverElement, currentBetChoice.Turnover);
+                    forecastRenderer.checkChangedAndHighlight(
+                        matchForecastElement.find('.handicap-value-' + choiceIdentify), 
+                        currentBetChoice.HandicapValue);
+                    forecastRenderer.checkChangedAndHighlight(
+                        matchForecastElement.find('.bet-count-' + choiceIdentify), 
+                        currentBetChoice.BetCount, '0,0');
+                    forecastRenderer.checkChangedAndHighlight(
+                        matchForecastElement.find('.turnover-' + choiceIdentify), 
+                        currentBetChoice.Turnover);
 
                     for (var winLossIndex = 0; winLossIndex < currentBetChoice.WinLossValues.length; winLossIndex++) {
                         if (currentBetChoice.WinLossColumnNames.length > 0) {
-
-                            var winLossNameElement = matchForecastElement.find('.winloss-name-' + currentBetType.BetTypeId + '-' + winLossIndex);
-
-                            var winLossName = (currentBetType.IsOverUnder ?
-                                (currentBetChoice.WinLossColumnNames[winLossIndex] + ' ' + forecastRenderer.resources.goal)
-                                : currentBetChoice.WinLossColumnNames[winLossIndex]);
-
-                            forecastRenderer.checkChangedAndHighlight(winLossNameElement, winLossName);
+                            forecastRenderer.checkChangedAndHighlight(
+                                matchForecastElement.find('.winloss-name-' + currentBetType.BetTypeId + '-' + winLossIndex),
+                                forecastRenderer.combineWinLossName(currentBetChoice.WinLossColumnNames[winLossIndex], currentBetType.IsOverUnder));
                         }
 
-                        var winLossValueElement = matchForecastElement.find('.winloss-value-' + choiceIdentify + '-' + winLossIndex);
-                        forecastRenderer.checkChangedAndHighlight(winLossValueElement, currentBetChoice.WinLossValues[winLossIndex]);
+                        forecastRenderer.checkChangedAndHighlight(
+                            matchForecastElement.find('.winloss-value-' + choiceIdentify + '-' + winLossIndex), 
+                            currentBetChoice.WinLossValues[winLossIndex]);
                     }
                 }
             }

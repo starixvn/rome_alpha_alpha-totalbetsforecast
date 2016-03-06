@@ -16,7 +16,8 @@
 
     public class ForecastHandler :
         IRequestHandler<MatchForecastQuery, MatchForecastViewModel>,
-        IRequestHandler<MatchesQuery, MatchesViewModel>,
+        IRequestHandler<MatchesQuery, IEnumerable<Match>>,
+        IRequestHandler<LeaguesQuery, IEnumerable<League>>,
         IRequestHandler<IndexQuery, IndexViewModel>
     {
         private readonly IForecastService _forecastService;
@@ -86,7 +87,7 @@
             return viewModel;
         }
 
-        public MatchesViewModel Handle(MatchesQuery message)
+        public IEnumerable<Match> Handle(MatchesQuery message)
         {
             if (message == null)
             {
@@ -97,12 +98,7 @@
                 .GetMatches(message.LeagueId, message.IsLive)
                 .OrderByDescending(match => match.KickOffTime);
 
-            return new MatchesViewModel
-            {
-                LeagueId = message.LeagueId,
-                MatchId = message.MatchId,
-                Matches = matches
-            };
+            return matches;
         }
 
         public IndexViewModel Handle(IndexQuery message)
@@ -112,11 +108,8 @@
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var leagues = _eventService.GetLeagues(message.IsLive);
-
             return new IndexViewModel
             {
-                LeagueId = message.LeagueId,
                 IsLive = message.IsLive,
                 LiveValues = new List<SelectListItem>
                 {
@@ -132,17 +125,20 @@
                         Value = "false",
                         Selected = !message.IsLive
                     }
-                },
-                Leagues = leagues.Select(league =>
-                {
-                    return new SelectListItem
-                    {
-                        Text = league.Name,
-                        Value = league.Id.ToString(),
-                        Selected = message.LeagueId == league.Id
-                    };
-                }).OrderBy(selectItem => selectItem.Text)
+                }
             };
+        }
+
+        public IEnumerable<League> Handle(LeaguesQuery message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message), "message cannot be null!");
+            }
+
+            var leagues = _eventService.GetLeagues(message.IsLive);
+
+            return leagues.OrderBy(league => league.Name);
         }
     }
 }

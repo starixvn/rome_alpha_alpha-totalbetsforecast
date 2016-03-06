@@ -263,10 +263,10 @@
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\MatchForecast.cs" />
     <Compile Include="Models\Requests\IndexQuery.cs" />
+    <Compile Include="Models\Requests\LeaguesQuery.cs" />
     <Compile Include="Models\Requests\MatchesQuery.cs" />
     <Compile Include="Models\Requests\MatchForecastQuery.cs" />
     <Compile Include="Models\Views\IndexViewModel.cs" />
-    <Compile Include="Models\Views\MatchesViewModel.cs" />
     <Compile Include="Models\Views\MatchForecastViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEventService.cs" />
@@ -336,7 +336,6 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
-    <Content Include="Views\Forecast\MatchForecast.cshtml" />
     <None Include="Properties\PublishProfiles\Local202.pubxml" />
     <Content Include="Views\Introduction\Index.en-US.cshtml" />
     <Content Include="Views\Introduction\Index.ja-JP.cshtml" />

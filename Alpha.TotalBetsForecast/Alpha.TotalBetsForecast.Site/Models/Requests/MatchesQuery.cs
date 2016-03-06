@@ -1,12 +1,10 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models.Requests
 {
+    using System.Collections.Generic;
     using MediatR;
-    using Views;
 
-    public class MatchesQuery : IRequest<MatchesViewModel>
+    public class MatchesQuery : IRequest<IEnumerable<Match>>
     {
-        public int MatchId { get; set; }
-
         public int LeagueId { get; set; }
 
         public bool IsLive { get; set; }

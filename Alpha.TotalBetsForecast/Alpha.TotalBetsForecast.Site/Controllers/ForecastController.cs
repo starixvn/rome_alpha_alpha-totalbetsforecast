@@ -33,16 +33,16 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         [HttpGet]
-        public ActionResult MatchForecast(MatchForecastQuery query)
+        public JsonResult GetMatchForecast(MatchForecastQuery query)
         {
             var viewModel = _mediator.Send(query);
 
-            return View(viewModel);
+            return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         [HttpGet]
-        public JsonResult GetMatchForecast(MatchForecastQuery query)
+        public JsonResult GetLeagues(LeaguesQuery query)
         {
             var viewModel = _mediator.Send(query);
 

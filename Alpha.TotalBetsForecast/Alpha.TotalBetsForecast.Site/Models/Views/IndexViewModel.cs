@@ -5,11 +5,7 @@
 
     public class IndexViewModel
     {
-        public int LeagueId { get; set; }
-
         public bool IsLive { get; set; }
-
-        public IEnumerable<SelectListItem> Leagues { get; set; }
 
         public IEnumerable<SelectListItem> LiveValues { get; set; }
     }
