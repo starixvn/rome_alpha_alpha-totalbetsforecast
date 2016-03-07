@@ -402,6 +402,24 @@ table * {
     }
 }
 
+/*******************Dropdown****************/
+.dropdown {
+    .caret {
+        top: 15px;
+        right: 12px;
+        position: absolute;
+    }
+
+    .dropdown-menu {
+        min-width: 59px;
+    }
+    
+    .dropdown-toggle
+        {
+        padding-right: 23px;
+    }
+}
+
 @media only screen and (min-width: 796px) and (max-width: 1051px) {
     .totalandforecast {
         .filter {

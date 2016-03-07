@@ -3,7 +3,7 @@
 var forecast = {
     rootUrl: document.getElementById('RootURL').value,
     maxNumberOfRenderMatch: 5,
-    countDownSeconds: 60,
+    countDownSeconds: 30,
     loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
     loadingMatches: [],
@@ -18,13 +18,14 @@ var forecast = {
         ddlDeadBall: null,
         ddlLeague: null,
         ddlMatch: null,
-        btnRefresh: null,
         mainContent: null,
         browserWarning: null,
         closeWarning: null,
         btnMatchSelect: null,
         txtStatus: null,
-        blockIconSmall: null
+        blockIconSmall: null,
+        refreshValues: null,
+        ddlRefresh: null
     },
 
     init: function () {
@@ -44,7 +45,6 @@ var forecast = {
 
     cachedDOM: function () {
         forecast.domElements.btnSubmit = $('#btnSubmit');
-        forecast.domElements.btnRefresh = $('#btnRefresh');
         forecast.domElements.ddlMatch = $('#ddlMatch');
         forecast.domElements.ddlLeague = $('#ddlLeague');
         forecast.domElements.ddlDeadBall = $('#ddlDeadBall');
@@ -53,6 +53,8 @@ var forecast = {
         forecast.domElements.closeWarning = $('#close-warning');
         forecast.domElements.txtStatus = $('#text-status');
         forecast.domElements.blockIconSmall = $('#blockIconSmall');
+        forecast.domElements.refreshValues = $('#refresh-value a');
+        forecast.domElements.ddlRefresh = $('#ddlRefresh');
     },
 
     registerEvents: function () {
@@ -72,64 +74,74 @@ var forecast = {
 
         forecast.domElements.btnSubmit
             .off('click.forecast')
+            .on('click.forecast', forecast.loadMatchForecasts);
+
+        forecast.domElements.refreshValues
+            .off('click.forecast')
             .on('click.forecast', function () {
+                forecast.countDownSeconds = parseInt($(this).data('refresh-value'));
                 forecast.stopCountdown();
-                forecast.domElements.blockIconSmall.show();
-                var matchIds = forecast.domElements.ddlMatch.val();
+                forecast.startCountdown();
+            });
+    },
 
-                if (matchIds == null) {
-                    forecast.domElements.btnMatchSelect.attr('title', forecast.domElements.ddlMatch.data('select-at-least')).tooltip('show');
-                    forecast.domElements.mainContent.parent().hide().find('tbody').remove();
-                    return;
-                }
+    loadMatchForecasts: function () {
+        forecast.stopCountdown();
+        forecast.domElements.blockIconSmall.show();
+        var matchIds = forecast.domElements.ddlMatch.val();
 
-                forecast.removeMatches(matchIds);
+        if (matchIds == null) {
+            forecast.domElements.btnMatchSelect.attr('title', forecast.domElements.ddlMatch.data('select-at-least')).tooltip('show');
+            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
+            return;
+        }
 
-                var matchIdsLength = matchIds.length;
-                forecast.loadingMatches = [];
-                forecast.domElements.btnRefresh.addClass('block-icon');
+        forecast.removeMatches(matchIds);
 
-                for (var i = 0; i < matchIdsLength; i++) {
+        var matchIdsLength = matchIds.length;
+        forecast.loadingMatches = [];
+        forecast.domElements.ddlRefresh.addClass('block-icon');
 
-                    forecast.loadingMatches.push(parseInt(matchIds[i]));
+        for (var i = 0; i < matchIdsLength; i++) {
 
-                    $.ajax({
-                        url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
-                        type: "GET",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: {
-                            matchId: matchIds[i],
-                            isLive: forecast.domElements.ddlDeadBall.val() === 'true',
-                            version: Math.random()
-                        },
-                    }).done(function (matchForecast) {
-                        if (matchForecast) {
+            forecast.loadingMatches.push(parseInt(matchIds[i]));
 
-                            var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
+            $.ajax({
+                url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: {
+                    matchId: matchIds[i],
+                    isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                    version: Math.random()
+                },
+            }).done(function (matchForecast) {
+                if (matchForecast) {
 
-                            if (!isUpdated) {
-                                var html = forecastRenderer.renderMatchForecast(matchForecast),
-                                    newMatchForecast = $(html),
-                                    isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
+                    var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
 
-                                if (isNoInfoBody) {
-                                    forecast.addNoInfoRow(html);
-                                } else {
-                                    forecast.addLeagueRow();
-                                    forecast.addMatchForecast(newMatchForecast, html);
-                                }
+                    if (!isUpdated) {
+                        var html = forecastRenderer.renderMatchForecast(matchForecast),
+                            newMatchForecast = $(html),
+                            isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
-                                forecast.domElements.mainContent.parent().show();
-
-                                forecastRenderer.updateMatchesCached(matchForecast);
-                            }
-
-                            forecast.removeLoadingMatches(matchForecast.MatchId);
+                        if (isNoInfoBody) {
+                            forecast.addNoInfoRow(html);
+                        } else {
+                            forecast.addLeagueRow();
+                            forecast.addMatchForecast(newMatchForecast, html);
                         }
-                    });
+
+                        forecast.domElements.mainContent.parent().show();
+
+                        forecastRenderer.updateMatchesCached(matchForecast);
+                    }
+
+                    forecast.removeLoadingMatches(matchForecast.MatchId);
                 }
             });
+        }
     },
 
     removeLoadingMatches: function (matchId) {
@@ -140,7 +152,7 @@ var forecast = {
         }
 
         if (forecast.loadingMatches.length == 0) {
-            forecast.domElements.btnRefresh.removeClass('block-icon');
+            forecast.domElements.ddlRefresh.removeClass('block-icon');
             forecast.domElements.blockIconSmall.hide();
             if (!forecast.isStartCountdown) {
                 forecast.startCountdown();
@@ -200,11 +212,11 @@ var forecast = {
     },
 
     startCountdown: function () {
-        forecast.domElements.btnRefresh.countdown({
+        forecast.domElements.ddlRefresh.countdown({
             date: +(new Date) + forecast.countDownSeconds * 1000,
             render: function (data) {
                 if (data.sec != 0) {
-                    forecast.domElements.btnRefresh.text(data.sec);
+                    forecast.domElements.ddlRefresh.text(data.sec);
                 }
             },
             onEnd: function () {
@@ -212,7 +224,7 @@ var forecast = {
             }
         });
 
-        forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
+        forecast.domElements.ddlRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
 
         forecast.isStartCountdown = true;
     },
@@ -221,7 +233,7 @@ var forecast = {
         if (forecast.isStartCountdown
             && forecast.domElements.ddlMatch.find('option:selected').length > 0) {
             forecast.domElements.btnSubmit.trigger('click.forecast');
-            forecast.domElements.btnRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
+            forecast.domElements.ddlRefresh.data('countdown').update(+(new Date) + forecast.countDownSeconds * 1000).start();
         }
         else {
             forecast.stopCountdown();
@@ -231,10 +243,10 @@ var forecast = {
 
     stopCountdown: function () {
         forecast.isStartCountdown = false;
-        var countDown = forecast.domElements.btnRefresh.data('countdown');
+        var countDown = forecast.domElements.ddlRefresh.data('countdown');
         if (countDown) {
             countDown.stop();
-            forecast.domElements.btnRefresh.text(forecast.countDownSeconds);
+            forecast.domElements.ddlRefresh.text(forecast.countDownSeconds);
         }
     },
 

@@ -287,6 +287,18 @@ table * {
       color: #9d2c2e;
       margin-right: 5px; }
 
+/*******************Dropdown****************/
+.dropdown .caret {
+  top: 15px;
+  right: 12px;
+  position: absolute; }
+
+.dropdown .dropdown-menu {
+  min-width: 59px; }
+
+.dropdown .dropdown-toggle {
+  padding-right: 23px; }
+
 @media only screen and (min-width: 796px) and (max-width: 1051px) {
   .totalandforecast .filter .form-group {
     margin: 0 5px 15px 0; }
