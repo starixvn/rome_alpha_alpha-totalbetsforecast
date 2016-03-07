@@ -137,9 +137,9 @@
   color: #666; }
 
 .tblRpt tbody tr:hover {
-  background-color: #ced1b2; }
+  background-color: #f8ff8d; }
   .tblRpt tbody tr:hover td.ex-col {
-    background-color: #ced1b2 !important; }
+    background-color: #f8ff8d !important; }
   .tblRpt tbody tr:hover td.win-loss-name {
     color: #333; }
 

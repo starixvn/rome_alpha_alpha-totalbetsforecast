@@ -169,11 +169,11 @@ body {
 
 .tblRpt tbody tr {
     &:hover {
-        background-color: #ced1b2;
+        background-color: #f8ff8d;
 
         td {
             &.ex-col {
-                background-color: #ced1b2 !important;
+                background-color: #f8ff8d !important;
             }
 
             &.win-loss-name {
