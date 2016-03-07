@@ -192,6 +192,15 @@ body {
         &.col-forecastTotal, &.col-time, &.col-event {
             background-color: #f2ab8d;
         }
+
+        &.col-forecastTotal {
+            text-align: center;
+
+            span {
+                display: inline-block;
+                min-width: 40px;
+            }
+        }
     }
 }
 
@@ -217,6 +226,11 @@ table * {
         background: #72809a;
         color: #fff;
         border-bottom: 1px solid #dfdfdf;
+    }
+
+    span {
+        display: inline-block;
+        min-width: 40px;
     }
 }
 

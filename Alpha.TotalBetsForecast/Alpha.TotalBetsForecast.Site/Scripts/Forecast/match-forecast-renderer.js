@@ -110,21 +110,21 @@ var forecastRenderer =
     betTypeRowTemplate: _.template('<tr class="<%= even %> <%= lastRow %>" >'),
     handicapChoiceTemplate: _.template('<td class="ex-col">\
                                             <span class="pull-left"><%= betTypeName %></span>\
-                                            <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span>\
+                                            <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span>\
                                         </td>'),
     overChoiceTemplate: _.template('<td class="ex-col"> \
                                         <span class="pull-left"><%= betTypeName %></span> \
-                                        <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                        <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
                                     </td>'),
     underChoiceTemplate: _.template('<td class="ex-col"> \
-                                        <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                        <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
                                     </td>'),
     oneXTwoMiddleChoiceTemplate: _.template('<td class="ex-col"> \
                                                 <span class="pull-left"><%= betTypeName %></span> \
-                                                <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                                <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
                                             </td>'),
     oneXTwoNotMiddleChoiceTemplate: _.template('<td class="ex-col"> \
-                                                    <span class="pull-right ex-text handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
+                                                    <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
                                                 </td>'),
     renderBetTypeForecast: function (betTypeForecast, isEven) {
         var html = [],
@@ -265,8 +265,8 @@ var forecastRenderer =
     highlightChanged: function (element) {
  
         element.pulse({
-            backgroundColor: '#FF7700',
-            color: '#FFF'
+            backgroundColor: '#fdd64c',
+            color: '#000'
         }, {
             returnDelay: 1000,
             interval: 1000,

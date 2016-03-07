@@ -6,7 +6,7 @@ var forecast = {
     countDownSeconds: 60,
     loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
-    matchForecasts: [],
+    loadingMatches: [],
     urls: {
         getMatches: 'Forecast/GetMatches',
         getMatchForecast: 'Forecast/GetMatchForecast',
@@ -24,6 +24,7 @@ var forecast = {
         closeWarning: null,
         btnMatchSelect: null,
         txtStatus: null,
+        blockIconSmall: null
     },
 
     init: function () {
@@ -51,6 +52,7 @@ var forecast = {
         forecast.domElements.browserWarning = $('#browser-warning');
         forecast.domElements.closeWarning = $('#close-warning');
         forecast.domElements.txtStatus = $('#text-status');
+        forecast.domElements.blockIconSmall = $('#blockIconSmall');
     },
 
     registerEvents: function () {
@@ -71,22 +73,25 @@ var forecast = {
         forecast.domElements.btnSubmit
             .off('click.forecast')
             .on('click.forecast', function () {
-
+                forecast.stopCountdown();
+                forecast.domElements.blockIconSmall.show();
                 var matchIds = forecast.domElements.ddlMatch.val();
 
                 if (matchIds == null) {
                     forecast.domElements.btnMatchSelect.attr('title', forecast.domElements.ddlMatch.data('select-at-least')).tooltip('show');
-                    forecast.stopCountdown();
-
+                    forecast.domElements.mainContent.parent().hide().find('tbody').remove();
                     return;
                 }
 
                 forecast.removeMatches(matchIds);
 
-                try { $.blockUI(); } catch (e) { }
                 var matchIdsLength = matchIds.length;
+                forecast.loadingMatches = [];
+                forecast.domElements.btnRefresh.addClass('block-icon');
 
                 for (var i = 0; i < matchIdsLength; i++) {
+
+                    forecast.loadingMatches.push(parseInt(matchIds[i]));
 
                     $.ajax({
                         url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
@@ -117,16 +122,30 @@ var forecast = {
 
                                 forecast.domElements.mainContent.parent().show();
 
-                                if (!forecast.isStartCountdown) {
-                                    forecast.startCountdown();
-                                }
-
                                 forecastRenderer.updateMatchesCached(matchForecast);
                             }
+
+                            forecast.removeLoadingMatches(matchForecast.MatchId);
                         }
                     });
                 }
             });
+    },
+
+    removeLoadingMatches: function (matchId) {
+        for (var i = forecast.loadingMatches.length; i >= 0; i--) {
+            if (forecast.loadingMatches[i] === matchId) {
+                forecast.loadingMatches.splice(i, 1);
+            }
+        }
+
+        if (forecast.loadingMatches.length == 0) {
+            forecast.domElements.btnRefresh.removeClass('block-icon');
+            forecast.domElements.blockIconSmall.hide();
+            if (!forecast.isStartCountdown) {
+                forecast.startCountdown();
+            }
+        }
     },
 
     removeMatches: function (matchIds) {
@@ -206,6 +225,7 @@ var forecast = {
         }
         else {
             forecast.stopCountdown();
+            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
         }
     },
 
@@ -215,7 +235,6 @@ var forecast = {
         if (countDown) {
             countDown.stop();
             forecast.domElements.btnRefresh.text(forecast.countDownSeconds);
-            forecast.domElements.mainContent.parent().hide().find('tbody').remove();
         }
     },
 
