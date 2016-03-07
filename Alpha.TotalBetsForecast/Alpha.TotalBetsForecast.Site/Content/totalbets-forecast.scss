@@ -121,7 +121,7 @@ body {
             color: #9d1c1c;
             font-weight: 700;
             text-transform: uppercase;
-            position:relative;
+            position: relative;
 
             + li:before {
                 content: '\276F';
@@ -165,6 +165,22 @@ body {
 
 .ex-text {
     color: #666;
+}
+
+.tblRpt tbody tr {
+    &:hover {
+        background-color: #ced1b2;
+
+        td {
+            &.ex-col {
+                background-color: #ced1b2 !important;
+            }
+
+            &.win-loss-name {
+                color: #333;
+            }
+        }
+    }
 }
 
 .tblRpt tbody.match-live {

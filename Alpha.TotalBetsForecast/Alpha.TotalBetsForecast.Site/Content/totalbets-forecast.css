@@ -136,6 +136,13 @@
 .ex-text {
   color: #666; }
 
+.tblRpt tbody tr:hover {
+  background-color: #ced1b2; }
+  .tblRpt tbody tr:hover td.ex-col {
+    background-color: #ced1b2 !important; }
+  .tblRpt tbody tr:hover td.win-loss-name {
+    color: #333; }
+
 .tblRpt tbody.match-live {
   background-color: #f2ab8d; }
   .tblRpt tbody.match-live tr td {
