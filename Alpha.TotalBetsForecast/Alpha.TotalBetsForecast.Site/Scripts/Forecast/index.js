@@ -81,6 +81,8 @@ var forecast = {
                     return;
                 }
 
+                forecast.removeMatches(matchIds);
+
                 try { $.blockUI(); } catch (e) { }
                 var matchIdsLength = matchIds.length;
 
@@ -118,11 +120,27 @@ var forecast = {
                                 if (!forecast.isStartCountdown) {
                                     forecast.startCountdown();
                                 }
+
+                                forecastRenderer.updateMatchesCached(matchForecast);
                             }
                         }
                     });
                 }
             });
+    },
+
+    removeMatches: function (matchIds) {
+        var matchElements = forecast.domElements.mainContent.find('tbody.match-data');
+
+        for (var matchIndex = 0; matchIndex < matchElements.length; matchIndex++) {
+            var currentMatch = $(matchElements[matchIndex]);
+            var currentMatchId = currentMatch.data('match-id'),
+                renderMatchId = _.find(matchIds, function (matchId) { return parseInt(matchId) === parseInt(currentMatchId); });
+
+            if (typeof (renderMatchId) === 'undefined') {
+                currentMatch.remove();
+            }
+        }
     },
 
     addMatchForecast: function (newMatchForecast, rawHtml) {

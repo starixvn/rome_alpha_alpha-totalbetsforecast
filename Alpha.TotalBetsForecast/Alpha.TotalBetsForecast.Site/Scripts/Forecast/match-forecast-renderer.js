@@ -42,8 +42,8 @@ var forecastRenderer =
     combineWinLossName: function (winlossName, isOverUnder) {
         return isOverUnder ? (winlossName + ' ' + forecastRenderer.resources.goal) : winlossName
     },
-    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head winloss-name-<%= betTypeId %>-<%= winLossIndex %>">\
-                                            <%= winLossName %>\
+    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head">\
+                                            <span class="winloss-name-<%= betTypeId %>-<%= winLossIndex %>"><%= winLossName %></span>\
                                         </td>'),
     renderWinLossColumnName: function (betChoiceForecast, betTypeForecast) {
         var html = [];
@@ -73,10 +73,10 @@ var forecastRenderer =
                 : _.template('<span><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss) });
     },
 
-    betCountTemplate: _.template('<td class="ex-col text-right bet-count-<%= choiceIdentify %>"><%= betCount %></td>'),
-    turnoverTemplate: _.template('<td class="ex-col text-right turnover-<%= choiceIdentify %>"><%= turnover %></td>'),
-    winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %> winloss-value-<%= choiceIdentify %>-<%= winLossIndex %>" <%= rowSpan %> >\
-                                        <%= winLossValue %>\
+    betCountTemplate: _.template('<td class="ex-col text-right"><span class="bet-count-<%= choiceIdentify %>"><%= betCount %></span></td>'),
+    turnoverTemplate: _.template('<td class="ex-col text-right"><span class="turnover-<%= choiceIdentify %>"><%= turnover %></span></td>'),
+    winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %>" <%= rowSpan %> >\
+                                        <span class="winloss-value-<%= choiceIdentify %>-<%= winLossIndex %>"><%= winLossValue %></span> \
                                     </td>'),
     renderBetChoiceForecast: function (betChoiceForecast, isOneXTwoBetType, choiceIdentify) {
         var html = [];
@@ -213,10 +213,10 @@ var forecastRenderer =
         return html.join('');
     },
 
-    firstBetTypeTemplate: _.template('<tbody id="match-<%= matchId %>" class="<%= matchLive %>">\
+    firstBetTypeTemplate: _.template('<tbody id="match-<%= matchId %>" data-match-id="<%= matchId %>" class="match-data <%= matchLive %>">\
                     <tr class="even"><%= matchInfoHtml %>\
                         <%= firstWinLossColumnNameHtml %>\
-                        <td rowspan="<%= matchRowSpan %>" class="text-center col-forecastTotal"><%= forecastTotal %></td>\
+                        <td rowspan="<%= matchRowSpan %>" class="text-center col-forecastTotal"><span class="forecast-total-value"><%= forecastTotal %></span></td>\
                     </tr><%= firstBetTypeForecastHtml %>'),
     renderFirstBetTypeRow: function (matchForecast) {
         var firstBetTypeTemplateData = {
@@ -270,7 +270,7 @@ var forecastRenderer =
         }, {
             returnDelay: 1000,
             interval: 1000,
-            pulses: 5
+            pulses: 3
         });
     },
 
@@ -278,7 +278,7 @@ var forecastRenderer =
         var matchScore = matchForecastElement.find('.match-score'),
             homeScore = matchScore.find('.home-score'),
             awayScore = matchScore.find('.away-score'),
-            forecastTotal = matchForecastElement.find('.col-forecastTotal');
+            forecastTotal = matchForecastElement.find('.forecast-total-value');
 
         if (parseInt(homeScore.text()) !== matchForecast.LiveHomeScore
             || parseInt(awayScore.text()) !== matchForecast.LiveAwayScore) {
@@ -303,10 +303,33 @@ var forecastRenderer =
         }
     },
 
+    updateMatchesCached: function (matchForecast) {
+        var matchLength = forecastRenderer.matches.length,
+            isExist = false;
+        
+        for (var matchIndex = 0; matchIndex < matchLength; matchIndex++) {
+            if (forecastRenderer.matches[matchIndex].MatchId === matchForecast.MatchId) {
+                forecastRenderer.matches[matchIndex] = matchForecast;
+                isExist = true;
+                break;
+            }
+        }
+
+        if (!isExist) {
+            forecastRenderer.matches.push(matchForecast);
+        }
+    },
+
     trackChangedAndUpdatedValues: function (matchForecast) {
         var matchForecastElement = $('#match-' + matchForecast.MatchId);
 
         if (matchForecastElement.length > 0) {
+
+            var cachedMatchForecast = _.find(forecastRenderer.matches, function (match) { return match.MatchId === matchForecast.MatchId; });
+
+            if (cachedMatchForecast.MatchRowSpan !== matchForecast.MatchRowSpan) {
+                return false;
+            }
 
             forecastRenderer.trackMatchInfoChanged(matchForecastElement, matchForecast);
 

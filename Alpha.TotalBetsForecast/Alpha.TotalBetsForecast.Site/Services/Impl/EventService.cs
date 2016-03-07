@@ -13,7 +13,7 @@
     public class EventService : IEventService
     {
         private const string LeaguesCachingKey = "Alpha.TotalBetsForecast.Site.LeagueCaching_{0}";
-        private const int LeaguesCacheTimeOut = 60 * 30;
+        private const int LeaguesCacheTimeOut = 60 * 5; // 5 Minutes
 
         private readonly IDynamicRepository _dynamicRepository;
         private readonly ICache _cacheManager;

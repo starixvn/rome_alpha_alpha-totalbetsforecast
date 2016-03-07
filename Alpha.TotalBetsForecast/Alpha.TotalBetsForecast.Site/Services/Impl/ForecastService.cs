@@ -178,7 +178,12 @@
                 return UnderChoice;
             }
 
-            return betTypeItem.BetType;
+            if(string.IsNullOrEmpty(betTypeItem.BetType))
+            {
+                return string.Empty;
+            }
+
+            return betTypeItem.BetType.Replace(",", ", ");
         }
 
         private bool IsFullTimeBetType(int betTypeId)
