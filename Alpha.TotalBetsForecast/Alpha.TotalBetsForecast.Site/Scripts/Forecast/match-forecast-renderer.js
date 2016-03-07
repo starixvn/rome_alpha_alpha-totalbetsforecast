@@ -264,7 +264,7 @@
         }, {
             returnDelay: 1000,
             interval: 1000,
-            pulses: 3
+            pulses: 5
         });
     },
 

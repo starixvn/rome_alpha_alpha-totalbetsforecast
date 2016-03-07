@@ -10,8 +10,6 @@
             IsLive = true;
         }
 
-        public int LeagueId { get; set; }
-
         public bool IsLive { get; set; }
     }
 }

@@ -270,15 +270,26 @@ var forecast = {
     },
 
     renderMatches: function (matches) {
-        var matchIds = forecast.domElements.ddlMatch.val() || [],
+        var matchIds = forecast.domElements.ddlMatch.val() || [matches[0].Id.toString()],
             options = '',
+            anyMatchSelected = false,
             processedMatches = _.map(matches, function (match) {
+                var selected = _.contains(matchIds, match.Id.toString());
+
+                if (selected) {
+                    anyMatchSelected = true;
+                }
+
                 return {
                     label: match.Name,
                     value: match.Id,
-                    selected: _.contains(matchIds, match.Id.toString())
+                    selected: selected
                 };
             });
+
+        if (!anyMatchSelected) {
+            processedMatches[0].selected = true;
+        }
 
         forecast.domElements.ddlMatch.multiselect({
             maxHeight: 300,

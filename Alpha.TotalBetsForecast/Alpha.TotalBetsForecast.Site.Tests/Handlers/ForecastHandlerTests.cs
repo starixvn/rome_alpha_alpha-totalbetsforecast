@@ -61,16 +61,14 @@
             //// Arrange
             var query = new IndexQuery
             {
-                IsLive = true,
-                LeagueId = 2
+                IsLive = true
             };
 
             //// Act
             var indexViewModel = _forecastHandler.Handle(query);
 
             //// Assert
-            Assert.IsTrue(indexViewModel.IsLive 
-                && indexViewModel.LeagueId == query.LeagueId);
+            Assert.IsTrue(indexViewModel.IsLive);
         }
 
         [Test]
@@ -79,8 +77,7 @@
             //// Arrange
             var query = new IndexQuery
             {
-                IsLive = true,
-                LeagueId = 2
+                IsLive = true
             };
 
             //// Act
@@ -96,40 +93,39 @@
                 && !dealBallLiveValues.ElementAt(1).Selected);
         }
 
-        [Test]
-        public void HandleIndexQuery_ReturnSortedLeaguesByName()
-        {
-            //// Arrange
-            var query = new IndexQuery
-            {
-                IsLive = true,
-                LeagueId = 2
-            };
+        ////[Test]
+        ////public void HandleIndexQuery_ReturnSortedLeaguesByName()
+        ////{
+        ////    //// Arrange
+        ////    var query = new IndexQuery
+        ////    {
+        ////        IsLive = true
+        ////    };
 
-            _eventService.GetLeagues(Arg.Any<bool>()).Returns(new List<League>
-            {
-                new League
-                {
-                    Id = 1
-                },
-                new League
-                {
-                    Id = 3
-                }
-            });
+        ////    _eventService.GetLeagues(Arg.Any<bool>()).Returns(new List<League>
+        ////    {
+        ////        new League
+        ////        {
+        ////            Id = 1
+        ////        },
+        ////        new League
+        ////        {
+        ////            Id = 3
+        ////        }
+        ////    });
 
-            CacheRefFactory.CacheRef.GetLeagueName(1).Returns("B");
-            CacheRefFactory.CacheRef.GetLeagueName(3).Returns("A");
+        ////    CacheRefFactory.CacheRef.GetLeagueName(1).Returns("B");
+        ////    CacheRefFactory.CacheRef.GetLeagueName(3).Returns("A");
 
-            //// Act
-            var leagues = _forecastHandler.Handle(query).Leagues;
+        ////    //// Act
+        ////    var leagues = _forecastHandler.Handle(query);
 
-            //// Assert
-            Assert.IsTrue(
-                leagues.Count() == 2
-                && leagues.ElementAt(0).Text == "A"
-                && leagues.ElementAt(1).Text == "B");
-        }
+        ////    //// Assert
+        ////    Assert.IsTrue(
+        ////        leagues.Count() == 2
+        ////        && leagues.ElementAt(0).Text == "A"
+        ////        && leagues.ElementAt(1).Text == "B");
+        ////}
 
         #endregion Query Index page
 
@@ -149,7 +145,6 @@
             //// Arrange
             var query = new MatchesQuery
             {
-                MatchId = 1,
                 LeagueId = 1,
                 IsLive = true
             };
@@ -161,26 +156,25 @@
             _eventService.Received().GetMatches(1, true);
         }
 
-        [Test]
-        public void HandleMatchesQuery_ReturnMatchesViewModel()
-        {
-            //// Arrnage
-            var query = new MatchesQuery
-            {
-                MatchId = 1,
-                LeagueId = 1,
-                IsLive = true
-            };
-            _eventService.GetMatches(Arg.Any<int>(), Arg.Any<bool>()).Returns(new List<Match>());
+        ////[Test]
+        ////public void HandleMatchesQuery_ReturnMatchesViewModel()
+        ////{
+        ////    //// Arrnage
+        ////    var query = new MatchesQuery
+        ////    {
+        ////        LeagueId = 1,
+        ////        IsLive = true
+        ////    };
+        ////    _eventService.GetMatches(Arg.Any<int>(), Arg.Any<bool>()).Returns(new List<Match>());
 
-            //// Act
-            var viewModel = _forecastHandler.Handle(query);
+        ////    //// Act
+        ////    var viewModel = _forecastHandler.Handle(query);
 
-            //// Assert
-            Assert.IsTrue(
-                viewModel.LeagueId == query.LeagueId
-                && viewModel.MatchId == query.MatchId);
-        }
+        ////    //// Assert
+        ////    Assert.IsTrue(
+        ////        viewModel.LeagueId == query.LeagueId
+        ////        && viewModel.MatchId == query.MatchId);
+        ////}
 
         [Test]
         public void HandleMatchesQuery_ReturnMatchesOrderedByKickOffTimeDesc()
@@ -188,7 +182,6 @@
             //// Arrnage
             var query = new MatchesQuery
             {
-                MatchId = 1,
                 LeagueId = 1,
                 IsLive = true
             };
@@ -211,8 +204,8 @@
 
             //// Assert
             Assert.IsTrue(
-                viewModel.Matches.ElementAt(0).Id == 2
-                && viewModel.Matches.ElementAt(1).Id == 1);
+                viewModel.ElementAt(0).Id == 2
+                && viewModel.ElementAt(1).Id == 1);
         }
 
         #endregion Query Dropdown list of match
