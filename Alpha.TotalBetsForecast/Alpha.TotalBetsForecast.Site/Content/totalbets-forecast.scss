@@ -284,9 +284,9 @@ table * {
     }
 }
 .btn-group button.multiselect {
+    @include border-radius(0);
     background: #fff;
-    box-shadow: none;
-    border: 1px solid #aaa;
+    border: none;
     position: relative;
 
     &:hover {

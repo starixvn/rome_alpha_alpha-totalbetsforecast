@@ -3,8 +3,8 @@
 @section Styles 
 {
     <link href='/contents/css/Fonts/Iconalpha/Iconalpha.min.css' rel='stylesheet' type='text/css'>
-    <link href="/contents/css/sass/component.min.css" rel="stylesheet" />
     <link href="/contents/components/mutipleselect/css/bootstrap-multiselect.min.css" rel="stylesheet" />
+    <link href="/contents/css/sass/component.min.css" rel="stylesheet" />
 
     @Styles.Render(BundleConfig.IndexForecastStyleBundleUrl)
 }
@@ -30,7 +30,7 @@
     <div class="filter">
         <form class="" role="form">
             <div class="form-group">
-                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "form-control", @id = "ddlDeadBall"})
+                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "", @id = "ddlDeadBall"})
             </div>
 
             <div class="form-group">
