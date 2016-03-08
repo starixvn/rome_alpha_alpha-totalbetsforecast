@@ -70,16 +70,16 @@ var forecastRenderer =
         return html.join('');
     },
 
-    renderWinLossNumber: function (winLoss) {
+    renderWinLossNumber: function (winLoss, index) {
         return winLoss > 0
-                ? _.template('<span class="positive"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss) })
-                : _.template('<span><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss) });
+                ? _.template('<span class="positive winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index })
+                : _.template('<span class="winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index });
     },
 
     betCountTemplate: _.template('<td class="ex-col text-right"><span class="bet-count-<%= choiceIdentify %>"><%= betCount %></span></td>'),
     turnoverTemplate: _.template('<td class="ex-col text-right"><span class="turnover-<%= choiceIdentify %>"><%= turnover %></span></td>'),
     winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %>" <%= rowSpan %> >\
-                                        <span class="winloss-value-<%= choiceIdentify %>-<%= winLossIndex %>"><%= winLossValue %></span> \
+                                        <%= winLossValue %> \
                                     </td>'),
     renderBetChoiceForecast: function (betChoiceForecast, isOneXTwoBetType, choiceIdentify) {
         var html = [];
@@ -100,10 +100,8 @@ var forecastRenderer =
 
             html.push(forecastRenderer.winLossValueTemplate({
                 textAlign: isOneXTwoBetType ? 'text-center' : 'text-right',
-                choiceIdentify: choiceIdentify,
-                winLossIndex: i,
                 rowSpan: isOneXTwoBetType ? 'colspan="3"' : '',
-                winLossValue: forecastRenderer.renderWinLossNumber(winLoss)
+                winLossValue: forecastRenderer.renderWinLossNumber(winLoss, choiceIdentify + '-' + i)
             }));
         }
 
