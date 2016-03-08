@@ -36,7 +36,7 @@ var forecast = {
 
         forecastRenderer.init();
 
-        setInterval(forecast.loadMatches, forecast.loadMatchesInterval);
+        setInterval(forecast.loadLeagues, forecast.loadMatchesInterval);
     },
 
     getAbsoluteUrl: function (relativeUrl) {
