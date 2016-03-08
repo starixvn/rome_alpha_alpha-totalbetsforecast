@@ -22,7 +22,7 @@ var forecast = {
         league: 'forecast_league',
         match: 'forecast_match'
     },
-    cookieExpireTime: 7,
+    cookieExpireTime: 1,
 
     domElements: {
         btnSubmit: null,
@@ -92,7 +92,7 @@ var forecast = {
                     ? forecast.domElements.txtStatus.data('offer-live')
                     : forecast.domElements.txtStatus.data('dead-ball'));
 
-                $.cookie(forecast.cookies.status, statusValue, { expires: forecast.cookieExpireTime });
+                $.cookie(forecast.cookies.status, statusValue, { expires: forecast.cookieExpireTime, path: '/' });
             }).trigger('change');
 
         forecast.domElements.btnSubmit
@@ -131,7 +131,7 @@ var forecast = {
             forecast.loadSingleMatchForecast(currentMatchId);
         }
 
-        $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime });
+        $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime, path: '/' });
     },
 
     loadSingleMatchForecast: function (matchId) {
@@ -323,7 +323,7 @@ var forecast = {
                 forecast.domElements.mainContent.parent().hide().find('tbody').remove();
                 forecast.stopCountdown();
 
-                $.cookie(forecast.cookies.league, forecast.domElements.ddlLeague.val(), { expires: forecast.cookieExpireTime });
+                $.cookie(forecast.cookies.league, forecast.domElements.ddlLeague.val(), { expires: forecast.cookieExpireTime, path: '/' });
             }
         });
 
