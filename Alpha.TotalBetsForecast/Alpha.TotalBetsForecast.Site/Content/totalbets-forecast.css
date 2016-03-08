@@ -113,12 +113,12 @@
     .totalandforecast .breadcrumb li .help {
       position: absolute;
       right: -34px;
-      top: -10px;
+      top: -8px;
       cursor: pointer; }
       .totalandforecast .breadcrumb li .help:before {
         content: '\e92a';
         font-family: 'Iconalpha';
-        font-size: 26px;
+        font-size: 21px;
         color: #0f82c4; }
       .totalandforecast .breadcrumb li .help:hover {
         color: #666; }
