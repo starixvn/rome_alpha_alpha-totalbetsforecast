@@ -48,5 +48,7 @@
         public bool HasLive { get; set; }
 
         public DateTime KickOffTime { get; set; }
+
+        public string ShowTime { get; set; }
     }
 }

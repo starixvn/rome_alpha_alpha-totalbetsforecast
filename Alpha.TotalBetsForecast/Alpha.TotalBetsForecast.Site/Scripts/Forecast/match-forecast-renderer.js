@@ -177,8 +177,7 @@ var forecastRenderer =
                             <span class="home-score"><%= homeScore %> </span>-<span class="away-score"> <%= awayScore %></span></span><br />\
                             <span class="offer-live"><%= liveText %></span></td>'),
     deadballMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center">\
-                                            <span class="offer-live"><%= liveText %></span><br/>\
-                                            <span class="match-time"><%= dateString %><br/><%= timeString %></span>\
+                                                <%= showTime %> \
                                             </td>'),
     matchNameTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-event"> \
             <span class="home-name"><%= homeName %></span> <br /> \
@@ -198,9 +197,7 @@ var forecastRenderer =
         else {
             html.push(forecastRenderer.deadballMatchInfoTemplate({
                 matchRowSpan: matchForecast.MatchRowSpan,
-                liveText: matchForecast.HasLive ? forecastRenderer.resources.mathcOfferLive : '',
-                dateString: matchForecast.KickOffDateString,
-                timeString: matchForecast.KickOffTimeString
+                showTime: matchForecast.ShowTime
             }));
         }
 

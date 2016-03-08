@@ -30,5 +30,7 @@
         public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
 
         public int MatchRowSpan { get; set; }
+
+        public string ShowTime { get; set; }
     }
 }

@@ -103,45 +103,50 @@ var forecast = {
         forecast.domElements.ddlRefresh.addClass('block-icon');
 
         for (var i = 0; i < matchIdsLength; i++) {
+            var currentMatchId = parseInt(matchIds[i]);
+            forecast.loadingMatches.push(currentMatchId);
+            forecast.loadSingleMatchForecast(currentMatchId);
+        }
+    },
 
-            forecast.loadingMatches.push(parseInt(matchIds[i]));
+    loadSingleMatchForecast: function (matchId) {
+        $.ajax({
+            url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: {
+                matchId: matchId,
+                isLive: forecast.domElements.ddlDeadBall.val() === 'true',
+                version: Math.random()
+            },
+        }).done(function (matchForecast) {
+            if (matchForecast) {
 
-            $.ajax({
-                url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecast),
-                type: "GET",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: {
-                    matchId: matchIds[i],
-                    isLive: forecast.domElements.ddlDeadBall.val() === 'true',
-                    version: Math.random()
-                },
-            }).done(function (matchForecast) {
-                if (matchForecast) {
+                var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
 
-                    var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
+                if (!isUpdated) {
+                    var html = forecastRenderer.renderMatchForecast(matchForecast),
+                        newMatchForecast = $(html),
+                        isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
 
-                    if (!isUpdated) {
-                        var html = forecastRenderer.renderMatchForecast(matchForecast),
-                            newMatchForecast = $(html),
-                            isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
-
-                        if (isNoInfoBody) {
-                            forecast.addNoInfoRow(html);
-                        } else {
-                            forecast.addLeagueRow();
-                            forecast.addMatchForecast(newMatchForecast, html);
-                        }
-
-                        forecast.domElements.mainContent.parent().show();
-
-                        forecastRenderer.updateMatchesCached(matchForecast);
+                    if (isNoInfoBody) {
+                        forecast.addNoInfoRow(html);
+                    } else {
+                        forecast.addLeagueRow();
+                        forecast.addMatchForecast(newMatchForecast, html);
                     }
 
-                    forecast.removeLoadingMatches(matchForecast.MatchId);
+                    forecast.domElements.mainContent.parent().show();
+
+                    forecastRenderer.updateMatchesCached(matchForecast);
                 }
-            });
-        }
+
+                forecast.removeLoadingMatches(matchForecast.MatchId);
+            }
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            forecast.removeLoadingMatches(matchId);
+        });
     },
 
     removeLoadingMatches: function (matchId) {

@@ -61,6 +61,7 @@
                 KickOffDateString = match.KickOffTime.ToString("MM/dd/yyyy"),
                 LiveHomeScore = match.LiveHomeScore,
                 LiveAwayScore = match.LiveAwayScore,
+                ShowTime = match.ShowTime,
                 BetTypeForecasts = Enumerable.Empty<BetTypeForecast>()
             };
 
