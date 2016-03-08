@@ -404,18 +404,19 @@ table * {
 
 /*******************Dropdown****************/
 .dropdown {
+    display: inline-block;
+
     .caret {
         top: 15px;
-        right: 12px;
+        right: 13px;
         position: absolute;
     }
 
     .dropdown-menu {
         min-width: 59px;
     }
-    
-    .dropdown-toggle
-        {
+
+    .dropdown-toggle {
         padding-right: 23px;
     }
 }
