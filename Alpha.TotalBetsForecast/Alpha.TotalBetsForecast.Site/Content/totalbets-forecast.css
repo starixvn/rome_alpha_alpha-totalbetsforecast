@@ -189,6 +189,18 @@ table * {
   .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
     background: #fff; }
 
+.btn.btn-countdown {
+  background-color: #eee;
+  color: #212121; }
+  .btn.btn-countdown:hover {
+    background-color: #e1e1e1; }
+
+#refresh-value {
+  padding: 0;
+  border-radius: 0; }
+  #refresh-value li a:hover {
+    background: #d9d9d9; }
+
 .btn-group button.multiselect {
   background: #fff;
   box-shadow: none;
