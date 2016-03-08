@@ -178,7 +178,7 @@
                 return UnderChoice;
             }
 
-            if(string.IsNullOrEmpty(betTypeItem.BetType))
+            if (string.IsNullOrEmpty(betTypeItem.BetType))
             {
                 return string.Empty;
             }

@@ -7,17 +7,17 @@
     {
         public bool IsLive { get; set; }
 
-        public override string GetSettingKey()
-        {
-            return "Age_NewTotalBetsForeCast_LeagueSel";
-        }
-
         public bool IsShowAll
         {
             get
             {
                 return AppSettings.LocalTest;
             }
+        }
+
+        public override string GetSettingKey()
+        {
+            return "Age_NewTotalBetsForeCast_LeagueSel";
         }
 
         public override bool IsValid()

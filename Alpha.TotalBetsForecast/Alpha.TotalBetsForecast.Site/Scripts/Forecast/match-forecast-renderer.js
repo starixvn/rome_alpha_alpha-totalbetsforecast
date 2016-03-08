@@ -6,6 +6,8 @@
 
 var forecastRenderer =
 {
+    disableHighlight: true,
+
     matches: [],
 
     resources:
@@ -21,6 +23,7 @@ var forecastRenderer =
         forecastRenderer.resources.noDataText = mainContent.data('no-data-text');
         forecastRenderer.resources.mathcOfferLive = mainContent.data('offer-live');
         forecastRenderer.resources.goal = mainContent.data('goal');
+        forecastRenderer.disableHighlight = mainContent.data('disable-highlight') === 'True';
     },
 
     formatNumber: function (number, formatString) {
@@ -260,15 +263,16 @@ var forecastRenderer =
     },
 
     highlightChanged: function (element) {
- 
-        element.pulse({
-            backgroundColor: '#fdd64c',
-            color: '#000'
-        }, {
-            returnDelay: 1000,
-            interval: 1000,
-            pulses: 3
-        });
+        if (!forecastRenderer.disableHighlight) {
+            element.pulse({
+                backgroundColor: '#fdd64c',
+                color: '#000'
+            }, {
+                returnDelay: 1000,
+                interval: 1000,
+                pulses: 3
+            });
+        }
     },
 
     trackMatchInfoChanged: function (matchForecastElement, matchForecast) {

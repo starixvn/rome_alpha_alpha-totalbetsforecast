@@ -49,7 +49,6 @@
             </div>
             <div class="form-group">
                 <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit"/>
-                @*<a class="btn btnRefresh" id="btnRefresh">60</a>*@
                 <span class="dropdown">
                     <button class="btn btn-default btn-countdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span id="ddlRefresh">30</span>
@@ -72,7 +71,8 @@
         <table class="tblRpt col-sm-12" id="mainContent"
                data-no-data-text="@Resources.NoData"
                data-offer-live="@Resources.MatchOfferLive"
-               data-goal="@Resources.Goals">
+               data-goal="@Resources.Goals"
+               data-disable-highlight="@AppConfig.DisableHighlightChange">
             <thead>
                 <tr class="RptHeader">
                     <th class="text-center">@Resources.Time</th>

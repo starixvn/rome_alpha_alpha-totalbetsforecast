@@ -1,12 +1,16 @@
 ﻿/// <reference path="match-forecast-renderer.js" />
 
 var forecast = {
+
     rootUrl: document.getElementById('RootURL').value,
     maxNumberOfRenderMatch: 5,
     countDownSeconds: 30,
+    countDownDeadBallSeconds: 60,
+    countDownLiveBallSeconds: 30,
     loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
     loadingMatches: [],
+
     urls: {
         getMatches: 'Forecast/GetMatches',
         getMatchForecast: 'Forecast/GetMatchForecast',
@@ -65,11 +69,17 @@ var forecast = {
             .off('change.forecast')
             .on('change.forecast', function () {
                 forecast.domElements.mainContent.parent().hide().find('tbody').remove();
+                var isLive = forecast.domElements.ddlDeadBall.val() === 'true';
+                
+                forecast.stopCountdown();
+                forecast.countDownSeconds = isLive ? forecast.countDownLiveBallSeconds : forecast.countDownDeadBallSeconds;
+                forecast.domElements.ddlRefresh.text(forecast.countDownSeconds);
                 forecast.loadLeagues();
                 forecast.domElements.txtStatus.text(
-                    forecast.domElements.ddlDeadBall.val() === 'true'
+                    isLive
                     ? forecast.domElements.txtStatus.data('offer-live')
-                    : forecast.domElements.txtStatus.data('dead-ball'))
+                    : forecast.domElements.txtStatus.data('dead-ball'));
+
             }).trigger('change');
 
         forecast.domElements.btnSubmit
