@@ -257,11 +257,27 @@ table * {
     &:hover {
         background-color: #e1e1e1;
     }
+    .icon-refresh:before {
+        content: '\e933';
+        font-family: 'Iconalpha';
+        font-size: 20px;
+        position: relative;
+        left: -5px;
+        top: -4px;
+        color: #212121;
+    }
+    #ddlRefresh {
+        position: relative;
+        top: -7px;
+    }
 }
 #refresh-value {
     padding: 0;
     border-radius: 0;
-    li {
+    > li {
+        > a {
+            padding: 5px 32px;
+        }
         a:hover {
             background: #d9d9d9;
         }
@@ -429,7 +445,7 @@ table * {
     }
 
     .dropdown-menu {
-        min-width: 59px;
+        min-width: 82px;
     }
 
     .dropdown-toggle {

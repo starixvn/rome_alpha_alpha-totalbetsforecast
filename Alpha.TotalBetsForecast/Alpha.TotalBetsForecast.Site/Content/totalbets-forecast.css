@@ -194,11 +194,24 @@ table * {
   color: #212121; }
   .btn.btn-countdown:hover {
     background-color: #e1e1e1; }
+  .btn.btn-countdown .icon-refresh:before {
+    content: '\e933';
+    font-family: 'Iconalpha';
+    font-size: 20px;
+    position: relative;
+    left: -5px;
+    top: -4px;
+    color: #212121; }
+  .btn.btn-countdown #ddlRefresh {
+    position: relative;
+    top: -7px; }
 
 #refresh-value {
   padding: 0;
   border-radius: 0; }
-  #refresh-value li a:hover {
+  #refresh-value > li > a {
+    padding: 5px 32px; }
+  #refresh-value > li a:hover {
     background: #d9d9d9; }
 
 .btn-group button.multiselect {
@@ -307,7 +320,7 @@ table * {
     right: 13px;
     position: absolute; }
   .dropdown .dropdown-menu {
-    min-width: 59px; }
+    min-width: 82px; }
   .dropdown .dropdown-toggle {
     padding-right: 23px; }
 
