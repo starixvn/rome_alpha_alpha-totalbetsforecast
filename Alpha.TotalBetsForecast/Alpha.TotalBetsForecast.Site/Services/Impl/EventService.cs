@@ -60,7 +60,6 @@
 
             return _dynamicRepository.Get<Match>(new GetMatchInfoCriteria
             {
-                IsLive = isLive,
                 MatchId = matchId
             });
         }

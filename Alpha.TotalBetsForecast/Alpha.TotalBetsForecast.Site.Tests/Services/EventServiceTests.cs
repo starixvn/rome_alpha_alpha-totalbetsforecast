@@ -137,8 +137,7 @@
                 Id = 1
             };
             _dynamicRepository.Get<Match>(Arg.Is<GetMatchInfoCriteria>(
-                criteria => criteria.MatchId == matchId
-                        && criteria.IsLive == isLive)).Returns(expectedMatch);
+                criteria => criteria.MatchId == matchId)).Returns(expectedMatch);
 
             //// Act
             var actualMatch = _eventService.GetMatchInfo(isLive, matchId);
