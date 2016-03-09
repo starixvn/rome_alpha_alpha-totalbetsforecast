@@ -329,7 +329,7 @@ table * {
   .dropdown .dropdown-toggle {
     padding-right: 23px; }
 
-@media only screen and (min-width: 796px) and (max-width: 1051px) {
+@media only screen and (min-device-width: 768px) and (max-device-width: 1051px) {
   .totalandforecast .filter .form-group {
     margin: 0 5px 15px 0; }
     .totalandforecast .filter .form-group .form-control {
@@ -341,7 +341,7 @@ table * {
   .totalandforecast .filter .btn-group button.multiselect {
     padding-left: 5px; } }
 
-@media only screen and (max-width: 1152px) {
+@media only screen and (max-device-width: 1152px) {
   .note-browser .textnote-box {
     padding-left: 10px; } }
 
