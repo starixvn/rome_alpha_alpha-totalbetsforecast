@@ -6,6 +6,7 @@
     using System.Web.Mvc.Filters;
     using System.Web.Routing;
     using System.Web.Security;
+    using App_Start;
     using Sunplus.Agent.Model.Entities;
 
     public class BaseController : Controller
@@ -22,6 +23,14 @@
                 || !HttpContext.User.Identity.IsAuthenticated)
             {
                 Response.Redirect(FormsAuthentication.LoginUrl, true);
+
+                return;
+            }
+
+            if(!string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
+                && !AppConfig.AllowSitesToViewForecast.ToLower().Contains(UserSession.Current.Site.ToLower()))
+            {
+                Response.Redirect(FormsAuthentication.DefaultUrl, true);
 
                 return;
             }

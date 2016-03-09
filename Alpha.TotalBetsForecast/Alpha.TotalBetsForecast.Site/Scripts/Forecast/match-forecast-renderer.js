@@ -127,7 +127,7 @@ var forecastRenderer =
     oneXTwoNotMiddleChoiceTemplate: _.template('<td class="ex-col"> \
                                                     <span class="pull-right ex-text text-right handicap-value-<%= choiceIdentify %>"><%= handicapValue %></span> \
                                                 </td>'),
-    renderBetTypeForecast: function (betTypeForecast, isEven) {
+    renderBetTypeForecast: function (betTypeForecast, isEven, firstRowWithoutWinLossName, forecastTotalHtml) {
         var html = [],
             totalBetChoice = betTypeForecast.BetChoices.length,
             betTypeId = betTypeForecast.BetTypeId;
@@ -137,6 +137,13 @@ var forecastRenderer =
                 even: isEven ? 'even ' : '',
                 lastRow: i == totalBetChoice - 1 ? 'last-row' : ''
             }));
+
+            if (i === 0
+                && betTypeForecast.IsOneXTwoBetType
+                && firstRowWithoutWinLossName)
+            {
+                html.push(firstRowWithoutWinLossName);
+            }
 
             var betChoice = betTypeForecast.BetChoices[i],
                 choiceIdentify = betTypeId + '-' + i,
@@ -168,6 +175,13 @@ var forecastRenderer =
             }
 
             html.push(forecastRenderer.renderBetChoiceForecast(betChoice, betTypeForecast.IsOneXTwoBetType, choiceIdentify));
+
+            if (i === 0
+                && betTypeForecast.IsOneXTwoBetType
+                && forecastTotalHtml) {
+                html.push(forecastTotalHtml);
+            }
+
             html.push('</tr>');
         }
 
@@ -212,19 +226,28 @@ var forecastRenderer =
     },
 
     firstBetTypeTemplate: _.template('<tbody id="match-<%= matchId %>" data-match-id="<%= matchId %>" class="match-data <%= matchLive %>">\
-                    <tr class="even"><%= matchInfoHtml %>\
+                    <tr class="<%= evenClass %>"> \
+                        <%= matchInfoHtml %>\
                         <%= firstWinLossColumnNameHtml %>\
-                        <td rowspan="<%= matchRowSpan %>" class="text-center col-forecastTotal"><span class="forecast-total-value"><%= forecastTotal %></span></td>\
+                        <%= forecastTotalHtml %>\
                     </tr><%= firstBetTypeForecastHtml %>'),
+    forecastTotalTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="text-center col-forecastTotal"><span class="forecast-total-value"><%= forecastTotal %></span></td>'),
     renderFirstBetTypeRow: function (matchForecast) {
-        var firstBetTypeTemplateData = {
+        var matchInfoHtml = forecastRenderer.renderMatchInfo(matchForecast),
+            forecastTotalHtml = forecastRenderer.forecastTotalTemplate({
+                matchRowSpan: matchForecast.MatchRowSpan,
+                forecastTotal: forecastRenderer.formatNumber(matchForecast.ForecastTotal),
+            }),
+            firstBetType = matchForecast.BetTypeForecasts[0],
+            firstBetTypeTemplateData = {
             matchRowSpan: matchForecast.MatchRowSpan,
             matchId: matchForecast.MatchId,
             matchLive: matchForecast.IsLive ? 'match-live' : '',
-            matchInfoHtml: forecastRenderer.renderMatchInfo(matchForecast),
-            firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(matchForecast.BetTypeForecasts[0].BetChoices[0], matchForecast.BetTypeForecasts[0]),
-            forecastTotal: forecastRenderer.formatNumber(matchForecast.ForecastTotal),
-            firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(matchForecast.BetTypeForecasts[0], true)
+            matchInfoHtml: firstBetType.IsOneXTwoBetType ? '' : matchInfoHtml,
+            forecastTotalHtml: firstBetType.IsOneXTwoBetType ? '' : forecastTotalHtml,
+            firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(firstBetType.BetChoices[0], firstBetType),
+            firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType, true, matchInfoHtml, forecastTotalHtml),
+            evenClass: firstBetType.IsOneXTwoBetType ? '' : 'even'
         };
 
         return forecastRenderer.firstBetTypeTemplate(firstBetTypeTemplateData);
