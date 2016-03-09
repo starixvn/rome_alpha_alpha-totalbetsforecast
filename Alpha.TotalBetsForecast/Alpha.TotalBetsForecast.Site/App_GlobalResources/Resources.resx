@@ -175,7 +175,7 @@
     <value>1H OU</value>
   </data>
   <data name="SelectAMatch" xml:space="preserve">
-    <value>Select a match</value>
+    <value>Select an event</value>
   </data>
   <data name="MatchOfferLive" xml:space="preserve">
     <value>Live</value>
@@ -202,6 +202,6 @@
     <value>Click here to update your browser</value>
   </data>
   <data name="SelectAtLeastOneMatch" xml:space="preserve">
-    <value>Please select at least one match</value>
+    <value>Please select at least one event</value>
   </data>
 </root>

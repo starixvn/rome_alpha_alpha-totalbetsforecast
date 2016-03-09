@@ -5,6 +5,7 @@
     public class AppConfig
     {
         private const string DisableHighlightChangeConfigName = "NewTBF:DisableHighlightChange";
+        private const string AllowSitesToViewForecastConfigName = "NewTBF:AllowSitesToViewForecast";
 
         public static bool DisableHighlightChange
         {
@@ -18,6 +19,14 @@
                 }
 
                 return disable == "1";
+            }
+        }
+
+        public static string AllowSitesToViewForecast
+        {
+            get
+            {
+                return GetValue(AllowSitesToViewForecastConfigName);
             }
         }
 

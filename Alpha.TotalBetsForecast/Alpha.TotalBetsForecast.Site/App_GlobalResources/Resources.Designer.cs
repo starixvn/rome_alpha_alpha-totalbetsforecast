@@ -259,7 +259,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select a match.
+        ///   Looks up a localized string similar to Select an event.
         /// </summary>
         public static string SelectAMatch {
             get {
@@ -268,7 +268,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please select at least one match.
+        ///   Looks up a localized string similar to Please select at least one event.
         /// </summary>
         public static string SelectAtLeastOneMatch {
             get {
