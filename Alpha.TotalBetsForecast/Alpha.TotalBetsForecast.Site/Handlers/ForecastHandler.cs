@@ -15,7 +15,7 @@
     using Sunplus.Agent.Utilities;
 
     public class ForecastHandler :
-        IRequestHandler<MatchForecastQuery, MatchForecastViewModel>,
+        IRequestHandler<MatchForecastQuery, LeagueForecastViewModel>,
         IRequestHandler<MatchesQuery, IEnumerable<Match>>,
         IRequestHandler<LeaguesQuery, IEnumerable<League>>,
         IRequestHandler<IndexQuery, IndexViewModel>
@@ -30,41 +30,26 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed!")]
-        public MatchForecastViewModel Handle(MatchForecastQuery message)
+        public LeagueForecastViewModel Handle(MatchForecastQuery message)
         {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var match = _eventService.GetMatchInfo(message.IsLive, message.MatchId);
-            if (match == null)
+            var viewModel = new LeagueForecastViewModel
             {
-                throw new ArgumentNullException(nameof(match), "match cannot be null!");
-            }
-
-            var viewModel = new MatchForecastViewModel
-            {
-                MatchId = message.MatchId,
-                LeagueName = (new League { Id = match.LeagueId }).Name,
-                HomeName = match.HomeName,
-                AwayName = match.AwayName,
-                HasLive = match.HasLive,
-                IsLive = message.IsLive,
-                KickOffTimeString = match.KickOffTime.ToString("hh:mm tt"),
-                KickOffDateString = match.KickOffTime.ToString("MM/dd/yyyy"),
-                LiveHomeScore = match.LiveHomeScore,
-                LiveAwayScore = match.LiveAwayScore,
-                ShowTime = match.ShowTime,
-                BetTypeForecasts = Enumerable.Empty<BetTypeForecast>()
+                LeagueName = (new League { Id = message.LeagueId }).Name,
             };
 
             try
             {
-                message.LiveHomeScore = match.LiveHomeScore;
-                message.LiveAwayScore = match.LiveAwayScore;
+                var matchForecasts = _forecastService.GetMatchForecasts(message);
 
-                var matchForecast = _forecastService.GetMatchForecast(message, match.KickOffTime);
+                foreach (var matchForecast in matchForecasts)
+                {
+
+                }
 
                 viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
                 viewModel.ForecastTotal = matchForecast.ForecastTotal;

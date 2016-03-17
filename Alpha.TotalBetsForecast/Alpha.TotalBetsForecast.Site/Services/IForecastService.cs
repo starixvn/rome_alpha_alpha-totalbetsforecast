@@ -1,11 +1,12 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Services
 {
     using System;
+    using System.Collections.Generic;
     using Models;
     using Models.Requests;
 
     public interface IForecastService
     {
-        MatchForecast GetMatchForecast(MatchForecastQuery query, DateTime kickOffTime);
+        IEnumerable<MatchForecast> GetMatchForecasts(MatchForecastQuery query);
     }
 }

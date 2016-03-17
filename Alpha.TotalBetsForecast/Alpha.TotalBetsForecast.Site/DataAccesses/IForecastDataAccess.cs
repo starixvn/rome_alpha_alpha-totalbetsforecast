@@ -3,10 +3,11 @@
     using System;
     using System.Collections.Generic;
     using Fanex.Data.Repository;
+    using Models;
     using Models.Dtos;
 
     public interface IForecastDataAccess
     {
-        Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> GetMatchForecast(ICriteria criteria);
+        Tuple<IEnumerable<Match>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria);
     }
 }

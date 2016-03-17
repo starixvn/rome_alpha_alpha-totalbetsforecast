@@ -4,8 +4,8 @@
 
     public class MatchForecast
     {
-        public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
+        public Match MatchInfo { get; set; }
 
-        public decimal ForecastTotal { get; set; }
+        public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
     }
 }

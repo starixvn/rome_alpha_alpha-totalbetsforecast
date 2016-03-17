@@ -15,9 +15,13 @@
             }
         }
 
-        public string BetType { get; set; }
+        public int BetCount { get; set; }
 
-        public IEnumerable<BetChoiceForecast> BetChoices { get; set; }
+        public decimal Turnover { get; set; }
+
+        public IEnumerable<string> WinLossColumnNames { get; set; }
+
+        public IEnumerable<decimal> WinLossValues { get; set; }
 
         public bool IsHandicap
         {

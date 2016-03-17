@@ -4,7 +4,7 @@
     using Sunplus.Agent.Model.Entities;
     using Views;
 
-    public class MatchForecastQuery : IRequest<MatchForecastViewModel>
+    public class MatchForecastQuery : IRequest<LeagueForecastViewModel>
     {
         public MatchForecastQuery()
         {
@@ -22,12 +22,8 @@
             private set;
         }
 
+        public int LeagueId { get; set; }
+
         public int MatchId { get; set; }
-
-        public bool IsLive { get; set; }
-
-        public short LiveHomeScore { get; set; }
-
-        public short LiveAwayScore { get; set; }
     }
 }

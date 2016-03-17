@@ -32,7 +32,7 @@
         {
             MatchForecastQuery query = null;
 
-            Assert.Throws<ArgumentNullException>(() => _forecastService.GetMatchForecast(query, DateTime.Now));
+            Assert.Throws<ArgumentNullException>(() => _forecastService.GetMatchForecasts(query, DateTime.Now));
         }
 
         [Test]
@@ -52,7 +52,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            _forecastService.GetMatchForecast(query, kickOffTime);
+            _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             _forecastDataAccess.Received().GetMatchForecast(
@@ -96,7 +96,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.True(matchForcast.BetTypeForecasts.Count() == 3
@@ -147,7 +147,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.True(
@@ -188,7 +188,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.IsEmpty(matchForcast.BetTypeForecasts.ElementAt(0).BetChoices.First().WinLossColumnNames);
@@ -225,7 +225,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.True(matchForcast.BetTypeForecasts.Count() == 3
@@ -283,7 +283,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.True(matchForcast.BetTypeForecasts.Count() == 1
@@ -326,7 +326,7 @@
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
-            var matchForcast = _forecastService.GetMatchForecast(query, kickOffTime);
+            var matchForcast = _forecastService.GetMatchForecasts(query, kickOffTime);
 
             //// Assert
             Assert.IsTrue(

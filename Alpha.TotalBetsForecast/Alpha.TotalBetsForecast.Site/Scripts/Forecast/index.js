@@ -3,7 +3,6 @@
 var forecast = {
 
     rootUrl: document.getElementById('RootURL').value,
-    maxNumberOfRenderMatch: 5,
     countDownSeconds: 30,
     countDownDeadBallSeconds: 60,
     countDownLiveBallSeconds: 30,
@@ -387,33 +386,9 @@ var forecast = {
             enableCaseInsensitiveFiltering: true,
             nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
             nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
+            allSelectedText: forecast.domElements.ddlMatch.data('select-all-text'),
             onChange: function (option, checked) {
                 forecast.domElements.btnMatchSelect.tooltip('destroy');
-                // Get selected options.
-                var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
-
-                if (selectedOptions.length >= forecast.maxNumberOfRenderMatch) {
-                    // Disable all other checkboxes.
-                    var nonSelectedOptions = forecast.domElements.ddlMatch.find('option').filter(function () {
-                        return !$(this).is(':selected');
-                    });
-
-                    var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
-                    nonSelectedOptions.each(function () {
-                        var input = $('input[value="' + $(this).val() + '"]');
-                        input.prop('disabled', true);
-                        input.parent('li').addClass('disabled');
-                    });
-                }
-                else {
-                    // Enable all checkboxes.
-                    var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
-                    forecast.domElements.ddlMatch.find('option').each(function () {
-                        var input = $('input[value="' + $(this).val() + '"]');
-                        input.prop('disabled', false);
-                        input.parent('li').addClass('disabled');
-                    });
-                }
             }
         });
 

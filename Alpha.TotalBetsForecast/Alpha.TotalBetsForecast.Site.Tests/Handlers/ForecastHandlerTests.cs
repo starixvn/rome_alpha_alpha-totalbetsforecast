@@ -272,7 +272,7 @@
             _forecastHandler.Handle(query);
 
             //// Assert
-            _forecastService.Received().GetMatchForecast(query, match.KickOffTime);
+            _forecastService.Received().GetMatchForecasts(query, match.KickOffTime);
         }
 
         [Test]
@@ -298,7 +298,7 @@
             _forecastHandler.Handle(query);
 
             //// Assert
-            _forecastService.Received().GetMatchForecast(
+            _forecastService.Received().GetMatchForecasts(
                 Arg.Is<MatchForecastQuery>(actualQuery => 
                 actualQuery.LiveAwayScore == returnMatch.LiveAwayScore
                 && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore), 
@@ -329,7 +329,7 @@
                 LiveHomeScore = 4
             };
 
-            _forecastService.GetMatchForecast(Arg.Any<MatchForecastQuery>(), Arg.Any<DateTime>()).Returns(new MatchForecast
+            _forecastService.GetMatchForecasts(Arg.Any<MatchForecastQuery>(), Arg.Any<DateTime>()).Returns(new MatchForecast
             {
                 ForecastTotal = 101,
                 BetTypeForecasts = new List<BetTypeForecast> { new BetTypeForecast { BetTypeId = 1, BetType = "aaaaa" } }

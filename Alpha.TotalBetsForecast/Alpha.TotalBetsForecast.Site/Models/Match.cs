@@ -50,5 +50,21 @@
         public DateTime KickOffTime { get; set; }
 
         public string ShowTime { get; set; }
+
+        public string KickOffTimeString
+        {
+            get
+            {
+                return KickOffTime.ToString("hh:mm tt");
+            }
+        }
+
+        public string KickOffDateString
+        {
+            get
+            {
+                return KickOffTime.ToString("MM/dd/yyyy");
+            }
+        }
     }
 }

@@ -61,6 +61,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AllEvents.
+        /// </summary>
+        public static string AllEvents {
+            get {
+                return ResourceManager.GetString("AllEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bet Count.
         /// </summary>
         public static string BetCount {
@@ -255,6 +264,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         public static string NoData {
             get {
                 return ResourceManager.GetString("NoData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None Live.
+        /// </summary>
+        public static string NoneLive {
+            get {
+                return ResourceManager.GetString("NoneLive", resourceCulture);
             }
         }
         

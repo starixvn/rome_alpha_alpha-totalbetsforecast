@@ -204,4 +204,10 @@
   <data name="SelectAtLeastOneMatch" xml:space="preserve">
     <value>Please select at least one event</value>
   </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>AllEvents</value>
+  </data>
+  <data name="NoneLive" xml:space="preserve">
+    <value>None Live</value>
+  </data>
 </root>

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using Fanex.Common.Helper;
     using Fanex.Data;
     using Fanex.Data.Repository;
@@ -11,7 +10,7 @@
 
     public class ForecastDataAccess : IForecastDataAccess
     {
-        public Tuple<IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>, decimal> GetMatchForecast(ICriteria criteria)
+        public Tuple<IEnumerable<Match>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -19,13 +18,13 @@
             {
                 using (var queryMultiple = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    var forecastTotal = queryMultiple.Read<decimal>().FirstOrDefault();
+                    var matches = queryMultiple.Read<Match>();
 
                     var betTypeForecasts = queryMultiple.Read<BetTypeForecastDto>();
 
                     var winlossColumnNames = queryMultiple.Read<WinLossColumnNameDto>();
 
-                    return Tuple.Create(betTypeForecasts, winlossColumnNames, (decimal)forecastTotal);
+                    return Tuple.Create(matches, betTypeForecasts, winlossColumnNames);
                 }
             }
         }
