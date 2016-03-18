@@ -2,10 +2,14 @@
 {
     using System.Collections.Generic;
 
-    public class MatchForecast
+    public class MatchForecast : Match
     {
-        public Match MatchInfo { get; set; }
-
         public IEnumerable<BetTypeForecast> BetTypeForecasts { get; set; }
+
+        public int TotalBetCount { get; set; }
+
+        public decimal TotalTurnover { get; set; }
+
+        public decimal TotalForecastWinLoss { get; set; }
     }
 }

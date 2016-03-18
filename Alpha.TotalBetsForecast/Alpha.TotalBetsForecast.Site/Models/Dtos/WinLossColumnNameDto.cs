@@ -10,14 +10,14 @@
 
         public decimal Turnover { get; set; }
 
-        public string FirstColumnName { get; set; }
+        public decimal FirstColumnName { get; set; }
 
-        public string SecondColumnName { get; set; }
+        public decimal SecondColumnName { get; set; }
 
-        public string ThirdColumnName { get; set; }
+        public decimal ThirdColumnName { get; set; }
 
-        public string FourthColumnName { get; set; }
+        public decimal FourthColumnName { get; set; }
 
-        public string FifthColumnName { get; set; }
+        public decimal FifthColumnName { get; set; }
     }
 }

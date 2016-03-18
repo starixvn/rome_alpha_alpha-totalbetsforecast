@@ -33,7 +33,7 @@
 
         [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Justification = "Reviewed!")]
         [HttpGet]
-        public JsonResult GetMatchForecast(MatchForecastQuery query)
+        public JsonResult GetMatchForecasts(MatchForecastsQuery query)
         {
             var viewModel = _mediator.Send(query);
 

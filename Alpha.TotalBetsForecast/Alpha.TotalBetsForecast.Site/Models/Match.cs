@@ -31,14 +31,6 @@
             }
         }
 
-        public string Name
-        {
-            get
-            {
-                return $"{HomeName} - {AwayName}";
-            }
-        }
-
         public byte LiveHomeScore { get; set; }
 
         public byte LiveAwayScore { get; set; }
@@ -51,19 +43,11 @@
 
         public string ShowTime { get; set; }
 
-        public string KickOffTimeString
+        public string Name
         {
             get
             {
-                return KickOffTime.ToString("hh:mm tt");
-            }
-        }
-
-        public string KickOffDateString
-        {
-            get
-            {
-                return KickOffTime.ToString("MM/dd/yyyy");
+                return $"{HomeName} - {AwayName}";
             }
         }
     }

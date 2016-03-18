@@ -10,7 +10,7 @@
 
     public class ForecastDataAccess : IForecastDataAccess
     {
-        public Tuple<IEnumerable<Match>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria)
+        public Tuple<IEnumerable<MatchForecast>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria)
         {
             Check.Argument.IsNotNull(criteria, "criteria");
 
@@ -18,7 +18,7 @@
             {
                 using (var queryMultiple = objectDb.QueryMultiple(criteria.GetSpParams()))
                 {
-                    var matches = queryMultiple.Read<Match>();
+                    var matches = queryMultiple.Read<MatchForecast>();
 
                     var betTypeForecasts = queryMultiple.Read<BetTypeForecastDto>();
 

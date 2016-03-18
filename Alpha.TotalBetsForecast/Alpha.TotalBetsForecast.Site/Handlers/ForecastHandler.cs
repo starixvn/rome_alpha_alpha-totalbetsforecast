@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Web.Mvc;
     using App_GlobalResources;
-    using Helpers;
     using MediatR;
     using Models;
     using Models.Requests;
@@ -15,7 +14,7 @@
     using Sunplus.Agent.Utilities;
 
     public class ForecastHandler :
-        IRequestHandler<MatchForecastQuery, LeagueForecastViewModel>,
+        IRequestHandler<MatchForecastsQuery, MatchForecastsViewModel>,
         IRequestHandler<MatchesQuery, IEnumerable<Match>>,
         IRequestHandler<LeaguesQuery, IEnumerable<League>>,
         IRequestHandler<IndexQuery, IndexViewModel>
@@ -30,14 +29,14 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed!")]
-        public LeagueForecastViewModel Handle(MatchForecastQuery message)
+        public MatchForecastsViewModel Handle(MatchForecastsQuery message)
         {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var viewModel = new LeagueForecastViewModel
+            var viewModel = new MatchForecastsViewModel
             {
                 LeagueName = (new League { Id = message.LeagueId }).Name,
             };
@@ -45,18 +44,33 @@
             try
             {
                 var matchForecasts = _forecastService.GetMatchForecasts(message);
+                var matchForecastViewModels = new List<MatchForecastViewModel>();
 
                 foreach (var matchForecast in matchForecasts)
                 {
 
+                    var matchForecastViewModel = new MatchForecastViewModel
+                    {
+                        Id = matchForecast.Id,
+                        HomeName = matchForecast.HomeName,
+                        AwayName = matchForecast.AwayName,
+                        LiveHomeScore = matchForecast.LiveHomeScore,
+                        LiveAwayScore = matchForecast.LiveAwayScore,
+                        IsLive = matchForecast.IsLive,
+                        HasLive = matchForecast.HasLive,
+                        ShowTime = matchForecast.ShowTime,
+                        KickOffTime = matchForecast.KickOffTime,
+                        BetTypeForecasts = matchForecast.BetTypeForecasts,
+                        TotalBetCount = matchForecast.TotalBetCount,
+                        TotalTurnover = matchForecast.TotalTurnover,
+                        TotalForecastWinLoss = matchForecast.TotalForecastWinLoss,
+                        MatchRowSpan = matchForecast.BetTypeForecasts.Count() * 2  //+ (matchForecast.MatchInfo.IsLive ? 1 : 0)
+                    };
+
+                    matchForecastViewModels.Add(matchForecastViewModel);
                 }
 
-                viewModel.BetTypeForecasts = matchForecast.BetTypeForecasts.OrderBy(betType => betType.BetTypeId, new BetTypeComparer());
-                viewModel.ForecastTotal = matchForecast.ForecastTotal;
-                viewModel.MatchRowSpan = viewModel.BetTypeForecasts.Sum(betTypeForecast =>
-                {
-                    return betTypeForecast.BetChoices.Count() + (betTypeForecast.BetChoices.First().WinLossColumnNames.Any() ? 1 : 0);
-                });
+                viewModel.MatchForecasts = matchForecastViewModels;
             }
             catch (Exception ex)
             {

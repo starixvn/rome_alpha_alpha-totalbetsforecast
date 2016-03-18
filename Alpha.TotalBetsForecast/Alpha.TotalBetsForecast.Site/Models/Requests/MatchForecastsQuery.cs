@@ -4,14 +4,14 @@
     using Sunplus.Agent.Model.Entities;
     using Views;
 
-    public class MatchForecastQuery : IRequest<LeagueForecastViewModel>
+    public class MatchForecastsQuery : IRequest<MatchForecastsViewModel>
     {
-        public MatchForecastQuery()
+        public MatchForecastsQuery()
         {
             CustId = UserSession.Current.CustId;
         }
 
-        internal MatchForecastQuery(int custId)
+        internal MatchForecastsQuery(int custId)
         {
             CustId = custId;
         }
@@ -24,6 +24,8 @@
 
         public int LeagueId { get; set; }
 
-        public int MatchId { get; set; }
+        public string MatchIds { get; set; }
+
+        public bool IsLive { get; set; }
     }
 }

@@ -8,6 +8,6 @@
 
     public interface IForecastDataAccess
     {
-        Tuple<IEnumerable<Match>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria);
+        Tuple<IEnumerable<MatchForecast>, IEnumerable<BetTypeForecastDto>, IEnumerable<WinLossColumnNameDto>> GetMatchForecast(ICriteria criteria);
     }
 }

@@ -205,7 +205,7 @@
     <value>Please select at least one event</value>
   </data>
   <data name="AllEvents" xml:space="preserve">
-    <value>AllEvents</value>
+    <value>All Events</value>
   </data>
   <data name="NoneLive" xml:space="preserve">
     <value>None Live</value>

@@ -61,7 +61,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to AllEvents.
+        ///   Looks up a localized string similar to All Events.
         /// </summary>
         public static string AllEvents {
             get {
