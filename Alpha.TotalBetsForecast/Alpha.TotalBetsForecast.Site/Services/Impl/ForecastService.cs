@@ -98,7 +98,7 @@
             var winLossColumnNames = new List<string>();
             var winLossValues = new List<decimal>();
 
-            if (betTypeForecast.IsOneXTwoBetType)
+            if (betTypeForecast.IsOneXTwo)
             {
                 winLossValues.Add(betTypeForecastDto.WinLossFirstColumn);
                 winLossValues.Add(betTypeForecastDto.WinLossSecondColumn);

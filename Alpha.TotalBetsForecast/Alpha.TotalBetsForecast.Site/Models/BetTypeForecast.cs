@@ -41,7 +41,7 @@
             }
         }
 
-        public bool IsOneXTwoBetType
+        public bool IsOneXTwo
         {
             get
             {

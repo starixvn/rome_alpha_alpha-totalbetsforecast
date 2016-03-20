@@ -119,20 +119,6 @@ var forecast = {
             return;
         }
 
-        ////forecast.removeMatches(matchIds);
-
-        ////var matchIdsLength = matchIds.length;
-        ////forecast.loadingMatches = [];
-        ////forecast.domElements.ddlRefresh.addClass('block-icon');
-
-        ////for (var i = 0; i < matchIdsLength; i++) {
-        ////    var currentMatchId = parseInt(matchIds[i]);
-        ////    forecast.loadingMatches.push(currentMatchId);
-        ////    forecast.loadSingleMatchForecast(currentMatchId);
-        ////}
-
-        ////$.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime, path: '/' });
-
         $.ajax({
             url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecasts),
             type: "GET",
@@ -162,7 +148,7 @@ var forecast = {
                             if (isNoInfoBody) {
                                 forecast.addNoInfoRow(html);
                             } else {
-                                forecast.addLeagueRow();
+                                forecastRenderer.renderLeagueRow();
                                 forecast.addMatchForecast(newMatchForecast, html);
                             }
 
@@ -170,44 +156,24 @@ var forecast = {
 
                             forecastRenderer.updateMatchesCached(matchForecast);
                         }
-
-                        forecast.removeLoadingMatches(matchForecast.MatchId);
                     }
                 }
+
+                forecast.removeLoadingIcon();
             }
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
-            forecast.removeLoadingMatches(matchId);
+            forecast.removeLoadingIcon();
         });
+
+        $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime, path: '/' });
     },
 
-    removeLoadingMatches: function (matchId) {
-        for (var i = forecast.loadingMatches.length; i >= 0; i--) {
-            if (forecast.loadingMatches[i] === matchId) {
-                forecast.loadingMatches.splice(i, 1);
-            }
-        }
-
-        if (forecast.loadingMatches.length == 0) {
-            forecast.domElements.ddlRefresh.removeClass('block-icon');
-            forecast.domElements.blockIconSmall.hide();
-            if (!forecast.isStartCountdown) {
-                //forecast.startCountdown();
-            }
-        }
-    },
-
-    removeMatches: function (matchIds) {
-        var matchElements = forecast.domElements.mainContent.find('tbody.match-data');
-
-        for (var matchIndex = 0; matchIndex < matchElements.length; matchIndex++) {
-            var currentMatch = $(matchElements[matchIndex]);
-            var currentMatchId = currentMatch.data('match-id'),
-                renderMatchId = _.find(matchIds, function (matchId) { return parseInt(matchId) === parseInt(currentMatchId); });
-
-            if (typeof (renderMatchId) === 'undefined') {
-                currentMatch.remove();
-            }
+    removeLoadingIcon: function () {
+        forecast.domElements.ddlRefresh.removeClass('block-icon');
+        forecast.domElements.blockIconSmall.hide();
+        if (!forecast.isStartCountdown) {
+            //forecast.startCountdown();
         }
     },
 
@@ -219,15 +185,6 @@ var forecast = {
                 : forecast.domElements.mainContent.append(rawHtml)
 
         forecast.domElements.mainContent.find('tbody[id=no-info-body]').remove();
-    },
-
-    addLeagueRow: function () {
-        var league = forecast.domElements.mainContent.find('tbody[id=league-name]');
-        if (league.length === 0) {
-            forecast.domElements.mainContent.append('<tbody id="league-name"><tr class="cl-league"><td colspan="11">'
-                + forecast.domElements.ddlLeague.find('option:selected').text()
-                + '</td></tr>');
-        }
     },
 
     addNoInfoRow: function (html) {

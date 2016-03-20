@@ -124,10 +124,10 @@
         color: #666; }
 
 .home-name {
-  color: #920b12; }
+  color: #e40000; }
 
 .live-status, .positive {
-  color: #910915; }
+  color: #e40000; }
 
 .match-time {
   font-weight: normal;
@@ -143,39 +143,30 @@
   .tblRpt tbody tr:hover td.win-loss-name {
     color: #333; }
 
-.tblRpt tbody.match-live {
-  background-color: #f2ab8d; }
-  .tblRpt tbody.match-live tr td {
-    background-color: #f2ab8d; }
-    .tblRpt tbody.match-live tr td.col-forecastTotal, .tblRpt tbody.match-live tr td.col-time, .tblRpt tbody.match-live tr td.col-event {
-      background-color: #f2ab8d; }
-    .tblRpt tbody.match-live tr td.col-forecastTotal {
-      text-align: center; }
-      .tblRpt tbody.match-live tr td.col-forecastTotal span {
-        display: inline-block;
-        min-width: 40px; }
-
 .offer-live {
   color: #920b12;
   text-transform: uppercase; }
 
 table * {
-  box-sizing: content-box;
-  font-weight: bold; }
+  box-sizing: content-box; }
 
 #dataTotalBet {
   min-width: 710px; }
 
-.tblRpt tr td.ex-col {
-  border-top: none;
-  border-bottom: none; }
-  .tblRpt tr td.ex-col.head {
-    background: #72809a;
-    color: #fff;
-    border-bottom: 1px solid #dfdfdf; }
-  .tblRpt tr td.ex-col span {
+.tblRpt tbody.match-live tr td.col-forecastTotal, .tblRpt tbody.match-live tr td.col-time, .tblRpt tbody.match-live tr td.col-event {
+  font-weight: bold; }
+
+.tblRpt tbody.match-live tr td.col-forecastTotal {
+  text-align: center; }
+  .tblRpt tbody.match-live tr td.col-forecastTotal span {
     display: inline-block;
     min-width: 40px; }
+
+.tblRpt tr td.col-time, .tblRpt tr td.col-event, .tblRpt tr td.col-forecastTotal {
+  font-weight: bold; }
+
+.tblRpt tr td.high-light-score {
+  background-color: #f2ac52 !important; }
 
 .tblRpt tr.last-row td.ex-col {
   border-bottom: 1px solid #dfdfdf; }
@@ -188,6 +179,20 @@ table * {
   background: #eae9ee; }
   .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
     background: #fff; }
+
+.tblRpt tr td.ex-col {
+  border-top: none;
+  border-bottom: none; }
+  .tblRpt tr td.ex-col.head {
+    background: #7e7f80;
+    color: #fff;
+    border-bottom: 1px solid #dfdfdf; }
+  .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
+    padding: 0px 8px;
+    height: 20px; }
+  .tblRpt tr td.ex-col span {
+    display: inline-block;
+    min-width: 40px; }
 
 .btn.btn-countdown {
   background-color: #eee;

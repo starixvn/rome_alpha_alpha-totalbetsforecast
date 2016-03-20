@@ -56,7 +56,7 @@
                         AwayName = matchForecast.AwayName,
                         LiveHomeScore = matchForecast.LiveHomeScore,
                         LiveAwayScore = matchForecast.LiveAwayScore,
-                        IsLive = matchForecast.IsLive,
+                        IsLive = message.IsLive,
                         HasLive = matchForecast.HasLive,
                         ShowTime = matchForecast.ShowTime,
                         KickOffTime = matchForecast.KickOffTime,

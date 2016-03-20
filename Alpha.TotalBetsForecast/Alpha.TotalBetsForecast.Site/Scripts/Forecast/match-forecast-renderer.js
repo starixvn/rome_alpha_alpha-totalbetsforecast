@@ -17,11 +17,12 @@ var forecastRenderer =
     },
 
     init: function () {
-        var mainContent = $('#mainContent');
+        forecastRenderer.mainContent = $('#mainContent');
+        forecastRenderer.ddlLeague = $('#ddlLeague');
 
-        forecastRenderer.resources.noDataText = mainContent.data('no-data-text');
-        forecastRenderer.resources.mathcOfferLive = mainContent.data('offer-live');
-        forecastRenderer.disableHighlight = mainContent.data('disable-highlight') === 'True';
+        forecastRenderer.resources.noDataText = forecastRenderer.mainContent.data('no-data-text');
+        forecastRenderer.resources.mathcOfferLive = forecastRenderer.mainContent.data('offer-live');
+        forecastRenderer.disableHighlight = forecastRenderer.mainContent.data('disable-highlight') === 'True';
     },
 
     formatNumber: function (number, formatString) {
@@ -40,26 +41,43 @@ var forecastRenderer =
         });
     },
 
-    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head" colspan="<%= colSpan %>">\
+    winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head <%= highLightScore %>" colspan="<%= colSpan %>">\
                                             <span class="winloss-name-<%= betTypeId %>-<%= winLossIndex %>"><%= winLossName %></span>\
                                         </td>'),
-    renderWinLossColumnName: function (betTypeForecast) {
+    renderWinLossColumnName: function (betTypeForecast, matchForecast) {
         var html = [];
-        html.push('<td class="ex-col">&nbsp;</td> \
-                    <td class="ex-col">&nbsp;</td> \
-                    <td class="ex-col">&nbsp;</td>');
+        html.push('<td class="ex-col winloss-name-empty">&nbsp;</td> \
+                    <td class="ex-col winloss-name-empty">&nbsp;</td> \
+                    <td class="ex-col winloss-name-empty">&nbsp;</td>');
 
         for (var i = 0; i < betTypeForecast.WinLossColumnNames.length; i++) {
-            var winlossName = betTypeForecast.WinLossColumnNames[i];
-            var colSpan = betTypeForecast.IsOneXTwoBetType
-            ? (i === 0 || i === 2 ? 2 : 1)
-            : 1;
+            var winlossName = betTypeForecast.WinLossColumnNames[i], 
+                colSpan = betTypeForecast.IsOneXTwo
+                ? (i === 0 || i === 2 ? 2 : 1)
+                : 1,
+                currentScoreClass = '';
+
+            if (matchForecast && matchForecast.IsLive) {
+                if ((betTypeForecast.IsHandicap && i === 2)
+                    || (betTypeForecast.IsOverUnder && i === 4)) {
+                    currentScoreClass = 'high-light-score';
+                }
+
+                if (betTypeForecast.IsOneXTwo) {
+                    if ((matchForecast.LiveHomeScore === matchForecast.LiveAwayScore && i == 1)
+                        || (matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && i == 0)
+                        || (matchForecast.LiveHomeScore < matchForecast.LiveAwayScore && i == 2)) {
+                        currentScoreClass = 'high-light-score';
+                    }
+                }
+            }
 
             html.push(forecastRenderer.winLossColumnNameTemplate({
                 betTypeId: betTypeForecast.BetTypeId,
                 winLossIndex: i,
                 winLossName: winlossName,
-                colSpan: colSpan
+                colSpan: colSpan,
+                highLightScore: currentScoreClass
             }));
         }
 
@@ -84,7 +102,7 @@ var forecastRenderer =
         var html = [],
             betTypeId = betTypeForecast.BetTypeId;
 
-        html.push('<tr>');
+        html.push('<tr class="last-row">');
 
         html.push(forecastRenderer.betTypeNameTemplate({ betTypeName: betTypeForecast.BetTypeName }));
 
@@ -102,10 +120,10 @@ var forecastRenderer =
 
         for (var i = 0; i < betTypeForecast.WinLossValues.length; i++) {
             var winLoss = betTypeForecast.WinLossValues[i],
-                colSpan = betTypeForecast.IsOneXTwoBetType
+                colSpan = (betTypeForecast.IsOneXTwo
                 ? (i === 0 || i === 2 ? 2 : 1)
-                : 1,
-                textAlign = betTypeForecast.IsOneXTwoBetType && i !== 1 ? 'text-center' : 'text-right';
+                : 1),
+                textAlign = betTypeForecast.IsOneXTwo && i !== 1 ? 'text-center' : 'text-right';
 
             html.push(forecastRenderer.winLossValueTemplate({
                 textAlign: textAlign,
@@ -168,12 +186,25 @@ var forecastRenderer =
                 matchRowSpan: matchForecast.MatchRowSpan,
                 matchId: matchForecast.Id,
                 matchLive: matchForecast.IsLive ? 'match-live' : '',
-                matchInfoHtml: firstBetType.IsOneXTwoBetType ? '' : matchInfoHtml,
-                firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(firstBetType),
-                firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType, true),
+                matchInfoHtml: firstBetType.IsOneXTwo ? '' : matchInfoHtml,
+                firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(firstBetType, matchForecast),
+                firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType),
             };
 
         return forecastRenderer.firstBetTypeTemplate(firstBetTypeTemplateData);
+    },
+
+    leagueRowTemplate: _.template('<tbody id="league-name"><tr class="cl-league"><td colspan="11">\
+                                        <%= leagueName %>\
+                                        </td></tr></tbody>'),
+    renderLeagueRow: function () {
+        var league = forecastRenderer.mainContent.find('tbody[id=league-name]');
+        if (league.length === 0) {
+            forecastRenderer.mainContent.append(forecastRenderer.leagueRowTemplate(
+                {
+                    leagueName: forecastRenderer.ddlLeague.find('option:selected').text()
+                }));
+        }
     },
 
     firstWinLossColumnNameTemplate: _.template('<tr>\
@@ -199,7 +230,7 @@ var forecastRenderer =
             var currentBetTypeForecast = matchForecast.BetTypeForecasts[i];
 
             html.push(forecastRenderer.firstWinLossColumnNameTemplate({
-                winLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(currentBetTypeForecast)
+                winLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(currentBetTypeForecast, matchForecast)
             }));
 
             html.push(forecastRenderer.renderBetTypeForecast(currentBetTypeForecast));
