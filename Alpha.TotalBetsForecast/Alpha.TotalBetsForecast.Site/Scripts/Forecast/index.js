@@ -10,6 +10,7 @@ var forecast = {
     isStartCountdown: false,
     loadingMatches: [],
     maxNumOfEvents: null,
+    currentRequest: null,
 
     urls: {
         getMatches: 'Forecast/GetMatches',
@@ -41,7 +42,6 @@ var forecast = {
 
     init: function () {
         $(document).ajaxStop($.unblockUI);
-
         forecast.cachedDOM();
         forecast.registerEvents();
 
@@ -110,6 +110,10 @@ var forecast = {
     },
 
     loadMatchForecasts: function () {
+        if (forecast.currentRequest) {
+            forecast.currentRequest.abort();
+        }
+
         forecast.stopCountdown();
         forecast.domElements.blockIconSmall.show();
         var matchIds = forecast.domElements.ddlMatch.val();
@@ -120,7 +124,7 @@ var forecast = {
             return;
         }
 
-        $.ajax({
+        forecast.currentRequest = $.ajax({
             url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecasts),
             type: "GET",
             contentType: "application/json; charset=utf-8",
@@ -131,35 +135,36 @@ var forecast = {
                 isLive: forecast.domElements.ddlDeadBall.val() === 'true',
                 version: Math.random()
             }
-        }).done(function (viewModel) {
-            if (viewModel && viewModel.MatchForecasts) {
-
-                for (var i = 0; i < viewModel.MatchForecasts.length; i++) {
-                    var matchForecast = viewModel.MatchForecasts[i];
-
-                    if (matchForecast) {
-
-                        var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
-
-                        if (!isUpdated) {
-                            var html = forecastRenderer.renderMatchForecast(matchForecast),
-                                newMatchForecast = $(html),
-                                isNoInfoBody = newMatchForecast.attr('id') === 'no-info-body';
-
-                            if (isNoInfoBody) {
-                                forecast.addNoInfoRow(html);
-                            } else {
-                                forecast.addMatchForecast(newMatchForecast, html);
-                            }
-
-                            forecast.domElements.mainContent.parent().show();
-
-                            forecastRenderer.updateMatchesCached(matchForecast);
-                        }
-                    }
-                }
+        }).done(function (matchForecasts) {
+            if (matchForecasts) {
 
                 forecast.removeLoadingIcon();
+
+                if (matchForecasts.length === 0) {
+                    var noInfoHtml = forecastRenderer.renderNoInfo('no-info-body');
+                    forecast.addNoInfoRow(noInfoHtml);
+                }
+                else {
+                    for (var i = 0; i < matchForecasts.length; i++) {
+                        var matchForecast = matchForecasts[i];
+
+                        if (matchForecast) {
+
+                            var isUpdated = forecastRenderer.trackChangedAndUpdatedValues(matchForecast);
+
+                            if (!isUpdated) {
+                                var html = forecastRenderer.renderMatchForecast(matchForecast),
+                                    newMatchForecast = $(html);
+
+                                forecast.addMatchForecast(newMatchForecast, html);
+                            }
+                        }
+                    }
+
+                    forecastRenderer.updateMatchesCached(matchForecasts);
+                }
+
+                forecast.domElements.mainContent.parent().show();
             }
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
@@ -173,7 +178,7 @@ var forecast = {
         forecast.domElements.ddlRefresh.removeClass('block-icon');
         forecast.domElements.blockIconSmall.hide();
         if (!forecast.isStartCountdown) {
-            //forecast.startCountdown();
+            forecast.startCountdown();
         }
     },
 
@@ -262,7 +267,9 @@ var forecast = {
                 forecast.renderLeagues(leagues);
                 forecast.loadMatches();
             }
-        });
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            try { $.unblockUI(); } catch (e) { }
+        });;
     },
 
     renderLeagues: function (leagues) {
@@ -312,7 +319,9 @@ var forecast = {
             if (matches) {
                 forecast.renderMatches(matches);
             }
-        });
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+            try { $.unblockUI(); } catch (e) { }
+        });;
     },
 
     renderMatches: function (matches) {

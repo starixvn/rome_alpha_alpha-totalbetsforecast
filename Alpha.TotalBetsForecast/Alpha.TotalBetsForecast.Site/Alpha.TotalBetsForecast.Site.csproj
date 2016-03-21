@@ -265,7 +265,6 @@
     <Compile Include="Models\Requests\MatchesQuery.cs" />
     <Compile Include="Models\Requests\MatchForecastsQuery.cs" />
     <Compile Include="Models\Views\IndexViewModel.cs" />
-    <Compile Include="Models\Views\MatchForecastsViewModel.cs" />
     <Compile Include="Models\Views\MatchForecastViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IEventService.cs" />

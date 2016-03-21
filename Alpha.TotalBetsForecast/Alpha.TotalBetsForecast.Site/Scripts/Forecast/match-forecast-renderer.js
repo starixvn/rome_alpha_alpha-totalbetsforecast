@@ -33,7 +33,7 @@ var forecastRenderer =
 
     noInfoTemplate: _.template('<tbody id="no-info-body" data-match-id="match-<%= matchId %>"> \
                     <tr class="no-info text-center"> \
-                        <td colspan="9"><%= noDataText %></td> \
+                        <td colspan="11"><%= noDataText %></td> \
                     </tr> \
                 </tbody>'),
     renderNoInfo: function (matchId) {
@@ -302,21 +302,24 @@ var forecastRenderer =
         }
     },
 
-    updateMatchesCached: function (matchForecast) {
+    updateMatchesCached: function (matchForecasts) {
         var matchLength = forecastRenderer.matches.length,
-            isExist = false;
+            removeMatchIds = [];
 
-        for (var matchIndex = 0; matchIndex < matchLength; matchIndex++) {
-            if (forecastRenderer.matches[matchIndex].Id === matchForecast.Id) {
-                forecastRenderer.matches[matchIndex] = matchForecast;
-                isExist = true;
-                break;
+        for (var i = 0; i < matchLength; i++) {
+            var currentMatch = forecastRenderer.matches[i];
+            var cachedMatchForecast = _.find(matchForecasts, function (match) { return match.Id === currentMatch.Id; });
+
+            if (!cachedMatchForecast) {
+                removeMatchIds.push(currentMatch.Id);
             }
         }
 
-        if (!isExist) {
-            forecastRenderer.matches.push(matchForecast);
-        }
+        forecastRenderer.matches = matchForecasts;
+        _.each(removeMatchIds, function (matchId)
+        {
+            forecastRenderer.mainContent.find('#match-' + matchId).remove();
+        });
     },
 
     trackChangedAndUpdatedValues: function (matchForecast) {

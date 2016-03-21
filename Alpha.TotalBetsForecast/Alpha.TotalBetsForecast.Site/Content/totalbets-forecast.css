@@ -171,7 +171,8 @@ table * {
     border-bottom: 1px solid #dfdfdf; }
   .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
     padding: 0px 8px;
-    height: 20px; }
+    height: 20px;
+    line-height: 20px; }
   .tblRpt tr td.ex-col span {
     display: inline-block;
     min-width: 40px; }

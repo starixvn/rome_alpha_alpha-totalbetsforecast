@@ -69,9 +69,12 @@
                     var winlossName = winLossNames.First(winLossName => winLossName.BetTypeId == betType.BetTypeId);
                     var betTypeForecast = BuildBetTypeForecast(betType, winlossName);
 
-                    match.TotalBetCount += betTypeForecast.BetCount;
-                    match.TotalTurnover += betTypeForecast.Turnover;
-                    match.TotalForecastWinLoss += CalculateTotalForecastWinLoss(match, betTypeForecast);
+                    if (query.IsLive)
+                    {
+                        match.TotalBetCount += betTypeForecast.BetCount;
+                        match.TotalTurnover += betTypeForecast.Turnover;
+                        match.TotalForecastWinLoss += CalculateTotalForecastWinLoss(match, betTypeForecast);
+                    }
 
                     betTypeForecasts.Add(betTypeForecast);
                 }
@@ -131,38 +134,33 @@
 
         private decimal CalculateTotalForecastWinLoss(Match match, BetTypeForecast betType)
         {
-            if(match.IsLive)
+            switch ((BetType)betType.BetTypeId)
             {
-                switch((BetType)betType.BetTypeId)
-                {
-                    case BetType.Handicap:
-                    case BetType._1st_Handicap:
+                case BetType.Handicap:
+                case BetType._1st_Handicap:
+                    return betType.WinLossValues.ElementAt(2);
+
+                case BetType.Over_Under:
+                case BetType._1st_Over_Under:
+                    return betType.WinLossValues.ElementAt(4);
+
+                case BetType.FT_1X2:
+                case BetType.FirstHalf_1X2:
+                    if (match.LiveHomeScore == match.LiveAwayScore)
+                    {
+                        return betType.WinLossValues.ElementAt(1);
+                    }
+                    else if (match.LiveHomeScore > match.LiveAwayScore)
+                    {
+                        return betType.WinLossValues.ElementAt(0);
+                    }
+                    else
+                    {
                         return betType.WinLossValues.ElementAt(2);
-
-                    case BetType.Over_Under:
-                    case BetType._1st_Over_Under:
-                        return betType.WinLossValues.ElementAt(4);
-
-                    case BetType.FT_1X2:
-                    case BetType.FirstHalf_1X2:
-                        if(match.LiveHomeScore == match.LiveAwayScore)
-                        {
-                            return betType.WinLossValues.ElementAt(1);
-                        }
-                        else if(match.LiveHomeScore > match.LiveAwayScore)
-                        {
-                            return betType.WinLossValues.ElementAt(0);
-                        }
-                        else
-                        {
-                            return betType.WinLossValues.ElementAt(2);
-                        }
-                    default:
-                        return 0;
-                }
+                    }
+                default:
+                    return 0;
             }
-
-            return 0;
         }
 
         private bool IsFullTimeBetType(int betTypeId)

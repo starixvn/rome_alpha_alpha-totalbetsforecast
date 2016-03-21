@@ -14,7 +14,7 @@
     using Sunplus.Agent.Utilities;
 
     public class ForecastHandler :
-        IRequestHandler<MatchForecastsQuery, MatchForecastsViewModel>,
+        IRequestHandler<MatchForecastsQuery, IEnumerable<MatchForecastViewModel>>,
         IRequestHandler<MatchesQuery, IEnumerable<Match>>,
         IRequestHandler<LeaguesQuery, IEnumerable<League>>,
         IRequestHandler<IndexQuery, IndexViewModel>
@@ -29,22 +29,18 @@
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "Reviewed!")]
-        public MatchForecastsViewModel Handle(MatchForecastsQuery message)
+        public IEnumerable<MatchForecastViewModel> Handle(MatchForecastsQuery message)
         {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var viewModel = new MatchForecastsViewModel
-            {
-                LeagueName = (new League { Id = message.LeagueId }).Name,
-            };
+            var matchForecastViewModels = new List<MatchForecastViewModel>();
 
             try
             {
                 var matchForecasts = _forecastService.GetMatchForecasts(message);
-                var matchForecastViewModels = new List<MatchForecastViewModel>();
 
                 foreach (var matchForecast in matchForecasts)
                 {
@@ -68,15 +64,13 @@
 
                     matchForecastViewModels.Add(matchForecastViewModel);
                 }
-
-                viewModel.MatchForecasts = matchForecastViewModels;
             }
             catch (Exception ex)
             {
                 Logs.FilterInfoWarnOrError(ex);
             }
 
-            return viewModel;
+            return matchForecastViewModels;
         }
 
         public IEnumerable<Match> Handle(MatchesQuery message)
