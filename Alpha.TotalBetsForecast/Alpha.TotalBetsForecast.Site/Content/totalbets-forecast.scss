@@ -150,44 +150,6 @@ body {
     }
 }
 
-.home-name {
-    color: #e40000;
-}
-
-.live-status, .positive {
-    color: #e40000;
-}
-
-.match-time {
-    font-weight: normal;
-    color: #313131;
-}
-
-.ex-text {
-    color: #666;
-}
-
-.tblRpt tbody tr {
-    &:hover {
-        background-color: #f8ff8d;
-
-        td {
-            &.ex-col {
-                background-color: #f8ff8d !important;
-            }
-
-            &.win-loss-name {
-                color: #333;
-            }
-        }
-    }
-}
-
-.offer-live {
-    color: #920b12;
-    text-transform: uppercase;
-}
-
 table * {
     box-sizing: content-box;
 }
@@ -197,37 +159,48 @@ table * {
 }
 
 .tblRpt {
-    tbody.match-live {
-        //background-color: #f2ab8d;
 
-        tr td {
-            //background-color: #f2ab8d;
+    tbody tr {
+        &:hover {
+            background-color: #f8ff8d;
 
-            &.col-forecastTotal, &.col-time, &.col-event {
-                //background-color: #f2ab8d;
-                font-weight: bold;
-            }
+            td {
+                &.ex-col {
+                    background-color: #f8ff8d !important;
+                }
 
-            &.col-forecastTotal {
-                text-align: center;
-
-                span {
-                    display: inline-block;
-                    min-width: 40px;
+                &.win-loss-name {
+                    color: #333;
                 }
             }
         }
     }
 
     tr td {
-        &.col-time, &.col-event, &.col-forecastTotal {
+        &.col-time, &.col-event {
             font-weight: bold;
+
+            &:hover {
+                background-color: #fff !important;
+            }
         }
+
+        
 
         &.high-light-score {
             background-color: #f2ac52 !important;
         }
+
+        &.high-light-win-loss {
+            font-weight: bold;
+        }
     }
+
+    tr:hover td {
+            &.col-time, &.col-event {
+                background-color: #fff !important;
+            }
+        }
 
     tr.last-row td.ex-col {
         border-bottom: 1px solid #dfdfdf;
@@ -265,6 +238,32 @@ table * {
             display: inline-block;
             min-width: 40px;
         }
+    }
+
+    tr.total-row {
+        font-weight: bold;
+        font-size: 13px;
+
+        td.total-text {
+            background-color: #f2ac52;
+        }
+    }
+
+    .home-name, .offer-live, .live-status, .positive  {
+        color: #e40000;
+    }
+
+    .offer-live {
+        text-transform: uppercase;
+    }
+
+    .match-time {
+        font-weight: normal;
+        color: #313131;
+    }
+
+    .ex-text {
+        color: #666;
     }
 }
 

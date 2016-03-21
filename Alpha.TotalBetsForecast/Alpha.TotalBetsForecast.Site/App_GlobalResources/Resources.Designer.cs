@@ -268,11 +268,11 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None Live.
+        ///   Looks up a localized string similar to Non-Live.
         /// </summary>
-        public static string NoneLive {
+        public static string NonLive {
             get {
-                return ResourceManager.GetString("NoneLive", resourceCulture);
+                return ResourceManager.GetString("NonLive", resourceCulture);
             }
         }
         
@@ -318,6 +318,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         public static string Time {
             get {
                 return ResourceManager.GetString("Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         

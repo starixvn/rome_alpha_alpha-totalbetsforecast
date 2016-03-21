@@ -123,18 +123,11 @@
       .totalandforecast .breadcrumb li .help:hover {
         color: #666; }
 
-.home-name {
-  color: #e40000; }
+table * {
+  box-sizing: content-box; }
 
-.live-status, .positive {
-  color: #e40000; }
-
-.match-time {
-  font-weight: normal;
-  color: #313131; }
-
-.ex-text {
-  color: #666; }
+#dataTotalBet {
+  min-width: 710px; }
 
 .tblRpt tbody tr:hover {
   background-color: #f8ff8d; }
@@ -143,30 +136,19 @@
   .tblRpt tbody tr:hover td.win-loss-name {
     color: #333; }
 
-.offer-live {
-  color: #920b12;
-  text-transform: uppercase; }
-
-table * {
-  box-sizing: content-box; }
-
-#dataTotalBet {
-  min-width: 710px; }
-
-.tblRpt tbody.match-live tr td.col-forecastTotal, .tblRpt tbody.match-live tr td.col-time, .tblRpt tbody.match-live tr td.col-event {
+.tblRpt tr td.col-time, .tblRpt tr td.col-event {
   font-weight: bold; }
-
-.tblRpt tbody.match-live tr td.col-forecastTotal {
-  text-align: center; }
-  .tblRpt tbody.match-live tr td.col-forecastTotal span {
-    display: inline-block;
-    min-width: 40px; }
-
-.tblRpt tr td.col-time, .tblRpt tr td.col-event, .tblRpt tr td.col-forecastTotal {
-  font-weight: bold; }
+  .tblRpt tr td.col-time:hover, .tblRpt tr td.col-event:hover {
+    background-color: #fff !important; }
 
 .tblRpt tr td.high-light-score {
   background-color: #f2ac52 !important; }
+
+.tblRpt tr td.high-light-win-loss {
+  font-weight: bold; }
+
+.tblRpt tr:hover td.col-time, .tblRpt tr:hover td.col-event {
+  background-color: #fff !important; }
 
 .tblRpt tr.last-row td.ex-col {
   border-bottom: 1px solid #dfdfdf; }
@@ -193,6 +175,25 @@ table * {
   .tblRpt tr td.ex-col span {
     display: inline-block;
     min-width: 40px; }
+
+.tblRpt tr.total-row {
+  font-weight: bold;
+  font-size: 13px; }
+  .tblRpt tr.total-row td.total-text {
+    background-color: #f2ac52; }
+
+.tblRpt .home-name, .tblRpt .offer-live, .tblRpt .live-status, .tblRpt .positive {
+  color: #e40000; }
+
+.tblRpt .offer-live {
+  text-transform: uppercase; }
+
+.tblRpt .match-time {
+  font-weight: normal;
+  color: #313131; }
+
+.tblRpt .ex-text {
+  color: #666; }
 
 .btn.btn-countdown {
   background-color: #eee;

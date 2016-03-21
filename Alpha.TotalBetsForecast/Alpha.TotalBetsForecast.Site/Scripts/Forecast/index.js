@@ -148,7 +148,6 @@ var forecast = {
                             if (isNoInfoBody) {
                                 forecast.addNoInfoRow(html);
                             } else {
-                                forecastRenderer.renderLeagueRow();
                                 forecast.addMatchForecast(newMatchForecast, html);
                             }
 

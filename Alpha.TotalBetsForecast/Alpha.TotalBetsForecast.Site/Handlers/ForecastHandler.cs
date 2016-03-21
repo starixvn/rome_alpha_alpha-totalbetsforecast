@@ -64,7 +64,7 @@
                         TotalBetCount = matchForecast.TotalBetCount,
                         TotalTurnover = matchForecast.TotalTurnover,
                         TotalForecastWinLoss = matchForecast.TotalForecastWinLoss,
-                        MatchRowSpan = matchForecast.BetTypeForecasts.Count() * 2  //+ (matchForecast.MatchInfo.IsLive ? 1 : 0)
+                        MatchRowSpan = matchForecast.BetTypeForecasts.Count() * 2 + (message.IsLive ? 1 : 0)
                     };
 
                     matchForecastViewModels.Add(matchForecastViewModel);
@@ -114,7 +114,7 @@
                     },
                     new SelectListItem
                     {
-                        Text = Resources.Deadball,
+                        Text = Resources.NonLive,
                         Value = "false",
                         Selected = !message.IsLive
                     }

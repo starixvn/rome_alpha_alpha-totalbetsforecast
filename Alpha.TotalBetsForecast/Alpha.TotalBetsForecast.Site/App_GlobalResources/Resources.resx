@@ -207,7 +207,10 @@
   <data name="AllEvents" xml:space="preserve">
     <value>All Events</value>
   </data>
-  <data name="NoneLive" xml:space="preserve">
-    <value>None Live</value>
+  <data name="NonLive" xml:space="preserve">
+    <value>Non-Live</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
 </root>

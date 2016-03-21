@@ -13,7 +13,8 @@ var forecastRenderer =
     resources:
     {
         mathcOfferLive: 'mathcOfferLive',
-        noDataText: 'noDataText'
+        noDataText: 'noDataText',
+        total: 'totalText'
     },
 
     init: function () {
@@ -23,6 +24,7 @@ var forecastRenderer =
         forecastRenderer.resources.noDataText = forecastRenderer.mainContent.data('no-data-text');
         forecastRenderer.resources.mathcOfferLive = forecastRenderer.mainContent.data('offer-live');
         forecastRenderer.disableHighlight = forecastRenderer.mainContent.data('disable-highlight') === 'True';
+        forecastRenderer.resources.total = forecastRenderer.mainContent.data('total-text');
     },
 
     formatNumber: function (number, formatString) {
@@ -93,12 +95,12 @@ var forecastRenderer =
     betTypeNameTemplate: _.template('<td class="ex-col">\
                                             <span class="pull-left"><%= betTypeName %></span>\
                                         </td>'),
-    betCountTemplate: _.template('<td class="ex-col text-right"><span class="bet-count-<%= choiceIdentify %>"><%= betCount %></span></td>'),
-    turnoverTemplate: _.template('<td class="ex-col text-right"><span class="turnover-<%= choiceIdentify %>"><%= turnover %></span></td>'),
-    winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %>" colspan="<%= colSpan %>" >\
+    betCountTemplate: _.template('<td class="ex-col text-right"><span class="bet-count-<%= betTypeId %>"><%= betCount %></span></td>'),
+    turnoverTemplate: _.template('<td class="ex-col text-right"><span class="turnover-<%= betTypeId %>"><%= turnover %></span></td>'),
+    winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %> <%= winLossClass %>" colspan="<%= colSpan %>" >\
                                         <%= winLossValue %> \
                                     </td>'),
-    renderBetTypeForecast: function (betTypeForecast) {
+    renderBetTypeForecast: function (betTypeForecast, matchForecast) {
         var html = [],
             betTypeId = betTypeForecast.BetTypeId;
 
@@ -108,13 +110,13 @@ var forecastRenderer =
 
         html.push(forecastRenderer.betCountTemplate(
            {
-               choiceIdentify: betTypeId,
+               betTypeId: betTypeId,
                betCount: forecastRenderer.formatNumber(betTypeForecast.BetCount, '0,0')
            }));
 
         html.push(forecastRenderer.turnoverTemplate(
             {
-                choiceIdentify: betTypeId,
+                betTypeId: betTypeId,
                 turnover: forecastRenderer.formatNumber(betTypeForecast.Turnover)
             }));
 
@@ -123,12 +125,29 @@ var forecastRenderer =
                 colSpan = (betTypeForecast.IsOneXTwo
                 ? (i === 0 || i === 2 ? 2 : 1)
                 : 1),
-                textAlign = betTypeForecast.IsOneXTwo && i !== 1 ? 'text-center' : 'text-right';
+                textAlign = betTypeForecast.IsOneXTwo && i !== 1 ? 'text-center' : 'text-right',
+                highLightWinLossClass = '';
+
+            if (matchForecast && matchForecast.IsLive) {
+                if ((betTypeForecast.IsHandicap && i === 2)
+                    || (betTypeForecast.IsOverUnder && i === 4)) {
+                    highLightWinLossClass = 'high-light-win-loss';
+                }
+
+                if (betTypeForecast.IsOneXTwo) {
+                    if ((matchForecast.LiveHomeScore === matchForecast.LiveAwayScore && i == 1)
+                        || (matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && i == 0)
+                        || (matchForecast.LiveHomeScore < matchForecast.LiveAwayScore && i == 2)) {
+                        highLightWinLossClass = 'high-light-win-loss';
+                    }
+                }
+            }
 
             html.push(forecastRenderer.winLossValueTemplate({
                 textAlign: textAlign,
                 colSpan: colSpan,
-                winLossValue: forecastRenderer.renderWinLossNumber(winLoss, betTypeId + '-' + i)
+                winLossValue: forecastRenderer.renderWinLossNumber(winLoss, betTypeId + '-' + i),
+                winLossClass: highLightWinLossClass
             }));
         }
 
@@ -188,32 +207,32 @@ var forecastRenderer =
                 matchLive: matchForecast.IsLive ? 'match-live' : '',
                 matchInfoHtml: firstBetType.IsOneXTwo ? '' : matchInfoHtml,
                 firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(firstBetType, matchForecast),
-                firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType),
+                firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType, matchForecast),
             };
 
         return forecastRenderer.firstBetTypeTemplate(firstBetTypeTemplateData);
     },
 
-    leagueRowTemplate: _.template('<tbody id="league-name"><tr class="cl-league"><td colspan="11">\
-                                        <%= leagueName %>\
-                                        </td></tr></tbody>'),
-    renderLeagueRow: function () {
-        var league = forecastRenderer.mainContent.find('tbody[id=league-name]');
-        if (league.length === 0) {
-            forecastRenderer.mainContent.append(forecastRenderer.leagueRowTemplate(
-                {
-                    leagueName: forecastRenderer.ddlLeague.find('option:selected').text()
-                }));
+    totalRowTemplate: _.template('<tr class="last-row total-row">\
+                                    <td class="ex-col total-text">\
+                                        <%= totalText %>\
+                                    </td>\
+                                    <td class="ex-col text-right"><span class="total-bet-count-<%= matchId %>"><%= betCount %></span></td>\
+                                    <td class="ex-col text-right"><span class="total-turn-over-<%= matchId %>"><%= turnOver %></span></td>\
+                                    <td class="ex-col text-center" colspan="5"><span class="total-win-loss-<%= matchId %>"><%= winloss %></span></td>\
+                                </tr>'),
+    renderTotalRow: function (matchForecast) {
+        if (matchForecast.IsLive) {
+            return forecastRenderer.totalRowTemplate({
+                totalText: forecastRenderer.resources.total,
+                betCount: forecastRenderer.formatNumber(matchForecast.TotalBetCount, '0,0.'),
+                turnOver: forecastRenderer.formatNumber(matchForecast.TotalTurnover),
+                winloss: forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss),
+                matchId: matchForecast.Id
+            });
         }
-    },
 
-    firstWinLossColumnNameTemplate: _.template('<tr>\
-            <td class="ex-col">\
-                                            <span class="pull-left"><%= betTypeName %></span>\
-                                        </td>\
-        </tr>'),
-    renderTotalRow: function () {
-
+        return '';
     },
 
     firstWinLossColumnNameTemplate: _.template('<tr><%= winLossColumnNameHtml %></tr>'),
@@ -233,15 +252,17 @@ var forecastRenderer =
                 winLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(currentBetTypeForecast, matchForecast)
             }));
 
-            html.push(forecastRenderer.renderBetTypeForecast(currentBetTypeForecast));
+            html.push(forecastRenderer.renderBetTypeForecast(currentBetTypeForecast, matchForecast));
         }
+
+        html.push(forecastRenderer.renderTotalRow(matchForecast));
 
         html.push('</tbody>');
 
         return html.join('');
     },
 
-    highlightChanged: function (element) {
+    highlightChanged: function (element, isIncrease) {
         if (!forecastRenderer.disableHighlight) {
             element.pulse({
                 backgroundColor: '#fdd64c',
@@ -254,31 +275,20 @@ var forecastRenderer =
         }
     },
 
-    trackMatchInfoChanged: function (matchForecastElement, matchForecast) {
-        var matchScore = matchForecastElement.find('.match-score'),
-            homeScore = matchScore.find('.home-score'),
-            awayScore = matchScore.find('.away-score'),
-            forecastTotal = matchForecastElement.find('.forecast-total-value');
-
-        if (parseInt(homeScore.text()) !== matchForecast.LiveHomeScore
-            || parseInt(awayScore.text()) !== matchForecast.LiveAwayScore) {
-
-            homeScore.text(matchForecast.LiveHomeScore);
-            awayScore.text(matchForecast.LiveAwayScore);
-            forecastRenderer.highlightChanged(matchScore);
-        }
-
-        forecastRenderer.checkChangedAndHighlight(forecastTotal, matchForecast.ForecastTotal);
-    },
-
     checkChangedAndHighlight: function (element, value, formatString) {
         if (_.isNumber(value)) {
             value = forecastRenderer.formatNumber(value, formatString);
         }
 
-        if (element.text().trim() !== value.trim()) {
+        if (element
+            && value 
+            && element.text().trim() !== value.trim()) {
+
             element.text(value);
-            forecastRenderer.highlightChanged(element);
+
+            forecastRenderer.highlightChanged(
+                element.next(),
+                parseFloat(element.text().trim()) < parseFloat(value.trim()));
         }
     },
 
@@ -310,36 +320,20 @@ var forecastRenderer =
                 return false;
             }
 
-            forecastRenderer.trackMatchInfoChanged(matchForecastElement, matchForecast);
-
             for (var betTypeIndex = 0; betTypeIndex < matchForecast.BetTypeForecasts.length; betTypeIndex++) {
                 var currentBetType = matchForecast.BetTypeForecasts[betTypeIndex];
 
-                for (var betChoiceIndex = 0; betChoiceIndex < currentBetType.BetChoices.length; betChoiceIndex++) {
-                    var currentBetChoice = currentBetType.BetChoices[betChoiceIndex],
-                        choiceIdentify = currentBetType.BetTypeId + '-' + betChoiceIndex;;
+                forecastRenderer.checkChangedAndHighlight(
+                    matchForecastElement.find('.bet-count-' + currentBetType.BetTypeId),
+                    currentBetType.BetCount, '0,0');
+                forecastRenderer.checkChangedAndHighlight(
+                    matchForecastElement.find('.turnover-' + currentBetType.BetTypeId),
+                    currentBetType.Turnover);
 
+                for (var winLossIndex = 0; winLossIndex < currentBetType.WinLossValues.length; winLossIndex++) {
                     forecastRenderer.checkChangedAndHighlight(
-                        matchForecastElement.find('.handicap-value-' + choiceIdentify),
-                        currentBetChoice.HandicapValue);
-                    forecastRenderer.checkChangedAndHighlight(
-                        matchForecastElement.find('.bet-count-' + choiceIdentify),
-                        currentBetChoice.BetCount, '0,0');
-                    forecastRenderer.checkChangedAndHighlight(
-                        matchForecastElement.find('.turnover-' + choiceIdentify),
-                        currentBetChoice.Turnover);
-
-                    for (var winLossIndex = 0; winLossIndex < currentBetChoice.WinLossValues.length; winLossIndex++) {
-                        if (currentBetChoice.WinLossColumnNames.length > 0) {
-                            forecastRenderer.checkChangedAndHighlight(
-                                matchForecastElement.find('.winloss-name-' + currentBetType.BetTypeId + '-' + winLossIndex),
-                                forecastRenderer.combineWinLossName(currentBetChoice.WinLossColumnNames[winLossIndex], currentBetType.IsOverUnder));
-                        }
-
-                        forecastRenderer.checkChangedAndHighlight(
-                            matchForecastElement.find('.winloss-value-' + choiceIdentify + '-' + winLossIndex),
-                            currentBetChoice.WinLossValues[winLossIndex]);
-                    }
+                        matchForecastElement.find('.winloss-value-' + currentBetType.BetTypeId + '-' + winLossIndex),
+                        currentBetType.WinLossValues[winLossIndex]);
                 }
             }
 
@@ -347,10 +341,5 @@ var forecastRenderer =
         }
 
         return false;
-
-////        [5:23:55 PM] Lan Dang - Natalie: #7e7f80 grey
-////[5:24:08 PM] Lan Dang - Natalie: #f2ac52
-////[5:24:14 PM] Lan Dang - Natalie: nè Ricky
-////[5:24:41 PM] Lan Dang - Natalie: number red #e40000
     }
 };
