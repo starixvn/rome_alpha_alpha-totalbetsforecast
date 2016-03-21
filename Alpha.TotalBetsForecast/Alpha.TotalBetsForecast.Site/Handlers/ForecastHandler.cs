@@ -48,7 +48,6 @@
 
                 foreach (var matchForecast in matchForecasts)
                 {
-
                     var matchForecastViewModel = new MatchForecastViewModel
                     {
                         Id = matchForecast.Id,

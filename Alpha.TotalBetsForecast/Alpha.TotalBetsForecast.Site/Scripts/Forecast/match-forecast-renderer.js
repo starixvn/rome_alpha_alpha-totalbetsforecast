@@ -88,8 +88,8 @@ var forecastRenderer =
 
     renderWinLossNumber: function (winLoss, index) {
         return winLoss > 0
-                ? _.template('<span class="positive winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index })
-                : _.template('<span class="winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index });
+                ? _.template('<span class="win-loss-value positive winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index })
+                : _.template('<span class="win-loss-value winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index });
     },
 
     betTypeNameTemplate: _.template('<td class="ex-col">\
@@ -199,13 +199,12 @@ var forecastRenderer =
                         <%= firstWinLossColumnNameHtml %>\
                     </tr><%= firstBetTypeForecastHtml %>'),
     renderFirstBetTypeRow: function (matchForecast) {
-        var matchInfoHtml = forecastRenderer.renderMatchInfo(matchForecast),
-            firstBetType = matchForecast.BetTypeForecasts[0],
+        var firstBetType = matchForecast.BetTypeForecasts[0],
             firstBetTypeTemplateData = {
                 matchRowSpan: matchForecast.MatchRowSpan,
                 matchId: matchForecast.Id,
                 matchLive: matchForecast.IsLive ? 'match-live' : '',
-                matchInfoHtml: firstBetType.IsOneXTwo ? '' : matchInfoHtml,
+                matchInfoHtml: forecastRenderer.renderMatchInfo(matchForecast),
                 firstWinLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(firstBetType, matchForecast),
                 firstBetTypeForecastHtml: forecastRenderer.renderBetTypeForecast(firstBetType, matchForecast),
             };
@@ -219,7 +218,7 @@ var forecastRenderer =
                                     </td>\
                                     <td class="ex-col text-right"><span class="total-bet-count-<%= matchId %>"><%= betCount %></span></td>\
                                     <td class="ex-col text-right"><span class="total-turn-over-<%= matchId %>"><%= turnOver %></span></td>\
-                                    <td class="ex-col text-center" colspan="5"><span class="total-win-loss-<%= matchId %>"><%= winloss %></span></td>\
+                                    <td class="ex-col text-center" colspan="5"><span class="win-loss-value total-win-loss-<%= matchId %> <%= positiveClass %>"><%= winloss %></span></td>\
                                 </tr>'),
     renderTotalRow: function (matchForecast) {
         if (matchForecast.IsLive) {
@@ -228,7 +227,8 @@ var forecastRenderer =
                 betCount: forecastRenderer.formatNumber(matchForecast.TotalBetCount, '0,0.'),
                 turnOver: forecastRenderer.formatNumber(matchForecast.TotalTurnover),
                 winloss: forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss),
-                matchId: matchForecast.Id
+                matchId: matchForecast.Id,
+                positiveClass: matchForecast.TotalForecastWinLoss > 0 ? 'positive' : ''
             });
         }
 
@@ -280,15 +280,25 @@ var forecastRenderer =
             value = forecastRenderer.formatNumber(value, formatString);
         }
 
-        if (element
-            && value 
+        var oldValue = parseFloat(element.text());
+
+        if (value 
             && element.text().trim() !== value.trim()) {
+
+            if (element.hasClass('win-loss-value')) {
+                if (parseFloat(value) > 0 && !element.hasClass('positive')) {
+                    element.addClass('positive');
+                }
+                else {
+                    element.removeClass('positive');
+                }
+            }
 
             element.text(value);
 
             forecastRenderer.highlightChanged(
                 element.next(),
-                parseFloat(element.text().trim()) < parseFloat(value.trim()));
+                oldValue < parseFloat(value.trim()));
         }
     },
 
@@ -336,6 +346,16 @@ var forecastRenderer =
                         currentBetType.WinLossValues[winLossIndex]);
                 }
             }
+
+            forecastRenderer.checkChangedAndHighlight(
+                   matchForecastElement.find('.total-bet-count-' + matchForecast.Id),
+                   matchForecast.TotalBetCount, '0,0');
+            forecastRenderer.checkChangedAndHighlight(
+                matchForecastElement.find('.total-turn-over-' + matchForecast.Id),
+                matchForecast.TotalTurnover);
+            forecastRenderer.checkChangedAndHighlight(
+                matchForecastElement.find('.total-win-loss-' + matchForecast.Id),
+                matchForecast.TotalForecastWinLoss);
 
             return true;
         }

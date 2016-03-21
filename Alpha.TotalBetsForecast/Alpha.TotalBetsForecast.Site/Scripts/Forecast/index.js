@@ -9,6 +9,7 @@ var forecast = {
     loadMatchesInterval: 5 * 60 * 1000,
     isStartCountdown: false,
     loadingMatches: [],
+    maxNumOfEvents: null,
 
     urls: {
         getMatches: 'Forecast/GetMatches',
@@ -353,9 +354,38 @@ var forecast = {
             nonSelectedText: forecast.domElements.ddlMatch.data('init-lable'),
             nSelectedText: ' ' + forecast.domElements.ddlMatch.data('selected-event-text'),
             allSelectedText: forecast.domElements.ddlMatch.data('select-all-text'),
-            includeSelectAllOption: true,
+            includeSelectAllOption: !forecast.maxNumOfEvents,
             onChange: function (option, checked) {
                 forecast.domElements.btnMatchSelect.tooltip('destroy');
+
+                if (forecast.maxNumOfEvents) {
+                    //// This is sample code of boot strap multiple select, please do not modify
+                    // Get selected options.
+                    var selectedOptions = forecast.domElements.ddlMatch.find('option:selected');
+
+                    if (selectedOptions.length >= forecast.maxNumOfEvents) {
+                        // Disable all other checkboxes.
+                        var nonSelectedOptions = forecast.domElements.ddlMatch.find('option').filter(function () {
+                            return !$(this).is(':selected');
+                        });
+
+                        var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                        nonSelectedOptions.each(function () {
+                            var input = $('input[value="' + $(this).val() + '"]');
+                            input.prop('disabled', true);
+                            input.parent('li').addClass('disabled');
+                        });
+                    }
+                    else {
+                        // Enable all checkboxes.
+                        var dropdown = forecast.domElements.ddlMatch.siblings('.multiselect-container');
+                        forecast.domElements.ddlMatch.find('option').each(function () {
+                            var input = $('input[value="' + $(this).val() + '"]');
+                            input.prop('disabled', false);
+                            input.parent('li').addClass('disabled');
+                        });
+                    }
+                }
             }
         });
 
