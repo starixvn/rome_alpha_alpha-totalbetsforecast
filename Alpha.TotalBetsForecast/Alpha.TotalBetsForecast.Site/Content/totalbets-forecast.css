@@ -129,72 +129,61 @@ table * {
 #dataTotalBet {
   min-width: 710px; }
 
-.tblRpt tbody tr:hover {
-  background-color: #f8ff8d; }
-  .tblRpt tbody tr:hover td.ex-col {
-    background-color: #f8ff8d !important; }
-  .tblRpt tbody tr:hover td.win-loss-name {
-    color: #333; }
-
-.tblRpt tr td.col-time, .tblRpt tr td.col-event {
-  font-weight: bold; }
-  .tblRpt tr td.col-time:hover, .tblRpt tr td.col-event:hover {
+.tblRpt {
+  color: #000; }
+  .tblRpt tbody tr:hover {
+    background-color: #f8ff8d; }
+    .tblRpt tbody tr:hover td.ex-col {
+      background-color: #f8ff8d !important; }
+    .tblRpt tbody tr:hover td.win-loss-name {
+      color: #333; }
+  .tblRpt tr td.col-time, .tblRpt tr td.col-event {
+    font-weight: bold; }
+    .tblRpt tr td.col-time:hover, .tblRpt tr td.col-event:hover {
+      background-color: #fff !important; }
+  .tblRpt tr td.high-light-score {
+    background-color: #bbcae9 !important; }
+  .tblRpt tr td.high-light-win-loss {
+    font-weight: bold; }
+  .tblRpt tr:hover td.col-time, .tblRpt tr:hover td.col-event {
     background-color: #fff !important; }
-
-.tblRpt tr td.high-light-score {
-  background-color: #bbcae9 !important; }
-
-.tblRpt tr td.high-light-win-loss {
-  font-weight: bold; }
-
-.tblRpt tr:hover td.col-time, .tblRpt tr:hover td.col-event {
-  background-color: #fff !important; }
-
-.tblRpt tr.last-row td.ex-col {
-  border-bottom: 1px solid #dfdfdf; }
-
-.tblRpt tr.cl-league td {
-  text-transform: uppercase;
-  background: #f3f5e0; }
-
-.tblRpt tr.even td {
-  background: #eae9ee; }
-  .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
-    background: #fff; }
-
-.tblRpt tr td.ex-col {
-  border-top: none;
-  border-bottom: none; }
-  .tblRpt tr td.ex-col.head {
-    background: #ebeaea;
-    color: #000;
+  .tblRpt tr.last-row td.ex-col {
     border-bottom: 1px solid #dfdfdf; }
-  .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
-    padding: 0px 8px;
-    height: 20px;
-    line-height: 20px; }
-  .tblRpt tr td.ex-col span {
-    display: inline-block;
-    min-width: 40px; }
-
-.tblRpt tr.total-row {
-  font-weight: bold;
-  font-size: 13px; }
-  .tblRpt tr.total-row td.total-text {
-    background-color: #bbcae9; }
-
-.tblRpt .home-name, .tblRpt .offer-live, .tblRpt .live-status, .tblRpt .positive {
-  color: #e40000; }
-
-.tblRpt .offer-live {
-  text-transform: uppercase; }
-
-.tblRpt .match-time {
-  font-weight: normal;
-  color: #313131; }
-
-.tblRpt .ex-text {
-  color: #666; }
+  .tblRpt tr.cl-league td {
+    text-transform: uppercase;
+    background: #f3f5e0; }
+  .tblRpt tr.even td {
+    background: #eae9ee; }
+    .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
+      background: #fff; }
+  .tblRpt tr td.ex-col {
+    border-top: none;
+    border-bottom: none; }
+    .tblRpt tr td.ex-col.head {
+      background: #ebeaea;
+      color: #000;
+      border-bottom: 1px solid #dfdfdf; }
+    .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
+      padding: 0px 8px;
+      height: 20px;
+      line-height: 20px; }
+    .tblRpt tr td.ex-col span {
+      display: inline-block;
+      min-width: 40px; }
+  .tblRpt tr.total-row {
+    font-weight: bold;
+    font-size: 13px; }
+    .tblRpt tr.total-row td.total-text {
+      background-color: #bbcae9; }
+  .tblRpt .home-name, .tblRpt .offer-live, .tblRpt .live-status, .tblRpt .positive {
+    color: #e40000; }
+  .tblRpt .offer-live {
+    text-transform: uppercase; }
+  .tblRpt .match-time {
+    font-weight: normal;
+    color: #313131; }
+  .tblRpt .ex-text {
+    color: #666; }
 
 .btn.btn-countdown {
   background-color: #eee;
