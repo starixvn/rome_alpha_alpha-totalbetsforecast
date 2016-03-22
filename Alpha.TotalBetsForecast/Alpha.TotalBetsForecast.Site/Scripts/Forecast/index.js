@@ -104,8 +104,11 @@ var forecast = {
             .off('click.forecast')
             .on('click.forecast', function () {
                 forecast.countDownSeconds = parseInt($(this).data('refresh-value'));
-                forecast.stopCountdown();
-                forecast.startCountdown();
+                forecast.domElements.ddlRefresh.text(forecast.countDownSeconds);
+                if (forecast.isStartCountdown) {
+                    forecast.stopCountdown();
+                    forecast.startCountdown();
+                }
             });
     },
 
@@ -115,7 +118,6 @@ var forecast = {
         }
 
         forecast.stopCountdown();
-        forecast.domElements.blockIconSmall.show();
         var matchIds = forecast.domElements.ddlMatch.val();
 
         if (matchIds == null) {
@@ -123,6 +125,7 @@ var forecast = {
             forecast.domElements.mainContent.parent().hide().find('tbody').remove();
             return;
         }
+        forecast.domElements.blockIconSmall.show();
 
         forecast.currentRequest = $.ajax({
             url: forecast.getAbsoluteUrl(forecast.urls.getMatchForecasts),
