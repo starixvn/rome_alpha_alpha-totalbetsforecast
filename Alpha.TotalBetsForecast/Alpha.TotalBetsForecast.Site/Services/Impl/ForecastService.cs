@@ -36,7 +36,8 @@
             var matchForecastRaw = _forecastDataAccess.GetMatchForecast(new GetMatchForecastsCriteria
             {
                 CustId = query.CustId,
-                MatchIds = query.MatchIds
+                MatchIds = query.MatchIds,
+                IsLive = query.IsLive
             });
 
             if (!matchForecastRaw.Item1.Any())

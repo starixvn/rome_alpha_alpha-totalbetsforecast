@@ -70,11 +70,11 @@
 ////            var kickOffTime = DateTime.Now.AddDays(1);
 ////            var rawData = new List<BetTypeForecastDto>
 ////            {
-////                new BetTypeForecastDto { MatchId = 1,  BetTypeId = (int)BetType.Handicap },
-////                new BetTypeForecastDto { MatchId = 1,BetTypeId = (int)BetType.Handicap },
-////                new BetTypeForecastDto { MatchId = 1,BetTypeId = (int)BetType._1st_Over_Under },
-////                new BetTypeForecastDto { MatchId = 1,BetTypeId = (int)BetType.FT_1X2 },
-////                new BetTypeForecastDto { MatchId = 1,BetTypeId = (int)BetType.FT_1X2 }
+////                new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType.Handicap },
+////                new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType.Handicap },
+////                new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType._1st_Over_Under },
+////                new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType.FT_1X2 },
+////                new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType.FT_1X2 }
 ////            };
 
 ////            var columnNameData = new List<WinLossColumnNameDto>
@@ -92,8 +92,7 @@
 ////            };
 
 
-
-////            var forecastData = Tuple.Create( rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>);
+////            var forecastData = Tuple.Create(rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>);
 
 ////            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
 

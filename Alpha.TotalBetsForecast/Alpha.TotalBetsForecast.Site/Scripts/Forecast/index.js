@@ -34,7 +34,6 @@ var forecast = {
         browserWarning: null,
         closeWarning: null,
         btnMatchSelect: null,
-        txtStatus: null,
         blockIconSmall: null,
         refreshValues: null,
         ddlRefresh: null
@@ -62,7 +61,6 @@ var forecast = {
         forecast.domElements.mainContent = $('#mainContent');
         forecast.domElements.browserWarning = $('#browser-warning');
         forecast.domElements.closeWarning = $('#close-warning');
-        forecast.domElements.txtStatus = $('#text-status');
         forecast.domElements.blockIconSmall = $('#blockIconSmall');
         forecast.domElements.refreshValues = $('#refresh-value a');
         forecast.domElements.ddlRefresh = $('#ddlRefresh');
@@ -88,10 +86,6 @@ var forecast = {
                 forecast.countDownSeconds = isLive ? forecast.countDownLiveBallSeconds : forecast.countDownDeadBallSeconds;
                 forecast.domElements.ddlRefresh.text(forecast.countDownSeconds);
                 forecast.loadLeagues();
-                forecast.domElements.txtStatus.text(
-                    isLive
-                    ? forecast.domElements.txtStatus.data('offer-live')
-                    : forecast.domElements.txtStatus.data('dead-ball'));
 
                 $.cookie(forecast.cookies.status, statusValue, { expires: forecast.cookieExpireTime, path: '/' });
             }).trigger('change');

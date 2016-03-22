@@ -299,9 +299,9 @@
 
 //            //// Assert
 //            _forecastService.Received().GetMatchForecasts(
-//                Arg.Is<MatchForecastsQuery>(actualQuery => 
+//                Arg.Is<MatchForecastsQuery>(actualQuery =>
 //                actualQuery.LiveAwayScore == returnMatch.LiveAwayScore
-//                && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore), 
+//                && actualQuery.LiveHomeScore == returnMatch.LiveHomeScore),
 //                returnMatch.KickOffTime);
 //        }
 
