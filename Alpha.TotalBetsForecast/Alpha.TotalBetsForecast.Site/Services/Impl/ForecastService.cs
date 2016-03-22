@@ -49,8 +49,6 @@
             var winLossColumnNameDtos = matchForecastRaw.Item3;
             var matchForecasts = new List<MatchForecast>();
 
-            //// Remove haft-time forecast when now is second half
-
             foreach (var match in matches)
             {
                 var betTypes = betTypeForecastDtos.Where(betTypeDto => betTypeDto.MatchId == match.Id);
@@ -70,7 +68,7 @@
                     var winlossName = winLossNames.First(winLossName => winLossName.BetTypeId == betType.BetTypeId);
                     var betTypeForecast = BuildBetTypeForecast(betType, winlossName);
 
-                    if(betTypeForecast.IsHandicap)
+                    if (betTypeForecast.IsHandicap)
                     {
                         handicapBetType = betTypeForecast;
                     }
@@ -141,14 +139,11 @@
             {
                 case BetType.Handicap:
                 case BetType._1st_Handicap:
-
                     return betType.WinLossValues.ElementAt(2);
 
                 case BetType.Over_Under:
                 case BetType._1st_Over_Under:
-
                     return betType.WinLossValues.ElementAt(4);
-
                 case BetType.FT_1X2:
                 case BetType.FirstHalf_1X2:
                     if (isLive)
@@ -157,36 +152,34 @@
                         {
                             return betType.WinLossValues.ElementAt(1);
                         }
-                        else if (match.LiveHomeScore > match.LiveAwayScore)
+
+                        if (match.LiveHomeScore > match.LiveAwayScore)
                         {
                             return betType.WinLossValues.ElementAt(0);
                         }
-                        else
-                        {
-                            return betType.WinLossValues.ElementAt(2);
-                        }
+
+                        return betType.WinLossValues.ElementAt(2);
                     }
 
                     if (handicapBetType != null)
                     {
                         var currentHdp = Converter.ToInt(handicapBetType.WinLossColumnNames.ElementAt(2));
 
-                        if(currentHdp == 0)
+                        if (currentHdp == 0)
                         {
                             return betType.WinLossValues.ElementAt(1);
                         }
 
-                        if(currentHdp > 0)
+                        if (currentHdp > 0)
                         {
                             return betType.WinLossValues.ElementAt(0);
                         }
-                        else
-                        {
-                            return betType.WinLossValues.ElementAt(1);
-                        }
+
+                        return betType.WinLossValues.ElementAt(1);
                     }
 
                     return 0;
+
                 default:
                     return 0;
             }

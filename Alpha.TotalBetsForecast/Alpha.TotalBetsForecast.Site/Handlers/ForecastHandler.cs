@@ -59,7 +59,7 @@
                         TotalBetCount = matchForecast.TotalBetCount,
                         TotalTurnover = matchForecast.TotalTurnover,
                         TotalForecastWinLoss = matchForecast.TotalForecastWinLoss,
-                        MatchRowSpan = matchForecast.BetTypeForecasts.Count() * 2 + 1
+                        MatchRowSpan = (matchForecast.BetTypeForecasts.Count() * 2) + 1
                     };
 
                     matchForecastViewModels.Add(matchForecastViewModel);

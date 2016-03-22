@@ -27,7 +27,7 @@
                 return;
             }
 
-            if(!string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
+            if (!string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
                 && !AppConfig.AllowSitesToViewForecast.ToLower().Contains(UserSession.Current.Site.ToLower()))
             {
                 Response.Redirect(FormsAuthentication.DefaultUrl, true);

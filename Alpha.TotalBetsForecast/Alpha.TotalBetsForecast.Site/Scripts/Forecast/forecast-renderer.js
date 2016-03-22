@@ -381,7 +381,7 @@ var forecastRenderer =
                     matchForecastElement.find('.turnover-' + currentBetType.BetTypeId),
                     currentBetType.Turnover);
 
-                if (currentBetType.IsOneXTwo) {
+                if (currentBetType.IsOneXTwo && currentBetType.BetTypeId === 5) {
                     matchForecastElement.find('.one-x-two-row .high-light-score, .one-x-two-row .high-light-win-loss')
                         .removeClass('high-light-score')
                         .removeClass('high-light-win-loss');
