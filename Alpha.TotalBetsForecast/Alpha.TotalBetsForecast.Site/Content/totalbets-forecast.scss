@@ -2,6 +2,10 @@
 @import "mixins";
 
 $primary-color: #666;
+$hover-back-ground-color: #f8ff8d;
+$win-loss-name-background-color: #ebeaea;
+$positive-color: #e40000;
+$back-ground-focus-color: #bbcae9;
 
 body {
     font-size: 12px;
@@ -162,11 +166,11 @@ table * {
 
     tbody tr {
         &:hover {
-            background-color: #f8ff8d;
+            background-color: $hover-back-ground-color;
 
             td {
                 &.ex-col {
-                    background-color: #f8ff8d !important;
+                    background-color: $hover-back-ground-color !important;
                 }
 
                 &.win-loss-name {
@@ -188,7 +192,7 @@ table * {
         
 
         &.high-light-score {
-            background-color: #f2ac52 !important;
+            background-color: $back-ground-focus-color !important;
         }
 
         &.high-light-win-loss {
@@ -224,8 +228,8 @@ table * {
         border-bottom: none;
 
         &.head {
-            background: #7e7f80;
-            color: #fff;
+            background: $win-loss-name-background-color;
+            color: #000;
             border-bottom: 1px solid #dfdfdf;
         }
 
@@ -246,12 +250,12 @@ table * {
         font-size: 13px;
 
         td.total-text {
-            background-color: #f2ac52;
+            background-color: $back-ground-focus-color;
         }
     }
 
     .home-name, .offer-live, .live-status, .positive  {
-        color: #e40000;
+        color: $positive-color;
     }
 
     .offer-live {

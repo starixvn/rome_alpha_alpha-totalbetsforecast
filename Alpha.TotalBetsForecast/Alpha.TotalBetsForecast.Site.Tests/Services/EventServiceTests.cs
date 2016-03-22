@@ -117,35 +117,5 @@
         }
 
         #endregion Get Matches
-
-        #region Get Match
-
-        [TestCase(0)]
-        [TestCase(-1)]
-        public void GetMatchInfo_MatchIdIsNegativeOrZero_ThrowArgumentOutOfRangeException(int matchId)
-        {
-            Assert.Throws<ArgumentOutOfRangeException>(() => _eventService.GetMatchInfo(true, matchId));
-        }
-
-        [Test]
-        public void GetMatchInfo_ReturnMatchInfoFromRepository()
-        {
-            var matchId = 1;
-            var isLive = true;
-            var expectedMatch = new Match
-            {
-                Id = 1
-            };
-            _dynamicRepository.Get<Match>(Arg.Is<GetMatchInfoCriteria>(
-                criteria => criteria.MatchId == matchId)).Returns(expectedMatch);
-
-            //// Act
-            var actualMatch = _eventService.GetMatchInfo(isLive, matchId);
-
-            //// Assert
-            Assert.AreEqual(expectedMatch, actualMatch);
-        }
-
-        #endregion Get Match
     }
 }

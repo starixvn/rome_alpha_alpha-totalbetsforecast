@@ -46,7 +46,7 @@ var forecastRenderer =
     winLossColumnNameTemplate: _.template('<td class="win-loss-name text-center ex-col head <%= highLightScore %>" colspan="<%= colSpan %>">\
                                             <span class="winloss-name-<%= betTypeId %>-<%= winLossIndex %>"><%= winLossName %></span>\
                                         </td>'),
-    renderWinLossColumnName: function (betTypeForecast, matchForecast) {
+    renderWinLossColumnName: function (betTypeForecast, matchForecast, handicapBetType) {
         var html = [];
         html.push('<td class="ex-col winloss-name-empty">&nbsp;</td> \
                     <td class="ex-col winloss-name-empty">&nbsp;</td> \
@@ -59,19 +59,8 @@ var forecastRenderer =
                 : 1,
                 currentScoreClass = '';
 
-            if (matchForecast && matchForecast.IsLive) {
-                if ((betTypeForecast.IsHandicap && i === 2)
-                    || (betTypeForecast.IsOverUnder && i === 4)) {
-                    currentScoreClass = 'high-light-score';
-                }
-
-                if (betTypeForecast.IsOneXTwo) {
-                    if ((matchForecast.LiveHomeScore === matchForecast.LiveAwayScore && i == 1)
-                        || (matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && i == 0)
-                        || (matchForecast.LiveHomeScore < matchForecast.LiveAwayScore && i == 2)) {
-                        currentScoreClass = 'high-light-score';
-                    }
-                }
+            if (forecastRenderer.isHighlightValue(betTypeForecast, matchForecast, i, handicapBetType)) {
+                currentScoreClass = 'high-light-score';
             }
 
             html.push(forecastRenderer.winLossColumnNameTemplate({
@@ -92,6 +81,40 @@ var forecastRenderer =
                 : _.template('<span class="win-loss-value winloss-value-<%= index %>"><%= winLoss %></span>')({ winLoss: forecastRenderer.formatNumber(winLoss), index: index });
     },
 
+
+    isHighlightValue: function (betTypeForecast, matchForecast, currentWinlossIndex, handicapBetType) {
+        if (matchForecast) {
+            if ((betTypeForecast.IsHandicap && currentWinlossIndex === 2)
+                || (betTypeForecast.IsOverUnder && currentWinlossIndex === 4)) {
+
+                return true;
+            }
+
+            if (betTypeForecast.IsOneXTwo) {
+                if (matchForecast.IsLive) {
+                    if ((matchForecast.LiveHomeScore === matchForecast.LiveAwayScore && currentWinlossIndex === 1)
+                        || (matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && currentWinlossIndex === 0)
+                        || (matchForecast.LiveHomeScore < matchForecast.LiveAwayScore && currentWinlossIndex === 2)) {
+
+                        return true;
+                    }
+                }
+                else {
+                    if (handicapBetType) {
+                        var handicapValue = parseInt(handicapBetType.WinLossColumnNames[2]);
+                        if ((handicapValue === 0 && currentWinlossIndex === 1)
+                            || (handicapValue > 0 && currentWinlossIndex === 0)
+                            || (handicapValue < 0 && currentWinlossIndex === 2)) {
+
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    },
     betTypeNameTemplate: _.template('<td class="ex-col">\
                                             <span class="pull-left"><%= betTypeName %></span>\
                                         </td>'),
@@ -100,11 +123,11 @@ var forecastRenderer =
     winLossValueTemplate: _.template('<td class="ex-col <%= textAlign %> <%= winLossClass %>" colspan="<%= colSpan %>" >\
                                         <%= winLossValue %> \
                                     </td>'),
-    renderBetTypeForecast: function (betTypeForecast, matchForecast) {
+    renderBetTypeForecast: function (betTypeForecast, matchForecast, handicapBetType) {
         var html = [],
             betTypeId = betTypeForecast.BetTypeId;
 
-        html.push('<tr class="last-row">');
+        html.push('<tr class="last-row '+ (betTypeForecast.IsOneXTwo ? 'one-x-two-row' : '') +'">');
 
         html.push(forecastRenderer.betTypeNameTemplate({ betTypeName: betTypeForecast.BetTypeName }));
 
@@ -128,19 +151,8 @@ var forecastRenderer =
                 textAlign = betTypeForecast.IsOneXTwo && i !== 1 ? 'text-center' : 'text-right',
                 highLightWinLossClass = '';
 
-            if (matchForecast && matchForecast.IsLive) {
-                if ((betTypeForecast.IsHandicap && i === 2)
-                    || (betTypeForecast.IsOverUnder && i === 4)) {
-                    highLightWinLossClass = 'high-light-win-loss';
-                }
-
-                if (betTypeForecast.IsOneXTwo) {
-                    if ((matchForecast.LiveHomeScore === matchForecast.LiveAwayScore && i == 1)
-                        || (matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && i == 0)
-                        || (matchForecast.LiveHomeScore < matchForecast.LiveAwayScore && i == 2)) {
-                        highLightWinLossClass = 'high-light-win-loss';
-                    }
-                }
+            if (forecastRenderer.isHighlightValue(betTypeForecast, matchForecast, i, handicapBetType)) {
+                highLightWinLossClass = 'high-light-win-loss'
             }
 
             html.push(forecastRenderer.winLossValueTemplate({
@@ -221,38 +233,43 @@ var forecastRenderer =
                                     <td class="ex-col text-center" colspan="5"><span class="win-loss-value total-win-loss-<%= matchId %> <%= positiveClass %>"><%= winloss %></span></td>\
                                 </tr>'),
     renderTotalRow: function (matchForecast) {
-        if (matchForecast.IsLive) {
-            return forecastRenderer.totalRowTemplate({
-                totalText: forecastRenderer.resources.total,
-                betCount: forecastRenderer.formatNumber(matchForecast.TotalBetCount, '0,0.'),
-                turnOver: forecastRenderer.formatNumber(matchForecast.TotalTurnover),
-                winloss: forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss),
-                matchId: matchForecast.Id,
-                positiveClass: matchForecast.TotalForecastWinLoss > 0 ? 'positive' : ''
-            });
-        }
-
-        return '';
+        return forecastRenderer.totalRowTemplate({
+            totalText: forecastRenderer.resources.total,
+            betCount: forecastRenderer.formatNumber(matchForecast.TotalBetCount, '0,0.'),
+            turnOver: forecastRenderer.formatNumber(matchForecast.TotalTurnover),
+            winloss: forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss),
+            matchId: matchForecast.Id,
+            positiveClass: matchForecast.TotalForecastWinLoss > 0 ? 'positive' : ''
+        });
     },
 
-    firstWinLossColumnNameTemplate: _.template('<tr><%= winLossColumnNameHtml %></tr>'),
+    firstWinLossColumnNameTemplate: _.template('<tr class="<%= oneXTwoClass %>"><%= winLossColumnNameHtml %></tr>'),
     renderMatchForecast: function (matchForecast) {
         if (matchForecast.BetTypeForecasts.length === 0) {
             return forecastRenderer.renderNoInfo(matchForecast.Id);
         }
 
         var html = [];
+        var handicapBetType = null;
+        if (matchForecast.BetTypeForecasts[0].IsHandicap) {
+            handicapBetType = matchForecast.BetTypeForecasts[0];
+        }
 
         html.push(forecastRenderer.renderFirstBetTypeRow(matchForecast));
 
         for (var i = 1; i < matchForecast.BetTypeForecasts.length; i++) {
             var currentBetTypeForecast = matchForecast.BetTypeForecasts[i];
 
+            if (currentBetTypeForecast.IsHandicap) {
+                handicapBetType = currentBetTypeForecast;
+            }
+
             html.push(forecastRenderer.firstWinLossColumnNameTemplate({
-                winLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(currentBetTypeForecast, matchForecast)
+                winLossColumnNameHtml: forecastRenderer.renderWinLossColumnName(currentBetTypeForecast, matchForecast, handicapBetType),
+                oneXTwoClass: currentBetTypeForecast.IsOneXTwo ? 'one-x-two-row' : ''
             }));
 
-            html.push(forecastRenderer.renderBetTypeForecast(currentBetTypeForecast, matchForecast));
+            html.push(forecastRenderer.renderBetTypeForecast(currentBetTypeForecast, matchForecast, handicapBetType));
         }
 
         html.push(forecastRenderer.renderTotalRow(matchForecast));
@@ -322,6 +339,19 @@ var forecastRenderer =
         });
     },
 
+    trackMatchInfoChanged: function (matchForecastElement, matchForecast) {
+        var matchScore = matchForecastElement.find('.match-score'),
+            homeScore = matchScore.find('.home-score'),
+            awayScore = matchScore.find('.away-score');
+
+        if (parseInt(homeScore.text()) !== matchForecast.LiveHomeScore
+            || parseInt(awayScore.text()) !== matchForecast.LiveAwayScore) {
+
+            homeScore.text(matchForecast.LiveHomeScore);
+            awayScore.text(matchForecast.LiveAwayScore);
+        };
+    },
+
     trackChangedAndUpdatedValues: function (matchForecast) {
         var matchForecastElement = $('#match-' + matchForecast.Id);
 
@@ -333,8 +363,16 @@ var forecastRenderer =
                 return false;
             }
 
+            forecastRenderer.trackMatchInfoChanged(matchForecastElement, matchForecast);
+
+            var handicapBetType = null;
+
             for (var betTypeIndex = 0; betTypeIndex < matchForecast.BetTypeForecasts.length; betTypeIndex++) {
                 var currentBetType = matchForecast.BetTypeForecasts[betTypeIndex];
+
+                if (currentBetType.IsHandicap) {
+                    handicapBetType = currentBetType;
+                }
 
                 forecastRenderer.checkChangedAndHighlight(
                     matchForecastElement.find('.bet-count-' + currentBetType.BetTypeId),
@@ -343,26 +381,47 @@ var forecastRenderer =
                     matchForecastElement.find('.turnover-' + currentBetType.BetTypeId),
                     currentBetType.Turnover);
 
+                if (currentBetType.IsOneXTwo) {
+                    matchForecastElement.find('.one-x-two-row .high-light-score, .one-x-two-row .high-light-win-loss')
+                        .removeClass('high-light-score')
+                        .removeClass('high-light-win-loss');
+                }
+
                 for (var winLossIndex = 0; winLossIndex < currentBetType.WinLossValues.length; winLossIndex++) {
+                    forecastRenderer.checkChangedAndHighlight(
+                                    matchForecastElement.find('.winloss-name-' + currentBetType.BetTypeId + '-' + winLossIndex),
+                                    currentBetType.WinLossColumnNames[winLossIndex]);
+
                     forecastRenderer.checkChangedAndHighlight(
                         matchForecastElement.find('.winloss-value-' + currentBetType.BetTypeId + '-' + winLossIndex),
                         currentBetType.WinLossValues[winLossIndex]);
+
+                    if (currentBetType.IsOneXTwo
+                        && forecastRenderer.isHighlightValue(currentBetType, matchForecast, winLossIndex, handicapBetType)) {
+
+                        matchForecastElement.find('.winloss-name-' + currentBetType.BetTypeId + '-' + winLossIndex).parent().addClass('high-light-score');
+                        matchForecastElement.find('.winloss-value-' + currentBetType.BetTypeId + '-' + winLossIndex).parent().addClass('high-light-win-loss');
+                    }
                 }
             }
 
-            forecastRenderer.checkChangedAndHighlight(
-                   matchForecastElement.find('.total-bet-count-' + matchForecast.Id),
-                   matchForecast.TotalBetCount, '0,0');
-            forecastRenderer.checkChangedAndHighlight(
-                matchForecastElement.find('.total-turn-over-' + matchForecast.Id),
-                matchForecast.TotalTurnover);
-            forecastRenderer.checkChangedAndHighlight(
-                matchForecastElement.find('.total-win-loss-' + matchForecast.Id),
-                matchForecast.TotalForecastWinLoss);
+            forecastRenderer.trackTotalRowChange(matchForecastElement, matchForecast);
 
             return true;
         }
 
         return false;
+    },
+
+    trackTotalRowChange: function (matchForecastElement, matchForecast) {
+        forecastRenderer.checkChangedAndHighlight(
+               matchForecastElement.find('.total-bet-count-' + matchForecast.Id),
+               matchForecast.TotalBetCount, '0,0');
+        forecastRenderer.checkChangedAndHighlight(
+            matchForecastElement.find('.total-turn-over-' + matchForecast.Id),
+            matchForecast.TotalTurnover);
+        forecastRenderer.checkChangedAndHighlight(
+            matchForecastElement.find('.total-win-loss-' + matchForecast.Id),
+            matchForecast.TotalForecastWinLoss);
     }
 };

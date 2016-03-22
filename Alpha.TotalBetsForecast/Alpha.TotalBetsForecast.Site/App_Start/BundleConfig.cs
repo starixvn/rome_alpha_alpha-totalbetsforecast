@@ -17,7 +17,7 @@
         private static void RegisterJavascriptBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle(IndexForecastJavascriptBundleUrl)
-                .Include("~/Scripts/Forecast/match-forecast-renderer.js")
+                .Include("~/Scripts/Forecast/forecast-renderer.js")
                 .Include("~/Scripts/Forecast/index.js"));
         }
 

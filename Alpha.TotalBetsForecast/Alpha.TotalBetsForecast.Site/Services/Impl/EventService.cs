@@ -53,15 +53,5 @@
                 LeagueId = leagueId
             });
         }
-
-        public Match GetMatchInfo(bool isLive, int matchId)
-        {
-            Check.Argument.IsNotNegativeOrZero(matchId, nameof(matchId));
-
-            return _dynamicRepository.Get<Match>(new GetMatchInfoCriteria
-            {
-                MatchId = matchId
-            });
-        }
     }
 }

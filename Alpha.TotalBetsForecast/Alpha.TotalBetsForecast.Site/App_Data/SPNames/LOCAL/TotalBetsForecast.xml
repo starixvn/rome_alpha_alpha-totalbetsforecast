@@ -24,6 +24,5 @@
     <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DBAGE.bodb02.BODBDownlineNet">
       <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_GetMatchInfo" SpName="Age_NewTotalBetsForeCast_GetMatchInfo" DbName="DBAGE.bodb02.BODBDownlineNet" />
   </Function>
 </Functions>

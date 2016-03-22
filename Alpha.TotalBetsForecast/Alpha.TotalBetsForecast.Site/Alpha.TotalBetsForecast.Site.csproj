@@ -226,7 +226,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Forecast\index.js" />
-    <Content Include="Scripts\Forecast\match-forecast-renderer.js" />
+    <Content Include="Scripts\Forecast\forecast-renderer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -246,7 +246,6 @@
     <Compile Include="Criteria\GetEventsCriteria.cs" />
     <Compile Include="Criteria\GetLeaguesCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastsCriteria.cs" />
-    <Compile Include="Criteria\GetMatchInfoCriteria.cs" />
     <Compile Include="DataAccesses\IForecastDataAccess.cs" />
     <Compile Include="DataAccesses\Impl\ForecastDataAccess.cs" />
     <Compile Include="Global.asax.cs">

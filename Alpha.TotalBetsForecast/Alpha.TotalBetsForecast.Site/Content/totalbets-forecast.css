@@ -142,7 +142,7 @@ table * {
     background-color: #fff !important; }
 
 .tblRpt tr td.high-light-score {
-  background-color: #f2ac52 !important; }
+  background-color: #bbcae9 !important; }
 
 .tblRpt tr td.high-light-win-loss {
   font-weight: bold; }
@@ -166,8 +166,8 @@ table * {
   border-top: none;
   border-bottom: none; }
   .tblRpt tr td.ex-col.head {
-    background: #7e7f80;
-    color: #fff;
+    background: #ebeaea;
+    color: #000;
     border-bottom: 1px solid #dfdfdf; }
   .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
     padding: 0px 8px;
@@ -181,7 +181,7 @@ table * {
   font-weight: bold;
   font-size: 13px; }
   .tblRpt tr.total-row td.total-text {
-    background-color: #f2ac52; }
+    background-color: #bbcae9; }
 
 .tblRpt .home-name, .tblRpt .offer-live, .tblRpt .live-status, .tblRpt .positive {
   color: #e40000; }
