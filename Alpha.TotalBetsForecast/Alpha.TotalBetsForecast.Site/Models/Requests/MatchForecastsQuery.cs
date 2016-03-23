@@ -23,8 +23,6 @@
             private set;
         }
 
-        public int LeagueId { get; set; }
-
         public string MatchIds { get; set; }
 
         public bool IsLive { get; set; }

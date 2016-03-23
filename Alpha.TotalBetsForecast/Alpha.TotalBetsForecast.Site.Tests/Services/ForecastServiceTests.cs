@@ -43,7 +43,6 @@
             var query = new MatchForecastsQuery(1)
             {
                 IsLive = true,
-                LeagueId = 1,
                 MatchIds = "1,2"
             };
 
