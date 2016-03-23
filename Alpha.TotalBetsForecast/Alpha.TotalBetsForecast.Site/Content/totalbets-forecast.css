@@ -162,7 +162,8 @@ table * {
     .tblRpt tr td.ex-col.head {
       background: #ebeaea;
       color: #000;
-      border-bottom: 1px solid #dfdfdf; }
+      border-bottom: 1px solid #dfdfdf;
+      font-size: 11px; }
     .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
       padding: 0px 8px;
       height: 20px;

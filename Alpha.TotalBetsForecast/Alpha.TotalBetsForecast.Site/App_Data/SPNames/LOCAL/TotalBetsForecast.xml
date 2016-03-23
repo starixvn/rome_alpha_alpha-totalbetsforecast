@@ -14,6 +14,7 @@
       <Mapping ObjectProperty="ThirdColumnName" DataField="column3" Class="WinLossColumnNameDto"/>
       <Mapping ObjectProperty="FourthColumnName" DataField="column4" Class="WinLossColumnNameDto" />
       <Mapping ObjectProperty="FifthColumnName" DataField="column5" Class="WinLossColumnNameDto"/>
+      <Mapping ObjectProperty="HighlightValueOverUnder" DataField="HighlightValue_3_8" Class="WinLossColumnNameDto"/>
       
       <Mapping ObjectProperty="Id" DataField="matchid" Class="MatchForecast" />
     </Setting>

@@ -232,6 +232,7 @@ table * {
             background: $win-loss-name-background-color;
             color: #000;
             border-bottom: 1px solid #dfdfdf;
+            font-size: 11px;
         }
 
         &.head, &.winloss-name-empty {

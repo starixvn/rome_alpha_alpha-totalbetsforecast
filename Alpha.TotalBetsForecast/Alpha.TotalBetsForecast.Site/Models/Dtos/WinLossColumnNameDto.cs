@@ -10,14 +10,16 @@
 
         public decimal Turnover { get; set; }
 
-        public decimal FirstColumnName { get; set; }
+        public int FirstColumnName { get; set; }
 
-        public decimal SecondColumnName { get; set; }
+        public int SecondColumnName { get; set; }
 
-        public decimal ThirdColumnName { get; set; }
+        public int ThirdColumnName { get; set; }
 
-        public decimal FourthColumnName { get; set; }
+        public int FourthColumnName { get; set; }
 
-        public decimal FifthColumnName { get; set; }
+        public int FifthColumnName { get; set; }
+
+        public int HighlightValueOverUnder { get; set; }
     }
 }

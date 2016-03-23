@@ -49,5 +49,7 @@
                             || BetTypeId == (int)Sunplus.Agent.Model.BL.Definitions.BetType.FirstHalf_1X2;
             }
         }
+
+        public int MainWinLossIndex { get; set; }
     }
 }
