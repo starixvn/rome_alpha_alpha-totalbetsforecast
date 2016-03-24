@@ -115,7 +115,44 @@
             var winLossColumnNames = new List<string>();
             var winLossValues = new List<decimal>();
 
-            if (betTypeForecast.IsOneXTwo)
+            AddWinLossNameAndValue(
+                betTypeForecast.IsOneXTwo,
+                winLossColumnNames,
+                winLossValues,
+                betTypeForecastDto,
+                winLossColumnNameDto);
+
+            var totalWinLossName = winLossColumnNames.Count;
+
+            for (int i = 0; i < totalWinLossName; i++)
+            {
+                if (IsMainScore(
+                    betTypeForecast,
+                    matchForecast,
+                    i,
+                    handicapBetType,
+                    winLossColumnNameDto.HighlightValueOverUnder,
+                    winLossColumnNames.ElementAt(i)))
+                {
+                    betTypeForecast.MainWinLossIndex = i;
+                    break;
+                }
+            }
+
+            betTypeForecast.WinLossValues = winLossValues;
+            betTypeForecast.WinLossColumnNames = winLossColumnNames;
+
+            return betTypeForecast;
+        }
+
+        private void AddWinLossNameAndValue(
+            bool isOneXTwo,
+            List<string> winLossColumnNames,
+            List<decimal> winLossValues,
+            BetTypeForecastDto betTypeForecastDto,
+            WinLossColumnNameDto winLossColumnNameDto)
+        {
+            if (isOneXTwo)
             {
                 winLossValues.Add(betTypeForecastDto.WinLossFirstColumn);
                 winLossValues.Add(betTypeForecastDto.WinLossSecondColumn);
@@ -139,28 +176,6 @@
                 winLossColumnNames.Add(winLossColumnNameDto.FourthColumnName.ToString());
                 winLossColumnNames.Add(winLossColumnNameDto.FifthColumnName.ToString());
             }
-
-            var totalWinLossName = winLossColumnNames.Count;
-
-            for (int i = 0; i < totalWinLossName; i++)
-            {
-                if (IsMainScore(
-                    betTypeForecast,
-                    matchForecast,
-                    i,
-                    handicapBetType,
-                    winLossColumnNameDto.HighlightValueOverUnder,
-                    winLossColumnNames.ElementAt(i)))
-                {
-                    betTypeForecast.MainWinLossIndex = i;
-                    break;
-                }
-            }
-
-            betTypeForecast.WinLossValues = winLossValues;
-            betTypeForecast.WinLossColumnNames = winLossColumnNames;
-
-            return betTypeForecast;
         }
 
         private bool IsMainScore(

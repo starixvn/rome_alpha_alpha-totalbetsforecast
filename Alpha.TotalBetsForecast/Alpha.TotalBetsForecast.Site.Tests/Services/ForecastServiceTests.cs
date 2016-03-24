@@ -146,7 +146,7 @@
         [TestCase(BetType.Over_Under, 2, 1)]
         [TestCase(BetType._1st_Over_Under, 2, 1)]
         [TestCase(BetType._1st_Over_Under, 2, 1)]
-        public void GetMatchForecast_MatchIsNoneLive_BuildWinLossNameListForOverUnder(BetType betType, int highLightValue, int highLightIndex)
+        public void GetMatchForecast_MatchIsNoneLive_BuildWinLossNameListForOverUnder(BetType betType, int highLightValue, int mainWinLossIndex)
         {
             //// Arrange
             var query = new MatchForecastsQuery(1);
@@ -179,7 +179,7 @@
                 && firstMatchHandicapWinLossNames.ElementAt(2) == "3"
                 && firstMatchHandicapWinLossNames.ElementAt(3) == "4"
                 && firstMatchHandicapWinLossNames.ElementAt(4) == "5"
-                && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == highLightIndex);
+                && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == mainWinLossIndex);
         }
 
         [TestCase(BetType.Over_Under)]
@@ -220,9 +220,13 @@
                 && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == 4);
         }
 
-        [TestCase(BetType.FT_1X2)]
-        [TestCase(BetType.FirstHalf_1X2)]
-        public void GetMatchForecast_MatchIsNonLive_BuildWinLossNameListForOneXTwo(BetType betType)
+        [TestCase(BetType.FT_1X2, 0, 0, 1)]
+        [TestCase(BetType.FT_1X2, 1, 0, 0)]
+        [TestCase(BetType.FT_1X2, 0, 2, 2)]
+        [TestCase(BetType.FirstHalf_1X2, 0, 0, 1)]
+        [TestCase(BetType.FirstHalf_1X2, 1, 0, 0)]
+        [TestCase(BetType.FirstHalf_1X2, 0, 2, 2)]
+        public void GetMatchForecast_MatchIsLive_BuildWinLossNameListForOneXTwo(BetType betType, byte liveHomeScore, byte liveAwayScore, int mainWinLossIndex)
         {
             //// Arrange
             var query = new MatchForecastsQuery(1);
@@ -239,7 +243,7 @@
 
             IEnumerable<MatchForecast> matchForecasts = new List<MatchForecast>
             {
-                CreateMatchForecast(1, isLive)
+                CreateMatchForecast(1, isLive, null, liveHomeScore, liveAwayScore)
             };
 
             _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
@@ -249,178 +253,207 @@
 
             //// Assert
             var firstMatchHandicapWinLossNames = matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).WinLossColumnNames;
-            Assert.True(firstMatchHandicapWinLossNames.Count() == 5
+            Assert.True(firstMatchHandicapWinLossNames.Count() == 3
                 && firstMatchHandicapWinLossNames.ElementAt(0) == "1"
-                && firstMatchHandicapWinLossNames.ElementAt(1) == "2"
-                && firstMatchHandicapWinLossNames.ElementAt(2) == "3"
-                && firstMatchHandicapWinLossNames.ElementAt(3) == "4"
-                && firstMatchHandicapWinLossNames.ElementAt(4) == "5"
-                && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == 4);
+                && firstMatchHandicapWinLossNames.ElementAt(1) == "X"
+                && firstMatchHandicapWinLossNames.ElementAt(2) == "2"
+                && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == mainWinLossIndex);
         }
 
-        ////[Test]
-        ////public void GetMatchForecast_CurrentTimeIsSecondHaft_RemoveFirstHaftForecast()
-        ////{
-        ////    //// Arrange
-        ////    var query = new MatchForecastsQuery(1);
-        ////    var kickOffTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
-        ////    var rawData = new List<BetTypeForecastDto>
-        ////    {
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType.Handicap, BetChoice = "h" },
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType._1st_Handicap, BetChoice = "a" },
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType.Over_Under, BetChoice = "a" },
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType._1st_Over_Under, BetChoice = "a" },
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType.FT_1X2, BetChoice = "1" },
-        ////        new BetTypeForecastDto { BetTypeId = (int)BetType.FirstHalf_1X2, BetChoice = "x" }
-        ////    };
+        [TestCase(false, 0, 0, 12, 6)]
+        [TestCase(true, 0, 0, 20, 10)]
+        [TestCase(true, 1, 0, 18, 9)]
+        [TestCase(true, 0, 1, 22, 11)]
+        public void GetMatchForecast_SumWinLossOfBetTypes(bool isLive, byte liveHomeScore, byte liveAwayScore, decimal totalWinLossMatch1, decimal totalWinLossMatch2)
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(1);
+            IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
+            {
+                CreateBetTypeForecastDto(1, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FT_1X2),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FirstHalf_1X2),
+                CreateBetTypeForecastDto(2, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(2, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////    var columnNameData = new List<WinLossColumnNameDto>
-        ////    {
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType.Handicap },
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType._1st_Handicap },
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType.Over_Under },
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType._1st_Over_Under },
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType.FT_1X2 },
-        ////        new WinLossColumnNameDto { BetTypeId = (int)BetType.FirstHalf_1X2 },
-        ////    };
+            IEnumerable<WinLossColumnNameDto> columnNameData = new List<WinLossColumnNameDto>
+            {
+                CreateWinLossColumnNameDto(1, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FT_1X2),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FirstHalf_1X2),
+                CreateWinLossColumnNameDto(2, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(2, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////    var matchForecasts = new List<MatchForecast>
-        ////    {
-        ////        new MatchForecast
-        ////        {
-        ////            Id = 1
-        ////        }
-        ////    };
+            IEnumerable<MatchForecast> matchForecasts = new List<MatchForecast>
+            {
+                CreateMatchForecast(1, isLive, null, liveHomeScore, liveAwayScore),
+                CreateMatchForecast(2, isLive, null, liveHomeScore, liveAwayScore)
+            };
 
-        ////    var forecastData = Tuple.Create(matchForecasts as IEnumerable<MatchForecast>, rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>);
+            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
+            //// Act
+            var matchForcasts = _forecastService.GetMatchForecasts(query);
 
-        ////    _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
+            //// Assert
+            var match1 = matchForcasts.ElementAt(0);
+            var match2 = matchForcasts.ElementAt(1);
+            Assert.True(
+                match1.TotalForecastWinLoss == totalWinLossMatch1
+                && match2.TotalForecastWinLoss == totalWinLossMatch2);
+        }
 
-        ////    //// Act
-        ////    var matchForcast = _forecastService.GetMatchForecasts(query);
+        [Test]
+        public void GetMatchForecast_SumTotalBetCount()
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(1);
+            IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
+            {
+                CreateBetTypeForecastDto(1, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FT_1X2),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FirstHalf_1X2),
+                CreateBetTypeForecastDto(2, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(2, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////    //// Assert
-        ////    ////Assert.True(matchForcast.BetTypeForecasts.Count() == 3
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(0).BetTypeId == (int)BetType.Handicap
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(0).BetChoices.Count() == 1
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(1).BetTypeId == (int)BetType.Over_Under
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(1).BetChoices.Count() == 1
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(2).BetTypeId == (int)BetType.FT_1X2
-        ////    ////    && matchForcast.BetTypeForecasts.ElementAt(2).BetChoices.Count() == 1);
-        ////}
+            IEnumerable<WinLossColumnNameDto> columnNameData = new List<WinLossColumnNameDto>
+            {
+                CreateWinLossColumnNameDto(1, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FT_1X2),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FirstHalf_1X2),
+                CreateWinLossColumnNameDto(2, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(2, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////[TestCase(BetType.Handicap, "h", "1.5,2", "1.5,2")]
-        ////[TestCase(BetType.Handicap, "h", "1.5,2", "1.5,2")]
-        ////[TestCase(BetType._1st_Handicap, "a", "1.5,2", "1.5,2")]
-        ////[TestCase(BetType._1st_Handicap, "a", "1.5,2", "1.5,2")]
-        ////[TestCase(BetType.Over_Under, "h", "2", "2")]
-        ////[TestCase(BetType.Over_Under, "a", "2", "u")]
-        ////[TestCase(BetType._1st_Over_Under, "h", "2", "2")]
-        ////[TestCase(BetType._1st_Over_Under, "a", "2", "u")]
-        ////[TestCase(BetType.FT_1X2, "1", "", "1")]
-        ////[TestCase(BetType.FT_1X2, "x", "", "x")]
-        ////[TestCase(BetType.FT_1X2, "2", "", "2")]
-        ////[TestCase(BetType.FirstHalf_1X2, "1", "", "1")]
-        ////[TestCase(BetType.FirstHalf_1X2, "x", "", "x")]
-        ////[TestCase(BetType.FirstHalf_1X2, "2", "", "2")]
-        ////public void GetMatchForecast_ReceiveListOfBetTypeDto_SetHandicapValueForEachBetChoice(
-        ////    BetType betType,
-        ////    string betChoice,
-        ////    string rawHandicapValue,
-        ////    string expectedHandicapValue)
-        ////{
-        ////    //// Arrange
-        ////    var query = new MatchForecastsQuery(1);
-        ////    var kickOffTime = DateTime.Now.AddDays(1);
-        ////    var rawData = new List<BetTypeForecastDto>
-        ////    {
-        ////        new BetTypeForecastDto
-        ////        {
-        ////            BetTypeId = (int)betType,
-        ////            BetChoice = betChoice
-        ////        }
-        ////    };
+            IEnumerable<MatchForecast> matchForecasts = new List<MatchForecast>
+            {
+                CreateMatchForecast(1),
+                CreateMatchForecast(2)
+            };
 
-        ////    var columnNameData = new List<WinLossColumnNameDto>
-        ////    {
-        ////        new WinLossColumnNameDto
-        ////        {
-        ////            BetTypeId = (int)betType
-        ////        }
-        ////    };
+            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
-        ////    var matchForecasts = new List<MatchForecast>
-        ////    {
-        ////        new MatchForecast
-        ////        {
-        ////            Id = 1
-        ////        }
-        ////    };
+            //// Act
+            var matchForcasts = _forecastService.GetMatchForecasts(query);
 
-        ////    var forecastData = Tuple.Create(matchForecasts as IEnumerable<MatchForecast>, rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>);
+            //// Assert
+            var match1 = matchForcasts.ElementAt(0);
+            var match2 = matchForcasts.ElementAt(1);
+            Assert.True(
+                match1.TotalBetCount == 12
+                && match2.TotalBetCount == 6);
+        }
 
+        [Test]
+        public void GetMatchForecast_SumTotalTurnover()
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(1);
+            IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
+            {
+                CreateBetTypeForecastDto(1, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FT_1X2),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FirstHalf_1X2),
+                CreateBetTypeForecastDto(2, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(2, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////    _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
+            IEnumerable<WinLossColumnNameDto> columnNameData = new List<WinLossColumnNameDto>
+            {
+                CreateWinLossColumnNameDto(1, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FT_1X2),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FirstHalf_1X2),
+                CreateWinLossColumnNameDto(2, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(2, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(2, (int)BetType.FT_1X2)
+            };
 
-        ////    //// Act
-        ////    var matchForcast = _forecastService.GetMatchForecasts(query);
+            IEnumerable<MatchForecast> matchForecasts = new List<MatchForecast>
+            {
+                CreateMatchForecast(1),
+                CreateMatchForecast(2)
+            };
 
-        ////    //// Assert
-        ////    //Assert.True(matchForcast.BetTypeForecasts.Count() == 1
-        ////    //    && matchForcast.BetTypeForecasts.First().BetChoices.First().HandicapValue == expectedHandicapValue);
-        ////}
+            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
-        ////[Test]
-        ////public void GetMatchForecast_DataValid_ReturnMatchForecast()
-        ////{
-        ////    //// Arrange
-        ////    var query = new MatchForecastsQuery(1);
-        ////    var kickOffTime = DateTime.Now.Subtract(new TimeSpan(1, 0, 0));
-        ////    var rawData = new List<BetTypeForecastDto>
-        ////    {
-        ////        new BetTypeForecastDto
-        ////        {
-        ////            BetTypeId = (int)BetType.Handicap,
-        ////            BetChoice = "h"
-        ////        },
-        ////        new BetTypeForecastDto
-        ////        {
-        ////            BetTypeId = (int)BetType.Handicap,
-        ////            BetChoice = "a"
-        ////        }
-        ////    };
+            //// Act
+            var matchForcasts = _forecastService.GetMatchForecasts(query);
 
-        ////    var columnNameData = new List<WinLossColumnNameDto>
-        ////    {
-        ////        new WinLossColumnNameDto
-        ////        {
-        ////            BetTypeId = (int)BetType.Handicap,
-        ////            FirstColumnName = 1,
-        ////            SecondColumnName = 2,
-        ////            ThirdColumnName = 3
-        ////        }
-        ////    };
+            //// Assert
+            var match1 = matchForcasts.ElementAt(0);
+            var match2 = matchForcasts.ElementAt(1);
+            Assert.True(
+                match1.TotalTurnover == 600
+                && match2.TotalTurnover == 300);
+        }
 
-        ////    var matchForecasts = new List<MatchForecast>
-        ////    {
-        ////        new MatchForecast
-        ////        {
-        ////            Id = 1
-        ////        }
-        ////    };
+        [Test]
+        public void GetMatchForecast_CurrentTimeIsSecondHaft_RemoveFirstHaftForecast()
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(1);
+            IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
+            {
+                CreateBetTypeForecastDto(1, (int)BetType.Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType.Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FT_1X2),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Handicap),
+                CreateBetTypeForecastDto(1, (int)BetType._1st_Over_Under),
+                CreateBetTypeForecastDto(1, (int)BetType.FirstHalf_1X2)
+            };
 
-        ////    var forecastData = Tuple.Create(matchForecasts as IEnumerable<MatchForecast>, rawData as IEnumerable<BetTypeForecastDto>, columnNameData as IEnumerable<WinLossColumnNameDto>);
+            IEnumerable<WinLossColumnNameDto> columnNameData = new List<WinLossColumnNameDto>
+            {
+                CreateWinLossColumnNameDto(1, (int)BetType.Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType.Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FT_1X2),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Handicap),
+                CreateWinLossColumnNameDto(1, (int)BetType._1st_Over_Under),
+                CreateWinLossColumnNameDto(1, (int)BetType.FirstHalf_1X2)
+            };
 
+            IEnumerable<MatchForecast> matchForecasts = new List<MatchForecast>
+            {
+                CreateMatchForecast(1, true, DateTime.Now.Subtract(new TimeSpan(1, 0, 0)))
+            };
 
-        ////    //// Act
-        ////    var matchForcast = _forecastService.GetMatchForecasts(query);
+            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
-        ////    //// Assert
-        ////    //Assert.IsTrue(
-        ////    //    1m == matchForcast.ForecastTotal
-        ////    //    && matchForcast.BetTypeForecasts.Count() == 1);
-        ////}
+            //// Act
+            var matchForcasts = _forecastService.GetMatchForecasts(query);
+
+            //// Assert
+            Assert.True(matchForcasts.ElementAt(0).BetTypeForecasts.Count() == 3
+                         && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).BetTypeId == (int)BetType.Handicap
+                         && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(1).BetTypeId == (int)BetType.Over_Under
+                         && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(2).BetTypeId == (int)BetType.FT_1X2);
+        }
 
         private BetTypeForecastDto CreateBetTypeForecastDto(
             int matchId = 1,
@@ -446,7 +479,7 @@
         private WinLossColumnNameDto CreateWinLossColumnNameDto(
             int matchId = 1,
             int betTypeId = (int)BetType.Handicap,
-            int HighlightValueOverUnder = 2,
+            int highlightValueOverUnder = 2,
             int firstWinLoss = 1,
             int secondWinLoss = 2,
             int thirdWinLoss = 3,
@@ -464,7 +497,7 @@
                 ThirdColumnName = thirdWinLoss,
                 FourthColumnName = fourthWinLoss,
                 FifthColumnName = fifthWinLoss,
-                HighlightValueOverUnder = HighlightValueOverUnder,
+                HighlightValueOverUnder = highlightValueOverUnder,
                 Turnover = turnover,
                 BetCount = betCount
             };

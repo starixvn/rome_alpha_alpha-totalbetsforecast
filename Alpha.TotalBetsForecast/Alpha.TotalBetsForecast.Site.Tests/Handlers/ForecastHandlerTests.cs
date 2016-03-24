@@ -10,6 +10,7 @@
     using NUnit.Framework;
     using Site.Handlers;
     using Site.Services;
+    using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.RemotingRef;
 
     [TestFixture]
@@ -225,52 +226,58 @@
             _forecastService.Received().GetMatchForecasts(query);
         }
 
-        ////[Test]
-        ////public void HandleMatchForecastQuery_DataValid_ReturnMatchForecastViewMode()
-        ////{
-        ////    //// Arrange
-        ////    var query = new MatchForecastQuery(CustId)
-        ////    {
-        ////        MatchId = 1,
-        ////        IsLive = true
-        ////    };
+        [Test]
+        public void HandleMatchForecastQuery_DataValid_ReturnMatchForecastViewMode()
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(CustId)
+            {
+                MatchIds = "1",
+                IsLive = true
+            };
 
-        ////    Match match = new Match
-        ////    {
-        ////        Id = 1,
-        ////        AwayId = 1,
-        ////        Code = "aaaa",
-        ////        HasLive = true,
-        ////        HomeId = 3,
-        ////        IsLive = true,
-        ////        KickOffTime = new DateTime(1989, 5, 28),
-        ////        LeagueId = 1,
-        ////        LiveAwayScore = 3,
-        ////        LiveHomeScore = 4
-        ////    };
+            var match = new MatchForecast
+            {
+                Id = 1,
+                AwayId = 1,
+                HasLive = true,
+                HomeId = 3,
+                IsLive = true,
+                KickOffTime = new DateTime(1989, 5, 28),
+                LiveAwayScore = 3,
+                LiveHomeScore = 4,
+                ShowTime = "ShowTime",
+                TotalBetCount = 4,
+                TotalForecastWinLoss = 5.1m,
+                TotalTurnover = 3.4m,
+                BetTypeForecasts = new List<BetTypeForecast>
+                {
+                    new BetTypeForecast { BetTypeId = (int)BetType.Handicap }
+                }
+            };
 
-        ////    _forecastService.GetMatchForecasts(Arg.Any<MatchForecastsQuery>(), Arg.Any<DateTime>()).Returns(new MatchForecast
-        ////    {
-        ////        ForecastTotal = 101,
-        ////        BetTypeForecasts = new List<BetTypeForecast> { new BetTypeForecast { BetTypeId = 1, BetType = "aaaaa" } }
-        ////    });
+            _forecastService.GetMatchForecasts(Arg.Any<MatchForecastsQuery>()).Returns(new List<MatchForecast>
+            {
+                match
+            });
 
-        ////    _eventService.GetMatchInfo(Arg.Any<bool>(), Arg.Any<int>()).Returns(match);
+            //// Act
+            var actualViewModel = _forecastHandler.Handle(query);
 
-        ////    //// Act
-        ////    var actualViewModel = _forecastHandler.Handle(query);
+            //// Assert
 
-        ////    //// Assert
-        ////    Assert.IsTrue(actualViewModel.MatchId == match.Id
-        ////        && actualViewModel.KickOffTimeString == "05/28/1989 12:00 AM"
-        ////        && actualViewModel.HasLive
-        ////        && actualViewModel.IsLive
-        ////        && actualViewModel.LiveAwayScore == match.LiveAwayScore
-        ////        && actualViewModel.LiveHomeScore == match.LiveHomeScore
-        ////        && actualViewModel.ForecastTotal == 101
-        ////        && actualViewModel.BetTypeForecasts.Count() == 1
-        ////        && actualViewModel.BetTypeForecasts.ElementAt(0).BetType == "aaaaa");
-        ////}
+            Assert.IsTrue(actualViewModel.ElementAt(0).Id == match.Id
+                && actualViewModel.ElementAt(0).HasLive
+                && actualViewModel.ElementAt(0).IsLive
+                && actualViewModel.ElementAt(0).LiveAwayScore == match.LiveAwayScore
+                && actualViewModel.ElementAt(0).LiveHomeScore == match.LiveHomeScore
+                && actualViewModel.ElementAt(0).ShowTime == match.ShowTime
+                && actualViewModel.ElementAt(0).TotalBetCount == match.TotalBetCount
+                && actualViewModel.ElementAt(0).TotalForecastWinLoss == match.TotalForecastWinLoss
+                && actualViewModel.ElementAt(0).TotalTurnover == match.TotalTurnover
+                && actualViewModel.ElementAt(0).BetTypeForecasts.Count() == 1
+                && actualViewModel.ElementAt(0).BetTypeForecasts.ElementAt(0).BetTypeId == (int)BetType.Handicap);
+        }
 
         #endregion Match Forecast Testing
     }
