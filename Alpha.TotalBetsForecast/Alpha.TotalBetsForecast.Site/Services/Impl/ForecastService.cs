@@ -89,7 +89,7 @@
 
                 match.TotalBetCount += betTypeForecast.BetCount;
                 match.TotalTurnover += betTypeForecast.Turnover;
-                match.TotalForecastWinLoss += CalculateTotalForecastWinLoss(match.IsLive, match, betTypeForecast, handicapBetType);
+                match.TotalForecastWinLoss += betTypeForecast.WinLossValues.ElementAt(betTypeForecast.MainWinLossIndex);
 
                 betTypeForecasts.Add(betTypeForecast);
             }
@@ -153,6 +153,7 @@
                     winLossColumnNames.ElementAt(i)))
                 {
                     betTypeForecast.MainWinLossIndex = i;
+                    break;
                 }
             }
 
@@ -216,58 +217,6 @@
             }
 
             return false;
-        }
-
-        private decimal CalculateTotalForecastWinLoss(bool isLive, Match match, BetTypeForecast betType, BetTypeForecast handicapBetType)
-        {
-            switch ((BetType)betType.BetTypeId)
-            {
-                case BetType.Handicap:
-                case BetType._1st_Handicap:
-                    return betType.WinLossValues.ElementAt(2);
-
-                case BetType.Over_Under:
-                case BetType._1st_Over_Under:
-                    return betType.WinLossValues.ElementAt(4);
-
-                case BetType.FT_1X2:
-                case BetType.FirstHalf_1X2:
-                    if (isLive)
-                    {
-                        if (match.LiveHomeScore == match.LiveAwayScore)
-                        {
-                            return betType.WinLossValues.ElementAt(1);
-                        }
-
-                        if (match.LiveHomeScore > match.LiveAwayScore)
-                        {
-                            return betType.WinLossValues.ElementAt(0);
-                        }
-
-                        return betType.WinLossValues.ElementAt(2);
-                    }
-
-                    if (handicapBetType != null)
-                    {
-                        var currentHdp = Converter.ToInt(handicapBetType.WinLossColumnNames.ElementAt(2));
-
-                        if (currentHdp == 0)
-                        {
-                            return betType.WinLossValues.ElementAt(1);
-                        }
-
-                        if (currentHdp > 0)
-                        {
-                            return betType.WinLossValues.ElementAt(0);
-                        }
-
-                        return betType.WinLossValues.ElementAt(1);
-                    }
-
-                    return 0;
-            }
-
-            return 0;
         }
 
         private bool IsFullTimeBetType(int betTypeId)

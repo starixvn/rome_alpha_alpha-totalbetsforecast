@@ -6,8 +6,6 @@
 
         public int BetTypeId { get; set; }
 
-        public string BetChoice { get; set; }
-
         public decimal WinLossFirstColumn { get; set; }
 
         public decimal WinLossSecondColumn { get; set; }

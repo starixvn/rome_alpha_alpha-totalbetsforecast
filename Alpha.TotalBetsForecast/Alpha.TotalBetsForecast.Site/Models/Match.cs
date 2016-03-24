@@ -7,8 +7,6 @@
     {
         public int Id { get; set; }
 
-        public string Code { get; set; }
-
         public int HomeId { get; set; }
 
         public bool IsLive { get; set; }
@@ -34,8 +32,6 @@
         public byte LiveHomeScore { get; set; }
 
         public byte LiveAwayScore { get; set; }
-
-        public int LeagueId { get; set; }
 
         public bool HasLive { get; set; }
 
