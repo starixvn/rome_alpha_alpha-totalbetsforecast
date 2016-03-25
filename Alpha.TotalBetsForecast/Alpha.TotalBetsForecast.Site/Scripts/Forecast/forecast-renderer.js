@@ -135,9 +135,9 @@ var forecastRenderer =
     },
 
     liveMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center"><span class="match-score">\
-                            <span class="home-score"><%= homeScore %> </span>-<span class="away-score"> <%= awayScore %></span></span><br />\
+                            <span class="home-score"><%= homeScore %></span>-<span class="away-score"><%= awayScore %></span></span><br />\
                             <span class="offer-live"><%= liveText %></span></td>'),
-    deadballMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center">\
+    deadballMatchInfoTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-time text-center show-time">\
                                                 <%= showTime %> \
                                             </td>'),
     matchNameTemplate: _.template('<td rowspan="<%= matchRowSpan %>" class="col-event"> \
@@ -269,7 +269,7 @@ var forecastRenderer =
                 }
             }
 
-            element.text(value);
+            element.html(value);
 
             forecastRenderer.highlightChanged(
                 element.next(),
@@ -308,6 +308,12 @@ var forecastRenderer =
             homeScore.text(matchForecast.LiveHomeScore);
             awayScore.text(matchForecast.LiveAwayScore);
         };
+
+        if (!matchForecast.IsLive) {
+            forecastRenderer.checkChangedAndHighlight(
+                   matchForecastElement.find('.show-time'),
+                   matchForecast.ShowTime);
+        }
     },
 
     trackChangedAndUpdatedValues: function (matchForecast) {
