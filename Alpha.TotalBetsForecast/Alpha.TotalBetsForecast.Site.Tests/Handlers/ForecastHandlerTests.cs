@@ -246,7 +246,7 @@
                 KickOffTime = new DateTime(1989, 5, 28),
                 LiveAwayScore = 3,
                 LiveHomeScore = 4,
-                ShowTime = "ShowTime",
+                ShowTime = "Show Time",
                 TotalBetCount = 4,
                 TotalForecastWinLoss = 5.1m,
                 TotalTurnover = 3.4m,
@@ -271,7 +271,7 @@
                 && actualViewModel.ElementAt(0).IsLive
                 && actualViewModel.ElementAt(0).LiveAwayScore == match.LiveAwayScore
                 && actualViewModel.ElementAt(0).LiveHomeScore == match.LiveHomeScore
-                && actualViewModel.ElementAt(0).ShowTime == match.ShowTime
+                && actualViewModel.ElementAt(0).ShowTime == "Show<br />Time"
                 && actualViewModel.ElementAt(0).TotalBetCount == match.TotalBetCount
                 && actualViewModel.ElementAt(0).TotalForecastWinLoss == match.TotalForecastWinLoss
                 && actualViewModel.ElementAt(0).TotalTurnover == match.TotalTurnover

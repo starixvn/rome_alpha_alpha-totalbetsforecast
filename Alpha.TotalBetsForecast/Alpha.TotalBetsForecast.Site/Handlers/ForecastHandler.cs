@@ -44,6 +44,12 @@
 
                 foreach (var matchForecast in matchForecasts)
                 {
+                    var showTimeString = string.Empty;
+                    if(!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
+                    {
+                        showTimeString = matchForecast.ShowTime.Trim().Replace(" ", "<br />");
+                    }
+
                     var matchForecastViewModel = new MatchForecastViewModel
                     {
                         Id = matchForecast.Id,
@@ -53,7 +59,7 @@
                         LiveAwayScore = matchForecast.LiveAwayScore,
                         IsLive = message.IsLive,
                         HasLive = matchForecast.HasLive,
-                        ShowTime = matchForecast.ShowTime,
+                        ShowTime = showTimeString,
                         KickOffTime = matchForecast.KickOffTime,
                         BetTypeForecasts = matchForecast.BetTypeForecasts,
                         TotalBetCount = matchForecast.TotalBetCount,
