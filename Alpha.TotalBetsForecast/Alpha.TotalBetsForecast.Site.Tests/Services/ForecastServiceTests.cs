@@ -260,7 +260,7 @@
                 && matchForcasts.ElementAt(0).BetTypeForecasts.ElementAt(0).MainWinLossIndex == mainWinLossIndex);
         }
 
-        [TestCase(false, 0, 0, 12, 6)]
+        [TestCase(false, 0, 0, 0, 0)]
         [TestCase(true, 0, 0, 20, 10)]
         [TestCase(true, 1, 0, 18, 9)]
         [TestCase(true, 0, 1, 22, 11)]

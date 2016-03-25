@@ -203,7 +203,7 @@ var forecastRenderer =
             totalText: forecastRenderer.resources.total,
             betCount: forecastRenderer.formatNumber(matchForecast.TotalBetCount, '0,0.'),
             turnOver: forecastRenderer.formatNumber(matchForecast.TotalTurnover),
-            winloss: forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss),
+            winloss: matchForecast.IsLive ? forecastRenderer.formatNumber(matchForecast.TotalForecastWinLoss) : '',
             matchId: matchForecast.Id,
             positiveClass: matchForecast.TotalForecastWinLoss > 0 ? 'positive' : ''
         });
@@ -374,8 +374,11 @@ var forecastRenderer =
         forecastRenderer.checkChangedAndHighlight(
             matchForecastElement.find('.total-turn-over-' + matchForecast.Id),
             matchForecast.TotalTurnover);
-        forecastRenderer.checkChangedAndHighlight(
-            matchForecastElement.find('.total-win-loss-' + matchForecast.Id),
-            matchForecast.TotalForecastWinLoss);
+
+        if (matchForecast.IsLive) {
+            forecastRenderer.checkChangedAndHighlight(
+                matchForecastElement.find('.total-win-loss-' + matchForecast.Id),
+                matchForecast.TotalForecastWinLoss);
+        }
     }
 };

@@ -89,7 +89,11 @@
 
                 match.TotalBetCount += betTypeForecast.BetCount;
                 match.TotalTurnover += betTypeForecast.Turnover;
-                match.TotalForecastWinLoss += betTypeForecast.WinLossValues.ElementAt(betTypeForecast.MainWinLossIndex);
+
+                if (match.IsLive)
+                {
+                    match.TotalForecastWinLoss += betTypeForecast.WinLossValues.ElementAt(betTypeForecast.MainWinLossIndex);
+                }
 
                 betTypeForecasts.Add(betTypeForecast);
             }
