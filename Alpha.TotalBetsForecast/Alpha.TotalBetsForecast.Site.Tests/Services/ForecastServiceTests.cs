@@ -5,6 +5,7 @@
     using System.Linq;
     using Criteria;
     using DataAccesses;
+    using Fanex.Caching;
     using Fanex.Data.Repository;
     using Models;
     using Models.Dtos;
@@ -18,14 +19,16 @@
     public class ForecastServiceTests
     {
         private IForecastDataAccess _forecastDataAccess;
+        private ICache _cacheManager;
         private ForecastService _forecastService;
 
         [SetUp]
         public void SetUp()
         {
             _forecastDataAccess = Substitute.For<IForecastDataAccess>();
+            _cacheManager = Substitute.For<ICache>();
 
-            _forecastService = new ForecastService(_forecastDataAccess);
+            _forecastService = new ForecastService(_forecastDataAccess, _cacheManager);
         }
 
         [Test]
@@ -34,6 +37,37 @@
             MatchForecastsQuery query = null;
 
             Assert.Throws<ArgumentNullException>(() => _forecastService.GetMatchForecasts(query));
+        }
+
+        [Test]
+        public void GetMatchForecast_MatchIdsIsEmpty_ThrowArgumentException()
+        {
+            MatchForecastsQuery query = new MatchForecastsQuery(1);
+
+            Assert.Throws<ArgumentException>(() => _forecastService.GetMatchForecasts(query));
+        }
+
+        [Test]
+        public void GetMatchForecast_DataWereCached_ReturnCachedData()
+        {
+            //// Arrange
+            var query = new MatchForecastsQuery(1)
+            {
+                IsLive = true,
+                MatchIds = "1,2"
+            };
+            var expectedMatchForecasts = new List<MatchForecast>
+                {
+                    CreateMatchForecast(1, true)
+                };
+            _cacheManager.Get<IEnumerable<MatchForecast>>("Alpha.TotalBetsForecast.Site.MatchForecastsCached_1_1_2_True")
+                .Returns(expectedMatchForecasts);
+
+            //// Act
+            var actualMatchForecast = _forecastService.GetMatchForecasts(query);
+
+            //// Assert
+            Assert.AreEqual(expectedMatchForecasts, actualMatchForecast);
         }
 
         [Test]
@@ -65,7 +99,10 @@
         public void GetMatchForecast_ReceivesListOfBetTypeDto_GroupDataByMatch()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 new BetTypeForecastDto { MatchId = 1, BetTypeId = (int)BetType.Handicap },
@@ -110,7 +147,10 @@
         public void GetMatchForecast_ReceivesListOfWinLossName_BuildWinLossNameListForHandicap(BetType betType)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 CreateBetTypeForecastDto(1, (int)betType)
@@ -149,7 +189,10 @@
         public void GetMatchForecast_MatchIsNoneLive_BuildWinLossNameListForOverUnder(BetType betType, int highLightValue, int mainWinLossIndex)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             var isLive = false;
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
@@ -187,7 +230,10 @@
         public void GetMatchForecast_MatchIsLive_BuildWinLossNameListForOverUnder(BetType betType)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             var isLive = true;
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
@@ -229,7 +275,10 @@
         public void GetMatchForecast_MatchIsLive_BuildWinLossNameListForOneXTwo(BetType betType, byte liveHomeScore, byte liveAwayScore, int mainWinLossIndex)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             var isLive = true;
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
@@ -267,7 +316,10 @@
         public void GetMatchForecast_SumWinLossOfBetTypes(bool isLive, byte liveHomeScore, byte liveAwayScore, decimal totalWinLossMatch1, decimal totalWinLossMatch2)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 CreateBetTypeForecastDto(1, (int)BetType.Handicap),
@@ -317,7 +369,10 @@
         public void GetMatchForecast_SumTotalBetCount()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 CreateBetTypeForecastDto(1, (int)BetType.Handicap),
@@ -367,7 +422,10 @@
         public void GetMatchForecast_SumTotalTurnover()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 CreateBetTypeForecastDto(1, (int)BetType.Handicap),
@@ -417,7 +475,10 @@
         public void GetMatchForecast_CurrentTimeIsSecondHaft_RemoveFirstHaftForecast()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(1)
+            {
+                MatchIds = "1"
+            };
             IEnumerable<BetTypeForecastDto> rawData = new List<BetTypeForecastDto>
             {
                 CreateBetTypeForecastDto(1, (int)BetType.Handicap),

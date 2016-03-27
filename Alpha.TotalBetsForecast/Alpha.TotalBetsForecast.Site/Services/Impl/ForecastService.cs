@@ -6,6 +6,7 @@
     using System.Linq;
     using Criteria;
     using DataAccesses;
+    using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Common.Helper;
     using Models;
@@ -15,24 +16,50 @@
 
     public class ForecastService : IForecastService
     {
-        private const string HomeChoice = "h";
-        private const string AwayChoice = "a";
-        private const string OverChoice = "o";
-        private const string UnderChoice = "u";
+        private const string MatchForecastsCacheKey = "Alpha.TotalBetsForecast.Site.MatchForecastsCached_{0}_{1}_{2}";
+        private const int MatchForecastsCacheTimeOut = 5; // 5 Second
+
         private const int HalftimeMinutes = 45;
 
         private readonly IForecastDataAccess _forecastDataAccess;
+        private readonly ICache _cacheManager;
 
-        public ForecastService(IForecastDataAccess forecastDataAccess)
+        public ForecastService(IForecastDataAccess forecastDataAccess, ICache cacheManager)
         {
             _forecastDataAccess = forecastDataAccess;
+            _cacheManager = cacheManager;
         }
 
         [SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0", Justification = "Reviewed!")]
         public IEnumerable<MatchForecast> GetMatchForecasts(MatchForecastsQuery query)
         {
             Check.Argument.IsNotNull(query, nameof(query));
+            Check.Argument.IsNotEmpty(query.MatchIds, nameof(query.MatchIds));
 
+            var matchForecasts = _cacheManager.Get<IEnumerable<MatchForecast>>(GetMatchForecastsCacheKey(query));
+
+            if (matchForecasts == null
+                || !matchForecasts.Any())
+            {
+                matchForecasts = BuildMatchForecasts(query);
+
+                _cacheManager.Set(GetMatchForecastsCacheKey(query), matchForecasts, MatchForecastsCacheTimeOut);
+            }
+
+            return matchForecasts;
+        }
+
+        private string GetMatchForecastsCacheKey(MatchForecastsQuery query)
+        {
+            return string.Format(
+                MatchForecastsCacheKey,
+                query.CustId,
+                query.MatchIds.Replace(",", "_"),
+                query.IsLive);
+        }
+
+        private IEnumerable<MatchForecast> BuildMatchForecasts(MatchForecastsQuery query)
+        {
             var matchForecastRaw = _forecastDataAccess.GetMatchForecast(new GetMatchForecastsCriteria
             {
                 CustId = query.CustId,

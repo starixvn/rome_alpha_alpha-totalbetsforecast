@@ -45,7 +45,7 @@
                 foreach (var matchForecast in matchForecasts)
                 {
                     var showTimeString = string.Empty;
-                    if(!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
+                    if (!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
                     {
                         showTimeString = matchForecast.ShowTime.Trim().Replace(" ", "<br />");
                     }
