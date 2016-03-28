@@ -159,4 +159,10 @@
   <data name="BetType_15" xml:space="preserve">
     <value>1H 1X2</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>총</value>
+  </data>
+  <data name="MatchOfferLive" xml:space="preserve">
+    <value>라이브</value>
+  </data>
 </root>

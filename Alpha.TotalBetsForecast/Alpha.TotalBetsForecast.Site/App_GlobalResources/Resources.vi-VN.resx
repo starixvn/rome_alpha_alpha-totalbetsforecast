@@ -145,4 +145,10 @@
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>Nhấn vào đây để cập nhật trình duyệt của bạn.</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng cộng</value>
+  </data>
+  <data name="MatchOfferLive" xml:space="preserve">
+    <value>Trực Tuyến</value>
+  </data>
 </root>

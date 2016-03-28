@@ -145,4 +145,10 @@
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>请点击这里以升级您的浏览器。</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>总和</value>
+  </data>
+  <data name="MatchOfferLive" xml:space="preserve">
+    <value>现场</value>
+  </data>
 </root>

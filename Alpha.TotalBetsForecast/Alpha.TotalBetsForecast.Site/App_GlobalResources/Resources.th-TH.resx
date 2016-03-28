@@ -165,4 +165,10 @@
   <data name="ClickToUpdateBrowser" xml:space="preserve">
     <value>คลิ๊กตรงนี้เพื่อทำการอัพเกรด เบราว์เซอร์ของท่าน</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>ยอดรวม</value>
+  </data>
+  <data name="MatchOfferLive" xml:space="preserve">
+    <value>สด</value>
+  </data>
 </root>
