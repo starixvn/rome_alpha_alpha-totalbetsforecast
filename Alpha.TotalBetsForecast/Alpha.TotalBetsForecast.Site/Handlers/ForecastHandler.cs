@@ -47,7 +47,7 @@
                     var showTimeString = string.Empty;
                     if (!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
                     {
-                        showTimeString = matchForecast.ShowTime.Trim().Replace(" ", "<br />");
+                        showTimeString = BuildShowTime(matchForecast);
                     }
 
                     var matchForecastViewModel = new MatchForecastViewModel
@@ -77,6 +77,23 @@
             }
 
             return matchForecastViewModels;
+        }
+
+        private string BuildShowTime(MatchForecast matchForecast)
+        {
+            var showTimeStrings = matchForecast.ShowTime.Trim().Split(' ');
+            var totalShowTimeStrings = showTimeStrings.Count();
+
+            if (totalShowTimeStrings > 2)
+            {
+                return string.Join(" ", showTimeStrings.Take(totalShowTimeStrings - 1))
+                    + "<br />"
+                    + showTimeStrings.Last();
+            }
+            else
+            {
+                return string.Join("<br />", showTimeStrings);
+            }
         }
 
         public IEnumerable<Match> Handle(MatchesQuery message)
