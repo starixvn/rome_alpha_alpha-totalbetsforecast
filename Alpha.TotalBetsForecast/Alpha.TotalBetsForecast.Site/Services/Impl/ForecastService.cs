@@ -79,8 +79,8 @@
 
             foreach (var match in matches)
             {
-                var betTypes = betTypeForecastDtos.Where(betTypeDto => betTypeDto.MatchId == match.Id);
-                var winLossNames = winLossColumnNameDtos.Where(winLossName => winLossName.MatchId == match.Id);
+                var betTypes = betTypeForecastDtos.Where(betTypeDto => betTypeDto.MatchId == match.Id).OrderBy(betTypeDto => betTypeDto.BetTypeId);
+                var winLossNames = winLossColumnNameDtos.Where(winLossName => winLossName.MatchId == match.Id).OrderBy(winLossName => winLossName.BetTypeId);
 
                 matchForecasts.Add(BuildMatchForecast(match, betTypes, winLossNames));
             }
