@@ -221,12 +221,19 @@
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
     <Content Include="Content\Images\loader3.gif" />
+    <Content Include="Content\Images\slide2.png" />
+    <Content Include="Content\Images\slide3.png" />
+    <Content Include="Content\Images\slide4.png" />
+    <Content Include="Content\quick-introduction.css">
+      <DependentUpon>quick-introduction.scss</DependentUpon>
+    </Content>
     <Content Include="Content\totalbets-forecast.css">
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
     <Content Include="Scripts\Forecast\index.js" />
     <Content Include="Scripts\Forecast\forecast-renderer.js" />
+    <Content Include="Scripts\Introduction\quick-introduction.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -333,6 +340,7 @@
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
+    <Content Include="Content\quick-introduction.scss" />
     <None Include="Properties\PublishProfiles\Local202.pubxml" />
     <Content Include="Views\Introduction\Index.en-US.cshtml" />
     <Content Include="Views\Introduction\Index.ja-JP.cshtml" />
@@ -341,6 +349,7 @@
     <Content Include="Views\Introduction\Index.vi-VN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-CN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-TW.cshtml" />
+    <Content Include="Views\Introduction\QuickIntroduction.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

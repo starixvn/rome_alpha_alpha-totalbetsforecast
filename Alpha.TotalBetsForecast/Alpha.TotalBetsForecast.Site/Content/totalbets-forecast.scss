@@ -190,7 +190,7 @@ table * {
             }
         }
 
-        
+
 
         &.high-light-score {
             background-color: $back-ground-focus-color !important;
@@ -202,10 +202,10 @@ table * {
     }
 
     tr:hover td {
-            &.col-time, &.col-event {
-                background-color: #fff !important;
-            }
+        &.col-time, &.col-event {
+            background-color: #fff !important;
         }
+    }
 
     tr.last-row td.ex-col {
         border-bottom: 1px solid #dfdfdf;
@@ -256,7 +256,7 @@ table * {
         }
     }
 
-    .home-name, .offer-live, .live-status, .positive  {
+    .home-name, .offer-live, .live-status, .positive {
         color: $positive-color;
     }
 
@@ -271,6 +271,10 @@ table * {
 
     .ex-text {
         color: #666;
+    }
+
+    .match-score {
+        color: $positive-color;
     }
 }
 
@@ -287,14 +291,13 @@ table * {
         font-family: 'Iconalpha';
         font-size: 20px;
         position: relative;
-        left: -5px;
-        top: -4px;
         color: #212121;
+        left: -5px;
     }
 
     #ddlRefresh {
         position: relative;
-        top: -7px;
+        top: -4px;
     }
 }
 

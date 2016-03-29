@@ -10,5 +10,11 @@
         {
             return View($"Index.{UserSession.Current.Language}");
         }
+
+        [ChildActionOnly]
+        public ActionResult QuickIntroduction()
+        {
+            return View();
+        }
     }
 }

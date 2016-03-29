@@ -18,13 +18,15 @@
         {
             bundles.Add(new ScriptBundle(IndexForecastJavascriptBundleUrl)
                 .Include("~/Scripts/Forecast/forecast-renderer.js")
-                .Include("~/Scripts/Forecast/index.js"));
+                .Include("~/Scripts/Forecast/index.js")
+                .Include("~/Scripts/Introduction/quick-introduction.js"));
         }
 
         private static void RegisterStyleBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle(IndexForecastStyleBundleUrl)
-                .Include("~/Content/totalbets-forecast.css", new CssRewriteUrlTransformWrapper()));
+                .Include("~/Content/totalbets-forecast.css", new CssRewriteUrlTransformWrapper())
+                .Include("~/Content/quick-introduction.css", new CssRewriteUrlTransformWrapper()));
         }
     }
 }

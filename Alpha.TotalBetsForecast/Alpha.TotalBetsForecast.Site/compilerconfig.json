@@ -12,5 +12,12 @@
     "minify": {
       "enabled": false
     }
+  },
+  {
+    "outputFile": "Content/quick-introduction.css",
+    "inputFile": "Content/quick-introduction.scss",
+    "minify": {
+      "enabled": false
+    }
   }
 ]

@@ -185,6 +185,8 @@ table * {
     color: #313131; }
   .tblRpt .ex-text {
     color: #666; }
+  .tblRpt .match-score {
+    color: #e40000; }
 
 .btn.btn-countdown {
   background-color: #eee;
@@ -196,12 +198,11 @@ table * {
     font-family: 'Iconalpha';
     font-size: 20px;
     position: relative;
-    left: -5px;
-    top: -4px;
-    color: #212121; }
+    color: #212121;
+    left: -5px; }
   .btn.btn-countdown #ddlRefresh {
     position: relative;
-    top: -7px; }
+    top: -4px; }
 
 #refresh-value {
   padding: 0;
