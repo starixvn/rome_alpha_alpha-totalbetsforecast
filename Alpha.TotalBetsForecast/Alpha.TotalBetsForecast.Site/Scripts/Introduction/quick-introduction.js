@@ -6,7 +6,8 @@
         carouseles: null,
         leftCarousel: null,
         rightCarousel: null,
-        bothCarousel: null
+        bothCarousel: null,
+        btnClose: null
     },
 
     readQuickIntroductionCookieName: 'readQuickIntroduction',
@@ -20,12 +21,17 @@
         quickIntroduction.domElements.leftCarousel = $(".left.carousel-control");
         quickIntroduction.domElements.rightCarousel = $(".right.carousel-control");
         quickIntroduction.domElements.bothCarousel = $(".carousel-control");
+        quickIntroduction.domElements.btnClose = $('#btnClose');
     },
     registerEvents: function () {
         quickIntroduction.domElements.btnLetGo.click(function () {
             quickIntroduction.domElements.beginModel.modal('hide');
+            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, { expires: 365, path: window.location.pathname });
         });
 
+        quickIntroduction.domElements.btnClose.click(function () {
+            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, { expires: 365, path: window.location.pathname });
+        });
 
         quickIntroduction.domElements.carouseles.on('slid.bs.carousel', function () {
             var carouselData = $(this).data('bs.carousel');
@@ -65,12 +71,9 @@
 
         quickIntroduction.cacheElements();
 
-        quickIntroduction.domElements.beginModel.modal('show');
+        quickIntroduction.domElements.beginModel.modal({ backdrop: 'static' }).modal('show');
 
         quickIntroduction.registerEvents();
-
-        $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, { expires: 365, path: window.location.pathname });
-
     }
 };
 
