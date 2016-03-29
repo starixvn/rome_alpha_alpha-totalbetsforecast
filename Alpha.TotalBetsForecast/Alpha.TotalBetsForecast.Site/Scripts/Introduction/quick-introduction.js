@@ -24,13 +24,18 @@
         quickIntroduction.domElements.btnClose = $('#btnClose');
     },
     registerEvents: function () {
+        var cookieExpire = { expires: 365, path: window.location.pathname };
+        if (quickIntroduction.isIe()) {
+            cookieExpire = { expires: 365 };
+        }
+
         quickIntroduction.domElements.btnLetGo.click(function () {
             quickIntroduction.domElements.beginModel.modal('hide');
-            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, { expires: 365, path: window.location.pathname });
+            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, cookieExpire);
         });
 
         quickIntroduction.domElements.btnClose.click(function () {
-            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, { expires: 365, path: window.location.pathname });
+            $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, cookieExpire);
         });
 
         quickIntroduction.domElements.carouseles.on('slid.bs.carousel', function () {
@@ -74,6 +79,17 @@
         quickIntroduction.domElements.beginModel.modal({ backdrop: 'static' }).modal('show');
 
         quickIntroduction.registerEvents();
+    },
+    isIe: function () {
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))  // If Internet Explorer, return version number
+        {
+            return true;
+        }
+
+        return false;
     }
 };
 
