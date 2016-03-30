@@ -265,6 +265,9 @@ var forecast = {
                 if (leagues.length > 0) {
                     forecast.loadMatches();
                 }
+                else {
+                    forecast.renderMatches([]);
+                }
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             try { $.unblockUI(); } catch (e) { }
