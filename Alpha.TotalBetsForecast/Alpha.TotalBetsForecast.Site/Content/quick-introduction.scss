@@ -87,12 +87,18 @@
     .modal-body {
         padding: 20px !important;
 
+        .img-big {
+            width: 100%;
+        }
+
         .block-Guideline {
             .title-Guideline {
                 font-weight: 600;
                 padding: 15px;
                 background: #f0f0f0;
             }
+
+
 
             .detail {
                 overflow: hidden;
@@ -113,6 +119,14 @@
 
                 .img-small {
                     text-align: center;
+
+                    img {
+                        width: auto;
+
+                        @media (max-width: 1024px) {
+                            width: 90%;
+                        }
+                    }
                 }
 
                 .circle {
