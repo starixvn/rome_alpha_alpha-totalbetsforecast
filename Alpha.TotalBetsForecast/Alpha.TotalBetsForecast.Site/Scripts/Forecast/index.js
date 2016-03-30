@@ -262,7 +262,9 @@ var forecast = {
         }).done(function (leagues) {
             if (leagues) {
                 forecast.renderLeagues(leagues);
-                forecast.loadMatches();
+                if (leagues.length > 0) {
+                    forecast.loadMatches();
+                }
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             try { $.unblockUI(); } catch (e) { }
@@ -271,7 +273,7 @@ var forecast = {
 
     renderLeagues: function (leagues) {
         var leagueId = forecast.domElements.ddlLeague.val() || $.cookie(forecast.cookies.league);
-        leagueId = leagueId || leagues[0].Id;
+        leagueId = leagueId || (leagues.length > 0 ? leagues[0].Id : 0);
         var options = '',
             processedLeagues = _.map(leagues, function (league) {
                 return {
