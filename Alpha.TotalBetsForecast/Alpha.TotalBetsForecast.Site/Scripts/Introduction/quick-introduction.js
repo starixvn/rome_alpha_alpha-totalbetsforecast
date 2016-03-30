@@ -8,7 +8,9 @@
         rightCarousel: null,
         bothCarousel: null,
         btnClose: null,
-        quickIntroductionModal: null
+        quickIntroductionModal: null,
+        btnShowUserguide: null,
+        helpModal: null
     },
 
     readQuickIntroductionCookieName: 'readQuickIntroduction',
@@ -24,6 +26,9 @@
         quickIntroduction.domElements.bothCarousel = $(".carousel-control");
         quickIntroduction.domElements.btnClose = $('#btnClose');
         quickIntroduction.domElements.quickIntroductionModal = $('#quickIntroductionModal');
+        quickIntroduction.domElements.btnShowUserguide = $('#btnShowUserguide');
+        quickIntroduction.domElements.helpModal = $('#helpModal');
+        
     },
     registerEvents: function () {
         var cookieExpire = { expires: 365, path: window.location.pathname };
@@ -42,6 +47,14 @@
 
         quickIntroduction.domElements.btnClose.click(function () {
             $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, cookieExpire);
+        });
+
+        quickIntroduction.domElements.btnShowUserguide.click(function () {
+            quickIntroduction.domElements.quickIntroductionModal.on('hidden.bs.modal', function () {
+                quickIntroduction.domElements.helpModal.modal('show');
+            })
+            quickIntroduction.domElements.quickIntroductionModal.modal('hide');
+
         });
 
         quickIntroduction.domElements.carouseles.on('slid.bs.carousel', function () {

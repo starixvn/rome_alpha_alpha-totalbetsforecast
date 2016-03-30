@@ -157,9 +157,6 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>投注 &amp; 预测</value>
   </data>
-  <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>投注和预测指导</value>
-  </data>
   <data name="SelectAMatch" xml:space="preserve">
     <value>选择一个赛事</value>
   </data>

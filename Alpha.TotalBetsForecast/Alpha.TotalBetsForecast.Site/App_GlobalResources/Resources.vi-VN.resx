@@ -157,9 +157,6 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Tổng Cược &amp; Dự Đoán</value>
   </data>
-  <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>Hướng dẫn về Bets &amp; Forecast</value>
-  </data>
   <data name="SelectAMatch" xml:space="preserve">
     <value>Chọn một sự kiện</value>
   </data>

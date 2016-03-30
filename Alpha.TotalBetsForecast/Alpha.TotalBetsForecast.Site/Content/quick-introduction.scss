@@ -48,7 +48,7 @@
 
         .close {
             position: absolute;
-            top: 25px;
+            top: 15px;
             right: 20px;
             z-index: 99;
             opacity: 0.5;
@@ -156,6 +156,8 @@
 
 .carousel-fade {
     .carousel-inner {
+        font-size: 14px;
+
         .item {
             min-height: 560px;
             transition-property: opacity;
@@ -202,6 +204,20 @@
         .active.right {
             left: 0;
             transform: translate3d(0, 0, 0);
+        }
+
+        .slider-text {
+            padding: 0 16px;
+        }
+
+        .c-blue {
+            color: #045ace;
+        }
+
+        .icon-information-outline {
+            font-size: 18px;
+            vertical-align: middle;
+            margin-left: 5px;
         }
     }
 }

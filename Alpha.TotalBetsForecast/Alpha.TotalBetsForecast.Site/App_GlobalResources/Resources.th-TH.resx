@@ -177,9 +177,6 @@
   <data name="BetsAndForecast" xml:space="preserve">
     <value>เดิมพันและการคาดการณ์ล่วงหน้า</value>
   </data>
-  <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>เดิมพันและแนวทางการคาดการณ์ล่วงหน้า</value>
-  </data>
   <data name="SelectAMatch" xml:space="preserve">
     <value>เลื่อกการแข่งขัน</value>
   </data>
