@@ -7,7 +7,8 @@
         leftCarousel: null,
         rightCarousel: null,
         bothCarousel: null,
-        btnClose: null
+        btnClose: null,
+        quickIntroductionModal: null
     },
 
     readQuickIntroductionCookieName: 'readQuickIntroduction',
@@ -22,6 +23,7 @@
         quickIntroduction.domElements.rightCarousel = $(".right.carousel-control");
         quickIntroduction.domElements.bothCarousel = $(".carousel-control");
         quickIntroduction.domElements.btnClose = $('#btnClose');
+        quickIntroduction.domElements.quickIntroductionModal = $('#quickIntroductionModal');
     },
     registerEvents: function () {
         var cookieExpire = { expires: 365, path: window.location.pathname };
@@ -30,7 +32,11 @@
         }
 
         quickIntroduction.domElements.btnLetGo.click(function () {
+            quickIntroduction.domElements.beginModel.on('hidden.bs.modal', function () {
+                quickIntroduction.domElements.quickIntroductionModal.modal('show');
+            })
             quickIntroduction.domElements.beginModel.modal('hide');
+
             $.cookie(quickIntroduction.readQuickIntroductionCookieName, true, cookieExpire);
         });
 

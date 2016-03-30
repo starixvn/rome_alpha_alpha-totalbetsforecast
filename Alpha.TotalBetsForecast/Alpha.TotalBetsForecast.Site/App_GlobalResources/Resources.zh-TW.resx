@@ -151,4 +151,28 @@
   <data name="MatchOfferLive" xml:space="preserve">
     <value>現場</value>
   </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>預測贏/輸</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>投注 &amp; 預測</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>投注和預測指導</value>
+  </data>
+  <data name="SelectAMatch" xml:space="preserve">
+    <value>選擇一個赛事</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>選定赛事（S）</value>
+  </data>
+  <data name="SelectAtLeastOneMatch" xml:space="preserve">
+    <value>請選擇至少一個赛事</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>非現場</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>所有赛事</value>
+  </data>
 </root>

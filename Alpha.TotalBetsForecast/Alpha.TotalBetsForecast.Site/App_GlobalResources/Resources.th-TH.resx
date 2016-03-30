@@ -171,4 +171,28 @@
   <data name="MatchOfferLive" xml:space="preserve">
     <value>สด</value>
   </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>การคาดการณ์ ได้/เสีย ล่วงหน้า</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>เดิมพันและการคาดการณ์ล่วงหน้า</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>เดิมพันและแนวทางการคาดการณ์ล่วงหน้า</value>
+  </data>
+  <data name="SelectAMatch" xml:space="preserve">
+    <value>เลื่อกการแข่งขัน</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>เลื่อกการแข่งขันต่างๆ</value>
+  </data>
+  <data name="SelectAtLeastOneMatch" xml:space="preserve">
+    <value>กรุณาเลือกอย่างน้อยหนึ่งการแข่งขัน</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>ไม่มีเกมสด</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>ทุกการแข่งขัน</value>
+  </data>
 </root>
