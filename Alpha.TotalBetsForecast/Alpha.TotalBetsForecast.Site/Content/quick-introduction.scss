@@ -1,4 +1,17 @@
-﻿.contain {
+﻿//------------------MIXIN-------------------------
+@mixin listStyle ($type: null, $image: null) {
+    padding-left: 17px;
+    margin-top: 10px;
+
+    @if $type and not $image {
+        list-style-type: $type;
+    }
+    @else {
+        list-style-image: $image;
+    }
+}
+
+.contain {
     position: relative;
 
     img {
@@ -6,7 +19,30 @@
     }
 }
 
+//-------------------------------------COLOR---------------------------
+.c-blue {
+    color: #045ace;
+}
 
+.c-red {
+    color: #e40000;
+}
+
+
+//-----------------------------TYPOGRAPHY-----------------------------
+.txt-bold {
+    font-weight: bold;
+}
+
+//------------------------------ICON---------------------------------
+.icon-information-outline {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+
+//-------------------------------MODAL STYLE----------------------
 .modal-dialog.largeModal {
     @media (min-width: 768px) {
         width: 900px;
@@ -32,6 +68,77 @@
 }
 
 
+.guidelinesModal {
+    .modal-header {
+        margin: 0 20px;
+        border-bottom: 1px solid #ddd !important;
+
+        .header-title {
+            margin: 20px 0 15px;
+            font-weight: 600;
+        }
+
+        .close {
+            top: 15px !important;
+            right: -5px !important;
+        }
+    }
+
+    .modal-body {
+        padding: 20px !important;
+
+        .block-Guideline {
+            .title-Guideline {
+                font-weight: 600;
+                padding: 15px;
+                background: #f0f0f0;
+            }
+
+            .detail {
+                overflow: hidden;
+
+                h5 {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                .left {
+                    float: left;
+                    width: 50%;
+                }
+
+                .right {
+                    float: right;
+                }
+
+                .img-small {
+                    text-align: center;
+                }
+
+                .circle {
+                    @include listStyle($type:disc);
+                }
+
+                .square {
+                    @include listStyle($type:square);
+                }
+
+                .arrow {
+                    @include listStyle($image:url(../content/images/arrow.png));
+                }
+
+                .c-red {
+                    padding-left: 15px;
+
+                    p:first-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .modal-dialog {
     margin-top: 100px;
 
@@ -49,7 +156,7 @@
         .close {
             position: absolute;
             top: 15px;
-            right: 20px;
+            right: 15px;
             z-index: 99;
             opacity: 0.5;
 
@@ -90,12 +197,74 @@
     }
 }
 
+
+
+//---------------------------------------SLIDER STYLE------------------------------------
+.carousel-fade {
+    .carousel-inner {
+        font-size: 14px;
+
+        .item {
+            min-height: 560px;
+            transition-property: opacity;
+
+            h4 {
+                padding: 20px;
+                margin: 0;
+            }
+
+            .info-text {
+                padding-left: 20px;
+
+                li {
+                    list-style: none;
+
+                    &:before {
+                        content: '-';
+                        margin-right: 8px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .slider-text {
+                padding: 0 16px;
+
+                .js-help {
+                    text-decoration: none;
+                }
+            }
+
+            .slider-img {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .item,
+        .active.left,
+        .active.right {
+            opacity: 0;
+        }
+
+        .active,
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+
+        .next,
+        .prev,
+        .active.left,
+        .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
 .buttons-control {
-    /*position: relative;
-    width: 100%;
-    height: 50px;
-    background: #e6eaed;
-    border-top: 1px solid darken(#e6eaed, 10%);*/
     .carousel-control {
         background-image: none;
         text-shadow: none;
@@ -141,84 +310,6 @@
                 left: 2%;
             }
         }
-
-        &:hover {
-            .glyphicon {
-                //background: rgba(0, 0, 0, 0.2)
-            }
-        }
-    }
-}
-
-/*.carousel-indicators {
-    display: none;
-}*/
-
-.carousel-fade {
-    .carousel-inner {
-        font-size: 14px;
-
-        .item {
-            min-height: 560px;
-            transition-property: opacity;
-
-            h4 {
-                padding: 20px;
-                margin: 0;
-            }
-
-            .info-text {
-                padding-left: 20px;
-
-                li {
-                    list-style: none;
-
-                    &:before {
-                        content: '-';
-                        margin-right: 8px;
-                        font-weight: bold;
-                    }
-                }
-            }
-
-            .slider img {
-                width: 100%;
-            }
-        }
-
-        .item,
-        .active.left,
-        .active.right {
-            opacity: 0;
-        }
-
-        .active,
-        .next.left,
-        .prev.right {
-            opacity: 1;
-        }
-
-        .next,
-        .prev,
-        .active.left,
-        .active.right {
-            left: 0;
-            transform: translate3d(0, 0, 0);
-        }
-
-        .slider-text {
-            padding: 0 16px;
-        }
-
-        .c-blue {
-            color: #045ace;
-        }
-
-        .icon-information-outline {
-            font-size: 18px;
-            vertical-align: middle;
-            margin-left: 5px;
-        }
     }
 }
 
@@ -229,11 +320,4 @@
     bottom: inherit;
     background: #e4e8eb;
     z-index: 1;
-}
-
-.carousel-indicators {
-    display: none;
-    bottom: 5px;
-    margin-left: -20%;
-    width: 40%;
 }

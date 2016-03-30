@@ -53,7 +53,6 @@
                 quickIntroduction.domElements.helpModal.modal('show');
             })
             quickIntroduction.domElements.quickIntroductionModal.modal('hide');
-
         });
 
         quickIntroduction.domElements.carouselMain.carousel({

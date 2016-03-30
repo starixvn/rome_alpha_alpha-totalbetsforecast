@@ -3,56 +3,126 @@
     Layout = null;
 }
 
-<div class="popup">
-    <div class="modal-body note-content">
-        <ul class="level1">
-            <li><span class="bold">Time:</span> kick-off time (in Deadball events) or Live score (in Live events).</li>
-            <li><span class="bold">Event:</span> names of <span class="bold positive">Home</span>/<span class="bold">Away</span> teams.</li>
-            <li><span class="bold">Bet Type:</span> all available bet types and selected choices for that event.</li>
-            <li>
-                <span class="bold">Bet Count:</span> number of bet tickets.
-                <ul class="level2">
-                    <li><span class="bold">Handicap:</span> number of tickets bet on Home/Away team.</li>
-                    <li><span class="bold">Over Under:</span> number of tickets bet on Over/Under choice.</li>
-                    <li><span class="bold">1X2:</span> number of tickets bet on Home team/Draw/Away team.</li>
-                </ul>
-            </li>
-            <li>
-                <span class="bold">Turnover</span>
-                <ul class="level2">
-                    <li><span class="bold">Handicap:</span> amount of stakes bet on Home/Away team.</li>
-                    <li><span class="bold">Over Under:</span> amount of stakes bet on Over/Under choice.</li>
-                    <li><span class="bold">1X2:</span> amount of stakes bet on Home team/Draw/Away team.</li>
-                </ul>
-            </li>
-            <li>
-                <span class="bold">Forecast Win/Loss:</span> predicts win loss amount on running tickets of the event (the <span class="bold">Black Negative Number</span> indicates the amount you may win and members may lose, whereas, the <span class="bold positive">Red Positive Number</span> indicates the amount you may lose and members may win).
-                <ul class="level2">
-                    <li>
-                        <span class="bold">Hadicap</span>
-                        <ul class="level3">
-                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
-                            <li><span class="bold">Live:</span> predicts win loss amount of three cases (current score, one more goal scored by Home team, and one more goal scored by Away team).</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="bold">Over Under</span>
-                        <ul class="level3">
-                            <li><span class="bold">Deadball:</span> predicts win loss amount of three total goals nearest zero, with different forecast figures.</li>
-                            <li><span class="bold">Live:</span> predicts win loss amount of 3 cases (current score, current score + 1, and current score + 2)</li>
-                        </ul>
-                    </li>
-                    <li><span class="bold">1X2:</span>predicts win loss amount of three cases: Home wins, Draw and Away wins.</li>
-                </ul>
-            </li>
-            <li>
-                <span class="bold">Forecast Total:</span> summarizes total Forecast Win Loss amount on running tickets of the event.
-                <ul class="level2">
-                    <li><span class="bold">Deadball:</span> the total Forecast Win Loss amount on the event before kick-off.</li>
-                    <li><span class="bold">Live:</span> the total Forecast Win Loss amount on the event with the current live score.</li>
-                </ul>
-            </li>
-        </ul>
-        <div class="note">Note: All figures of Turnover and Forecast above are after deducting Position Taking.</div>
+<p>
+    Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
+    It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of each Live event.
+</p>
+<img src="~/content/images/1.png" />
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from Current Score Difference.</li>
+                <li>Example: Current live score 2 - 0</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Current Score Difference (X)</p>
+                <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
+            </div>
+            <div class="img-small">
+                <img src="~/content/images/2.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from rounding down the Handicap Average.</li>
+                <li>
+                    Example: The event has handicap values: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
+                        <li>Round down the Handicap Average (Y) = 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/content/images/3.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of Over Under</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from Total Current Score</li>
+                <li>Example: Current live score 0 – 4</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Total Current Score (X)</p>
+                <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
+            </div>
+            <div class="img-small">
+                <img src="~/content/images/4.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Lost starts from rounding down the Total Goal Average.</li>
+                <li>
+                    Example: The event has values: 2 – 2.5
+                    <ul class="circle c-red txt-bold">
+                        <li>Total Goal Average = (2 + 2.5)/2 = 2.25</li>
+                        <li>Round down the Handicap Average (Y) = 2</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/content/images/5.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of 1X2</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Highlight Current result.</li>
+                <li>
+                    Example: Current Live score 2 – 0
+                    <ul class="arrow txt-bold">
+                        <li>Home Win</li>
+                        <li>Highlight header 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/content/images/6.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>
+                    If Handicap bet type is offered to the event.
+                    <div class="img-small">
+                        <img src="~/content/images/7.png" />
+                    </div>
+                </li>
+                <li>If Handicap bet type is NOT offered to the event, there is NO highlighted header.</li>
+                <li>
+                    Example: The event has handicap values: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
+                        <li>Round down the Handicap Average (X) = 1 > 0</li>
+                    </ul>
+                    <ul class="arrow txt-bold">
+                        <li>Highlight header 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/content/images/8.png" />
+            </div>
+        </div>
     </div>
 </div>
