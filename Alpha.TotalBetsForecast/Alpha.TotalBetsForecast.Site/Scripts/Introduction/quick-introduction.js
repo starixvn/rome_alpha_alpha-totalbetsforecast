@@ -19,7 +19,6 @@
         quickIntroduction.domElements.beginModel = $('#beginModal');
         quickIntroduction.domElements.carouselMain = $('#carousel-main');
         quickIntroduction.domElements.btnLetGo = $(".js-let-go-btn");
-        quickIntroduction.domElements.carouseles = $(".carousel");
 
         quickIntroduction.domElements.leftCarousel = $(".left.carousel-control");
         quickIntroduction.domElements.rightCarousel = $(".right.carousel-control");
@@ -55,17 +54,6 @@
             })
             quickIntroduction.domElements.quickIntroductionModal.modal('hide');
 
-        });
-
-        quickIntroduction.domElements.carouseles.on('slid.bs.carousel', function () {
-            var carouselData = $(this).data('bs.carousel');
-            var currentIndex = carouselData.getItemIndex(carouselData.$element.find('.item.active'));
-
-            var total = carouselData.$items.length;
-
-            // Now display this wherever you want
-            var text = (currentIndex + 1) + " of " + total;
-            $('#slidetext').text(text);
         });
 
         quickIntroduction.domElements.carouselMain.carousel({
