@@ -19,8 +19,7 @@
         {
             base.OnAuthentication(filterContext);
 
-            if (UserSession.Current.CustId == 0
-                || !HttpContext.User.Identity.IsAuthenticated)
+            if (UserSession.Current.CustId == 0)
             {
                 Response.Redirect(FormsAuthentication.LoginUrl, true);
 
