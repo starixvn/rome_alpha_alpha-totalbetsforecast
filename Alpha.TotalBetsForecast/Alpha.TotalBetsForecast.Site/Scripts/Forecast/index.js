@@ -291,6 +291,7 @@ var forecast = {
             enableFiltering: true,
             numberDisplayed: 1,
             enableCaseInsensitiveFiltering: true,
+            nonSelectedText: forecast.domElements.mainContent.data('no-data-text'),
             onChange: function (option, checked) {
                 forecast.loadMatches();
                 forecast.domElements.mainContent.parent().hide().find('tbody').remove();
