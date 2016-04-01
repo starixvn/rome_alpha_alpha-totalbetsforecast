@@ -31,57 +31,70 @@
 .modal-dialog.smallModal .modal-header .close {
   display: none; }
 
-.guidelinesModal .modal-header {
-  margin: 0 20px;
-  border-bottom: 1px solid #ddd !important; }
-  .guidelinesModal .modal-header .header-title {
-    margin: 20px 0 15px;
-    font-weight: 600; }
-  .guidelinesModal .modal-header .close {
-    top: 15px !important;
-    right: -5px !important; }
+.modal-dialog.smallModal .modal-title {
+  font-size: 14px; }
 
-.guidelinesModal .modal-body {
-  padding: 20px !important; }
-  .guidelinesModal .modal-body .img-big {
-    width: 100%; }
-  .guidelinesModal .modal-body .block-Guideline .title-Guideline {
-    font-weight: 600;
-    padding: 15px;
-    background: #f0f0f0; }
-  .guidelinesModal .modal-body .block-Guideline .detail {
-    overflow: hidden; }
-    .guidelinesModal .modal-body .block-Guideline .detail h5 {
-      font-size: 16px;
-      font-weight: bold; }
-    .guidelinesModal .modal-body .block-Guideline .detail .left {
-      float: left;
-      width: 50%; }
-    .guidelinesModal .modal-body .block-Guideline .detail .right {
-      float: right; }
-    .guidelinesModal .modal-body .block-Guideline .detail .img-small {
-      text-align: center; }
-      .guidelinesModal .modal-body .block-Guideline .detail .img-small img {
-        width: auto; }
-        @media (max-width: 1024px) {
-          .guidelinesModal .modal-body .block-Guideline .detail .img-small img {
-            width: 90%; } }
-    .guidelinesModal .modal-body .block-Guideline .detail .circle {
-      padding-left: 17px;
-      margin-top: 10px;
-      list-style-type: disc; }
-    .guidelinesModal .modal-body .block-Guideline .detail .square {
-      padding-left: 17px;
-      margin-top: 10px;
-      list-style-type: square; }
-    .guidelinesModal .modal-body .block-Guideline .detail .arrow {
-      padding-left: 17px;
-      margin-top: 10px;
-      list-style-image: url(images/arrow.png); }
-    .guidelinesModal .modal-body .block-Guideline .detail .c-red {
-      padding-left: 15px; }
-      .guidelinesModal .modal-body .block-Guideline .detail .c-red p:first-child {
-        margin-bottom: 0; }
+.guidelinesModal {
+  font-size: 13px; }
+  .guidelinesModal .modal-header {
+    margin: 0 20px;
+    border-bottom: 1px solid #ddd !important; }
+    .guidelinesModal .modal-header .header-title {
+      margin: 20px 0 15px;
+      font-weight: 600; }
+    .guidelinesModal .modal-header .close {
+      top: 15px !important;
+      right: -5px !important; }
+  .guidelinesModal .modal-body {
+    padding: 20px !important; }
+    .guidelinesModal .modal-body .main-desc {
+      margin: 0; }
+    .guidelinesModal .modal-body .img-big {
+      width: 100%; }
+    .guidelinesModal .modal-body .block-Guideline .title-Guideline {
+      font-weight: 600;
+      padding: 15px;
+      background: #f0f0f0; }
+    .guidelinesModal .modal-body .block-Guideline .detail {
+      overflow: hidden; }
+      .guidelinesModal .modal-body .block-Guideline .detail h5 {
+        font-size: 16px;
+        font-weight: bold; }
+      .guidelinesModal .modal-body .block-Guideline .detail .left {
+        float: left;
+        width: 50%; }
+      .guidelinesModal .modal-body .block-Guideline .detail .right {
+        float: right; }
+      .guidelinesModal .modal-body .block-Guideline .detail .img-small {
+        text-align: center;
+        margin-top: 20px; }
+        .guidelinesModal .modal-body .block-Guideline .detail .img-small.img-ex {
+          margin: 5px 0 8px; }
+        .guidelinesModal .modal-body .block-Guideline .detail .img-small img {
+          width: auto; }
+          @media (max-width: 1024px) {
+            .guidelinesModal .modal-body .block-Guideline .detail .img-small img {
+              width: 90%; } }
+      .guidelinesModal .modal-body .block-Guideline .detail .circle {
+        padding-left: 17px;
+        list-style-type: disc;
+        margin: 15px 0 5px;
+        line-height: 28px; }
+        .guidelinesModal .modal-body .block-Guideline .detail .circle.c-red.txt-bold {
+          margin: 0;
+          line-height: 23px; }
+        .guidelinesModal .modal-body .block-Guideline .detail .circle .ex-text {
+          line-height: 20px; }
+      .guidelinesModal .modal-body .block-Guideline .detail .square {
+        padding-left: 17px;
+        list-style-type: square; }
+      .guidelinesModal .modal-body .block-Guideline .detail .arrow {
+        padding-left: 17px;
+        list-style-image: url(images/arrow.png); }
+      .guidelinesModal .modal-body .block-Guideline .detail .c-red {
+        padding-left: 15px; }
+        .guidelinesModal .modal-body .block-Guideline .detail .c-red p:first-child {
+          margin-bottom: 5px; }
 
 .modal-dialog {
   margin-top: 100px; }
