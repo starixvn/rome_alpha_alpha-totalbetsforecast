@@ -1,6 +1,7 @@
 ﻿body {
   font-size: 12px;
-  background: #f4f4f4; }
+  background: #f4f4f4;
+  font-family: Roboto, Arial; }
 
 /************************** Select2 ****************************/
 .dropdown .select2-container--default .select2-selection--single {
