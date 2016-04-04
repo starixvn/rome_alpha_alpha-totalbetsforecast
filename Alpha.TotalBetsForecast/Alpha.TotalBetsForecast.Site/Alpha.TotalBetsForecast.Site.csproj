@@ -350,6 +350,7 @@
     <Content Include="Web.ConnectionStrings.uati7.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
     </Content>
+    <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
