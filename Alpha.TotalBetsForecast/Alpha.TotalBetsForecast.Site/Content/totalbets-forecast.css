@@ -267,6 +267,8 @@ table * {
     background: #5897fb; }
   .multiselect-container.dropdown-menu .filter {
     padding: 0; }
+    .multiselect-container.dropdown-menu .filter:hover {
+      background: #fff; }
     .multiselect-container.dropdown-menu .filter .input-group {
       width: 91%; }
       .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
@@ -274,9 +276,12 @@ table * {
       .multiselect-container.dropdown-menu .filter .input-group .input-group-addon, .multiselect-container.dropdown-menu .filter .input-group .input-group-btn {
         display: none; }
       .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search {
+        border-radius: 2px;
         box-shadow: none;
         border: 1px solid #aaa;
         line-height: 18px; }
+        .multiselect-container.dropdown-menu .filter .input-group .form-control.multiselect-search:hover {
+          background: #fff; }
   .multiselect-container.dropdown-menu .checkbox input[type="checkbox"],
   .multiselect-container.dropdown-menu .checkbox-inline input[type="checkbox"],
   .multiselect-container.dropdown-menu .radio input[type="radio"],

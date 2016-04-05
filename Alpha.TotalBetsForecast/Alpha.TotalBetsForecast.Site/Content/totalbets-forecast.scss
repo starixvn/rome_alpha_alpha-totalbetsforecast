@@ -377,7 +377,9 @@ table * {
 
     .filter {
         padding: 0;
-
+        &:hover {
+            background: #fff;
+        }
         .input-group {
             width: 91%;
 
@@ -390,9 +392,13 @@ table * {
             }
 
             .form-control.multiselect-search {
+                border-radius: 2px;
                 box-shadow: none;
                 border: 1px solid #aaa;
                 line-height: 18px;
+                &:hover {
+                    background: #fff;
+                }
             }
         }
     }
