@@ -366,6 +366,42 @@
     <Content Include="Views\Introduction\Index.zh-CN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-TW.cshtml" />
     <Content Include="Views\Introduction\QuickIntroduction.cshtml" />
+    <Content Include="Web.AppSettings.backupMNLExNapInternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+      <Content Include="Web.AppSettings.backupMNLI1.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.backupMNLI7.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.backupMNLNapInternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLExNapInternal.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLI1.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLI7.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLNapInternal.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.backupMNLExNapInternal.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.backupMNLI1.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.backupMNLI7.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.ConnectionStrings.backupMNLNapInternal.config">
+      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -392,8 +428,8 @@
     </Content>
     <Content Include="Web.uati7.config">
       <DependentUpon>Web.config</DependentUpon>
-    </Content>
-  </ItemGroup>
+    </Content>  
+</ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
