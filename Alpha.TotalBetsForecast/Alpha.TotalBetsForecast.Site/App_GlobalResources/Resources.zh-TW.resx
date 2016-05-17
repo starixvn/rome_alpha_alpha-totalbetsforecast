@@ -172,4 +172,25 @@
   <data name="AllEvents" xml:space="preserve">
     <value>所有赛事</value>
   </data>
+  <data name="ForecastTotal" xml:space="preserve">
+    <value>Forecast Total</value>
+  </data>
+  <data name="BetType_3" xml:space="preserve">
+    <value>OU</value>
+  </data>
+  <data name="BetType_5" xml:space="preserve">
+    <value>FT. 1X2</value>
+  </data>
+  <data name="BetType_7" xml:space="preserve">
+    <value>1H HDP</value>
+  </data>
+  <data name="BetType_8" xml:space="preserve">
+    <value>1H OU</value>
+  </data>
+  <data name="Goals" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>Bets &amp; Forecast Guidelines</value>
+  </data>
 </root>
