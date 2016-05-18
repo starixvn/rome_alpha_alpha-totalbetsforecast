@@ -213,4 +213,7 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
+  <data name="soccer" xml:space="preserve">
+    <value>Soccer</value>
+  </data>
 </root>

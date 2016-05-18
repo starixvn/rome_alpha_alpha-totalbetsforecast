@@ -175,7 +175,7 @@
     <value>การคาดการณ์ ได้/เสีย ล่วงหน้า</value>
   </data>
   <data name="BetsAndForecast" xml:space="preserve">
-    <value>เดิมพันและการคาดการณ์ล่วงหน้า</value>
+    <value>ยอดการเล่นและคำนวณผล</value>
   </data>
   <data name="SelectAMatch" xml:space="preserve">
     <value>เลื่อกการแข่งขัน</value>
@@ -212,5 +212,8 @@
   </data>
   <data name="BetsAndForecastGuidelines" xml:space="preserve">
     <value>Bets &amp; Forecast Guidelines</value>
+  </data>
+  <data name="soccer" xml:space="preserve">
+    <value>ฟุตบอล</value>
   </data>
 </root>

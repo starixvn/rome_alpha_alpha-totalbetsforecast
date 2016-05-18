@@ -194,4 +194,7 @@
   <data name="NonLive" xml:space="preserve">
     <value>Non-Live</value>
   </data>
+  <data name="soccer" xml:space="preserve">
+    <value>サッカー</value>
+  </data>
 </root>

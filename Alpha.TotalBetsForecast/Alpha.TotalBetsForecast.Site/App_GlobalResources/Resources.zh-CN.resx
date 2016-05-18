@@ -193,4 +193,7 @@
   <data name="BetsAndForecastGuidelines" xml:space="preserve">
     <value>Bets &amp; Forecast Guidelines</value>
   </data>
+  <data name="soccer" xml:space="preserve">
+    <value>足球</value>
+  </data>
 </root>

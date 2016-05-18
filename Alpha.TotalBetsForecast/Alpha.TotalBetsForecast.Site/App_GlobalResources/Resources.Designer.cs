@@ -304,6 +304,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Soccer.
+        /// </summary>
+        public static string soccer {
+            get {
+                return ResourceManager.GetString("soccer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string Submit {
