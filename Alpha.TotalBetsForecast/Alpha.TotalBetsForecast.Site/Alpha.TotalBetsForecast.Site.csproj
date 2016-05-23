@@ -249,6 +249,9 @@
     <Content Include="Scripts\Introduction\quick-introduction.js" />
     <Content Include="Scripts\piwikLoader.js" />
     <Content Include="Scripts\piwikLoader.min.js" />
+    <Content Include="Web.napexternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.uati7.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -409,9 +412,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Web.local.config" />
-    <Content Include="Web.napexternal.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
