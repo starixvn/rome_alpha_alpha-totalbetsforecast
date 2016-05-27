@@ -435,9 +435,9 @@
     <Content Include="Web.uati1.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <None Include="Web.sit.config">
+    <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </None>
+    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
