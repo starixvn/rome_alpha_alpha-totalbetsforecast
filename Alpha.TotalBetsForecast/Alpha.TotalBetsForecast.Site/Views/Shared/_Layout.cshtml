@@ -2,8 +2,8 @@
 <html class="ifr-result">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Bets & Forecast Soccer</title>
-    <link href="/contents/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Bets & Forecast Soccer</title>    
+    <link href="/assets/bundles/site-totalbetsforecast/default.css" rel="stylesheet" />
     
     @RenderSection("ComponentStyles", false)
 
@@ -16,10 +16,8 @@
     </div>
 
     @Html.Hidden("RootURL", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
-
-    <script type="text/javascript" src="/contents/libs/jquery/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="/contents/css/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/contents/components/blockui/jquery.blockUI.min.js"></script>    
+     
+    <script type="text/javascript" src="/assets/bundles/site-totalbetsforecast/default.js"></script>
 
     @RenderSection("Scripts", false)
 

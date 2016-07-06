@@ -1,11 +1,7 @@
 ﻿@model IndexViewModel
 
-@section Styles 
+@section Styles
 {
-    <link href='/contents/css/Fonts/Iconalpha/style.min.css?v=1' rel='stylesheet' type='text/css'>
-    <link href="/contents/components/mutipleselect/css/bootstrap-multiselect.min.css" rel="stylesheet" />
-    <link href="/contents/css/sass/component.min.css" rel="stylesheet" />
-
     @Styles.Render(BundleConfig.IndexForecastStyleBundleUrl)
 }
 
@@ -30,7 +26,7 @@
     <div class="filter">
         <form class="" role="form">
             <div class="form-group">
-                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "", @id = "ddlDeadBall"})
+                @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "", @id = "ddlDeadBall" })
             </div>
 
             <div class="form-group">
@@ -40,16 +36,15 @@
 
             <div class="form-group last-filter">
                 <label>@Resources.Event</label>
-                <select id="ddlMatch" multiple="multiple" 
-                        data-init-lable="@Resources.SelectAMatch" 
+                <select id="ddlMatch" multiple="multiple"
+                        data-init-lable="@Resources.SelectAMatch"
                         data-selected-event-text="@Resources.SelectedEvents"
                         data-select-at-least="@Resources.SelectAtLeastOneMatch"
                         data-select-all-text="@Resources.AllEvents"
-                        style="display:none;">
-                </select>
+                        style="display:none;"></select>
             </div>
             <div class="form-group">
-                <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit"/>
+                <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit" />
                 <span class="dropdown">
                     <button class="btn btn-default btn-countdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-refresh"></span>
@@ -84,12 +79,10 @@
                 </tr>
             </thead>
         </table>
-        
+
     </div>
 </div>
 <!-- Button trigger modal -->
-
-
 <!-- Modal -->
 <div class="modal fade guidelinesModal" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
@@ -110,14 +103,6 @@
 
 @section Scripts
 {
-    <script type="text/javascript" src="/contents/libs/underscore/underscore-min.js"></script>
-    <script type="text/javascript" src="/contents/libs/numeral/numeral.min.js"></script>
-    <script type="text/javascript" src="/contents/components/coloranimation/jquery.animate-colors-min.js"></script>
-    <script type="text/javascript" src="/contents/components/highlight/jquery.pulse.min.js"></script>
-    <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.min.js"></script>
-    <script type="text/javascript" src="/contents/components/mutipleselect/js/bootstrap-multiselect.min.js"></script>
-    <script type="text/javascript" src="/contents/libs/jquery/jquery.cookie.min.js"></script>
-
     <!--[if lt IE 9]>
     <script type="text/javascript" src="/contents/components/countdown/jquery.countdown.ie8.min.js"></script>
     <script type="text/javascript" src="/contents/components/mutipleselect/js/bootstrap-multiselect.ie8.min.js"></script>
