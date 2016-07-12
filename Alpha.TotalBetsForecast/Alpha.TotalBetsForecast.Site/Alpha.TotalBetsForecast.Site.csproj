@@ -249,6 +249,21 @@
     <Content Include="Scripts\Introduction\quick-introduction.js" />
     <Content Include="Scripts\piwikLoader.js" />
     <Content Include="Scripts\piwikLoader.min.js" />
+    <Content Include="Web.uati7.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLExNapInternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLI1.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLI7.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLNapInternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -369,7 +384,7 @@
     <Content Include="Web.AppSettings.backupMNLExNapInternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-      <Content Include="Web.AppSettings.backupMNLI1.config">
+    <Content Include="Web.AppSettings.backupMNLI1.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLI7.config">
@@ -377,18 +392,6 @@
     </Content>
     <Content Include="Web.AppSettings.backupMNLNapInternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLExNapInternal.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLI1.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLI7.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLNapInternal.config">
-      <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Web.ConnectionStrings.backupMNLExNapInternal.config">
       <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
@@ -405,31 +408,26 @@
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.local.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
+    <Content Include="Web.local.config" />
     <Content Include="Web.napexternal.config">
-      <DependentUpon>Web.config</DependentUpon>
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternal.config">
-      <DependentUpon>Web.config</DependentUpon>
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.proi1.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.proi7.config">
-      <DependentUpon>Web.config</DependentUpon>
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.uati1.config">
-      <DependentUpon>Web.config</DependentUpon>
+    <Content Include="Web.proi7.config">
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Web.uati7.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>  
-</ItemGroup>
+    <Content Include="Web.uati1.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+  </ItemGroup>
   <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
