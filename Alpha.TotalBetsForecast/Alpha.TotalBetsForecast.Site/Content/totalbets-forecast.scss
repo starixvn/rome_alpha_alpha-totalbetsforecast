@@ -8,7 +8,7 @@ $positive-color: #e40000;
 $back-ground-focus-color: #bbcae9;
 
 body {
-    font-size: 12px;
+    font-size: 13px;
     background: #f4f4f4;
     font-family: Roboto, Arial;
 }
@@ -67,13 +67,13 @@ body {
     }
 
     .form-group {
-        margin: 0 24px 15px 0;
+        margin: 0 8px 15px 0;
         display: inline-block;
         &.last-filter {
             margin-right: 8px;
         }
         .btnSubmit {
-            margin-right: 12px;
+            margin-right: 8px;
         }
         .form-control {
             display: inline-block;
@@ -298,7 +298,7 @@ table * {
     background: #fff;
     position: relative;
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: 13px;
     &:hover {
         color: inherit;
     }
@@ -333,7 +333,7 @@ table * {
 }
 
 .multiselect-container.dropdown-menu {
-    font-size: 12px;
+    font-size: 13px;
     > li > a > label {
         padding: 3px 20px 3px 35px;
     }
@@ -412,7 +412,7 @@ table * {
 }
 
 .note-content {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 28px;
 
     .bold {
@@ -466,6 +466,22 @@ table * {
     }
 }
 
+#helpModal {
+    .modal-header {
+        padding: 10px 15px;
+
+        #myModalLabel {
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: -15px;
+        }
+    }
+
+    .note-content {
+        padding: 0;
+    }
+}
+
 /*******************Dropdown****************/
 .dropdown {
     display: inline-block;
@@ -510,6 +526,8 @@ table * {
         }
     }
 }
+
+
 
 @media only screen and (max-device-width: 1152px) {
 

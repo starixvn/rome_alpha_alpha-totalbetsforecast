@@ -1,5 +1,5 @@
 ﻿body {
-  font-size: 12px;
+  font-size: 13px;
   background: #f4f4f4;
   font-family: Roboto, Arial; }
 
@@ -42,12 +42,12 @@
     display: inline-block; }
 
 .totalandforecast .form-group {
-  margin: 0 24px 15px 0;
+  margin: 0 8px 15px 0;
   display: inline-block; }
   .totalandforecast .form-group.last-filter {
     margin-right: 8px; }
   .totalandforecast .form-group .btnSubmit {
-    margin-right: 12px; }
+    margin-right: 8px; }
   .totalandforecast .form-group .form-control {
     display: inline-block;
     width: auto; }
@@ -187,7 +187,7 @@ table * {
   background: #fff;
   position: relative;
   padding: 6px 10px;
-  font-size: 12px; }
+  font-size: 13px; }
   .btn-group button.multiselect:hover {
     color: inherit; }
   .btn-group button.multiselect:focus, .btn-group button.multiselect:visited {
@@ -215,7 +215,7 @@ table * {
   padding: 3px 20px 3px 35px; }
 
 .multiselect-container.dropdown-menu {
-  font-size: 12px; }
+  font-size: 13px; }
   .multiselect-container.dropdown-menu > li > a > label {
     padding: 3px 20px 3px 35px; }
   .multiselect-container.dropdown-menu li:hover {
@@ -271,7 +271,7 @@ table * {
     top: 4px; }
 
 .note-content {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 28px; }
   .note-content .bold {
     font-weight: bold; }
@@ -302,6 +302,16 @@ table * {
       content: '*';
       color: #9d2c2e;
       margin-right: 5px; }
+
+#helpModal .modal-header {
+  padding: 10px 15px; }
+  #helpModal .modal-header #myModalLabel {
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: -15px; }
+
+#helpModal .note-content {
+  padding: 0; }
 
 /*******************Dropdown****************/
 .dropdown {

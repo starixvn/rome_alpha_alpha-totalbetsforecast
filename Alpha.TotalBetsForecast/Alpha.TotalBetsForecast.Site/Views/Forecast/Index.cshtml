@@ -24,7 +24,7 @@
 
     </ul>
     <div class="filter">
-        <form class="" role="form">
+        <form class="form-inline" role="form">
             <div class="form-group">
                 @Html.DropDownListFor(model => model.IsLive, Model.LiveValues, new { @class = "", @id = "ddlDeadBall" })
             </div>
@@ -44,7 +44,7 @@
                         style="display:none;"></select>
             </div>
             <div class="form-group">
-                <input type="button" class="btn btnSubmit" id="btnSubmit" value="@Resources.Submit" />
+                <input type="button" class="btn-submit" id="btnSubmit" value="@Resources.Submit" />
                 <span class="dropdown">
                     <button class="btn btn-default btn-countdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="icon-refresh"></span>
