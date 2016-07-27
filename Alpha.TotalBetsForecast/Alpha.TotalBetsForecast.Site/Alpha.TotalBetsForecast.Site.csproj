@@ -301,6 +301,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\ForecastHandler.cs" />
+    <Compile Include="Helpers\StaticResources.cs" />
     <Compile Include="Models\BetTypeForecast.cs" />
     <Compile Include="Models\Dtos\BetTypeForecastDto.cs" />
     <Compile Include="Models\Dtos\WinLossColumnNameDto.cs" />

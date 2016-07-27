@@ -2,8 +2,9 @@
 <html class="ifr-result">
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Bets & Forecast Soccer</title>    
-    <link href="/assets/bundles/site-totalbetsforecast/default.css" rel="stylesheet" />
+    <title>@Resources.BetsAndForecast</title>    
+
+    @Alpha.TotalBetsForecast.Site.Helpers.StaticResources.AssetStyles.Render("/bundles/site-totalbetsforecast/default")
     
     @RenderSection("ComponentStyles", false)
 
@@ -16,8 +17,8 @@
     </div>
 
     @Html.Hidden("RootURL", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
-     
-    <script type="text/javascript" src="/assets/bundles/site-totalbetsforecast/default.js"></script>
+
+    @Alpha.TotalBetsForecast.Site.Helpers.StaticResources.AssetScripts.Render("/bundles/site-totalbetsforecast/default")
 
     @RenderSection("Scripts", false)
 
