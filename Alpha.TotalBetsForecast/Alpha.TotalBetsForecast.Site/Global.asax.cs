@@ -1,5 +1,9 @@
 ﻿namespace Alpha.TotalBetsForecast.Site
 {
+    using App_Start;
+    using Auth.Web;
+    using ONEbook.UM.Filters;
+    using Sunplus.Agent.Utilities;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
@@ -7,9 +11,6 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
-    using App_Start;
-    using Auth.Web;
-    using Sunplus.Agent.Utilities;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -23,6 +24,8 @@
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
 
             ShareSession.Init();
+
+            GlobalFilters.Filters.Add(new CheckUMFilter());
 
             Logs.WriteInfo("Alpha - New TotalBets Forecast - Application Start");
         }
@@ -47,9 +50,9 @@
         }
 
         [SuppressMessage(
-            "Microsoft.Globalization", 
-            "CA1303:Do not pass literals as localized parameters", 
-            MessageId = "Sunplus.Agent.Utilities.Logs.WriteInfo(System.String)", 
+            "Microsoft.Globalization",
+            "CA1303:Do not pass literals as localized parameters",
+            MessageId = "Sunplus.Agent.Utilities.Logs.WriteInfo(System.String)",
             Justification = "Reviewed!")]
         protected void Application_End()
         {

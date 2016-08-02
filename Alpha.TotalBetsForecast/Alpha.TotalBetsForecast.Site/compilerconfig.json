@@ -7,13 +7,6 @@
     }
   },
   {
-    "outputFile": "Scripts/Forecast/match-forecast.js",
-    "inputFile": "Scripts/Forecast/match-forecast.jsx",
-    "minify": {
-      "enabled": false
-    }
-  },
-  {
     "outputFile": "Content/quick-introduction.css",
     "inputFile": "Content/quick-introduction.scss",
     "minify": {

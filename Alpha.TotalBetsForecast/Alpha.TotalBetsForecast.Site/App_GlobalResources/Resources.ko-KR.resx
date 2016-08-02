@@ -165,4 +165,55 @@
   <data name="MatchOfferLive" xml:space="preserve">
     <value>라이브</value>
   </data>
+  <data name="ForecastTotal" xml:space="preserve">
+    <value>Forecast Total</value>
+  </data>
+  <data name="ForecastWinLoss" xml:space="preserve">
+    <value>Forecast Win/Loss</value>
+  </data>
+  <data name="BetType_3" xml:space="preserve">
+    <value>OU</value>
+  </data>
+  <data name="BetType_5" xml:space="preserve">
+    <value>FT. 1X2</value>
+  </data>
+  <data name="BetType_7" xml:space="preserve">
+    <value>1H HDP</value>
+  </data>
+  <data name="BetType_8" xml:space="preserve">
+    <value>1H OU</value>
+  </data>
+  <data name="SelectAMatch" xml:space="preserve">
+    <value>Select an event</value>
+  </data>
+  <data name="SelectedEvents" xml:space="preserve">
+    <value>Selected Event(s)</value>
+  </data>
+  <data name="Goals" xml:space="preserve">
+    <value>Goal</value>
+  </data>
+  <data name="BetsAndForecast" xml:space="preserve">
+    <value>Bets &amp; Forecast</value>
+  </data>
+  <data name="BetsAndForecastGuidelines" xml:space="preserve">
+    <value>Bets &amp; Forecast Guidelines</value>
+  </data>
+  <data name="BrowserIsOutOfDate" xml:space="preserve">
+    <value>Your browser is out of date and might not be working properly width our website. For a better support, we strongly recommend that you upgrade to a newer version.</value>
+  </data>
+  <data name="ClickToUpdateBrowser" xml:space="preserve">
+    <value>Click here to update your browser</value>
+  </data>
+  <data name="SelectAtLeastOneMatch" xml:space="preserve">
+    <value>Please select at least one event</value>
+  </data>
+  <data name="AllEvents" xml:space="preserve">
+    <value>All Events</value>
+  </data>
+  <data name="NonLive" xml:space="preserve">
+    <value>Non-Live</value>
+  </data>
+  <data name="soccer" xml:space="preserve">
+    <value>축구</value>
+  </data>
 </root>

@@ -134,8 +134,16 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ONEbook.UM, Version=2.0.2.7, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ONEbook.UM.2.0.2.7\lib\net40\ONEbook.UM.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\RemotingRef.1.0.0.3\lib\net40\RemotingRef.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net46\RestSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SimpleInjector, Version=3.1.2.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
@@ -249,6 +257,9 @@
     <Content Include="Scripts\Introduction\quick-introduction.js" />
     <Content Include="Scripts\piwikLoader.js" />
     <Content Include="Scripts\piwikLoader.min.js" />
+    <Content Include="Web.napexternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <Content Include="Web.uati7.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -290,6 +301,7 @@
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\ForecastHandler.cs" />
+    <Compile Include="Helpers\StaticResources.cs" />
     <Compile Include="Models\BetTypeForecast.cs" />
     <Compile Include="Models\Dtos\BetTypeForecastDto.cs" />
     <Compile Include="Models\Dtos\WinLossColumnNameDto.cs" />
@@ -409,9 +421,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Web.local.config" />
-    <Content Include="Web.napexternal.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -425,6 +434,9 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.uati1.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
   </ItemGroup>

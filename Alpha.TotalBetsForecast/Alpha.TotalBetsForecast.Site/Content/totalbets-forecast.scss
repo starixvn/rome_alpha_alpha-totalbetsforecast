@@ -8,43 +8,9 @@ $positive-color: #e40000;
 $back-ground-focus-color: #bbcae9;
 
 body {
-    font-size: 12px;
+    font-size: 13px;
     background: #f4f4f4;
-}
-
-/************************** Select2 ****************************/
-.dropdown {
-    .select2-container--default .select2-selection--single {
-        @include box-shadow(0, 2px, 2px, rgba(0, 0, 0, 0.2));
-        @include border-radius(2px);
-        border: none;
-    }
-
-    .form-control {
-        @include box-shadow(0, 2px, 2px, rgba(0, 0, 0, 0.2));
-        @include border-radius(2px);
-        border: none;
-        font-size: 12px;
-        height: 32px;
-        background: #fff;
-
-        option {
-            padding: 5px;
-        }
-    }
-}
-
-.select2-container {
-    line-height: 20px;
-    width: 300px;
-}
-
-.select2-container .select2-selection--single {
-    height: 32px;
-}
-
-.select2-container--default .select2-selection--single .select2-selection__rendered {
-    line-height: 32px;
+    font-family: Roboto, Arial;
 }
 
 .note-browser {
@@ -101,9 +67,14 @@ body {
     }
 
     .form-group {
-        margin: 0 15px 15px 0;
+        margin: 0 8px 15px 0;
         display: inline-block;
-
+        &.last-filter {
+            margin-right: 8px;
+        }
+        .btnSubmit {
+            margin-right: 8px;
+        }
         .form-control {
             display: inline-block;
             width: auto;
@@ -111,6 +82,7 @@ body {
 
         label {
             margin-right: 8px;
+            font-weight: normal;
         }
     }
 
@@ -130,19 +102,20 @@ body {
             + li:before {
                 content: '\276F';
                 color: #333;
-                padding: 0 10px;
+                padding: 0 8px;
             }
 
             .help {
                 position: absolute;
-                right: -34px;
-                top: -8px;
+                right: -27px;
+                top: -5px;
                 cursor: pointer;
+                font-weight: normal;
 
                 &:before {
                     content: '\e92a';
                     font-family: 'Iconalpha';
-                    font-size: 21px;
+                    font-size: 18px;
                     color: #0f82c4;
                 }
 
@@ -232,13 +205,13 @@ table * {
             background: $win-loss-name-background-color;
             color: #000;
             border-bottom: 1px solid #dfdfdf;
-            font-size: 11px;
+            font-size: 10px;
         }
 
         &.head, &.winloss-name-empty {
             padding: 0px 8px;
-            height: 20px;
-            line-height: 20px;
+            height: 19px;
+            line-height: 19px;
         }
 
         span {
@@ -281,6 +254,8 @@ table * {
 .btn.btn-countdown {
     background-color: #eee;
     color: #212121;
+    padding: 6px 10px;
+    font-size: 13px;
 
     &:hover {
         background-color: #e1e1e1;
@@ -292,12 +267,13 @@ table * {
         font-size: 20px;
         position: relative;
         color: #212121;
-        left: -5px;
+        left: -4px;
+        top: -2px;
     }
 
     #ddlRefresh {
         position: relative;
-        top: -4px;
+        top: -6px;
     }
 }
 
@@ -308,6 +284,7 @@ table * {
     > li {
         > a {
             padding: 5px 32px;
+            font-size: 12px;
         }
 
         a:hover {
@@ -317,19 +294,22 @@ table * {
 }
 
 .btn-group button.multiselect {
-    @include border-radius(0);
+     @include box-shadow(0, 1px, 1px, rgba(0,0,0,.3));
     background: #fff;
-    border: none;
     position: relative;
-
+    padding: 6px 10px;
+    font-size: 13px;
     &:hover {
         color: inherit;
+    }
+    &:focus, &:visited {
+        @include box-shadow(0, 1px, 1px, rgba(0,0,0,.3));
     }
 
     .caret {
         position: absolute;
-        right: 5px;
-        top: 14px;
+        right: 10px;
+        top: 12px;
     }
 }
 
@@ -353,13 +333,19 @@ table * {
 }
 
 .multiselect-container.dropdown-menu {
+    font-size: 13px;
+    > li > a > label {
+        padding: 3px 20px 3px 35px;
+    }
     li:hover {
         background: #5897fb;
     }
 
     .filter {
         padding: 0;
-
+        &:hover {
+            background: #fff;
+        }
         .input-group {
             width: 91%;
 
@@ -372,16 +358,29 @@ table * {
             }
 
             .form-control.multiselect-search {
+                border-radius: 2px;
                 box-shadow: none;
                 border: 1px solid #aaa;
                 line-height: 18px;
+                &:hover {
+                    background: #fff;
+                }
             }
         }
+    }
+
+    .checkbox input[type="checkbox"],
+    .checkbox-inline input[type="checkbox"], 
+    .radio input[type="radio"], 
+    .radio-inline input[type="radio"] {
+        margin-left: -22px;
+        top: 1px;
     }
 }
 
 .multiselect-selected-text {
-    width: 180px;
+    width: 170px;
+    margin-right: 10px;
     display: inline-block;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -413,7 +412,7 @@ table * {
 }
 
 .note-content {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 28px;
 
     .bold {
@@ -467,22 +466,38 @@ table * {
     }
 }
 
+#helpModal {
+    .modal-header {
+        padding: 10px 15px;
+
+        #myModalLabel {
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: -15px;
+        }
+    }
+
+    .note-content {
+        padding: 0;
+    }
+}
+
 /*******************Dropdown****************/
 .dropdown {
     display: inline-block;
 
     .caret {
-        top: 15px;
-        right: 13px;
+        top: 13px;
+        right: 17px;
         position: absolute;
     }
 
     .dropdown-menu {
-        min-width: 82px;
+        min-width: 78px;
     }
 
     .dropdown-toggle {
-        padding-right: 23px;
+        padding-right: 30px;
     }
 }
 
@@ -511,6 +526,8 @@ table * {
         }
     }
 }
+
+
 
 @media only screen and (max-device-width: 1152px) {
 
