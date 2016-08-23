@@ -406,6 +406,7 @@
     </Content>
     <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup />
