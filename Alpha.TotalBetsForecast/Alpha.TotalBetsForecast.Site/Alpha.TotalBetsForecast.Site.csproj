@@ -227,6 +227,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\SPNames\INTERNAL\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\LOCAL\TotalBetsForecast.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -262,6 +263,7 @@
     </Content>
     <Content Include="Web.uati7.config">
       <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.backupMNLExNapInternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
@@ -275,7 +277,9 @@
     <Content Include="Web.backupMNLNapInternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_GlobalResources\Resources.Designer.cs">
@@ -352,31 +356,6 @@
     <Content Include="Web.AppSettings.uati7.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionStrings.config" />
-    <Content Include="Web.ConnectionStrings.local.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.napexternal.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.napinternal.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.proi1.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.proi7.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.sit.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.uati1.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.uati7.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -405,22 +384,12 @@
     <Content Include="Web.AppSettings.backupMNLNapInternal.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.ConnectionStrings.backupMNLExNapInternal.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.backupMNLI1.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.backupMNLI7.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
-    <Content Include="Web.ConnectionStrings.backupMNLNapInternal.config">
-      <DependentUpon>Web.ConnectionStrings.config</DependentUpon>
-    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.local.config" />
+    <Content Include="Web.local.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.napinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -438,6 +407,7 @@
     </Content>
     <Content Include="Web.sit.config">
       <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup />
