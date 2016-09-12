@@ -85,6 +85,10 @@
       <HintPath>..\packages\Fanex.Logging.1.0.0.0\lib\net40\Fanex.Logging.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Fanex.Products, Version=0.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Fanex.Products.0.0.0.3-NG2\lib\net40\Fanex.Products.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="IBCFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Fanex.File.1.0.0\lib\net40\IBCFile.dll</HintPath>
       <Private>True</Private>
@@ -135,7 +139,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="RemotingRef, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RemotingRef.1.0.0.3\lib\net40\RemotingRef.dll</HintPath>
+      <HintPath>..\packages\RemotingRef.1.0.0.9\lib\net40\RemotingRef.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -159,11 +163,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sunplus.Agent.Model.Base.3.0.1.6-NG2-6\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
+      <HintPath>..\packages\Sunplus.Agent.Model.Base.3.0.1.6-NG2-12\lib\net40\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.1.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Sunplus.Agent.Model.Definitions.3.0.1.6-NG2-2\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+      <HintPath>..\packages\Sunplus.Agent.Model.Definitions.3.0.1.6-NG2-4\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.RemotingRef, Version=3.0.0.2, Culture=neutral, processorArchitecture=MSIL">
