@@ -2,6 +2,7 @@
 {
     using System.Globalization;
     using System.Threading;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Mvc.Filters;
     using System.Web.Routing;
@@ -21,7 +22,7 @@
 
             if (UserSession.Current.CustId == 0)
             {
-                Response.Redirect(FormsAuthentication.LoginUrl, true);
+                UnAuthentication(filterContext);
 
                 return;
             }
@@ -29,9 +30,28 @@
             if (!string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
                 && !AppConfig.AllowSitesToViewForecast.ToLower().Contains(UserSession.Current.Site.ToLower()))
             {
-                Response.Redirect(FormsAuthentication.DefaultUrl, true);
+                UnAuthentication(filterContext);
 
                 return;
+            }
+        }
+
+        private void UnAuthentication(AuthenticationContext filterContext)
+        {
+            HttpResponseBase response = filterContext.HttpContext.Response;
+
+            if (filterContext.HttpContext.Request.IsAjaxRequest())
+            {
+                response.Clear();
+                response.Write("{ \"message\": \"You are not authorized on this function!\" }");
+                filterContext.Result = new HttpUnauthorizedResult();
+                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
+                response.TrySkipIisCustomErrors = true;
+                response.End();
+            }
+            else
+            {
+                filterContext.Result = new RedirectResult(FormsAuthentication.LoginUrl);
             }
         }
 
