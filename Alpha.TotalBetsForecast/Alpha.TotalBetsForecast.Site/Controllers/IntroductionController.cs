@@ -3,7 +3,7 @@
     using System.Web.Mvc;
     using Sunplus.Agent.Model.Entities;
 
-    public class IntroductionController : BaseController
+    public class IntroductionController : TotalBetsForecastBaseController
     {
         [ChildActionOnly]
         public ActionResult Index()

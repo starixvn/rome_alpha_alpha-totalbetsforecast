@@ -1,9 +1,5 @@
 ﻿namespace Alpha.TotalBetsForecast.Site
 {
-    using App_Start;
-    using Auth.Web;
-    using ONEbook.UM.Filters;
-    using Sunplus.Agent.Utilities;
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
@@ -11,6 +7,10 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using App_Start;
+    using ONEbook.UM.Filters;
+    using Sunplus.Agent.Utilities;
+    using Web;
 
     public class MvcApplication : System.Web.HttpApplication
     {
