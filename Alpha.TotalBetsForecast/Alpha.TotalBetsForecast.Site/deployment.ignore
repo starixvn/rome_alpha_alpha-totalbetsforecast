@@ -1,0 +1,10 @@
+﻿\\*.local.config
+\\*.master.config
+\\*.uat.config
+\\*.pro.config
+\\*.dev.config
+\\*.sit.config
+\\*.napinternal.config
+\\*.napexternal.config
+\\Assets\\scripts\\tests\\*
+\\typings\\*

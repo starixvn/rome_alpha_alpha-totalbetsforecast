@@ -269,17 +269,12 @@
       <DependentUpon>Web.local.config</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Web.backupMNLExNapInternal.config">
-      <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
     <Content Include="Web.backupMNLI1.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.backupMNLI7.config">
       <DependentUpon>Web.local.config</DependentUpon>
-    </Content>
-    <Content Include="Web.backupMNLNapInternal.config">
-      <DependentUpon>Web.local.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -369,6 +364,7 @@
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
     <Content Include="Content\quick-introduction.scss" />
+    <Content Include="deployment.ignore" />
     <None Include="Properties\PublishProfiles\Local202.pubxml" />
     <Content Include="Views\Introduction\Index.en-US.cshtml" />
     <Content Include="Views\Introduction\Index.ja-JP.cshtml" />
@@ -378,17 +374,23 @@
     <Content Include="Views\Introduction\Index.zh-CN.cshtml" />
     <Content Include="Views\Introduction\Index.zh-TW.cshtml" />
     <Content Include="Views\Introduction\QuickIntroduction.cshtml" />
-    <Content Include="Web.AppSettings.backupMNLExNapInternal.config">
-      <DependentUpon>Web.AppSettings.config</DependentUpon>
-    </Content>
     <Content Include="Web.AppSettings.backupMNLI1.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
     <Content Include="Web.AppSettings.backupMNLI7.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
     </Content>
-    <Content Include="Web.AppSettings.backupMNLNapInternal.config">
+    <Content Include="Web.AppSettings.backupMNLExNap.config">
       <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.backupMNLNap.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLExNap.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.backupMNLNap.config">
+      <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
