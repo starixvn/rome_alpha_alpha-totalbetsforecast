@@ -19,6 +19,7 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            MvcHandler.DisableMvcResponseHeader = true;
             DependencyConfig.Init();
 
             Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
