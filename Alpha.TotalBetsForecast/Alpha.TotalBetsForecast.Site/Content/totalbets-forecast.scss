@@ -180,7 +180,7 @@ table * {
         }
     }
 
-    tr.last-row td.ex-col {
+    &.tblRpt-bordered tr.last-row td.ex-col {
         border-bottom: 1px solid #dfdfdf;
     }
 
@@ -197,7 +197,7 @@ table * {
         }
     }
 
-    tr td.ex-col {
+    &.tblRpt-bordered tr td.ex-col {
         border-top: none;
         border-bottom: none;
 
@@ -219,6 +219,7 @@ table * {
             min-width: 40px;
         }
     }
+
 
     tr.total-row {
         font-weight: bold;
