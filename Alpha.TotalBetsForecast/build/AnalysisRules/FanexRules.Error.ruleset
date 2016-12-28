@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<RuleSet Name="Fanex Rules Error" Description="Fanex Rules.  Error" ToolsVersion="10.0">
+<RuleSet Name="Fanex Rules" Description="Fanex Rules." ToolsVersion="10.0">
   <Include Path="minimumrecommendedrules.ruleset" Action="Default" />
   <Rules AnalyzerId="Microsoft.Analyzers.ManagedCodeAnalysis" RuleNamespace="Microsoft.Rules.Managed">
     <Rule Id="CA1000" Action="Error" />
@@ -7,7 +7,6 @@
 	<Rule Id="CA1003" Action="Error" />
 	<Rule Id="CA1004" Action="Error" />
 	<Rule Id="CA1005" Action="Error" />
-	<Rule Id="CA1006" Action="Error" />
 	<Rule Id="CA1007" Action="Error" />
 	<Rule Id="CA1008" Action="Error" />
 	<Rule Id="CA1009" Action="Error" />
@@ -15,7 +14,6 @@
 	<Rule Id="CA1011" Action="Error" />
 	<Rule Id="CA1012" Action="Error" />
 	<Rule Id="CA1013" Action="Error" />
-	<Rule Id="CA1014" Action="Error" />
 	<Rule Id="CA1016" Action="Error" />
 	<Rule Id="CA1017" Action="Error" />
 	<Rule Id="CA1018" Action="Error" />
@@ -54,7 +52,6 @@
 	<Rule Id="CA1059" Action="Error" />
 	<Rule Id="CA1060" Action="Error" />
 	<Rule Id="CA1061" Action="Error" />
-	<Rule Id="CA1062" Action="Error" />
 	<Rule Id="CA1063" Action="Error" />
 	<Rule Id="CA1064" Action="Error" />
 	<Rule Id="CA1065" Action="Error" />
@@ -236,6 +233,9 @@
 	<Rule Id="CA1704" Action="Error" />
 	<Rule Id="CA1711" Action="Error" />
 	<Rule Id="CA1715" Action="Error" />
+	<Rule Id="CA1014" Action="Error" />
+	<Rule Id="CA1062" Action="Error" />
+	<Rule Id="CA1006" Action="Error" />
 	-->
   </Rules>
 </RuleSet>
