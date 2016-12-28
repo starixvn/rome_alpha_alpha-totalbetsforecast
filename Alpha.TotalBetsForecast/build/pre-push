@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# cmd "/C BuildTask.Release.bat"
+cd Alpha.TotalBetsForecast
+cmd "/C build.cmd"

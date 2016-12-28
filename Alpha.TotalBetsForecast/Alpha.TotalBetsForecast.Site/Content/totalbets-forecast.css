@@ -108,7 +108,7 @@ table * {
     font-weight: bold; }
   .tblRpt tr:hover td.col-time, .tblRpt tr:hover td.col-event {
     background-color: #fff !important; }
-  .tblRpt tr.last-row td.ex-col {
+  .tblRpt.tblRpt-bordered tr.last-row td.ex-col {
     border-bottom: 1px solid #dfdfdf; }
   .tblRpt tr.cl-league td {
     text-transform: uppercase;
@@ -117,19 +117,19 @@ table * {
     background: #eae9ee; }
     .tblRpt tr.even td.col-time, .tblRpt tr.even td.col-event, .tblRpt tr.even td.col-forecastTotal {
       background: #fff; }
-  .tblRpt tr td.ex-col {
+  .tblRpt.tblRpt-bordered tr td.ex-col {
     border-top: none;
     border-bottom: none; }
-    .tblRpt tr td.ex-col.head {
+    .tblRpt.tblRpt-bordered tr td.ex-col.head {
       background: #ebeaea;
       color: #000;
       border-bottom: 1px solid #dfdfdf;
       font-size: 10px; }
-    .tblRpt tr td.ex-col.head, .tblRpt tr td.ex-col.winloss-name-empty {
+    .tblRpt.tblRpt-bordered tr td.ex-col.head, .tblRpt.tblRpt-bordered tr td.ex-col.winloss-name-empty {
       padding: 0px 8px;
       height: 19px;
       line-height: 19px; }
-    .tblRpt tr td.ex-col span {
+    .tblRpt.tblRpt-bordered tr td.ex-col span {
       display: inline-block;
       min-width: 40px; }
   .tblRpt tr.total-row {
