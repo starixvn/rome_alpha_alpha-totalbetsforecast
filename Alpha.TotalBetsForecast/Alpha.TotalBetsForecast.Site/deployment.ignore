@@ -8,3 +8,8 @@
 \\*.napexternal.config
 \\Assets\\scripts\\tests\\*
 \\typings\\*
+\\*.uati7.config
+\\*.proi7.config
+\\*.siti7.config
+\\*.napinternali7.config
+\\*.napexternali7.config
