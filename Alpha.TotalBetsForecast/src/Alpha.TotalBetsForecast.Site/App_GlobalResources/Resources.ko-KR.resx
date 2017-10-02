@@ -216,4 +216,7 @@
   <data name="soccer" xml:space="preserve">
     <value>축구</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>날짜</value>
+  </data>
 </root>

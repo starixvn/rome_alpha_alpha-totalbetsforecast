@@ -222,9 +222,6 @@
   <data name="Player" xml:space="preserve">
     <value>Player</value>
   </data>
-  <data name="Date" xml:space="preserve">
-    <value>Date</value>
-  </data>
   <data name="Versus" xml:space="preserve">
     <value> - vs - </value>
   </data>
@@ -233,5 +230,8 @@
   </data>
   <data name="MatchOfferNonLive" xml:space="preserve">
     <value>Non-Live</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
   </data>
 </root>

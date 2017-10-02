@@ -16,6 +16,7 @@
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Model.Entities;
     using Web;
+    using Web.Filters;
     using Web.Helpers;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -37,6 +38,7 @@
             ShareSession.Init();
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
+            GlobalFilters.Filters.Add(new NoCacheFilter());
 
             StaticResources.Init(GetBuildVersion());
 

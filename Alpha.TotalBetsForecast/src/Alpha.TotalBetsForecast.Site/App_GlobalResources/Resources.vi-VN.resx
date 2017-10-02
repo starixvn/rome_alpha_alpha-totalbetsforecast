@@ -196,4 +196,7 @@
   <data name="soccer" xml:space="preserve">
     <value>Bóng Đá</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Ngày</value>
+  </data>
 </root>
