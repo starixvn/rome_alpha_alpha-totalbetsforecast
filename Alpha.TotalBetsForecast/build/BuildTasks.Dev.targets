@@ -4,9 +4,9 @@
          DefaultTargets="MyTargets"
          InitialTargets="MyTargets">
   <Target Name="MyTargets">
-	<Exec Command="Nuget\NuGet restore ..\Alpha.TotalBetsForecast.sln"/>
+	<Exec Command="..\tools\Nuget\NuGet restore ..\Alpha.TotalBetsForecast.sln"/>
 	<MSBuild Projects="..\Alpha.TotalBetsForecast.sln" 
-	Properties="RunNunitTests=true;TreatWarningsAsErrors=false;RunCodeAnalysis=true;StyleCopEnabled=true" />
+	Properties="TreatWarningsAsErrors=false;RunCodeAnalysis=true;StyleCopEnabled=true" />
 	
   </Target>
   
