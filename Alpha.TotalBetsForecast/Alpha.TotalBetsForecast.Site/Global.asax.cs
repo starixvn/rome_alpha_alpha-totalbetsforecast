@@ -1,6 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site
 {
     using System;
+    using System.Collections.Generic;
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
@@ -8,6 +9,7 @@
     using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using ONEbook.UM.Filters;
+    using Sunplus.Agent.Model.Entities;
     using Web;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -40,7 +42,22 @@
         /// <param name="e">Event arguments.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            ExceptionHandler.Handle(Server.GetLastError());
-        }       
+            if (Request.IsLocal)
+            {
+                return;
+            }
+
+            var currentCustomer = UserSession.Current;
+
+            ExceptionHandler.Handle(
+                Server.GetLastError(),
+                new Dictionary<string, object>
+                {
+                    ["CustId"] = currentCustomer?.CustId,
+                    ["CustName"] = currentCustomer?.UserName,
+                    ["SubAccountName"] = currentCustomer?.SubUserName,
+                    ["AdminName"] = currentCustomer?.AdminName
+                });
+        }
     }
 }
