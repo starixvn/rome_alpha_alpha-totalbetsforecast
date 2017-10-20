@@ -1,0 +1,46 @@
+﻿@model BullfightingViewModel
+
+<div class="container-fluid totalandforecast">
+    <div class="filter">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <span class="dropdown">
+                    <button class="btn btn-default btn-countdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="icon-refresh"></span>
+                        <span id="ddlRefresh">30</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                        <li><a href="javascript:void(0);" data-refresh-value="30">30</a></li>
+                        <li><a href="javascript:void(0);" data-refresh-value="45">45</a></li>
+                        <li><a href="javascript:void(0);" data-refresh-value="60">60</a></li>
+                    </ul>
+                </span>
+                <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
+            </div>
+        </form>
+    </div>
+    <div class="content" style="display:none;">
+        <table class="tblRpt tblRpt-bordered col-sm-12" id="mainContent"
+               data-no-data-text="@Resources.NoData"
+               data-offer-live="@Resources.MatchOfferLive"
+               data-goal="@Resources.Goals"
+               data-disable-highlight="@AppConfig.DisableHighlightChange"
+               data-total-text="@Resources.Total">
+            <thead>
+                <tr class="RptHeader">
+                    <th class="text-center">@Resources.Date</th>
+                    <th class="text-center">@Resources.Event</th>
+                    <th class="text-center">@Resources.BetCount</th>
+                    <th class="text-center">@Resources.Turnover</th>
+                    <th class="text-center" colspan="2">@Resources.ForecastWinLoss</th>
+                </tr>
+                <tr class="RptHeader">
+                    <th class="text-center">@Resources.Banker</th>
+                    <th class="text-center">@Resources.Player</th>
+                </tr>
+            </thead>
+        </table>
+
+    </div>
+</div>
