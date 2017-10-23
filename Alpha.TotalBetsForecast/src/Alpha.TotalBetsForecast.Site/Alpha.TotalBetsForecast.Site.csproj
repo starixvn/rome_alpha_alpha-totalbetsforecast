@@ -31,10 +31,11 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>Alpha.TotalBetsForecast.Site.Debug.ruleset</CodeAnalysisRuleSet>
+    <NoWarn>618</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -244,33 +245,31 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
-    <Content Include="Content\Images\1.png" />
-    <Content Include="Content\Images\2.png" />
-    <Content Include="Content\Images\3.png" />
-    <Content Include="Content\Images\4.png" />
-    <Content Include="Content\Images\5.png" />
-    <Content Include="Content\Images\6.png" />
-    <Content Include="Content\Images\7.png" />
-    <Content Include="Content\Images\8.png" />
-    <Content Include="Content\Images\arrow.png" />
-    <Content Include="Content\Images\loader3.gif" />
-    <Content Include="Content\Images\slide2.png" />
-    <Content Include="Content\Images\slide3.png" />
-    <Content Include="Content\Images\slide4.png" />
-    <Content Include="Content\quick-introduction.css">
+    <Content Include="assets\scripts\Bullfighting\index.js" />
+    <Content Include="assets\scripts\Bullfighting\render.js" />
+    <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
+    <Content Include="assets\scripts\Forecast\index.js" />
+    <Content Include="assets\scripts\Introduction\quick-introduction.js" />
+    <Content Include="assets\styles\Images\1.png" />
+    <Content Include="assets\styles\Images\2.png" />
+    <Content Include="assets\styles\Images\3.png" />
+    <Content Include="assets\styles\Images\4.png" />
+    <Content Include="assets\styles\Images\5.png" />
+    <Content Include="assets\styles\Images\6.png" />
+    <Content Include="assets\styles\Images\7.png" />
+    <Content Include="assets\styles\Images\8.png" />
+    <Content Include="assets\styles\Images\arrow.png" />
+    <Content Include="assets\styles\Images\loader3.gif" />
+    <Content Include="assets\styles\Images\slide2.png" />
+    <Content Include="assets\styles\Images\slide3.png" />
+    <Content Include="assets\styles\Images\slide4.png" />
+    <Content Include="assets\styles\quick-introduction.css">
       <DependentUpon>quick-introduction.scss</DependentUpon>
     </Content>
-    <Content Include="Content\totalbets-forecast.css">
+    <Content Include="assets\styles\totalbets-forecast.css">
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
-    <Content Include="Scripts\Bullfighting\render.js" />
-    <Content Include="Scripts\Bullfighting\index.js" />
-    <Content Include="Scripts\Forecast\index.js" />
-    <Content Include="Scripts\Forecast\forecast-renderer.js" />
-    <Content Include="Scripts\Introduction\quick-introduction.js" />
-    <Content Include="Scripts\piwikLoader.js" />
-    <Content Include="Scripts\piwikLoader.min.js" />
     <Content Include="Web.napexternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
@@ -293,8 +292,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AppConfig.cs" />
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\CssRewriteUrlTransformWrapper.cs" />
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BullfightingController.cs" />
@@ -338,8 +335,6 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Content\totalbets-forecast.scss" />
-    <Content Include="Content\_mixins.scss" />
     <Content Include="Web.AppSettings.config">
       <SubType>Designer</SubType>
     </Content>
@@ -375,13 +370,15 @@
     </Content>
     <Content Include="Alpha.TotalBetsForecast.Site.Debug.ruleset" />
     <Content Include="Alpha.TotalBetsForecast.Site.ruleset" />
+    <Content Include="assets\styles\quick-introduction.scss" />
+    <Content Include="assets\styles\totalbets-forecast.scss" />
+    <Content Include="assets\styles\_mixins.scss" />
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
     <Content Include="Views\Forecast\Index.cshtml" />
-    <Content Include="Content\quick-introduction.scss" />
     <Content Include="deployment.ignore" />
     <None Include="Properties\PublishProfiles\Local202.pubxml" />
     <Content Include="Views\Introduction\Index.en-US.cshtml" />
@@ -597,8 +594,15 @@
     <Error Condition="!Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"  
-      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"</PostBuildEvent>
+    <PostBuildEvent>
+      cd $(ProjectDir)
+      cd ..
+      cd ..
+      cd build
+      assets.build.cmd
+      if not exist "$(WebProjectOutputDir)\bin\Roslyn" md "$(WebProjectOutputDir)\bin\Roslyn"
+      start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
+</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

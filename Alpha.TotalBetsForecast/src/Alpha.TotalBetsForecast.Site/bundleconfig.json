@@ -1,8 +1,17 @@
-[
+[  
   {
-    "outputFileName": "Scripts/piwikLoader.js",
+    "outputFileName": "assets/bundles/forecast/forecast.js",
     "inputFiles": [
-      "Scripts/piwikLoader.js"
+      "assets/scripts/forecast/forecast-renderer.js",
+      "assets/scripts/forecast/index.js",
+      "assets/scripts/introduction/quick-introduction.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/forecast/forecast.css",
+    "inputFiles": [
+      "assets/styles/totalbets-forecast.css",
+      "assets/styles/quick-introduction.css"
     ]
   }
 ]

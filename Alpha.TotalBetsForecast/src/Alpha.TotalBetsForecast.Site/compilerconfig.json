@@ -1,14 +1,14 @@
 ﻿[
   {
-    "outputFile": "Content/totalbets-forecast.css",
-    "inputFile": "Content/totalbets-forecast.scss",
+    "outputFile": "assets/styles/totalbets-forecast.css",
+    "inputFile": "assets/styles/totalbets-forecast.scss",
     "minify": {
       "enabled": false
     }
   },
   {
-    "outputFile": "Content/quick-introduction.css",
-    "inputFile": "Content/quick-introduction.scss",
+    "outputFile": "assets/styles/quick-introduction.css",
+    "inputFile": "assets/styles/quick-introduction.scss",
     "minify": {
       "enabled": false
     }

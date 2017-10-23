@@ -11,12 +11,7 @@
         {
             CustId = user.CustId;
         }
-
-        internal MatchForecastsQuery(int custId)
-        {
-            CustId = custId;
-        }
-
+        
         public int CustId
         {
             get;

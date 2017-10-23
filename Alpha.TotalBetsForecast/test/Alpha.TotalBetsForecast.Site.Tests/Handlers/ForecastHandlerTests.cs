@@ -11,6 +11,7 @@
     using Site.Models.Requests;
     using Site.Services;
     using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.Entities;
     using Sunplus.Agent.Model.RemotingRef;
 
     [TestFixture]
@@ -20,6 +21,7 @@
         private IForecastService _forecastService;
         private IEventService _eventService;
         private ForecastHandler _forecastHandler;
+        private IUserSession user;
 
         [SetUp]
         public void SetUp()
@@ -30,6 +32,9 @@
             _forecastHandler = new ForecastHandler(_forecastService, _eventService);
 
             CacheRefFactory.CacheRef = Substitute.For<ICacheRefService>();
+
+            user = Substitute.For<IUserSession>();
+            user.CustId.Returns(CustId);
         }
 
         #region Query Index page
@@ -199,7 +204,7 @@
         public void HandleMatchForecastQuery_ExecuteGetMatchInfo()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(CustId)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1",
                 IsLive = true
@@ -216,7 +221,7 @@
         public void HandleMatchForecastQuery_DataValid_ReturnMatchForecastViewMode()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(CustId)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1",
                 IsLive = true

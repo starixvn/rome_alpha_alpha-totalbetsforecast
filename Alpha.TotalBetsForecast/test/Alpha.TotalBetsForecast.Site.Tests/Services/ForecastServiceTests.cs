@@ -14,6 +14,7 @@
     using Site.Models.Requests;
     using Site.Services.Impl;
     using Sunplus.Agent.Model.BL.Definitions;
+    using Sunplus.Agent.Model.Entities;
 
     [TestFixture]
     public class ForecastServiceTests
@@ -21,6 +22,7 @@
         private IForecastDataAccess _forecastDataAccess;
         private ICache _cacheManager;
         private ForecastService _forecastService;
+        private IUserSession user;
 
         [SetUp]
         public void SetUp()
@@ -29,6 +31,9 @@
             _cacheManager = Substitute.For<ICache>();
 
             _forecastService = new ForecastService(_forecastDataAccess, _cacheManager);
+
+            user = Substitute.For<IUserSession>();
+            user.CustId.Returns(1);
         }
 
         [Test]
@@ -42,7 +47,7 @@
         [Test]
         public void GetMatchForecast_MatchIdsIsEmpty_ThrowArgumentException()
         {
-            MatchForecastsQuery query = new MatchForecastsQuery(1);
+            var query = new MatchForecastsQuery(user);
 
             Assert.Throws<ArgumentException>(() => _forecastService.GetMatchForecasts(query));
         }
@@ -51,7 +56,7 @@
         public void GetMatchForecast_DataWereCached_ReturnCachedData()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 IsLive = true,
                 MatchIds = "1,2"
@@ -74,7 +79,7 @@
         public void GetMatchForecast_ExecuteGetMatchForecast()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 IsLive = true,
                 MatchIds = "1,2"
@@ -92,14 +97,14 @@
                 Arg.Is<GetMatchForecastsCriteria>(
                     criteria => criteria.MatchIds == query.MatchIds
                             && criteria.IsLive
-                            && criteria.CustId == 1));
+                            && criteria.CustId == user.CustId));
         }
 
         [Test]
         public void GetMatchForecast_ReceivesListOfBetTypeDto_GroupDataByMatch()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -147,7 +152,7 @@
         public void GetMatchForecast_ReceivesListOfWinLossName_BuildWinLossNameListForHandicap(BetType betType)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -189,7 +194,7 @@
         public void GetMatchForecast_MatchIsNoneLive_BuildWinLossNameListForOverUnder(BetType betType, int highLightValue, int mainWinLossIndex)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -230,7 +235,7 @@
         public void GetMatchForecast_MatchIsLive_BuildWinLossNameListForOverUnder(BetType betType)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -275,7 +280,7 @@
         public void GetMatchForecast_MatchIsLive_BuildWinLossNameListForOneXTwo(BetType betType, byte liveHomeScore, byte liveAwayScore, int mainWinLossIndex)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -316,7 +321,7 @@
         public void GetMatchForecast_SumWinLossOfBetTypes(bool isLive, byte liveHomeScore, byte liveAwayScore, decimal totalWinLossMatch1, decimal totalWinLossMatch2)
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -369,7 +374,7 @@
         public void GetMatchForecast_SumTotalBetCount()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -422,7 +427,7 @@
         public void GetMatchForecast_SumTotalTurnover()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };
@@ -475,7 +480,7 @@
         public void GetMatchForecast_CurrentTimeIsSecondHaft_RemoveFirstHaftForecast()
         {
             //// Arrange
-            var query = new MatchForecastsQuery(1)
+            var query = new MatchForecastsQuery(user)
             {
                 MatchIds = "1"
             };

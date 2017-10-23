@@ -2,7 +2,7 @@
 
 @section Styles
 {
-    @Styles.Render(BundleConfig.IndexForecastStyleBundleUrl)
+    @StaticResources.RenderStyles("~/assets/bundles/forecast/forecast")
 }
 
 <div id="browser-warning" class="note-browser" style="display:none;">
@@ -107,5 +107,5 @@
     <script type="text/javascript" src="/assets/bundles/site-totalbetsforecast/unsupport-browser/default.js"></script>
     <![endif]-->
 
-    @Scripts.Render(BundleConfig.IndexForecastJavascriptBundleUrl)
+@StaticResources.RenderScripts("~/assets/bundles/forcast/forcast")
 }
