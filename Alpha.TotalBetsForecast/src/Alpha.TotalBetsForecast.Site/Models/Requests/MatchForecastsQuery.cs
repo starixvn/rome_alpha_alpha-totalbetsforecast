@@ -7,9 +7,9 @@
 
     public class MatchForecastsQuery : IRequest<IEnumerable<MatchForecastViewModel>>
     {
-        public MatchForecastsQuery()
+        public MatchForecastsQuery(IUserSession user)
         {
-            CustId = UserSession.Current.CustId;
+            CustId = user.CustId;
         }
 
         internal MatchForecastsQuery(int custId)

@@ -298,8 +298,8 @@
     <Compile Include="App_Start\DependencyConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BullfightingController.cs" />
-    <Compile Include="GlobalSuppressions2.cs" />
     <Compile Include="Handlers\BullfightingHandler.cs" />
+    <Compile Include="Helpers\QueryEntityModelBinder.cs" />
     <Compile Include="Requests\BullfightingQuery.cs" />
     <Compile Include="Controllers\TotalBetsForecastBaseController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />

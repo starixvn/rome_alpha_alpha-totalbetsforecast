@@ -38,42 +38,36 @@
 
             var matchForecastViewModels = new List<MatchForecastViewModel>();
 
-            try
-            {
-                var matchForecasts = _forecastService.GetMatchForecasts(message);
 
-                foreach (var matchForecast in matchForecasts)
+            var matchForecasts = _forecastService.GetMatchForecasts(message);
+
+            foreach (var matchForecast in matchForecasts)
+            {
+                var showTimeString = string.Empty;
+                if (!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
                 {
-                    var showTimeString = string.Empty;
-                    if (!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
-                    {
-                        showTimeString = BuildShowTime(matchForecast);
-                    }
-
-                    var matchForecastViewModel = new MatchForecastViewModel
-                    {
-                        Id = matchForecast.Id,
-                        HomeName = matchForecast.HomeName,
-                        AwayName = matchForecast.AwayName,
-                        LiveHomeScore = matchForecast.LiveHomeScore,
-                        LiveAwayScore = matchForecast.LiveAwayScore,
-                        IsLive = message.IsLive,
-                        HasLive = matchForecast.HasLive,
-                        ShowTime = showTimeString,
-                        KickOffTime = matchForecast.KickOffTime,
-                        BetTypeForecasts = matchForecast.BetTypeForecasts,
-                        TotalBetCount = matchForecast.TotalBetCount,
-                        TotalTurnover = matchForecast.TotalTurnover,
-                        TotalForecastWinLoss = matchForecast.TotalForecastWinLoss,
-                        MatchRowSpan = (matchForecast.BetTypeForecasts.Count() * 2) + 1
-                    };
-
-                    matchForecastViewModels.Add(matchForecastViewModel);
+                    showTimeString = BuildShowTime(matchForecast);
                 }
-            }
-            catch (Exception ex)
-            {
-                Logs.FilterInfoWarnOrError(ex);
+
+                var matchForecastViewModel = new MatchForecastViewModel
+                {
+                    Id = matchForecast.Id,
+                    HomeName = matchForecast.HomeName,
+                    AwayName = matchForecast.AwayName,
+                    LiveHomeScore = matchForecast.LiveHomeScore,
+                    LiveAwayScore = matchForecast.LiveAwayScore,
+                    IsLive = message.IsLive,
+                    HasLive = matchForecast.HasLive,
+                    ShowTime = showTimeString,
+                    KickOffTime = matchForecast.KickOffTime,
+                    BetTypeForecasts = matchForecast.BetTypeForecasts,
+                    TotalBetCount = matchForecast.TotalBetCount,
+                    TotalTurnover = matchForecast.TotalTurnover,
+                    TotalForecastWinLoss = matchForecast.TotalForecastWinLoss,
+                    MatchRowSpan = (matchForecast.BetTypeForecasts.Count() * 2) + 1
+                };
+
+                matchForecastViewModels.Add(matchForecastViewModel);
             }
 
             return matchForecastViewModels;

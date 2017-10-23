@@ -3,15 +3,15 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Criteria;
     using DataAccesses;
     using Fanex.Caching;
     using Fanex.Data.Repository;
-    using Models;
-    using Models.Dtos;
-    using Models.Requests;
     using NSubstitute;
     using NUnit.Framework;
+    using Site.Criteria;
+    using Site.Models;
+    using Site.Models.Dtos;
+    using Site.Models.Requests;
     using Site.Services.Impl;
     using Sunplus.Agent.Model.BL.Definitions;
 

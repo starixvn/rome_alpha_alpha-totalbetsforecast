@@ -2,12 +2,12 @@
 {
     using System;
     using System.Collections.Generic;
-    using Criteria;
     using Fanex.Caching;
     using Fanex.Data.Repository;
-    using Models;
     using NSubstitute;
     using NUnit.Framework;
+    using Site.Criteria;
+    using Site.Models;
     using Site.Services.Impl;
 
     [TestFixture]

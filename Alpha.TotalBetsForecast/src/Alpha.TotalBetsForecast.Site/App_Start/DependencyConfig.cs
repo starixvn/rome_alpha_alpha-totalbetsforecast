@@ -1,6 +1,5 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.App_Start
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
@@ -16,6 +15,8 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
+    using Sunplus.Agent.Model.Base;
+    using Sunplus.Agent.Model.Entities;
 
     public static class DependencyConfig
     {
@@ -68,6 +69,7 @@
 
         private static void RegisterServices(Container container)
         {
+            container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<IEventService, EventService>(Lifestyle.Scoped);
             container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);
         }
