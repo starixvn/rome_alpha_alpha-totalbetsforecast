@@ -12,7 +12,7 @@
     <WebCompiler.CompilerCleanTask FileName="$(MSBuildProjectDirectory)\..\src\Alpha.TotalBetsForecast.Site\compilerconfig.json" />
     <WebCompiler.CompilerBuildTask FileName="$(MSBuildProjectDirectory)\..\src\Alpha.TotalBetsForecast.Site\compilerconfig.json" />
 	<BundlerMinifier.BundlerCleanTask FileName="$(MSBuildProjectDirectory)\..\src\Alpha.TotalBetsForecast.Site\bundleconfig.json" />
-	<BundlerMinifier.BundlerBuildTask FileName="$(MSBuildProjectDirectory)\..\src\Alpha.TotalBetsForecast.Sitee\bundleconfig.json" />
+	<BundlerMinifier.BundlerBuildTask FileName="$(MSBuildProjectDirectory)\..\src\Alpha.TotalBetsForecast.Site\bundleconfig.json" />
   </Target>
   
 </Project>
