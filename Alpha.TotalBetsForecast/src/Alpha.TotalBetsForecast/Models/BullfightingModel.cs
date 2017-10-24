@@ -1,0 +1,67 @@
+﻿namespace Alpha.TotalBetsForecast.Models
+{
+    using System;
+    using Constants;
+    using Sunplus.Agent.Model.RemotingRef;
+
+    public class BullfightingModel
+    {
+        public BullfightingModel(
+            DateTime eventDate,
+            int matchId,
+            int leagueId,
+            bool hasLive,
+            int homeId,
+            int awayId,
+            int betCount,
+            decimal turnover,
+            decimal banker,
+            decimal player)
+        {
+            EventDate = eventDate;
+            MatchId = matchId;
+            LeagueId = leagueId;
+            HasLive = hasLive;
+            HomeId = homeId;
+            AwayId = awayId;
+            BetCount = betCount;
+            Turnover = turnover;
+            Banker = banker;
+            Player = player;
+        }
+
+        public DateTime EventDate { get; }
+
+        public string EventDateToString => EventDate.ToString("MM/dd");
+
+        public int MatchId { get; }
+
+        public int LeagueId { get; }
+
+        public string LeagueName => CacheRefFactory.CacheRef.GetLeagueName(LeagueId);
+
+        public bool HasLive { get; }        
+
+        public int HomeId { get; }
+
+        public string HomeName => CacheRefFactory.CacheRef.GetTeamName(HomeId);
+
+        public int AwayId { get; }
+
+        public string AwayName => CacheRefFactory.CacheRef.GetTeamName(AwayId);
+
+        public int BetCount { get; }
+
+        public decimal Turnover { get; }
+
+        public string TurnoverToDislay => Turnover.ToString(NumberFormat.DecimalFormat);
+
+        public decimal Banker { get; }
+
+        public string BankerToDisplay => Banker.ToString(NumberFormat.DecimalFormat);
+
+        public decimal Player { get; }
+
+        public string PlayerToDisplay => Player.ToString(NumberFormat.DecimalFormat);
+    }
+}

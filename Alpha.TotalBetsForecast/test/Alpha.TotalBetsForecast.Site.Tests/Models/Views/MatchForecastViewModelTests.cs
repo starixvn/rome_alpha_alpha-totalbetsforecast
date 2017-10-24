@@ -4,6 +4,7 @@
     using Alpha.TotalBetsForecast.Site.Models.Views;
     using NUnit.Framework;
 
+    [TestFixture]
     public class MatchForecastViewModelTests
     {
         [Test]

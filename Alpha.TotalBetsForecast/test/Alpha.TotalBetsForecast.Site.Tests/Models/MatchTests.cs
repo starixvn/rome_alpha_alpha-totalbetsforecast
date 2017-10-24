@@ -8,6 +8,12 @@
     [TestFixture]
     public class MatchTests
     {
+        [SetUp]
+        public void Setup()
+        {
+            CacheRefFactory.CacheRef = Substitute.For<ICacheRefService>();
+        }
+
         [Test]
         public void Name_Always_ReturnExpectedText()
         {

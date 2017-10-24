@@ -5,6 +5,7 @@
     using NUnit.Framework;
     using Sunplus.Agent.Model.Entities;
 
+    [TestFixture]
     public class MatchForecastsQueryTests
     {
         [Test]

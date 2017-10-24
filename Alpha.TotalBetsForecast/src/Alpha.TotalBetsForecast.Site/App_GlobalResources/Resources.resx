@@ -225,4 +225,7 @@
   <data name="Date" xml:space="preserve">
     <value>Date</value>
   </data>
+  <data name="Versus" xml:space="preserve">
+    <value> -vs- </value>
+  </data>
 </root>

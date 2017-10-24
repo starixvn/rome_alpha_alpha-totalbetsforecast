@@ -1,7 +1,7 @@
-﻿namespace Alpha.TotalBetsForecast.Site.ViewModel
+﻿namespace Alpha.TotalBetsForecast.Site.ViewModels
 {
     using System.Collections.Generic;
-    using Alpha.TotalBetsForcast.Model;
+    using Alpha.TotalBetsForecast.Models;
 
     public class BullfightingViewModel
     {
@@ -10,6 +10,6 @@
             Matchs = matchs;
         }
 
-        private IEnumerable<BullfightingModel> Matchs { get; }
+        public IEnumerable<BullfightingModel> Matchs { get; }
     }
 }

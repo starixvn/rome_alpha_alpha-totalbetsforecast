@@ -245,6 +245,10 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
+    <Content Include="assets\bundles\forecast\forecast.css" />
+    <Content Include="assets\bundles\forecast\forecast.min.css">
+      <DependentUpon>forecast.css</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\Bullfighting\index.js" />
     <Content Include="assets\scripts\Bullfighting\render.js" />
     <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
@@ -328,10 +332,12 @@
     <Compile Include="Services\IForecastService.cs" />
     <Compile Include="Services\Impl\EventService.cs" />
     <Compile Include="Services\Impl\ForecastService.cs" />
-    <Compile Include="ViewModel\BullfightingViewModel.cs" />
+    <Compile Include="ViewModels\BullfightingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\web.config" />
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -523,15 +529,16 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Alpha.TotalBetsForcast\Alpha.TotalBetsForcast.csproj">
+    <ProjectReference Include="..\Alpha.TotalBetsForecast\Alpha.TotalBetsForecast.csproj">
       <Project>{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}</Project>
-      <Name>Alpha.TotalBetsForcast</Name>
+      <Name>Alpha.TotalBetsForecast</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\Resources.zh-TW.resx" />
   </ItemGroup>

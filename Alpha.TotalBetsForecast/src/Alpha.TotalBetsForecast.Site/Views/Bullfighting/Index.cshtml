@@ -1,4 +1,7 @@
-﻿@model BullfightingViewModel
+﻿@section Styles
+{
+    @StaticResources.RenderStyles("~/assets/bundles/forecast/forecast")
+}
 
 <div class="container-fluid totalandforecast">
     <div class="filter">
@@ -20,27 +23,11 @@
             </div>
         </form>
     </div>
-    <div class="content" style="display:none;">
-        <table class="tblRpt tblRpt-bordered col-sm-12" id="mainContent"
-               data-no-data-text="@Resources.NoData"
-               data-offer-live="@Resources.MatchOfferLive"
-               data-goal="@Resources.Goals"
-               data-disable-highlight="@AppConfig.DisableHighlightChange"
-               data-total-text="@Resources.Total">
-            <thead>
-                <tr class="RptHeader">
-                    <th class="text-center">@Resources.Date</th>
-                    <th class="text-center">@Resources.Event</th>
-                    <th class="text-center">@Resources.BetCount</th>
-                    <th class="text-center">@Resources.Turnover</th>
-                    <th class="text-center" colspan="2">@Resources.ForecastWinLoss</th>
-                </tr>
-                <tr class="RptHeader">
-                    <th class="text-center">@Resources.Banker</th>
-                    <th class="text-center">@Resources.Player</th>
-                </tr>
-            </thead>
-        </table>
-
+    <div class="content">
     </div>
 </div>
+
+@section Scripts
+{
+    @StaticResources.RenderScripts("~/assets/bundles/forcast/forcast")
+}

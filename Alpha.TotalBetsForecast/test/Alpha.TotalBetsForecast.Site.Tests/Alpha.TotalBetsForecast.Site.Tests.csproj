@@ -183,6 +183,7 @@
     <Compile Include="Criteria\GetEventsCriteriaTests.cs" />
     <Compile Include="Criteria\GetLeaguesCriteriaTests.cs" />
     <Compile Include="Criteria\GetMatchForecastsCriteriaTests.cs" />
+    <Compile Include="Handlers\BullfightingHandlerTests.cs" />
     <Compile Include="Handlers\ForecastHandlerTests.cs" />
     <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Models\MatchTests.cs" />
@@ -201,6 +202,10 @@
     <ProjectReference Include="..\..\src\Alpha.TotalBetsForecast.Site\Alpha.TotalBetsForecast.Site.csproj">
       <Project>{0b0d3ee5-bcec-4e48-9acc-a20a1f516760}</Project>
       <Name>Alpha.TotalBetsForecast.Site</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Alpha.TotalBetsForecast\Alpha.TotalBetsForecast.csproj">
+      <Project>{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}</Project>
+      <Name>Alpha.TotalBetsForecast</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

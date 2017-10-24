@@ -1,18 +1,66 @@
 ﻿@model BullfightingViewModel
-@model BullfightingViewModel
-<table>
+
+<table class="tblRpt tblRpt-bordered col-sm-12">
+    <thead>
+        <tr class="RptHeader">
+            <th class="text-center" rowspan="2">@Resources.Date</th>
+            <th class="text-center" rowspan="2">@Resources.Event</th>
+            <th class="text-center" rowspan="2">@Resources.BetCount</th>
+            <th class="text-center" rowspan="2">@Resources.Turnover</th>
+            <th class="text-center" colspan="2">@Resources.ForecastWinLoss</th>
+        </tr>
+        <tr class="RptHeader">
+            <th class="text-center">@Resources.Banker</th>
+            <th class="text-center">@Resources.Player</th>
+        </tr>
+    </thead>
     <tbody>
-        <tr class="RptHeader">            
-            <td rowspan="2" class="col-Time">@Resources.Date</td>
-            <td rowspan="2" class="col-number">@Resources.Event</td>
-            <td rowspan="2" class="col-number">@Resources.BetCount</td>
-            <td rowspan="2" class="col-number">@Resources.Turnover</td>
-            <td colspan="2" class="col-number">@Resources.ForecastWinLoss</td>
-        </tr>
-        <tr class="RptHeader02">
-            <td>@Resources.Banker</td>
-            <td>@Resources.Player</td>
-        </tr>
-        
+        @if (Model.Matchs.Any())
+        {
+            foreach (var group in Model.Matchs.GroupBy(i => i.LeagueId))
+            {
+                <tr>
+                    <td colspan="6" class="cl-league">
+                        @group.Key
+                        <span class="offer-live">@(group.FirstOrDefault().HasLive ? Resources.Live : Resources.NonLive)</span>
+                    </td>
+                </tr>
+                foreach (var match in group)
+                {
+                    <tr>
+                        <td>@match.EventDateToString</td>
+                        <td>
+                            <span class="home-name">@match.HomeName</span>
+                            <span>@Resources.Versus</span>
+                            <span class="away-name">@match.AwayName</span>
+                        </td>
+                        <td>@match.BetCount</td>
+                        <td>@match.TurnoverToDislay</td>
+                        @RenderWinLoss(match.Banker, match.BankerToDisplay)
+                        @RenderWinLoss(match.Player, match.PlayerToDisplay)
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">@Resources.NoData</td>
+            </tr>
+        }
+
+
     </tbody>
 </table>
+
+@helper RenderWinLoss(decimal winloss, string winlossToString)
+{
+    if (winloss < 0)
+    {
+            <td class="high-light-win-loss">@winlossToString</td>
+    }
+    else
+    {
+            <td class="positive">@winlossToString</td>
+    }
+}

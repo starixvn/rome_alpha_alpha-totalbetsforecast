@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast.Sit
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast.Site.Tests", "test\Alpha.TotalBetsForecast.Site.Tests\Alpha.TotalBetsForecast.Site.Tests.csproj", "{CA7D3BA2-634D-4B93-B09F-836CDAC86528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForcast", "src\Alpha.TotalBetsForcast\Alpha.TotalBetsForcast.csproj", "{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast", "src\Alpha.TotalBetsForecast\Alpha.TotalBetsForecast.csproj", "{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SonarQube", "SonarQube", "{53983012-E6C6-4184-9162-77DB71A60F34}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F6613402-8FF8-4696-A24A-2A89D7AAA4EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{425E8E80-F161-42B3-8F22-BC2EE16290CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast.Tests", "Alpha.TotalBetsForecast.Tests\Alpha.TotalBetsForecast.Tests.csproj", "{97C2D462-041D-4255-A520-276F3875710F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,10 @@ Global
 		{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97C2D462-041D-4255-A520-276F3875710F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97C2D462-041D-4255-A520-276F3875710F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97C2D462-041D-4255-A520-276F3875710F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97C2D462-041D-4255-A520-276F3875710F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{0B0D3EE5-BCEC-4E48-9ACC-A20A1F516760} = {F6613402-8FF8-4696-A24A-2A89D7AAA4EE}
 		{CA7D3BA2-634D-4B93-B09F-836CDAC86528} = {425E8E80-F161-42B3-8F22-BC2EE16290CE}
 		{CA9F3CFF-6834-49A2-B2BA-40BD4125C0E2} = {F6613402-8FF8-4696-A24A-2A89D7AAA4EE}
+		{97C2D462-041D-4255-A520-276F3875710F} = {425E8E80-F161-42B3-8F22-BC2EE16290CE}
 	EndGlobalSection
 EndGlobal

@@ -383,5 +383,14 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
                 return ResourceManager.GetString("Turnover", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  -vs- .
+        /// </summary>
+        public static string Versus {
+            get {
+                return ResourceManager.GetString("Versus", resourceCulture);
+            }
+        }
     }
 }

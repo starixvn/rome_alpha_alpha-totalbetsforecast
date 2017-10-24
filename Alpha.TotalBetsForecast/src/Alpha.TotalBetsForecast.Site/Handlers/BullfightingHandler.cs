@@ -1,8 +1,8 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Handlers
 {
-    using Alpha.TotalBetsForcast.Services;
+    using Alpha.TotalBetsForecast.Services;
     using Alpha.TotalBetsForecast.Site.Requests;
-    using Alpha.TotalBetsForecast.Site.ViewModel;
+    using Alpha.TotalBetsForecast.Site.ViewModels;
     using MediatR;
 
     public class BullfightingHandler : IRequest<BullfightingViewModel>
@@ -16,7 +16,7 @@
 
         public BullfightingViewModel Handle(BullfightingQuery query)
         {
-            var matchs = service.GetMatchs(query.CustId);
+            var matchs = service.GetMatchs(query.CustId, query.CustLevel);
 
             return new BullfightingViewModel(matchs);
         }

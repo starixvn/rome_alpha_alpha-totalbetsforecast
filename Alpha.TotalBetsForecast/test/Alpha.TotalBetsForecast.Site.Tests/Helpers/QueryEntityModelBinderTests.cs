@@ -7,6 +7,7 @@
     using Site.Models.Dtos;
     using Site.Models.Requests;
 
+    [TestFixture]
     public class QueryEntityModelBinderTests : QueryEntityModelBinder
     {
         protected override object CreateInstanceOfUserSession(Type modelType)
