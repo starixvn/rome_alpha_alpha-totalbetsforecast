@@ -251,6 +251,12 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
+    <Content Include="assets\bundles\bullfighting\bullfighting.js" />
+    <Content Include="assets\bundles\bullfighting\bullfighting.min.js" />
+    <Content Include="assets\bundles\forecast\forecast.css" />
+    <Content Include="assets\bundles\forecast\forecast.min.css">
+      <DependentUpon>forecast.css</DependentUpon>
+    </Content>
     <Content Include="assets\scripts\Bullfighting\index.js" />
     <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
     <Content Include="assets\scripts\Forecast\index.js" />
@@ -618,7 +624,7 @@
       start /MIN xcopy /s /y /R "$(OutDir)roslyn\*.*" "$(WebProjectOutputDir)\bin\Roslyn"
 </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
+  <Import Project="..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets" Condition="Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
