@@ -90,7 +90,7 @@
         [TestCase(-1)]
         public void GetMatches_LeagueIdIsNegativeOrZero_ThrowArgumentOutOfRangeException(int leagueId)
         {
-            Assert.Throws<ArgumentOutOfRangeException>(() => _eventService.GetMatches(leagueId, true, true));
+            Assert.Throws<ArgumentOutOfRangeException>(() => _eventService.GetMatches(leagueId, true));
         }
 
         [Test]
@@ -108,7 +108,7 @@
             _dynamicRepository.Fetch<Match>(Arg.Any<GetEventsCriteria>()).Returns(expectedMatches);
 
             //// Act
-            var actualMatches = _eventService.GetMatches(leagueId, isLive, true);
+            var actualMatches = _eventService.GetMatches(leagueId, isLive);
 
             //// Assert
             Assert.AreEqual(expectedMatches, actualMatches);

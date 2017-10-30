@@ -10,7 +10,7 @@
         {
             //// Arrange
             var leagueId = 123;
-            var criteria = new GetEventsCriteria(leagueId, true, true);
+            var criteria = new GetEventsCriteria(leagueId, true);
 
             //// Act
             var act = criteria.LeagueId;
@@ -24,7 +24,7 @@
         {
             //// Arrange
             var isLive = true;
-            var criteria = new GetEventsCriteria(123, isLive, true);
+            var criteria = new GetEventsCriteria(123, isLive);
 
             //// Act
             var act = criteria.IsLive;
@@ -32,27 +32,14 @@
             //// Assert
             Assert.AreEqual(isLive, act);
         }
-
-        [Test]
-        public void IsShowAll_Always_EqualWithInConstructor()
-        {
-            //// Arrange
-            var isShowAll = true;
-            var criteria = new GetEventsCriteria(123, true, isShowAll);
-
-            //// Act
-            var act = criteria.IsShowAll;
-
-            //// Assert
-            Assert.AreEqual(isShowAll, act);
-        }
+       
 
         [Test]
         public void GetSettingKey_Always_ExpectedKey()
         {
             //// Arrange
             var expectedKey = "Age_NewTotalBetsForeCast_EventSel";
-            var criteria = new GetEventsCriteria(123, true, true);
+            var criteria = new GetEventsCriteria(123, true);
 
             //// Act
             var act = criteria.GetSettingKey();
@@ -65,7 +52,7 @@
         public void IsValid_Always_ExpectedTrue()
         {
             //// Arrange
-            var criteria = new GetEventsCriteria(123, true, true);
+            var criteria = new GetEventsCriteria(123, true);
 
             //// Act
             var act = criteria.IsValid();

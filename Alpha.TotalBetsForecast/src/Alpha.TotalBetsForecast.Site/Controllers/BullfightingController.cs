@@ -10,7 +10,7 @@
         {
         }
 
-        public ActionResult Index() => View();
+        public ActionResult Index() => View("Index");
 
         public ActionResult GetMatches(BullfightingQuery query) => View(query);
     }

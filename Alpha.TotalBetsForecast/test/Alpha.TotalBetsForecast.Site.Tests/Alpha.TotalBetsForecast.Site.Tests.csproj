@@ -57,8 +57,16 @@
       <HintPath>..\..\packages\Fanex.Common.1.0.404.97\lib\net40\Fanex.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data.OldConnectionStringProvider, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.OldConnectionStringProvider.1.0.1\lib\net461\Fanex.Data.OldConnectionStringProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -178,8 +186,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AppConfigTests.cs" />
     <Compile Include="Controllers\BullfightingControllerTests.cs" />
     <Compile Include="Controllers\ForecastControllerTests.cs" />
+    <Compile Include="Controllers\IntroductionControllerTests.cs" />
     <Compile Include="Criteria\GetEventsCriteriaTests.cs" />
     <Compile Include="Criteria\GetLeaguesCriteriaTests.cs" />
     <Compile Include="Criteria\GetMatchForecastsCriteriaTests.cs" />
@@ -187,11 +197,13 @@
     <Compile Include="Handlers\ForecastHandlerTests.cs" />
     <Compile Include="Helpers\QueryEntityModelBinderTests.cs" />
     <Compile Include="Models\MatchTests.cs" />
+    <Compile Include="Models\Requests\LeagueQuery.cs" />
     <Compile Include="Models\Requests\MatchForecastsQueryTests.cs" />
     <Compile Include="Models\Views\MatchForecastViewModelTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EventServiceTests.cs" />
     <Compile Include="Services\ForecastServiceTests.cs" />
+    <Compile Include="ViewModels\BullfightingViewModelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

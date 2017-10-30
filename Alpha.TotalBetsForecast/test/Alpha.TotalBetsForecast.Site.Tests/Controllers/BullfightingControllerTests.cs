@@ -1,5 +1,7 @@
-﻿namespace Alpha.TotalBetsForecast.Site.Tests.Controllers
+﻿using NUnit.Framework;
+namespace Alpha.TotalBetsForecast.Site.Tests.Controllers
 {
+    using System.Web.Mvc;
     using Alpha.TotalBetsForecast.Site.Controllers;
     using Alpha.TotalBetsForecast.Site.Requests;
     using MediatR;
@@ -20,6 +22,18 @@
             controller = new BullfightingController(mediator);
             user = Substitute.For<IUserSession>();
             user.CustId.Returns(123);
+        }
+
+        [Test]
+        public void Index_Always_ReturnCorrectViewName()
+        {
+            //// Arrange
+
+            //// Act
+            var act = controller.Index() as ViewResult;
+
+            //// Assert
+            Assert.AreEqual("Index", act.ViewName);
         }
 
         [Test]

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using DataAccesses;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using NSubstitute;
@@ -19,7 +18,7 @@
     [TestFixture]
     public class ForecastServiceTests
     {
-        private IForecastDataAccess _forecastDataAccess;
+        private IDynamicRepository dynamicRepository;
         private ICache _cacheManager;
         private ForecastService _forecastService;
         private IUserSession user;
@@ -27,10 +26,10 @@
         [SetUp]
         public void SetUp()
         {
-            _forecastDataAccess = Substitute.For<IForecastDataAccess>();
+            dynamicRepository = Substitute.For<IDynamicRepository>();
             _cacheManager = Substitute.For<ICache>();
 
-            _forecastService = new ForecastService(_forecastDataAccess, _cacheManager);
+            _forecastService = new ForecastService(_cacheManager, dynamicRepository);
 
             user = Substitute.For<IUserSession>();
             user.CustId.Returns(1);
@@ -87,13 +86,13 @@
 
             var forecastData = Tuple.Create(Enumerable.Empty<MatchForecast>(), Enumerable.Empty<BetTypeForecastDto>(), Enumerable.Empty<WinLossColumnNameDto>());
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(forecastData);
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(forecastData);
 
             //// Act
             _forecastService.GetMatchForecasts(query);
 
             //// Assert
-            _forecastDataAccess.Received().GetMatchForecast(
+            dynamicRepository.Received().FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(
                 Arg.Is<GetMatchForecastsCriteria>(
                     criteria => criteria.MatchIds == query.MatchIds
                             && criteria.IsLive
@@ -134,7 +133,7 @@
                 new MatchForecast { Id = 2 }
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -171,7 +170,7 @@
                 CreateMatchForecast(1, false)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -214,7 +213,7 @@
                 CreateMatchForecast(1, isLive)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -255,7 +254,7 @@
                 CreateMatchForecast(1, isLive)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -300,7 +299,7 @@
                 CreateMatchForecast(1, isLive, null, liveHomeScore, liveAwayScore)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -357,7 +356,7 @@
                 CreateMatchForecast(2, isLive, null, liveHomeScore, liveAwayScore)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -410,7 +409,7 @@
                 CreateMatchForecast(2)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -463,7 +462,7 @@
                 CreateMatchForecast(2)
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);
@@ -509,7 +508,7 @@
                 CreateMatchForecast(1, true, DateTime.Now.Subtract(new TimeSpan(1, 0, 0)))
             };
 
-            _forecastDataAccess.GetMatchForecast(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
+            dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(Arg.Any<ICriteria>()).Returns(Tuple.Create(matchForecasts, rawData, columnNameData));
 
             //// Act
             var matchForcasts = _forecastService.GetMatchForecasts(query);

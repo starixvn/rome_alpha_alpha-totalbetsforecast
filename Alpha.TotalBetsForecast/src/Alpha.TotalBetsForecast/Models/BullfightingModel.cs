@@ -36,9 +36,7 @@
 
         public int MatchId { get; }
 
-        public int LeagueId { get; }
-
-        public string LeagueName => CacheRefFactory.CacheRef.GetLeagueName(LeagueId);
+        public int LeagueId { get; }        
 
         public bool HasLive { get; }        
 

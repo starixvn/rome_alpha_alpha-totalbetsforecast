@@ -36,19 +36,10 @@
                 throw new ArgumentNullException(nameof(message), "message cannot be null!");
             }
 
-            var matchForecastViewModels = new List<MatchForecastViewModel>();
-
-
             var matchForecasts = _forecastService.GetMatchForecasts(message);
 
             foreach (var matchForecast in matchForecasts)
-            {
-                var showTimeString = string.Empty;
-                if (!string.IsNullOrWhiteSpace(matchForecast.ShowTime))
-                {
-                    showTimeString = BuildShowTime(matchForecast);
-                }
-
+            {                
                 var matchForecastViewModel = new MatchForecastViewModel
                 {
                     Id = matchForecast.Id,
@@ -58,7 +49,7 @@
                     LiveAwayScore = matchForecast.LiveAwayScore,
                     IsLive = message.IsLive,
                     HasLive = matchForecast.HasLive,
-                    ShowTime = showTimeString,
+                    ShowTime = matchForecast.ShowTime,
                     KickOffTime = matchForecast.KickOffTime,
                     BetTypeForecasts = matchForecast.BetTypeForecasts,
                     TotalBetCount = matchForecast.TotalBetCount,
@@ -67,26 +58,9 @@
                     MatchRowSpan = (matchForecast.BetTypeForecasts.Count() * 2) + 1
                 };
 
-                matchForecastViewModels.Add(matchForecastViewModel);
-            }
-
-            return matchForecastViewModels;
-        }
-
-        private static string BuildShowTime(MatchForecast matchForecast)
-        {
-            var showTimeStrings = matchForecast.ShowTime.Trim().Split(' ');
-            var totalShowTimeStrings = showTimeStrings.Count();
-
-            if (totalShowTimeStrings > 2)
-            {
-                return string.Join(" ", showTimeStrings.Take(totalShowTimeStrings - 1))
-                    + "<br />"
-                    + showTimeStrings.Last();
-            }
-
-            return string.Join("<br />", showTimeStrings);
-        }
+                yield return matchForecastViewModel;
+            }            
+        }        
 
         public IEnumerable<Match> Handle(MatchesQuery message)
         {
@@ -96,7 +70,7 @@
             }
 
             var matches = _eventService
-                .GetMatches(message.LeagueId, message.IsLive, message.IsLocalTest)
+                .GetMatches(message.LeagueId, message.IsLive)
                 .OrderByDescending(match => match.KickOffTime);
 
             return matches;

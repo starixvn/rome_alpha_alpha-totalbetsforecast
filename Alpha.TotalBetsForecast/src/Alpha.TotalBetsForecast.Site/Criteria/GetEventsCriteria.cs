@@ -5,18 +5,15 @@
 
     public class GetEventsCriteria : CriteriaBase
     {
-        public GetEventsCriteria(int leagueId, bool isLive, bool isShowAll)
+        public GetEventsCriteria(int leagueId, bool isLive)
         {
             LeagueId = leagueId;
             IsLive = isLive;
-            IsShowAll = isShowAll;
         }
 
         public int LeagueId { get;}
 
-        public bool IsLive { get; }
-
-        public bool IsShowAll { get; }
+        public bool IsLive { get; }        
 
         public override string GetSettingKey()
         {

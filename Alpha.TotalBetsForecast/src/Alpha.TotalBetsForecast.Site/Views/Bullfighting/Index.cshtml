@@ -7,9 +7,9 @@
     <div class="filter">
         <form class="form-inline" role="form">
             <div class="form-group">
-                <span class="dropdown">
+                <div class="dropdown">
                     <button class="btn btn-default btn-countdown dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="icon-refresh"></span>
+                        <span id="submitRefresh" class="icon-refresh"></span>
                         <span id="ddlRefresh">30</span>
                         <span class="caret"></span>
                     </button>
@@ -18,16 +18,16 @@
                         <li><a href="javascript:void(0);" data-refresh-value="45">45</a></li>
                         <li><a href="javascript:void(0);" data-refresh-value="60">60</a></li>
                     </ul>
-                </span>
+                </div>
                 <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
             </div>
         </form>
-    </div>
-    <div class="content">
+    </div>    
+    <div class="content bullfighting" id="mainContent">
     </div>
 </div>
 
 @section Scripts
 {
-    @StaticResources.RenderScripts("~/assets/bundles/forcast/forcast")
+    @StaticResources.RenderScripts("~/assets/bundles/bullfighting/bullfighting")
 }

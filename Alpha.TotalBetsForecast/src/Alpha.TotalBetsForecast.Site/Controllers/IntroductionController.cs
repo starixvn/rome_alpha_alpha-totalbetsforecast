@@ -6,20 +6,22 @@
 
     public class IntroductionController : TotalBetsForecastBaseController
     {
-        public IntroductionController(IMediator mediator) : base(mediator)
+        private readonly IUserSession userSession;
+        public IntroductionController(IMediator mediator, IUserSession userSession) : base(mediator)
         {
+            this.userSession = userSession;
         }
 
         [ChildActionOnly]
         public ActionResult Index()
         {
-            return View($"Index.{UserSession.Current.Language}");
+            return View($"Index.{userSession.Language}");
         }
 
         [ChildActionOnly]
         public ActionResult QuickIntroduction()
         {
-            return View();
+            return View("QuickIntroduction");
         }
     }
 }

@@ -6,6 +6,11 @@
 
     public class LeaguesQuery : IRequest<IEnumerable<League>>
     {
+        public LeaguesQuery()
+        {
+
+        }
+
         public LeaguesQuery(bool isLive) : this(isLive, AppSettings.LocalTest)
         {
 
@@ -16,8 +21,8 @@
             IsLocalTest = isLocalTest;
         }
 
-        public bool IsLive { get; }
+        public bool IsLive { get; set; }
 
-        public bool IsLocalTest { get; }
+        public bool IsLocalTest { get; set; }
     }
 }

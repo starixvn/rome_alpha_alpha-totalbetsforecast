@@ -5,7 +5,7 @@
     using Alpha.TotalBetsForecast.Site.ViewModels;
     using MediatR;
 
-    public class BullfightingHandler : IRequest<BullfightingViewModel>
+    public class BullfightingHandler : IRequestHandler<BullfightingQuery, BullfightingViewModel>
     {
         private readonly BullfightingService service;
 
@@ -14,9 +14,9 @@
             this.service = service;
         }
 
-        public BullfightingViewModel Handle(BullfightingQuery query)
+        public BullfightingViewModel Handle(BullfightingQuery message)
         {
-            var matchs = service.GetMatchs(query.CustId, query.CustLevel);
+            var matchs = service.GetMatchs(message.CustId, message.CustLevel);
 
             return new BullfightingViewModel(matchs);
         }

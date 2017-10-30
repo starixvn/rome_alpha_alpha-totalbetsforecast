@@ -5,10 +5,10 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Criteria;
-    using DataAccesses;
     using Fanex.Caching;
     using Fanex.Common;
     using Fanex.Common.Helper;
+    using Fanex.Data.Repository;
     using Models;
     using Models.Dtos;
     using Models.Requests;
@@ -21,13 +21,14 @@
 
         private const int HalftimeMinutes = 45;
 
-        private readonly IForecastDataAccess _forecastDataAccess;
+        private readonly IDynamicRepository dynamicRepository;
+
         private readonly ICache _cacheManager;
 
-        public ForecastService(IForecastDataAccess forecastDataAccess, ICache cacheManager)
+        public ForecastService(ICache cacheManager, IDynamicRepository dynamicRepository)
         {
-            _forecastDataAccess = forecastDataAccess;
             _cacheManager = cacheManager;
+            this.dynamicRepository = dynamicRepository;
         }
 
         public IEnumerable<MatchForecast> GetMatchForecasts(MatchForecastsQuery query)
@@ -59,12 +60,13 @@
 
         private IEnumerable<MatchForecast> BuildMatchForecasts(MatchForecastsQuery query)
         {
-            var matchForecastRaw = _forecastDataAccess.GetMatchForecast(new GetMatchForecastsCriteria
-            {
-                CustId = query.CustId,
-                MatchIds = query.MatchIds,
-                IsLive = query.IsLive
-            });
+            var matchForecastRaw = dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(
+                new GetMatchForecastsCriteria
+                {
+                    CustId = query.CustId,
+                    MatchIds = query.MatchIds,
+                    IsLive = query.IsLive
+                });
 
             if (!matchForecastRaw.Item1.Any())
             {
@@ -127,7 +129,24 @@
 
             match.BetTypeForecasts = betTypeForecasts.OrderBy(betType => betType.BetTypeId);
 
+            match.ShowTime = BuildShowTime(match.ShowTime);
+
             return match;
+        }
+
+        private static string BuildShowTime(string showTime)
+        {
+            var showTimeString = string.Empty;
+            if (!string.IsNullOrWhiteSpace(showTime))
+            {
+                var showTimeStrings = showTime.Trim().Split(' ');
+                var totalShowTimeStrings = showTimeStrings.Count();
+
+                showTimeString = totalShowTimeStrings > 2 ? $"{string.Join(" ", showTimeStrings.Take(totalShowTimeStrings - 1))}<br />{showTimeStrings.Last()}" :
+                    string.Join("<br />", showTimeStrings);
+            }
+
+            return showTimeString;
         }
 
         private BetTypeForecast BuildBetTypeForecast(
@@ -210,7 +229,7 @@
             }
         }
 
-        private static bool IsMainScoreOfOneXTwoAndIsLive(MatchForecast matchForecast,int winlossIndex)
+        private static bool IsMainScoreOfOneXTwoAndIsLive(MatchForecast matchForecast, int winlossIndex)
         {
             var indexIs0 = matchForecast.LiveHomeScore > matchForecast.LiveAwayScore && winlossIndex == 0;
             var indexIs1 = matchForecast.LiveHomeScore == matchForecast.LiveAwayScore && winlossIndex == 1;

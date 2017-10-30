@@ -9,6 +9,9 @@
     using System.Web.Optimization;
     using System.Web.Routing;
     using App_Start;
+    using Fanex.Data;
+    using Fanex.Data.OldConnectionStringProvider;
+    using Helpers;
     using ONEbook.UM.Filters;
     using Sunplus.Agent.Utilities;
     using Web;
@@ -23,13 +26,21 @@
             MvcHandler.DisableMvcResponseHeader = true;
             DependencyConfig.Init();
 
-            Fanex.Data.Configuration.DbSettingProviderManager.Current.Start();
+            DbSettingProviderManager
+                .StartNewSession()
+                .Use(new OldConnectionStringProvider())
+                .UseDefaultDbSettingProvider(
+                    resourcePath: AppConfig.StoredProcedurePath,
+                    enableWatching: true)
+                .Run();
 
             ShareSession.Init();
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
 
             StaticResources.Init(GetBuildVersion());
+
+            ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
 
             Logs.WriteInfo("Alpha - New TotalBets Forecast - Application Start");
         }

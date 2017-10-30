@@ -38,11 +38,11 @@
             return leagues;
         }
 
-        public IEnumerable<Match> GetMatches(int leagueId, bool isLive, bool localTest)
+        public IEnumerable<Match> GetMatches(int leagueId, bool isLive)
         {
             Check.Argument.IsNotNegativeOrZero(leagueId, nameof(leagueId));
 
-            return _dynamicRepository.Fetch<Match>(new GetEventsCriteria(leagueId, isLive, localTest));
+            return _dynamicRepository.Fetch<Match>(new GetEventsCriteria(leagueId, isLive));
         }
     }
 }

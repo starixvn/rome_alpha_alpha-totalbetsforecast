@@ -1,38 +1,29 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.App_Start
 {
+    using System;
+    using System.Collections.Specialized;
     using System.Configuration;
 
     public static class AppConfig
     {
+        [ThreadStatic]
+        private static NameValueCollection appSettings;
         private const string DisableHighlightChangeConfigName = "NewTBF:DisableHighlightChange";
         private const string AllowSitesToViewForecastConfigName = "NewTBF:AllowSitesToViewForecast";
 
-        public static bool DisableHighlightChange
+        internal static NameValueCollection AppSettings
         {
-            get
-            {
-                var disable = GetValue(DisableHighlightChangeConfigName);
+            get { return appSettings ?? ConfigurationManager.AppSettings; }
 
-                if (disable == null)
-                {
-                    return false;
-                }
+            set { appSettings = value; }
+        }        
 
-                return disable == "1";
-            }
-        }
+        public static bool DisableHighlightChange => GetValue(DisableHighlightChangeConfigName) == "1";
 
-        public static string AllowSitesToViewForecast
-        {
-            get
-            {
-                return GetValue(AllowSitesToViewForecastConfigName).ToLowerInvariant();
-            }
-        }
+        public static string AllowSitesToViewForecast => GetValue(AllowSitesToViewForecastConfigName).ToLowerInvariant();
 
-        public static string GetValue(string key)
-        {
-            return ConfigurationManager.AppSettings[key];
-        }
+        public static string StoredProcedurePath => GetValue("StoredProcedurePath");
+
+        public static string GetValue(string key) => AppSettings[key];
     }
 }

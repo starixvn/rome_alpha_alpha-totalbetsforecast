@@ -7,12 +7,6 @@ $win-loss-name-background-color: #ebeaea;
 $positive-color: #e40000;
 $back-ground-focus-color: #bbcae9;
 
-body {
-    font-size: 13px;
-    background: #f4f4f4;
-    font-family: Roboto, Arial;
-}
-
 .note-browser {
     background: #faf9dd;
     border: 1px solid #bcba7d;
@@ -69,12 +63,15 @@ body {
     .form-group {
         margin: 0 8px 15px 0;
         display: inline-block;
+
         &.last-filter {
             margin-right: 8px;
         }
+
         .btnSubmit {
             margin-right: 8px;
         }
+
         .form-control {
             display: inline-block;
             width: auto;
@@ -133,6 +130,10 @@ table * {
 
 #dataTotalBet {
     min-width: 710px;
+}
+
+.bullfighting {
+    margin-top: 10px;
 }
 
 .tblRpt {
@@ -295,14 +296,16 @@ table * {
 }
 
 .btn-group button.multiselect {
-     @include box-shadow(0, 1px, 1px, rgba(0,0,0,.3));
+    @include box-shadow(0, 1px, 1px, rgba(0,0,0,.3));
     background: #fff;
     position: relative;
     padding: 6px 10px;
     font-size: 13px;
+
     &:hover {
         color: inherit;
     }
+
     &:focus, &:visited {
         @include box-shadow(0, 1px, 1px, rgba(0,0,0,.3));
     }
@@ -335,18 +338,22 @@ table * {
 
 .multiselect-container.dropdown-menu {
     font-size: 13px;
+
     > li > a > label {
         padding: 3px 20px 3px 35px;
     }
+
     li:hover {
         background: #5897fb;
     }
 
     .filter {
         padding: 0;
+
         &:hover {
             background: #fff;
         }
+
         .input-group {
             width: 91%;
 
@@ -363,6 +370,7 @@ table * {
                 box-shadow: none;
                 border: 1px solid #aaa;
                 line-height: 18px;
+
                 &:hover {
                     background: #fff;
                 }
@@ -371,8 +379,8 @@ table * {
     }
 
     .checkbox input[type="checkbox"],
-    .checkbox-inline input[type="checkbox"], 
-    .radio input[type="radio"], 
+    .checkbox-inline input[type="checkbox"],
+    .radio input[type="radio"],
     .radio-inline input[type="radio"] {
         margin-left: -22px;
         top: 1px;

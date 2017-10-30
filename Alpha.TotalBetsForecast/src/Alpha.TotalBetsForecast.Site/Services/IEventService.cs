@@ -7,6 +7,6 @@
     {
         IEnumerable<League> GetLeagues(bool isLive, bool isLocalTest);
 
-        IEnumerable<Match> GetMatches(int leagueId, bool isLive, bool localTest);
+        IEnumerable<Match> GetMatches(int leagueId, bool isLive);
     }
 }

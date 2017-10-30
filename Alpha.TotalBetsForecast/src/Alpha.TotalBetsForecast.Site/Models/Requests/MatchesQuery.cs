@@ -6,21 +6,8 @@
 
     public class MatchesQuery : IRequest<IEnumerable<Match>>
     {
-        public MatchesQuery(int leagueId, bool isLive) : this(leagueId, isLive, AppSettings.LocalTest)
-        {
+        public int LeagueId { get; set; }
 
-        }
-        public MatchesQuery(int leagueId, bool isLive, bool isLocalTest)
-        {
-            LeagueId = leagueId;
-            IsLive = isLive;
-            IsLocalTest = isLocalTest;
-        }
-
-        public int LeagueId { get; }
-
-        public bool IsLive { get; }
-
-        public bool IsLocalTest { get; }
+        public bool IsLive { get; set; }        
     }
 }

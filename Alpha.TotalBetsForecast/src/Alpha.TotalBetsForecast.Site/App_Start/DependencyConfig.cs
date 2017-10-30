@@ -4,8 +4,6 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
-    using DataAccesses;
-    using DataAccesses.Impl;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Handlers;
@@ -17,6 +15,7 @@
     using SimpleInjector.Integration.Web.Mvc;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
+    using TotalBetsForecast.Services;
 
     public static class DependencyConfig
     {
@@ -72,12 +71,12 @@
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<IEventService, EventService>(Lifestyle.Scoped);
             container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);
+            container.Register<BullfightingService, BullfightingServiceImpl>(Lifestyle.Scoped);
         }
 
         private static void RegisterDataAccesses(Container container)
         {
             container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
-            container.Register<IForecastDataAccess, ForecastDataAccess>(Lifestyle.Scoped);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace Alpha.TotalBetsForecast.Tests.Models
+﻿using NUnit.Framework;
+namespace Alpha.TotalBetsForecast.Tests.Models
 {
     using System;
     using Alpha.TotalBetsForecast.Models;
@@ -19,6 +20,42 @@
         }
 
         [Test]
+        public void MatchId_Always_EqualWithInConstructor()
+        {
+            //// Arrange
+
+            //// Act
+            var act = model.MatchId;
+
+            //// Assert
+            Assert.AreEqual(1, act);
+        }
+
+        [Test]
+        public void HasLive_Always_EqualWithInConstructor()
+        {
+            //// Arrange
+
+            //// Act
+            var act = model.HasLive;
+
+            //// Assert
+            Assert.AreEqual(true, act);
+        }
+
+        [Test]
+        public void BetCount_Always_EqualWithInConstructor()
+        {
+            //// Arrange
+
+            //// Act
+            var act = model.BetCount;
+
+            //// Assert
+            Assert.AreEqual(3, act);
+        }
+
+        [Test]
         public void EventDateToString_Always_CorrectFormat()
         {
             //// Arrange
@@ -29,21 +66,7 @@
 
             //// Assert
             Assert.AreEqual(expectedFormat, act);
-        }
-
-        [Test]
-        public void LeagueName_Always_EqualInRemotingRef()
-        {
-            //// Arrange
-            var remotingRef = "leagueabc";
-            CacheRefFactory.CacheRef.GetLeagueName(model.LeagueId).Returns(remotingRef);
-
-            //// Act
-            var act = model.LeagueName;
-
-            //// Assert
-            Assert.AreEqual(remotingRef, act);
-        }
+        }       
 
         [Test]
         public void HomeName_Always_EqualInRemotingRef()

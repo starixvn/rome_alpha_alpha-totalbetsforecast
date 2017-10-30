@@ -1,10 +1,12 @@
 ﻿@model BullfightingViewModel
-
-<table class="tblRpt tblRpt-bordered col-sm-12">
+@{
+    Layout = null;
+}
+<table class="tblRpt tblRpt-bordered col-sm-9">
     <thead>
         <tr class="RptHeader">
             <th class="text-center" rowspan="2">@Resources.Date</th>
-            <th class="text-center" rowspan="2">@Resources.Event</th>
+            <th class="text-center  col-sm-5" rowspan="2">@Resources.Event</th>
             <th class="text-center" rowspan="2">@Resources.BetCount</th>
             <th class="text-center" rowspan="2">@Resources.Turnover</th>
             <th class="text-center" colspan="2">@Resources.ForecastWinLoss</th>
@@ -15,36 +17,38 @@
         </tr>
     </thead>
     <tbody>
-        @if (Model.Matchs.Any())
+        @if (Model.Arenas.Any())
         {
-            foreach (var group in Model.Matchs.GroupBy(i => i.LeagueId))
+            foreach (var arena in Model.Arenas)
             {
-                <tr>
-                    <td colspan="6" class="cl-league">
-                        @group.Key
-                        <span class="offer-live">@(group.FirstOrDefault().HasLive ? Resources.Live : Resources.NonLive)</span>
+                var oddRow = true;
+                <tr class="cl-league">
+                    <td colspan="6" class="bold">
+                        @arena.Name
+                        <span class="offer-live">@arena.Status</span>
                     </td>
                 </tr>
-                foreach (var match in group)
+                foreach (var match in arena.Matchs)
                 {
-                    <tr>
-                        <td>@match.EventDateToString</td>
-                        <td>
+                    <tr class="@(oddRow ? string.Empty : "even")">
+                        <td class="text-center">@match.EventDateToString</td>
+                        <td class="text-left">
                             <span class="home-name">@match.HomeName</span>
                             <span>@Resources.Versus</span>
                             <span class="away-name">@match.AwayName</span>
                         </td>
-                        <td>@match.BetCount</td>
-                        <td>@match.TurnoverToDislay</td>
+                        <td class="text-right">@match.BetCount</td>
+                        <td class="text-right">@match.TurnoverToDislay</td>
                         @RenderWinLoss(match.Banker, match.BankerToDisplay)
                         @RenderWinLoss(match.Player, match.PlayerToDisplay)
                     </tr>
+                    oddRow = !oddRow;
                 }
             }
         }
         else
         {
-            <tr>
+            <tr class="no-info text-center">
                 <td colspan="6">@Resources.NoData</td>
             </tr>
         }
@@ -55,12 +59,12 @@
 
 @helper RenderWinLoss(decimal winloss, string winlossToString)
 {
-    if (winloss < 0)
-    {
-            <td class="high-light-win-loss">@winlossToString</td>
-    }
-    else
-    {
-            <td class="positive">@winlossToString</td>
-    }
+if (winloss < 0)
+{
+        <td class="bold text-right">@winlossToString</td>
+}
+else
+{
+        <td class="positive text-right bold">@winlossToString</td>
+}
 }

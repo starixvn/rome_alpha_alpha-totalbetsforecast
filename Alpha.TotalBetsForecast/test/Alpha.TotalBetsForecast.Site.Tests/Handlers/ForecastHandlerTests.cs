@@ -151,21 +151,21 @@
         public void HandleMatchesQuery_ExecuteGetMatches()
         {
             //// Arrange
-            var query = new MatchesQuery(1, true, true);
+            var query = new MatchesQuery { LeagueId = 1, IsLive = true };
 
             //// Act
             _forecastHandler.Handle(query);
 
             //// Assert
-            _eventService.Received().GetMatches(1, true, true);
+            _eventService.Received().GetMatches(1, true);
         }
 
         [Test]
         public void HandleMatchesQuery_ReturnMatchesOrderedByKickOffTimeDesc()
         {
             //// Arrnage
-            var query = new MatchesQuery(1, true, true);
-            _eventService.GetMatches(Arg.Any<int>(), Arg.Any<bool>(), Arg.Any<bool>()).Returns(new List<Match>
+            var query = new MatchesQuery { LeagueId = 1, IsLive = true };
+            _eventService.GetMatches(Arg.Any<int>(), Arg.Any<bool>()).Returns(new List<Match>
             {
                 new Match
                 {
@@ -197,7 +197,7 @@
         {
             MatchForecastsQuery query = null;
 
-            Assert.Throws<ArgumentNullException>(() => _forecastHandler.Handle(query));
+            Assert.Throws<ArgumentNullException>(() => _forecastHandler.Handle(query).ToList());
         }
 
         [Test]
@@ -211,7 +211,7 @@
             };
 
             //// Act
-            _forecastHandler.Handle(query);
+            _forecastHandler.Handle(query).ToList();
 
             //// Assert
             _forecastService.Received().GetMatchForecasts(query);
@@ -237,7 +237,7 @@
                 KickOffTime = new DateTime(1989, 5, 28),
                 LiveAwayScore = 3,
                 LiveHomeScore = 4,
-                ShowTime = "Demo Show Time",
+                ShowTime = "Demo Show<br />Time",
                 TotalBetCount = 4,
                 TotalForecastWinLoss = 5.1m,
                 TotalTurnover = 3.4m,

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Criteria
 {
+    using Fanex.Data;
     using Fanex.Data.Repository;
 
     internal class GetMatchForecastsCriteria : CriteriaBase

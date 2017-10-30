@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -83,12 +85,16 @@
       <HintPath>..\..\packages\Fanex.CustomerSetting.Module.KenoStatus.1.0.0.2\lib\net40\Fanex.CustomerSetting.Module.KenoStatus.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data, Version=0.5.404.63, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.0.5.404.63\lib\net40\Fanex.Data.dll</HintPath>
+    <Reference Include="Fanex.Data, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.2.1.0.1\lib\net461\Fanex.Data.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Fanex.Data.DbSettingProviderExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Fanex.Data.DbSettingProviderExtension.1.0.0.1\lib\net40\Fanex.Data.DbSettingProviderExtension.dll</HintPath>
+    <Reference Include="Fanex.Data.OldConnectionStringProvider, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.OldConnectionStringProvider.1.0.1\lib\net461\Fanex.Data.OldConnectionStringProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Fanex.Data.Repository, Version=1.0.2.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Fanex.Data.Repository.1.0.2.1\lib\net461\Fanex.Data.Repository.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Fanex.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -245,12 +251,7 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
-    <Content Include="assets\bundles\forecast\forecast.css" />
-    <Content Include="assets\bundles\forecast\forecast.min.css">
-      <DependentUpon>forecast.css</DependentUpon>
-    </Content>
     <Content Include="assets\scripts\Bullfighting\index.js" />
-    <Content Include="assets\scripts\Bullfighting\render.js" />
     <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
     <Content Include="assets\scripts\Forecast\index.js" />
     <Content Include="assets\scripts\Introduction\quick-introduction.js" />
@@ -296,8 +297,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\AppConfig.cs" />
-    <Compile Include="App_Start\DependencyConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\DependencyConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs">
+      <SonarQubeExclude>true</SonarQubeExclude>
+    </Compile>
     <Compile Include="Controllers\BullfightingController.cs" />
     <Compile Include="Handlers\BullfightingHandler.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
@@ -308,10 +313,9 @@
     <Compile Include="Criteria\GetEventsCriteria.cs" />
     <Compile Include="Criteria\GetLeaguesCriteria.cs" />
     <Compile Include="Criteria\GetMatchForecastsCriteria.cs" />
-    <Compile Include="DataAccesses\IForecastDataAccess.cs" />
-    <Compile Include="DataAccesses\Impl\ForecastDataAccess.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+      <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\ForecastHandler.cs" />
@@ -332,6 +336,7 @@
     <Compile Include="Services\IForecastService.cs" />
     <Compile Include="Services\Impl\EventService.cs" />
     <Compile Include="Services\Impl\ForecastService.cs" />
+    <Compile Include="ViewModels\ArenaViewModel.cs" />
     <Compile Include="ViewModels\BullfightingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -504,7 +509,7 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Views\Bullfighting\Index.cshtml" />
-    <Content Include="Views\Bullfighting\_matches.cshtml" />
+    <Content Include="Views\Bullfighting\GetMatches.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -599,6 +604,8 @@
     <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fanex.Visual-StyleCop.MSBuild.4.7.59.0\build\Fanex.Visual-StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
