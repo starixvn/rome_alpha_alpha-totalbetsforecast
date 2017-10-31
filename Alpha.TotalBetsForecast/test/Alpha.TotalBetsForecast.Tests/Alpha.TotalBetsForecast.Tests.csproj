@@ -124,7 +124,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\Alpha.TotalBetsForecast\Alpha.TotalBetsForecast.csproj">
+    <ProjectReference Include="..\..\src\Alpha.TotalBetsForecast\Alpha.TotalBetsForecast.csproj">
       <Project>{ca9f3cff-6834-49a2-b2ba-40bd4125c0e2}</Project>
       <Name>Alpha.TotalBetsForecast</Name>
     </ProjectReference>

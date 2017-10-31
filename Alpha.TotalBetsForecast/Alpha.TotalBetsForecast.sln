@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F6613402-8FF
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{425E8E80-F161-42B3-8F22-BC2EE16290CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast.Tests", "Alpha.TotalBetsForecast.Tests\Alpha.TotalBetsForecast.Tests.csproj", "{97C2D462-041D-4255-A520-276F3875710F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alpha.TotalBetsForecast.Tests", "test\Alpha.TotalBetsForecast.Tests\Alpha.TotalBetsForecast.Tests.csproj", "{97C2D462-041D-4255-A520-276F3875710F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
