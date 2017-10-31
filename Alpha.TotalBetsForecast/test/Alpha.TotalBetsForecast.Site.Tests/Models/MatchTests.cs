@@ -3,7 +3,7 @@
     using Alpha.TotalBetsForecast.Site.Models;
     using NSubstitute;
     using NUnit.Framework;
-    using Sunplus.Agent.Model.RemotingRef;
+    using RemotingRef;
 
     [TestFixture]
     public class MatchTests
@@ -11,7 +11,7 @@
         [SetUp]
         public void Setup()
         {
-            CacheRefFactory.CacheRef = Substitute.For<ICacheRefService>();
+            CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
         }
 
         [Test]

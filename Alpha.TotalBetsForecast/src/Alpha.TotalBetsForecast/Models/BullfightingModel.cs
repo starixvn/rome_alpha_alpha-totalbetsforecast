@@ -2,7 +2,7 @@
 {
     using System;
     using Constants;
-    using Sunplus.Agent.Model.RemotingRef;
+    using RemotingRef;
 
     public class BullfightingModel
     {
@@ -42,11 +42,11 @@
 
         public int HomeId { get; }
 
-        public string HomeName => CacheRefFactory.CacheRef.GetTeamName(HomeId);
+        public string HomeName => CacheRefFactory.CacheRef.GetTeamName3rd(HomeId);
 
         public int AwayId { get; }
 
-        public string AwayName => CacheRefFactory.CacheRef.GetTeamName(AwayId);
+        public string AwayName => CacheRefFactory.CacheRef.GetTeamName3rd(AwayId);
 
         public int BetCount { get; }
 

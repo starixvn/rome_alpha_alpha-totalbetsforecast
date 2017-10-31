@@ -1,6 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
-    using Sunplus.Agent.Model.RemotingRef;
+    using Alpha.RemotingRef;
 
     public class League
     {

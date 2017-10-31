@@ -6,13 +6,13 @@
     using App_GlobalResources;
     using NSubstitute;
     using NUnit.Framework;
+    using RemotingRef;
     using Site.Handlers;
     using Site.Models;
     using Site.Models.Requests;
     using Site.Services;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
-    using Sunplus.Agent.Model.RemotingRef;
 
     [TestFixture]
     public class ForecastHandlerTests
@@ -31,7 +31,7 @@
 
             _forecastHandler = new ForecastHandler(_forecastService, _eventService);
 
-            CacheRefFactory.CacheRef = Substitute.For<ICacheRefService>();
+            CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
 
             user = Substitute.For<IUserSession>();
             user.CustId.Returns(CustId);

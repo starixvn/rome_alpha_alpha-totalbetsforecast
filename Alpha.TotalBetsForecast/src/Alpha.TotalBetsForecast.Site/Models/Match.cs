@@ -1,7 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
     using System;
-    using Sunplus.Agent.Model.RemotingRef;
+    using RemotingRef;
 
     public class Match
     {
