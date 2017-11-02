@@ -13,6 +13,7 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
+    using StaticData;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
     using TotalBetsForecast.Services;
@@ -76,7 +77,14 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
+            if (AppConfig.EnabledStaticData)
+            {
+                container.Register<IDynamicRepository, ExcelDynamicRepositoryBase>(Lifestyle.Scoped);
+            }
+            else
+            {
+                container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
+            }
         }
     }
 }

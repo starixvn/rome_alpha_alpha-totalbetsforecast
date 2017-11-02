@@ -24,6 +24,8 @@
 
         public static string StoredProcedurePath => GetValue("StoredProcedurePath");
 
+        public static bool EnabledStaticData => GetValue("EnabledStaticData") == "1";
+
         public static string GetValue(string key) => AppSettings[key];
     }
 }
