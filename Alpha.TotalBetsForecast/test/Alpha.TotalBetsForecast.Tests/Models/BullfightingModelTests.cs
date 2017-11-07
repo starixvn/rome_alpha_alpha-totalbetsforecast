@@ -15,7 +15,7 @@ namespace Alpha.TotalBetsForecast.Tests.Models
         [SetUp]
         public void Setup()
         {
-            model = new BullfightingModel(new DateTime(2017, month: 10, day: 24), 1, 2, true, 1, 2, 3, turnover: 100, banker: 29, player: 39);
+            model = new BullfightingModel(new DateTime(2017, month: 10, day: 24), 1, 2, "abc", true, 1, 2, 3, turnover: 100, banker: 29, player: 39);
             CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
         }
 
@@ -66,7 +66,7 @@ namespace Alpha.TotalBetsForecast.Tests.Models
 
             //// Assert
             Assert.AreEqual(expectedFormat, act);
-        }       
+        }
 
         [Test]
         public void HomeName_Always_EqualInRemotingRef()

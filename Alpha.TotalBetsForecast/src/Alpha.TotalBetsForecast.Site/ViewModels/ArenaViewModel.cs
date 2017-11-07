@@ -11,12 +11,17 @@
         public ArenaViewModel(IEnumerable<BullfightingModel> Matchs)
         {
             this.Matchs = Matchs;
+            MatchSummary = this.Matchs.FirstOrDefault();
         }
 
-        public string Name => CacheRefFactory.CacheRef.GetLeagueName3rd(Matchs.FirstOrDefault().LeagueId);
+        public string Name
+            => MatchSummary == null ? string.Empty : $"{MatchSummary.LeagueCode} - {CacheRefFactory.CacheRef.GetLeagueName3rd(MatchSummary.LeagueId)}";
 
-        public string Status => Matchs.FirstOrDefault().HasLive ? Resources.Live : Resources.NonLive;
+        public string Status
+            => MatchSummary == null ? string.Empty : MatchSummary.HasLive ? Resources.Live : Resources.NonLive;
 
         public IEnumerable<BullfightingModel> Matchs { get; set; }
+
+        private readonly BullfightingModel MatchSummary;
     }
 }

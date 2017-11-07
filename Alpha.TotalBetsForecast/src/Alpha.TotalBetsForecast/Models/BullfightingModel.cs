@@ -10,6 +10,7 @@
             DateTime eventDate,
             int matchId,
             int leagueId,
+            string leagueCode,
             bool hasLive,
             int homeId,
             int awayId,
@@ -21,6 +22,7 @@
             EventDate = eventDate;
             MatchId = matchId;
             LeagueId = leagueId;
+            LeagueCode = leagueCode;
             HasLive = hasLive;
             HomeId = homeId;
             AwayId = awayId;
@@ -36,7 +38,9 @@
 
         public int MatchId { get; }
 
-        public int LeagueId { get; }        
+        public int LeagueId { get; }
+
+        public string LeagueCode { get; }
 
         public bool HasLive { get; }        
 
