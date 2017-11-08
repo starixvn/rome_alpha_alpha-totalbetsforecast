@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.TotalBetsForecast.Models;
+    using Web.Helpers;
 
     public class BullfightingViewModel
     {
@@ -12,5 +13,8 @@
         }
 
         public IEnumerable<ArenaViewModel> Arenas { get; }
-    }    
+
+        public string BuildBetListPath(int matchId)
+            => MicroSites.BetListsUrl("~/BullfightingByMatch/Index?matchId=" + matchId);
+    }
 }

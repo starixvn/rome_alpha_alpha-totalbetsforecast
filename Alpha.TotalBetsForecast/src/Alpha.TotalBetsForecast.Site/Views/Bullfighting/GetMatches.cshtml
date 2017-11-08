@@ -37,7 +37,9 @@
                             <span>@Resources.Versus</span>
                             <span class="away-name">@match.AwayName</span>
                         </td>
-                        <td class="text-right">@match.BetCount</td>
+                        <td class="text-right">
+                            <a href="@Model.BuildBetListPath(@match.MatchId)">@match.BetCount</a>
+                        </td>
                         <td class="text-right">@match.TurnoverToDislay</td>
                         @RenderWinLoss(match.Banker, match.BankerToDisplay)
                         @RenderWinLoss(match.Player, match.PlayerToDisplay)

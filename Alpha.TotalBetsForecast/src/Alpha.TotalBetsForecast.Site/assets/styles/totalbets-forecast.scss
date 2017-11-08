@@ -493,6 +493,10 @@ table * {
     }
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 /*******************Dropdown****************/
 .dropdown {
     display: inline-block;
