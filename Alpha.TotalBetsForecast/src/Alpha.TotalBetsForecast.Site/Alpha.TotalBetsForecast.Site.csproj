@@ -280,10 +280,16 @@
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
     <Content Include="assets\bundles\bullfighting\bullfighting.js" />
-    <Content Include="assets\bundles\bullfighting\bullfighting.min.js" />
+    <Content Include="assets\bundles\bullfighting\bullfighting.min.js">
+      <DependentUpon>bullfighting.js</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\forecast\forecast.css" />
+    <Content Include="assets\bundles\forecast\forecast.js" />
     <Content Include="assets\bundles\forecast\forecast.min.css">
       <DependentUpon>forecast.css</DependentUpon>
+    </Content>
+    <Content Include="assets\bundles\forecast\forecast.min.js">
+      <DependentUpon>forecast.js</DependentUpon>
     </Content>
     <Content Include="assets\scripts\Bullfighting\index.js" />
     <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
