@@ -178,6 +178,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bullfighting.
+        /// </summary>
+        public static string Bullfighting {
+            get {
+                return ResourceManager.GetString("Bullfighting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click here to update your browser.
         /// </summary>
         public static string ClickToUpdateBrowser {

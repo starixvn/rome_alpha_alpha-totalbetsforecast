@@ -228,4 +228,7 @@
   <data name="Versus" xml:space="preserve">
     <value> - vs - </value>
   </data>
+  <data name="Bullfighting" xml:space="preserve">
+    <value>Bullfighting</value>
+  </data>
 </root>

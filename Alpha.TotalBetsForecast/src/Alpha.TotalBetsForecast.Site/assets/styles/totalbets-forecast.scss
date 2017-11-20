@@ -258,11 +258,21 @@ table * {
 .btn.btn-countdown {
     background-color: #eee;
     color: #212121;
-    padding: 6px 10px;
+    padding: 6px 4px 2px 8px;
     font-size: 13px;
 
     &:hover {
         background-color: #e1e1e1;
+    }
+
+    .icon-refresh, .dropdown-toggle {
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .dropdown-toggle {
+        border: 0;
+        background: inherit;
     }
 
     .icon-refresh:before {
@@ -271,13 +281,12 @@ table * {
         font-size: 20px;
         position: relative;
         color: #212121;
-        left: -4px;
         top: -2px;
     }
 
     #ddlRefresh {
         position: relative;
-        top: -6px;
+        top: -1px;
     }
 }
 
@@ -503,7 +512,7 @@ a:hover {
 
     .caret {
         top: 13px;
-        right: 17px;
+        right: 12px;
         position: absolute;
     }
 
@@ -512,7 +521,7 @@ a:hover {
     }
 
     .dropdown-toggle {
-        padding-right: 30px;
+        padding-right: 28px;
     }
 }
 
