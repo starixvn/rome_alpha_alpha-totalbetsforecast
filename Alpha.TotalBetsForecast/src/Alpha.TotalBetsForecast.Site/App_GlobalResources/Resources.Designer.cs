@@ -286,6 +286,15 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Non-Live.
+        /// </summary>
+        public static string MatchOfferNonLive {
+            get {
+                return ResourceManager.GetString("MatchOfferNonLive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There is no data.
         /// </summary>
         public static string NoData {
@@ -295,7 +304,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Non-Live.
+        ///   Looks up a localized string similar to Non-Live!.
         /// </summary>
         public static string NonLive {
             get {

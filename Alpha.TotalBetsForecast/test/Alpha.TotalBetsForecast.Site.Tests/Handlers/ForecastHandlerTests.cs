@@ -131,7 +131,7 @@
                 && dealBallLiveValues.ElementAt(0).Text == Resources.MatchOfferLive
                 && dealBallLiveValues.ElementAt(0).Selected
                 && dealBallLiveValues.ElementAt(1).Value == "false"
-                && dealBallLiveValues.ElementAt(1).Text == Resources.NonLive
+                && dealBallLiveValues.ElementAt(1).Text == Resources.MatchOfferNonLive
                 && !dealBallLiveValues.ElementAt(1).Selected);
         }
 

@@ -208,7 +208,7 @@
     <value>All Events</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>Non-Live</value>
+    <value>Non-Live!</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
@@ -230,5 +230,8 @@
   </data>
   <data name="Bullfighting" xml:space="preserve">
     <value>Bullfighting</value>
+  </data>
+  <data name="MatchOfferNonLive" xml:space="preserve">
+    <value>Non-Live</value>
   </data>
 </root>

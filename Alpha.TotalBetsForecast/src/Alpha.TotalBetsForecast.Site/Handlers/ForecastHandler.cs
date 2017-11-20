@@ -96,7 +96,7 @@
                     },
                     new SelectListItem
                     {
-                        Text = Resources.NonLive,
+                        Text = Resources.MatchOfferNonLive,
                         Value = "false",
                         Selected = !message.IsLive
                     }
