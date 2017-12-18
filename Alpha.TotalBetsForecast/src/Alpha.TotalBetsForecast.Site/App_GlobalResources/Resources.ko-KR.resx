@@ -219,4 +219,10 @@
   <data name="Date" xml:space="preserve">
     <value>날짜</value>
   </data>
+  <data name="Banker" xml:space="preserve">
+    <value>Banker</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>플레이어</value>
+  </data>
 </root>

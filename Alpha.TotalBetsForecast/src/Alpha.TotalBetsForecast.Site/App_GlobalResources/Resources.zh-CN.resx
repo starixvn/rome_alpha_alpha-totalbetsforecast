@@ -199,4 +199,10 @@
   <data name="Date" xml:space="preserve">
     <value>日期</value>
   </data>
+  <data name="Banker" xml:space="preserve">
+    <value>Banker</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>玩家</value>
+  </data>
 </root>

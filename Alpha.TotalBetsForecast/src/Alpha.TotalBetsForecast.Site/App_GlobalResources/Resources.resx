@@ -216,12 +216,6 @@
   <data name="soccer" xml:space="preserve">
     <value>Soccer</value>
   </data>
-  <data name="Banker" xml:space="preserve">
-    <value>Banker</value>
-  </data>
-  <data name="Player" xml:space="preserve">
-    <value>Player</value>
-  </data>
   <data name="Versus" xml:space="preserve">
     <value> - vs - </value>
   </data>
@@ -233,5 +227,11 @@
   </data>
   <data name="Date" xml:space="preserve">
     <value>Date</value>
+  </data>
+  <data name="Banker" xml:space="preserve">
+    <value>Banker</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
   </data>
 </root>

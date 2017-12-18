@@ -200,4 +200,10 @@
   <data name="Date" xml:space="preserve">
     <value>日付</value>
   </data>
+  <data name="Banker" xml:space="preserve">
+    <value>Banker</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Player</value>
+  </data>
 </root>

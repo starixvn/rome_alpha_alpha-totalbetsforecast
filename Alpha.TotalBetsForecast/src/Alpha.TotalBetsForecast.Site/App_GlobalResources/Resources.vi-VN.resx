@@ -199,4 +199,10 @@
   <data name="Date" xml:space="preserve">
     <value>Ngày</value>
   </data>
+  <data name="Banker" xml:space="preserve">
+    <value>Nhà cái</value>
+  </data>
+  <data name="Player" xml:space="preserve">
+    <value>Người chơi</value>
+  </data>
 </root>
