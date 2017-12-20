@@ -1,0 +1,37 @@
+﻿@section Styles
+{
+    @StaticResources.RenderStyles("~/assets/bundles/forecast/forecast")
+}
+
+<div class="container-fluid totalandforecast">
+    <ul class="breadcrumb">
+        <li>@Resources.Bullfighting</li>        
+    </ul>
+    <div class="filter">
+        <form class="form-inline" role="form">
+            <div class="form-group">
+                <div class="dropdown btn btn-default btn-countdown">
+                    <span id="submitRefresh" class="icon-refresh"></span>
+                    <button class="dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                        <span id="ddlRefresh">30</span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" id="refresh-value" aria-labelledby="dropdownMenu2">
+                        <li><a href="javascript:void(0);" data-refresh-value="30">30</a></li>
+                        <li><a href="javascript:void(0);" data-refresh-value="45">45</a></li>
+                        <li><a href="javascript:void(0);" data-refresh-value="60">60</a></li>
+                    </ul>
+                </div>
+                <span class="block-icon-small" id="blockIconSmall" style="display:none;"></span>
+            </div>
+        </form>
+    </div>    
+    <div class="content" id="mainContent">
+    </div>
+</div>
+
+@section Scripts
+{
+    @StaticResources.RenderScripts("~/assets/bundles/bullfighting/bullfighting")
+}

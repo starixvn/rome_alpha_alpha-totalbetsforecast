@@ -1,0 +1,23 @@
+[
+  {
+    "outputFileName": "assets/bundles/forecast/forecast.js",
+    "inputFiles": [
+      "assets/scripts/forecast/forecast-renderer.js",
+      "assets/scripts/forecast/index.js",
+      "assets/scripts/introduction/quick-introduction.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/bullfighting/bullfighting.js",
+    "inputFiles": [      
+      "assets/scripts/bullfighting/index.js"
+    ]
+  },
+  {
+    "outputFileName": "assets/bundles/forecast/forecast.css",
+    "inputFiles": [
+      "assets/styles/totalbets-forecast.css",
+      "assets/styles/quick-introduction.css"
+    ]
+  }
+]

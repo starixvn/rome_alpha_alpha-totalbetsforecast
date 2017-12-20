@@ -1,0 +1,128 @@
+﻿
+@{
+    Layout = null;
+}
+
+<p class="main-desc">
+    Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
+    It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of each Live event.
+</p>
+<img class="img-big" src="~/assets/styles/images/1.png" />
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from Current Score Difference.</li>
+                <li>Example: Current live score 2 - 0</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Current Score Difference (X)</p>
+                <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
+            </div>
+            <div class="img-small">
+                <img src="~/assets/styles/images/2.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from rounding down the Handicap Average.</li>
+                <li>
+                    Example: The event has handicap values: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
+                        <li>Round down the Handicap Average (Y) = 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/assets/styles/images/3.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of Over Under</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Loss starts from Total Current Score</li>
+                <li>Example: Current live score 0 – 4</li>
+            </ul>
+            <div class="c-red txt-bold">
+                <p>Total Current Score (X)</p>
+                <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
+            </div>
+            <div class="img-small">
+                <img src="~/assets/styles/images/4.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>Forecast Win Lost starts from rounding down the Total Goal Average.</li>
+                <li>
+                    Example: The event has values: 2 – 2.5
+                    <ul class="circle c-red txt-bold">
+                        <li>Total Goal Average = (2 + 2.5)/2 = 2.25</li>
+                        <li>Round down the Handicap Average (Y) = 2</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/assets/styles/images/5.png" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block-Guideline">
+    <h4 class="title-Guideline">Forecast Win/Loss of 1X2</h4>
+    <div class="detail">
+        <div class="left">
+            <h5>Live</h5>
+            <ul class="circle">
+                <li>Highlight Current result.</li>
+                <li>
+                    Example: Current Live score 2 – 0
+                    <ul class="arrow txt-bold">
+                        <li>Home Win</li>
+                        <li>Highlight header 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small">
+                <img src="~/assets/styles/images/6.png" />
+            </div>
+        </div>
+        <div class="left">
+            <h5>Non-Live</h5>
+            <ul class="circle">
+                <li>
+                    If Handicap bet type is offered to the event.
+                    <div class="img-small img-ex">
+                        <img src="~/assets/styles/images/7.png" />
+                    </div>
+                </li>
+                <li>If Handicap bet type is NOT offered to the event, there is NO highlighted header.</li>
+                <li>
+                    Example: The event has handicap values: 1.5 – 2
+                    <ul class="circle c-red txt-bold">
+                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
+                        <li>Round down the Handicap Average (X) = 1 > 0</li>
+                    </ul>
+                    <ul class="arrow txt-bold">
+                        <li>Highlight header 1</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="img-small img-ex">
+                <img src="~/assets/styles/images/8.png" />
+            </div>
+        </div>
+    </div>
+</div>

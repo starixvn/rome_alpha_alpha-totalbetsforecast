@@ -1,0 +1,16 @@
+﻿[
+  {
+    "outputFile": "assets/styles/totalbets-forecast.css",
+    "inputFile": "assets/styles/totalbets-forecast.scss",
+    "minify": {
+      "enabled": false
+    }
+  },
+  {
+    "outputFile": "assets/styles/quick-introduction.css",
+    "inputFile": "assets/styles/quick-introduction.scss",
+    "minify": {
+      "enabled": false
+    }
+  }
+]

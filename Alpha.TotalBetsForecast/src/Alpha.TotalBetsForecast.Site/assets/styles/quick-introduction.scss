@@ -1,0 +1,342 @@
+﻿//------------------MIXIN-------------------------
+@mixin listStyle ($type: null, $image: null) {
+    padding-left: 17px;
+
+    @if $type and not $image {
+        list-style-type: $type;
+    }
+    @else {
+        list-style-image: $image;
+    }
+}
+
+.contain {
+    position: relative;
+
+    img {
+        width: 100%;
+    }
+}
+
+//-------------------------------------COLOR---------------------------
+.c-blue {
+    color: #045ace;
+}
+
+.c-red {
+    color: #e40000;
+}
+
+
+//-----------------------------TYPOGRAPHY-----------------------------
+.txt-bold {
+    font-weight: bold;
+}
+
+//------------------------------ICON---------------------------------
+.icon-information-outline {
+    font-size: 18px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+
+//-------------------------------MODAL STYLE----------------------
+.modal-dialog.largeModal {
+    @media (min-width: 768px) {
+        width: 900px;
+    }
+}
+
+.modal-dialog.smallModal {
+    @media (min-width: 768px) {
+        width: 350px;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-header {
+        .close {
+            display: none;
+        }
+    }
+    .modal-title {
+        font-size: 14px;
+    }
+}
+
+
+.guidelinesModal {
+    font-size: 13px;
+    .modal-header {
+        margin: 0 20px;
+        border-bottom: 1px solid #ddd !important;
+        .header-title {
+            margin: 20px 0 15px;
+            font-weight: 600;
+        }
+
+        .close {
+            top: 15px !important;
+            right: -5px !important;
+        }
+    }
+
+    .modal-body {
+        padding: 20px !important;
+
+        .main-desc {
+            margin: 0;
+        }
+
+        .img-big {
+            width: 100%;
+        }
+
+        .block-Guideline {
+            .title-Guideline {
+                font-weight: 600;
+                padding: 15px;
+                background: #f0f0f0;
+            }
+
+
+
+            .detail {
+                overflow: hidden;
+
+                h5 {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+
+                .left {
+                    float: left;
+                    width: 50%;
+                }
+
+                .right {
+                    float: right;
+                }
+
+                .img-small {
+                    text-align: center;
+                    margin-top: 20px;
+                    
+                    &.img-ex {
+                        margin: 5px 0 8px;
+                    }
+                    img {
+                        width: auto;
+
+                        @media (max-width: 1024px) {
+                            width: 90%;
+                        }
+                    }
+                }
+
+                .circle {
+                    @include listStyle($type:disc);
+                    margin: 15px 0 5px;
+                    line-height: 28px;
+
+                    &.c-red.txt-bold {
+                        margin: 0;
+                        line-height: 23px;
+                    }
+
+                    .ex-text {
+                        line-height: 20px;
+                    }
+                }
+
+                .square {
+                    @include listStyle($type:square);
+                }
+
+                .arrow {
+                    @include listStyle($image:url(Images/arrow.png));
+                }
+
+                .c-red {
+                    padding-left: 15px;
+
+                    p:first-child {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal-dialog {
+    margin-top: 100px;
+
+    .modal-content {
+        border-radius: 0;
+        border: none;
+    }
+
+    .modal-header {
+        background: #fff;
+        border-bottom: none;
+        padding: 0;
+        position: relative;
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 99;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 0;
+
+        .title {
+            position: absolute;
+            left: 10px;
+            bottom: 0;
+        }
+    }
+
+    .modal-footer {
+        background: #fff;
+        border-top: none;
+        padding: 0;
+        padding-top: 20px;
+    }
+}
+
+
+
+//---------------------------------------SLIDER STYLE------------------------------------
+.carousel-fade {
+    .carousel-inner {
+        font-size: 14px;
+
+        .item {
+            min-height: 560px;
+            transition-property: opacity;
+
+            h4 {
+                padding: 20px;
+                margin: 0;
+            }
+
+            .info-text {
+                padding-left: 20px;
+
+                li {
+                    list-style: none;
+
+                    &:before {
+                        content: '-';
+                        margin-right: 8px;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .slider-text {
+                padding: 0 16px;
+
+                .js-help {
+                    text-decoration: none;
+                }
+            }
+
+            .slider {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .item,
+        .active.left,
+        .active.right {
+            opacity: 0;
+        }
+
+        .active,
+        .next.left,
+        .prev.right {
+            opacity: 1;
+        }
+
+        .next,
+        .prev,
+        .active.left,
+        .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+}
+
+.buttons-control {
+    .carousel-control {
+        background-image: none;
+        text-shadow: none;
+        padding-top: 10px;
+        z-index: 2;
+        width: 50%;
+        opacity: 0.3;
+        transition: opacity 0.2s ease-in;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        .glyphicon {
+            position: absolute;
+            top: 50%;
+            font-size: 15px;
+            line-height: 30px;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            opacity: 0;
+
+            &.glyphicon-chevron-right {
+                right: 20px;
+            }
+
+            &.glyphicon-chevron-left {
+                left: 20px;
+            }
+        }
+
+        .text {
+            position: absolute;
+            bottom: 10px;
+            color: #000;
+            z-index: 2;
+
+            &.prev {
+                right: 2%;
+            }
+
+            &.next {
+                left: 2%;
+            }
+        }
+    }
+}
+
+.carousel-caption {
+    position: inherit;
+    left: inherit;
+    right: inherit;
+    bottom: inherit;
+    background: #e4e8eb;
+    z-index: 1;
+}

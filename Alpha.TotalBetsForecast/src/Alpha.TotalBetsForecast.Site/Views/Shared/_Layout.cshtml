@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html class="ifr-result">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.BetsAndForecast</title>    
+
+   @StaticResources.AssetStyles.Render("/bundles/site-totalbetsforecast/default")
+    
+    @RenderSection("ComponentStyles", false)
+
+    @RenderSection("Styles", false)
+
+</head>
+<body>
+    <div class="page-main">
+        @RenderBody()
+    </div>
+
+    @Html.Hidden("RootURL", HttpContext.Current.Response.ApplyAppPathModifier("~/"))
+
+    @StaticResources.AssetScripts.Render("/bundles/site-totalbetsforecast/default")
+
+    @RenderSection("Scripts", false)
+
+    @Alpha.Web.Helpers.GoogleAnalyticHepler.Render()
+</body>
+</html>
+
+
