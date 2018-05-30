@@ -78,7 +78,7 @@
         }
 
         [Test]
-        public void HasPermission_ContainSite_ReturnTrue()
+        public void NotAllowSiteToViewForecast_ContainSite_ReturnFalse()
         {
             //// Arrange
             var site = "abc";
@@ -86,14 +86,14 @@
             user.Site.Returns(site);
 
             //// Act
-            var act = controller.HasPermission();
+            var act = controller.NotAllowSiteToViewForecast();
 
             //// Assert
-            Assert.IsTrue(act);
+            Assert.IsFalse(act);
         }
 
         [Test]
-        public void HasPermission_NullSite_ReturnTrue()
+        public void NotAllowSiteToViewForecast_NullSite_ReturnFalse()
         {
             //// Arrange
             var site = string.Empty;
@@ -101,24 +101,24 @@
             user.Site.Returns(site);
 
             //// Act
-            var act = controller.HasPermission();
+            var act = controller.NotAllowSiteToViewForecast();
 
             //// Assert
-            Assert.IsTrue(act);
+            Assert.IsFalse(act);
         }
 
         [Test]
-        public void HasPermission_NotContain_ReturnFalse()
+        public void NotAllowSiteToViewForecast_NotContain_ReturnTrue()
         {
             //// Arrange            
             AppConfig.AppSettings = new NameValueCollection { ["NewTBF:AllowSitesToViewForecast"] = "site1" };
             user.Site.Returns("site2");
 
             //// Act
-            var act = controller.HasPermission();
+            var act = controller.NotAllowSiteToViewForecast();
 
             //// Assert
-            Assert.IsFalse(act);
+            Assert.IsTrue(act);
         }
     }
 }
