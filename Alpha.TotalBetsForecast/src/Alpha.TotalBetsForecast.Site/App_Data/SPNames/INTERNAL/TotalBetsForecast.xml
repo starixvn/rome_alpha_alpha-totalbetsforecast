@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Functions>
   <Function Name="TotalBetsForecast">
-    <Setting Key="Age_NewTotalBetsForeCast_Main" SpName="Age_NewTotalBetsForeCast_Main" DbName="DB055.bodb02.BODBDownlineNetView" TimeOut="55">
+    <Setting Key="Age_NewTotalBetsForeCast_Main" SpName="Age_NewTotalBetsForeCast_Main" DbName="DB042.bodb02.BODBDownlineNetView" TimeOut="55">
       <Mapping ObjectProperty="WinLossFirstColumn" DataField="Winloss1" Class="BetTypeForecastDto"/>
       <Mapping ObjectProperty="WinLossSecondColumn" DataField="Winloss2" Class="BetTypeForecastDto"/>
       <Mapping ObjectProperty="WinLossThirdColumn" DataField="Winloss3" Class="BetTypeForecastDto"/>
@@ -18,11 +18,11 @@
 
       <Mapping ObjectProperty="Id" DataField="matchid" Class="MatchForecast" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DB055.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="Id" DataField="matchid" Class="Match" />
       <Mapping ObjectProperty="Code" DataField="matchcode" Class="Match" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DB055.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
     </Setting>
     <Setting Key="Age_TotalBets_Bullfighting_Member" SpName="Age_TotalBets_Bullfighting_Member" DbName="DBAGE.bodb02.BODBDownlineNetView">
