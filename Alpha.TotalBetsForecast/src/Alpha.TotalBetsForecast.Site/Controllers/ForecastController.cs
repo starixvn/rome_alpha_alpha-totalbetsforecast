@@ -30,17 +30,16 @@
         {
             base.OnAuthorization(filterContext);
 
-            if (!HasPermission())
+            if (NotAllowSiteToViewForecast())
             {
                 UnAuthentication(filterContext);
             }
         }
 
-        internal bool HasPermission()
-        {
-            var isContain = AppConfig.AllowSitesToViewForecast.Contains(userSession.Site.ToLowerInvariant());
-
-            return string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast) || isContain;
-        }
+        internal bool NotAllowSiteToViewForecast()
+            => !string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
+            && userSession != null
+            && !string.IsNullOrWhiteSpace(userSession.Site)
+            && !AppConfig.AllowSitesToViewForecast.Contains(userSession.Site.ToLowerInvariant());
     }
 }
