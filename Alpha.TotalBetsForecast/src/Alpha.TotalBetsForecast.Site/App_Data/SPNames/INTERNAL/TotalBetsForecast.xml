@@ -25,15 +25,15 @@
     <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
     </Setting>
-    <Setting Key="Age_TotalBets_Bullfighting_Member" SpName="Age_TotalBets_Bullfighting_Member" DbName="DBAGE.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_TotalBets_Bullfighting_Member" SpName="Age_TotalBets_Bullfighting_Member" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="MatchId" DataField="Match3rdId"/>
       <Mapping ObjectProperty="LeagueId" DataField="League3rdId"/>
     </Setting>
-    <Setting Key="Age_TotalBets_Bullfighting_Agent" SpName="Age_TotalBets_Bullfighting_Agent" DbName="DBAGE.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_TotalBets_Bullfighting_Agent" SpName="Age_TotalBets_Bullfighting_Agent" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="MatchId" DataField="Match3rdId"/>
       <Mapping ObjectProperty="LeagueId" DataField="League3rdId"/>
     </Setting>
-    <Setting Key="Age_TotalBets_Bullfighting_Master" SpName="Age_TotalBets_Bullfighting_Master" DbName="DBAGE.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_TotalBets_Bullfighting_Master" SpName="Age_TotalBets_Bullfighting_Master" DbName="DB042.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="MatchId" DataField="Match3rdId"/>
       <Mapping ObjectProperty="LeagueId" DataField="League3rdId"/>
     </Setting>
