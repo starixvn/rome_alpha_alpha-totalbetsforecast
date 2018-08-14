@@ -2,7 +2,7 @@
 {
     using System;
     using Constants;
-    using RemotingRef;
+    using Helpers;
 
     public class BullfightingModel
     {
@@ -46,11 +46,11 @@
 
         public int HomeId { get; }
 
-        public string HomeName => CacheRefFactory.CacheRef.GetTeamName3rd(HomeId);
+        public string HomeName => CacheRefServiceHelper.GetTeamName3rd(HomeId);
 
         public int AwayId { get; }
 
-        public string AwayName => CacheRefFactory.CacheRef.GetTeamName3rd(AwayId);
+        public string AwayName => CacheRefServiceHelper.GetTeamName3rd(AwayId);
 
         public int BetCount { get; }
 

@@ -26,6 +26,8 @@
 
         public static bool EnabledStaticData => GetValue("EnabledStaticData") == "1";
 
+        public static string RemoteRefURL => GetValue("RemoteRefURL");
+
         public static string GetValue(string key) => AppSettings[key];
     }
 }

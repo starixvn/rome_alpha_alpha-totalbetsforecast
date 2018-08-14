@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
-namespace Alpha.TotalBetsForecast.Tests.Models
+﻿namespace Alpha.TotalBetsForecast.Tests.Models
 {
     using System;
     using Alpha.TotalBetsForecast.Models;
+    using Fanex.RemotingRef;
+    using Helpers;
     using NSubstitute;
     using NUnit.Framework;
-    using RemotingRef;
 
     [TestFixture]
     public class BullfightingModelTests
@@ -16,7 +16,7 @@ namespace Alpha.TotalBetsForecast.Tests.Models
         public void Setup()
         {
             model = new BullfightingModel(new DateTime(2017, month: 10, day: 24), 1, 2, "abc", true, 1, 2, 3, turnover: 100, banker: 29, player: 39);
-            CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
+            CacheRefServiceHelper.Instance = Substitute.For<IRemotingRefService>();
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Alpha.TotalBetsForecast.Tests.Models
         {
             //// Arrange
             var remotingRef = "homeabc";
-            CacheRefFactory.CacheRef.GetTeamName3rd(model.HomeId).Returns(remotingRef);
+            CacheRefServiceHelper.GetTeamName3rd(model.HomeId).Returns(remotingRef);
 
             //// Act
             var act = model.HomeName;
@@ -87,7 +87,7 @@ namespace Alpha.TotalBetsForecast.Tests.Models
         {
             //// Arrange
             var remotingRef = "awayabc";
-            CacheRefFactory.CacheRef.GetTeamName3rd(model.AwayId).Returns(remotingRef);
+            CacheRefServiceHelper.GetTeamName3rd(model.AwayId).Returns(remotingRef);
 
             //// Act
             var act = model.AwayName;

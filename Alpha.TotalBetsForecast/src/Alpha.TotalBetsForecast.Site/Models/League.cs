@@ -1,6 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
-    using Alpha.RemotingRef;
+    using TotalBetsForecast.Helpers;
 
     public class League
     {
@@ -10,7 +10,7 @@
         {
             get
             {
-                return CacheRefFactory.CacheRef.GetLeagueName(Id);
+                return CacheRefServiceHelper.GetLeagueName(Id);
             }
         }
     }

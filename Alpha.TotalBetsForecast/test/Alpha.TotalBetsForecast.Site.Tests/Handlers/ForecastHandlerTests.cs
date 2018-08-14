@@ -4,15 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using App_GlobalResources;
+    using Fanex.RemotingRef;
     using NSubstitute;
     using NUnit.Framework;
-    using RemotingRef;
     using Site.Handlers;
     using Site.Models;
     using Site.Models.Requests;
     using Site.Services;
     using Sunplus.Agent.Model.BL.Definitions;
     using Sunplus.Agent.Model.Entities;
+    using TotalBetsForecast.Helpers;
 
     [TestFixture]
     public class ForecastHandlerTests
@@ -31,7 +32,7 @@
 
             _forecastHandler = new ForecastHandler(_forecastService, _eventService);
 
-            CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
+            CacheRefServiceHelper.Instance = Substitute.For<IRemotingRefService>();
 
             user = Substitute.For<IUserSession>();
             user.CustId.Returns(CustId);
@@ -76,8 +77,8 @@
                 }
             });
 
-            CacheRefFactory.CacheRef.GetLeagueName(1).Returns("B");
-            CacheRefFactory.CacheRef.GetLeagueName(3).Returns("A");
+            CacheRefServiceHelper.GetLeagueName(1).Returns("B");
+            CacheRefServiceHelper.GetLeagueName(3).Returns("A");
 
             //// Act
             var leagues = _forecastHandler.Handle(query);
