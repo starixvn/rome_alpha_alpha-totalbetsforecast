@@ -4,7 +4,7 @@
     using System.Linq;
     using Alpha.TotalBetsForecast.Models;
     using App_GlobalResources;
-    using RemotingRef;
+    using TotalBetsForecast.Helpers;
 
     public class ArenaViewModel
     {
@@ -15,7 +15,7 @@
         }
 
         public string Name
-            => MatchSummary == null ? string.Empty : $"{MatchSummary.LeagueCode} - {CacheRefFactory.CacheRef.GetLeagueName3rd(MatchSummary.LeagueId)}";
+            => MatchSummary == null ? string.Empty : $"{MatchSummary.LeagueCode} - {CacheRefServiceHelper.GetLeagueName3rd(MatchSummary.LeagueId)}";
 
         public string Status
             => MatchSummary == null ? string.Empty : MatchSummary.HasLive ? Resources.Live : Resources.NonLive;

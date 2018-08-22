@@ -1,9 +1,10 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Tests.Models
 {
     using Alpha.TotalBetsForecast.Site.Models;
+    using Fanex.RemotingRef;
     using NSubstitute;
     using NUnit.Framework;
-    using RemotingRef;
+    using TotalBetsForecast.Helpers;
 
     [TestFixture]
     public class MatchTests
@@ -11,7 +12,7 @@
         [SetUp]
         public void Setup()
         {
-            CacheRefFactory.CacheRef = Substitute.For<CacheRefService>();
+            CacheRefServiceHelper.Instance = Substitute.For<IRemotingRefService>();
         }
 
         [Test]
@@ -23,8 +24,8 @@
             var expectedText = $"{home.Name} - {away.Name}";
             var match = new Match { HomeId = home.Id, AwayId = away.Id };
 
-            CacheRefFactory.CacheRef.GetTeamName(home.Id).Returns(home.Name);
-            CacheRefFactory.CacheRef.GetTeamName(away.Id).Returns(away.Name);
+            CacheRefServiceHelper.GetTeamName(home.Id).Returns(home.Name);
+            CacheRefServiceHelper.GetTeamName(away.Id).Returns(away.Name);
 
             //// Act
             var act = match.Name;

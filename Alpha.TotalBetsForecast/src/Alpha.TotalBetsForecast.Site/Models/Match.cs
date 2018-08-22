@@ -1,7 +1,7 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models
 {
     using System;
-    using RemotingRef;
+    using TotalBetsForecast.Helpers;
 
     public class Match
     {
@@ -15,7 +15,7 @@
         {
             get
             {
-                return CacheRefFactory.CacheRef.GetTeamName(HomeId);
+                return CacheRefServiceHelper.GetTeamName(HomeId);
             }
         }
 
@@ -25,7 +25,7 @@
         {
             get
             {
-                return CacheRefFactory.CacheRef.GetTeamName(AwayId);
+                return CacheRefServiceHelper.GetTeamName(AwayId);
             }
         }
 
