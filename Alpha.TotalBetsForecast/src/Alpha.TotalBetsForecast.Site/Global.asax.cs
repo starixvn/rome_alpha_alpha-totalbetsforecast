@@ -40,6 +40,7 @@
 
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
+            GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
 
             StaticResources.Init(GetBuildVersion());
 
