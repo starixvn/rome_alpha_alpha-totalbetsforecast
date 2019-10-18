@@ -219,9 +219,6 @@
   <data name="Versus" xml:space="preserve">
     <value> - vs - </value>
   </data>
-  <data name="Bullfighting" xml:space="preserve">
-    <value>Bullfighting</value>
-  </data>
   <data name="MatchOfferNonLive" xml:space="preserve">
     <value>Non-Live</value>
   </data>

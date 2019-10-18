@@ -16,7 +16,6 @@
     using StaticData;
     using Sunplus.Agent.Model.Base;
     using Sunplus.Agent.Model.Entities;
-    using TotalBetsForecast.Services;
 
     public static class DependencyConfig
     {
@@ -72,7 +71,6 @@
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<IEventService, EventService>(Lifestyle.Scoped);
             container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);
-            container.Register<BullfightingService, BullfightingServiceImpl>(Lifestyle.Scoped);
         }
 
         private static void RegisterDataAccesses(Container container)

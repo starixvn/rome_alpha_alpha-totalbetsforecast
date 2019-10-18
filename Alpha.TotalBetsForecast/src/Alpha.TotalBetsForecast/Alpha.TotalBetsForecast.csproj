@@ -134,10 +134,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\CacheRefServiceHelper.cs" />
     <Compile Include="Models\UserLevel.cs" />
-    <Compile Include="Services\BullfightingService.cs" />
-    <Compile Include="Models\BullfightingModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Criteria\GetBullfightingMatchCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Alpha.TotalBetsForcast.ruleset" />

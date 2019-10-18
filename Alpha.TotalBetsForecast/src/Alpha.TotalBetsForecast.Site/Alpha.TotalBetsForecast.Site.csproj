@@ -226,12 +226,12 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.1\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.4.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.4.4-removeInactiveProducts02\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.0\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8-removeInactiveProducts02\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Sunplus.Agent.Utilities, Version=3.0.0.4, Culture=neutral, processorArchitecture=MSIL">
@@ -323,10 +323,6 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
-    <Content Include="assets\bundles\bullfighting\bullfighting.js" />
-    <Content Include="assets\bundles\bullfighting\bullfighting.min.js">
-      <DependentUpon>bullfighting.js</DependentUpon>
-    </Content>
     <Content Include="assets\bundles\forecast\forecast.css" />
     <Content Include="assets\bundles\forecast\forecast.js" />
     <Content Include="assets\bundles\forecast\forecast.min.css">
@@ -335,7 +331,6 @@
     <Content Include="assets\bundles\forecast\forecast.min.js">
       <DependentUpon>forecast.js</DependentUpon>
     </Content>
-    <Content Include="assets\scripts\Bullfighting\index.js" />
     <Content Include="assets\scripts\Forecast\forecast-renderer.js" />
     <Content Include="assets\scripts\Forecast\index.js" />
     <Content Include="assets\scripts\Introduction\quick-introduction.js" />
@@ -388,10 +383,7 @@
     <Compile Include="App_Start\RouteConfig.cs">
       <SonarQubeExclude>true</SonarQubeExclude>
     </Compile>
-    <Compile Include="Controllers\BullfightingController.cs" />
-    <Compile Include="Handlers\BullfightingHandler.cs" />
     <Compile Include="Helpers\QueryEntityModelBinder.cs" />
-    <Compile Include="Requests\BullfightingQuery.cs" />
     <Compile Include="Controllers\TotalBetsForecastBaseController.cs" />
     <Compile Include="Controllers\ForecastController.cs" />
     <Compile Include="Controllers\IntroductionController.cs" />
@@ -421,8 +413,6 @@
     <Compile Include="Services\IForecastService.cs" />
     <Compile Include="Services\Impl\EventService.cs" />
     <Compile Include="Services\Impl\ForecastService.cs" />
-    <Compile Include="ViewModels\ArenaViewModel.cs" />
-    <Compile Include="ViewModels\BullfightingViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config">
@@ -581,8 +571,6 @@
     <Content Include="Web.napinternali3.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
-    <Content Include="Views\Bullfighting\Index.cshtml" />
-    <Content Include="Views\Bullfighting\GetMatches.cshtml" />
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
