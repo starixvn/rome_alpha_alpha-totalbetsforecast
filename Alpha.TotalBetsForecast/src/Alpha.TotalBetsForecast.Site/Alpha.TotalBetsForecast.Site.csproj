@@ -50,8 +50,9 @@
     <CodeAnalysisRuleSet>Alpha.TotalBetsForecast.Site.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alpha.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Logging.1.0.0-LogIntegrate-09\lib\net461\Alpha.Logging.dll</HintPath>
+    <Reference Include="Alpha.Logging, Version=1.0.1.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Logging.1.0.1.1\lib\net461\Alpha.Logging.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.StaticData, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.StaticData.1.0.1.0\lib\net40\Alpha.StaticData.dll</HintPath>
