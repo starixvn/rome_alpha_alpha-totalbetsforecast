@@ -8,7 +8,7 @@
         public override string GetExcelDirectory()
         {
             var rootPath = (Path.GetDirectoryName(typeof(ExcelDynamicRepositoryBase).Assembly.GetName().CodeBase).Substring(6));
-            var excelPath = "ExcelData";
+            const string excelPath = "ExcelData";
 
             return $"{rootPath}\\{excelPath}";
         }
