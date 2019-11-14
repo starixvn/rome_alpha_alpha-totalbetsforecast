@@ -11,7 +11,6 @@
     using Models.Requests;
     using Models.Views;
     using Services;
-    using Sunplus.Agent.Utilities;
 
     public class ForecastHandler :
         IRequestHandler<MatchForecastsQuery, IEnumerable<MatchForecastViewModel>>,
@@ -39,7 +38,7 @@
             var matchForecasts = _forecastService.GetMatchForecasts(message);
 
             foreach (var matchForecast in matchForecasts)
-            {                
+            {
                 var matchForecastViewModel = new MatchForecastViewModel
                 {
                     Id = matchForecast.Id,
@@ -59,8 +58,8 @@
                 };
 
                 yield return matchForecastViewModel;
-            }            
-        }        
+            }
+        }
 
         public IEnumerable<Match> Handle(MatchesQuery message)
         {

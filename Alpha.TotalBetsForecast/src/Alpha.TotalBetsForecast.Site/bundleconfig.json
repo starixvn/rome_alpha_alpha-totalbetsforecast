@@ -8,12 +8,6 @@
     ]
   },
   {
-    "outputFileName": "assets/bundles/bullfighting/bullfighting.js",
-    "inputFiles": [      
-      "assets/scripts/bullfighting/index.js"
-    ]
-  },
-  {
     "outputFileName": "assets/bundles/forecast/forecast.css",
     "inputFiles": [
       "assets/styles/totalbets-forecast.css",

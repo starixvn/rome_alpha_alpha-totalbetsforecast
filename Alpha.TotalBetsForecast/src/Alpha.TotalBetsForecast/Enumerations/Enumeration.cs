@@ -170,7 +170,7 @@
         {
             if (obj == null)
             {
-                throw new ArgumentNullException("obj");
+                throw new ArgumentNullException(nameof(obj));
             }
 
             return Value.CompareTo(((Enumeration)obj).Value);
@@ -180,12 +180,12 @@
         {
             if (ReferenceEquals(left, null))
             {
-                throw new ArgumentNullException("left");
+                throw new ArgumentNullException(nameof(left));
             }
 
             if (ReferenceEquals(right, null))
             {
-                throw new ArgumentNullException("right");
+                throw new ArgumentNullException(nameof(right));
             }
         }
 

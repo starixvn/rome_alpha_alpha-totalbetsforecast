@@ -17,6 +17,6 @@
             => View(mediator.Send(message));
 
         protected JsonResult Json<TResponse>(IRequest<TResponse> message)
-            => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);        
+            => Json(mediator.Send(message), JsonRequestBehavior.AllowGet);
     }
 }

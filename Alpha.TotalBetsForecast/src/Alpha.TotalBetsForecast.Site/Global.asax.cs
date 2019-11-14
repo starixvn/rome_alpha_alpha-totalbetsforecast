@@ -6,6 +6,7 @@
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
+    using Alpha.Logging;
     using App_Start;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
@@ -38,6 +39,7 @@
 
             ShareSession.Init();
 
+            LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
@@ -45,9 +47,6 @@
             StaticResources.Init(GetBuildVersion());
 
             ModelBinders.Binders.DefaultBinder = new QueryEntityModelBinder();
-            var loggingConfiguration = new LoggingConfiguration().UseGetDbExceptionInfo(DatabaseInfoGetters.GetDbExceptionInfo);
-
-            ExceptionHandler.UseConfig(loggingConfiguration);
 
             RefDataTypeContainer
                 .ConnectTo(new Uri(AppConfig.RemoteRefURL))
