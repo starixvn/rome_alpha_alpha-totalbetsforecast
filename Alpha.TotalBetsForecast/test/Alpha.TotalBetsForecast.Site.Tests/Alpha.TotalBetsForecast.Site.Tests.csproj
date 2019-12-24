@@ -38,7 +38,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Alpha.Web, Version=1.0.3.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.3.7-robot3\lib\net461\Alpha.Web.dll</HintPath>
+      <HintPath>..\..\packages\Alpha.Web.1.0.3.7\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="Couchbase, Version=1.0.0.0, Culture=neutral, PublicKeyToken=81137140da4e57ef, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Fanex.Caching.1.0.404.97\lib\net40\Couchbase.dll</HintPath>
