@@ -14,7 +14,7 @@
 
         public override string GetSettingKey()
         {
-            return "Age_NewTotalBetsForeCast_Main";
+            return "Ost_NewTotalBetsForeCast_Main";
         }
 
         public override bool IsValid()
