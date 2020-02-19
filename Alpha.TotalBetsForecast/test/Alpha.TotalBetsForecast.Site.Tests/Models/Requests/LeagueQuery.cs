@@ -11,7 +11,7 @@
         public void DefaultConstructor_Always_DoNotEveryThing()
         {
             //// Arrange
-            var query = new LeaguesQuery();
+            var query = new LeaguesQuery(false, false);
 
             //// Act            
 

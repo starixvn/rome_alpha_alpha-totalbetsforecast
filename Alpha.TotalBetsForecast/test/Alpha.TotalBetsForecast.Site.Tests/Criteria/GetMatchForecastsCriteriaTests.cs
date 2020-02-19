@@ -9,7 +9,7 @@
         public void GetSettingKey_Always_ReturnExpectedKey()
         {
             //// Arrange
-            var expectedKey = "Age_NewTotalBetsForeCast_Main";
+            var expectedKey = "Ost_NewTotalBetsForeCast_Main";
             var criteria = new GetMatchForecastsCriteria();
 
             //// Act
