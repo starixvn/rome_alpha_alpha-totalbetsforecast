@@ -18,11 +18,11 @@
 
       <Mapping ObjectProperty="Id" DataField="matchid" Class="MatchForecast" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DB042.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DBBOF.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="Id" DataField="matchid" Class="Match" />
       <Mapping ObjectProperty="Code" DataField="matchcode" Class="Match" />
     </Setting>
-    <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DB042.bodb02.BODBDownlineNetView">
+    <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DBBOF.bodb02.BODBDownlineNetView">
       <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
     </Setting>
   </Function>
