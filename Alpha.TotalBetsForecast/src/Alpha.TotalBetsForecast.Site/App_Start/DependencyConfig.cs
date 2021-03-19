@@ -29,8 +29,6 @@
 
             RegisterMediator(container);
 
-            RegisterCrossCuttingConcerns(container);
-
             RegisterDataAccesses(container);
 
             RegisterServices(container);
@@ -63,13 +61,9 @@
             yield return typeof(ForecastHandler).Assembly;
         }
 
-        private static void RegisterCrossCuttingConcerns(Container container)
-        {
-            container.Register(() => CacheService.CreateInstance(CacheType.MemoryCache), Lifestyle.Singleton);
-        }
-
         private static void RegisterServices(Container container)
         {
+            container.RegisterSingleton<ICacheService>(new CacheService());
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<IEventService, EventService>(Lifestyle.Scoped);
             container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);

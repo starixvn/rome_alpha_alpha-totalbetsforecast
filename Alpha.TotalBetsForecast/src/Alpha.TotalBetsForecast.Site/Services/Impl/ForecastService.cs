@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Linq;
     using Alpha.Web.Helpers;
     using Criteria;
@@ -22,16 +21,16 @@
 
         private const int HalftimeMinutes = 45;
 
+        private readonly ICacheService cacheService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly ICache _cacheManager;
         private readonly PartialUMService partialUMService;
 
         public ForecastService(
-            ICache cacheManager,
+            ICacheService cacheService,
             IDynamicRepository dynamicRepository,
             PartialUMService partialUMService)
         {
-            _cacheManager = cacheManager;
+            this.cacheService = cacheService;
             this.dynamicRepository = dynamicRepository;
             this.partialUMService = partialUMService;
         }
@@ -41,14 +40,17 @@
             Check.Argument.IsNotNull(query, nameof(query));
             Check.Argument.IsNotEmpty(query.MatchIds, nameof(query.MatchIds));
 
-            var matchForecasts = _cacheManager.Get<IEnumerable<MatchForecast>>(GetMatchForecastsCacheKey(query));
+            var matchForecasts = cacheService.Get<IEnumerable<MatchForecast>>(GetMatchForecastsCacheKey(query));
 
             if (matchForecasts == null
                 || !matchForecasts.Any())
             {
                 matchForecasts = BuildMatchForecasts(query);
 
-                _cacheManager.Set(GetMatchForecastsCacheKey(query), matchForecasts, MatchForecastsCacheTimeOut);
+                cacheService.Set(
+                    GetMatchForecastsCacheKey(query),
+                    matchForecasts,
+                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(MatchForecastsCacheTimeOut)));
             }
 
             return matchForecasts;

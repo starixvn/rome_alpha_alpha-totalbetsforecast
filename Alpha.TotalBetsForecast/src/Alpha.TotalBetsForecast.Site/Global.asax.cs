@@ -8,6 +8,7 @@
     using System.Web.Routing;
     using Alpha.Logging;
     using App_Start;
+    using Fanex.Caching;
     using Fanex.Data;
     using Fanex.Data.CrossCutting.WrappingException;
     using Fanex.Data.OldConnectionStringProvider;
@@ -15,7 +16,13 @@
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
     using Helpers;
-    using ONEbook.UM.Filters;
+    using ONEbook.UM;
+    using ONEbook.UM.AspNetMVC.Filters;
+    using ONEbook.UM.Configurations;
+    using ONEbook.UM.Helpers;
+    using ONEbook.UM.NETFramework;
+    using ONEbook.UM.Services;
+    using ONEbook.UM.Transport;
     using Sunplus.Agent.Model.Entities;
     using Web;
     using Web.Filters;
@@ -40,7 +47,16 @@
             ShareSession.Init();
 
             LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
-            GlobalFilters.Filters.Add(new CheckUMFilter());
+
+            var umConfig = new UMClientConfiguration().Initialize();
+            UMClientManager
+                .UseConfig(umConfig)
+                .UseCacheService(new UMCacheService(new CacheService()))
+                .UseRestClient(new UMRestClient(umConfig))
+                .UseHttpContext(new HttpContextHelper());
+            GlobalFilters.Filters.Add(new CheckUMFilterAttribute(
+                new MaintenanceService(UMClientManager.RestClient, UMClientManager.CacheService, UMClientManager.UMClientConfigs, UMClientManager.HttpContext), null));
+
             GlobalFilters.Filters.Add(new NoCacheFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
             GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));

@@ -1,5 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Services.Impl
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Alpha.Web.Helpers;
@@ -15,22 +16,22 @@
         private const int LeaguesCacheTimeOut = 60 * 5; // 5 Minutes
 
         private readonly IDynamicRepository _dynamicRepository;
-        private readonly ICache _cacheManager;
+        private readonly ICacheService cacheService;
         private readonly PartialUMService _partialUMService;
 
         public EventService(
             IDynamicRepository dynamicRepository,
-            ICache cacheManager,
+            ICacheService cacheService,
             PartialUMService partialUMService)
         {
             _dynamicRepository = dynamicRepository;
-            _cacheManager = cacheManager;
+            this.cacheService = cacheService;
             _partialUMService = partialUMService;
         }
 
         public IEnumerable<League> GetLeagues(bool isLive, bool isLocalTest)
         {
-            var leagues = _cacheManager.Get<IEnumerable<League>>(string.Format(LeaguesCachingKey, isLive));
+            var leagues = cacheService.Get<IEnumerable<League>>(string.Format(LeaguesCachingKey, isLive));
 
             if (leagues == null || !leagues.Any())
             {
@@ -40,7 +41,10 @@
 
                 leagues = _dynamicRepository.Fetch<League>(criteria);
 
-                _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, LeaguesCacheTimeOut);
+                cacheService.Set(
+                    string.Format(LeaguesCachingKey, isLive),
+                    leagues,
+                    new CacheItemOptions().SetAbsoluteExpiration(TimeSpan.FromSeconds(LeaguesCacheTimeOut)));
             }
 
             return leagues;
