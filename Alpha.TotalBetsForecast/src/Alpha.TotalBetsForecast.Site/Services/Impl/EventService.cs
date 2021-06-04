@@ -2,12 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using Alpha.Web.Helpers;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Common.Helper;
     using Fanex.Data.Repository;
     using Models;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public class EventService : IEventService
     {
@@ -16,21 +16,29 @@
 
         private readonly IDynamicRepository _dynamicRepository;
         private readonly ICache _cacheManager;
+        private readonly PartialUMService _partialUMService;
 
-        public EventService(IDynamicRepository dynamicRepository, ICache cacheManager)
+        public EventService(
+            IDynamicRepository dynamicRepository,
+            ICache cacheManager,
+            PartialUMService partialUMService)
         {
             _dynamicRepository = dynamicRepository;
             _cacheManager = cacheManager;
+            _partialUMService = partialUMService;
         }
 
         public IEnumerable<League> GetLeagues(bool isLive, bool isLocalTest)
         {
             var leagues = _cacheManager.Get<IEnumerable<League>>(string.Format(LeaguesCachingKey, isLive));
 
-            if (leagues == null
-                || !leagues.Any())
+            if (leagues == null || !leagues.Any())
             {
-                leagues = _dynamicRepository.Fetch<League>(new GetLeaguesCriteria(isLive, isLocalTest));
+                var criteria = new GetLeaguesCriteria(isLive, isLocalTest);
+
+                _partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+                leagues = _dynamicRepository.Fetch<League>(criteria);
 
                 _cacheManager.Set(string.Format(LeaguesCachingKey, isLive), leagues, LeaguesCacheTimeOut);
             }
@@ -42,7 +50,11 @@
         {
             Check.Argument.IsNotNegativeOrZero(leagueId, nameof(leagueId));
 
-            return _dynamicRepository.Fetch<Match>(new GetEventsCriteria(leagueId, isLive));
+            var criteria = new GetEventsCriteria(leagueId, isLive);
+
+            _partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            return _dynamicRepository.Fetch<Match>(criteria);
         }
     }
 }

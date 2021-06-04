@@ -4,6 +4,8 @@
     using System.Diagnostics.CodeAnalysis;
     using System.Reflection;
     using System.Web.Mvc;
+    using Alpha.Web.Helpers;
+    using Alpha.Web.Helpers.Impl;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using Handlers;
@@ -71,6 +73,7 @@
             container.RegisterSingleton<IUserSession, UserSessionExt>();
             container.Register<IEventService, EventService>(Lifestyle.Scoped);
             container.Register<IForecastService, ForecastService>(Lifestyle.Scoped);
+            container.RegisterSingleton<PartialUMService, PartialUMServiceImpl>();
         }
 
         private static void RegisterDataAccesses(Container container)

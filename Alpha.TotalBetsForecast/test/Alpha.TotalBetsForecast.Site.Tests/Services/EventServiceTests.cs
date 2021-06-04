@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using Alpha.Web.Helpers;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using NSubstitute;
@@ -15,6 +16,7 @@
     {
         private IDynamicRepository _dynamicRepository;
         private ICache _cacheManager;
+        private PartialUMService _partialUMService;
         private EventService _eventService;
 
         [SetUp]
@@ -22,8 +24,9 @@
         {
             _dynamicRepository = Substitute.For<IDynamicRepository>();
             _cacheManager = Substitute.For<ICache>();
+            _partialUMService = Substitute.For<PartialUMService>();
 
-            _eventService = new EventService(_dynamicRepository, _cacheManager);
+            _eventService = new EventService(_dynamicRepository, _cacheManager, _partialUMService);
         }
 
         #region Get Leagues
