@@ -166,6 +166,7 @@ var forecast = {
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             forecast.removeLoadingIcon();
+            forecast.processAjaxError(jqXHR);
         });
 
         $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime, path: '/' });
@@ -271,7 +272,8 @@ var forecast = {
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             try { $.unblockUI(); } catch (e) { }
-        });;
+            forecast.processAjaxError(jqXHR);
+        });
     },
 
     renderLeagues: function (leagues) {
@@ -324,7 +326,8 @@ var forecast = {
             }
         }).fail(function (jqXHR, textStatus, errorThrown) {
             try { $.unblockUI(); } catch (e) { }
-        });;
+            forecast.processAjaxError(jqXHR);
+        });
     },
 
     renderMatches: function (matches) {
@@ -416,6 +419,17 @@ var forecast = {
                 .on('click.forecast', function () {
                     forecast.domElements.browserWarning.hide();
                 });
+        }
+    },
+
+    processAjaxError: function (xhr) {
+        if (xhr.status === 500 && xhr.responseText) {
+            var jsonData = JSON.parse(xhr.responseText);
+            if (jsonData.UMFrom && jsonData.UMTo) {
+                location.href = top.alpha.urls.mainRootPath
+                    + 'PartialUM/Index?umfrom=' + jsonData.UMFrom
+                    + '&umto=' + jsonData.UMTo;
+            }
         }
     }
 };

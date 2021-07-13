@@ -43,6 +43,7 @@
             GlobalFilters.Filters.Add(new CheckUMFilter());
             GlobalFilters.Filters.Add(new NoCacheFilter());
             GlobalFilters.Filters.Add(new AfterLoginFlowFilter());
+            GlobalFilters.Filters.Add(new PartialUMExceptionFilter(true));
 
             StaticResources.Init(GetBuildVersion());
 

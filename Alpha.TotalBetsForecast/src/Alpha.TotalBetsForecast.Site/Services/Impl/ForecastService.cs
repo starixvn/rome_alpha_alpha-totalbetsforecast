@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Linq;
+    using Alpha.Web.Helpers;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Common;
@@ -22,13 +23,17 @@
         private const int HalftimeMinutes = 45;
 
         private readonly IDynamicRepository dynamicRepository;
-
         private readonly ICache _cacheManager;
+        private readonly PartialUMService partialUMService;
 
-        public ForecastService(ICache cacheManager, IDynamicRepository dynamicRepository)
+        public ForecastService(
+            ICache cacheManager,
+            IDynamicRepository dynamicRepository,
+            PartialUMService partialUMService)
         {
             _cacheManager = cacheManager;
             this.dynamicRepository = dynamicRepository;
+            this.partialUMService = partialUMService;
         }
 
         public IEnumerable<MatchForecast> GetMatchForecasts(MatchForecastsQuery query)
@@ -60,13 +65,16 @@
 
         private IEnumerable<MatchForecast> BuildMatchForecasts(MatchForecastsQuery query)
         {
-            var matchForecastRaw = dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(
-                new GetMatchForecastsCriteria
-                {
-                    CustId = query.CustId,
-                    MatchIds = query.MatchIds,
-                    IsLive = query.IsLive
-                });
+            var criteria = new GetMatchForecastsCriteria
+            {
+                CustId = query.CustId,
+                MatchIds = query.MatchIds,
+                IsLive = query.IsLive
+            };
+
+            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+
+            var matchForecastRaw = dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(criteria);
 
             if (!matchForecastRaw.Item1.Any())
             {
