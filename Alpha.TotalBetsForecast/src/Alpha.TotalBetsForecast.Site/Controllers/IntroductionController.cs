@@ -6,10 +6,9 @@
 
     public class IntroductionController : TotalBetsForecastBaseController
     {
-        private readonly IUserSession userSession;
-        public IntroductionController(IMediator mediator, IUserSession userSession) : base(mediator)
+        public IntroductionController(IMediator mediator, IUserSession userSession)
+            : base(mediator, userSession)
         {
-            this.userSession = userSession;
         }
 
         [ChildActionOnly]

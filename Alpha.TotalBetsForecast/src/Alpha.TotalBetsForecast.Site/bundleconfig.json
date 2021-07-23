@@ -13,5 +13,13 @@
       "assets/styles/totalbets-forecast.css",
       "assets/styles/quick-introduction.css"
     ]
+  },
+  /************************** Dark Mode ************************/
+  {
+    "outputFileName": "assets/bundles/forecast/forecast-dark.css",
+    "inputFiles": [
+      "assets/styles/totalbets-forecast-dark.css",
+      "assets/styles/quick-introduction-dark.css"
+    ]
   }
 ]

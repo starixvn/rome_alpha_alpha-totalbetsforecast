@@ -12,5 +12,13 @@
     "minify": {
       "enabled": false
     }
+  },
+  {
+    "outputFile": "assets/styles/quick-introduction-dark.css",
+    "inputFile": "assets/styles/quick-introduction-dark.scss"
+  },
+  {
+    "outputFile": "assets/styles/totalbets-forecast-dark.css",
+    "inputFile": "assets/styles/totalbets-forecast-dark.scss"
   }
 ]

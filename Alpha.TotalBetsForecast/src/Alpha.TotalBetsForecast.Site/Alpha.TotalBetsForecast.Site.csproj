@@ -62,8 +62,8 @@
       <HintPath>..\..\packages\Alpha.SubAccount.1.0.0\lib\net40\Alpha.SubAccount.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Alpha.Web, Version=1.0.8.7, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.1.0.8.7\lib\net461\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=1.0.8.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.1.0.8.6-dark08\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
@@ -243,8 +243,8 @@
       <HintPath>..\..\packages\SPSRemoting.1.0.0\lib\net40\SPSRemoting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.5.8, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.5.8\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
+    <Reference Include="Sunplus.Agent.Model.Base, Version=3.0.5.9, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Sunplus.Agent.Model.Base.3.0.5.9-dark01\lib\net461\Sunplus.Agent.Model.Base.dll</HintPath>
     </Reference>
     <Reference Include="Sunplus.Agent.Model.Definitions, Version=3.0.2.8, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Sunplus.Agent.Model.Definitions.3.0.2.8\lib\net40\Sunplus.Agent.Model.Definitions.dll</HintPath>
@@ -358,6 +358,10 @@
     </Content>
     <Content Include="App_Data\SPNames\PRO\TotalBetsForecast.xml" />
     <Content Include="App_Data\SPNames\UAT\TotalBetsForecast.xml" />
+    <Content Include="assets\bundles\forecast\forecast-dark.css" />
+    <Content Include="assets\bundles\forecast\forecast-dark.min.css">
+      <DependentUpon>forecast-dark.css</DependentUpon>
+    </Content>
     <Content Include="assets\bundles\forecast\forecast.css" />
     <Content Include="assets\bundles\forecast\forecast.js" />
     <Content Include="assets\bundles\forecast\forecast.min.css">
@@ -382,8 +386,20 @@
     <Content Include="assets\styles\Images\slide2.png" />
     <Content Include="assets\styles\Images\slide3.png" />
     <Content Include="assets\styles\Images\slide4.png" />
+    <Content Include="assets\styles\quick-introduction-dark.css">
+      <DependentUpon>quick-introduction-dark.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\quick-introduction-dark.min.css">
+      <DependentUpon>quick-introduction-dark.css</DependentUpon>
+    </Content>
     <Content Include="assets\styles\quick-introduction.css">
       <DependentUpon>quick-introduction.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\totalbets-forecast-dark.css">
+      <DependentUpon>totalbets-forecast-dark.scss</DependentUpon>
+    </Content>
+    <Content Include="assets\styles\totalbets-forecast-dark.min.css">
+      <DependentUpon>totalbets-forecast-dark.css</DependentUpon>
     </Content>
     <Content Include="assets\styles\totalbets-forecast.css">
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
@@ -477,6 +493,8 @@
     <Content Include="assets\styles\quick-introduction.scss" />
     <Content Include="assets\styles\totalbets-forecast.scss" />
     <Content Include="assets\styles\_mixins.scss" />
+    <Content Include="assets\styles\quick-introduction-dark.scss" />
+    <Content Include="assets\styles\totalbets-forecast-dark.scss" />
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
