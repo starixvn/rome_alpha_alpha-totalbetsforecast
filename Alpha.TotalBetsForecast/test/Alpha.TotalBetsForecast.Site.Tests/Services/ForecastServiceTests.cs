@@ -20,7 +20,7 @@
     public class ForecastServiceTests
     {
         private IDynamicRepository dynamicRepository;
-        private ICache _cacheManager;
+        private ICacheService cacheService;
         private PartialUMService _partialUMService;
         private ForecastService _forecastService;
         private IUserSession user;
@@ -29,10 +29,10 @@
         public void SetUp()
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
-            _cacheManager = Substitute.For<ICache>();
+            cacheService = Substitute.For<ICacheService>();
             _partialUMService = Substitute.For<PartialUMService>();
 
-            _forecastService = new ForecastService(_cacheManager, dynamicRepository, _partialUMService);
+            _forecastService = new ForecastService(cacheService, dynamicRepository, _partialUMService);
 
             user = Substitute.For<IUserSession>();
             user.CustId.Returns(1);
@@ -67,7 +67,7 @@
                 {
                     CreateMatchForecast(1, true)
                 };
-            _cacheManager.Get<IEnumerable<MatchForecast>>("Alpha.TotalBetsForecast.Site.MatchForecastsCached_1_1_2_True")
+            cacheService.Get<IEnumerable<MatchForecast>>("Alpha.TotalBetsForecast.Site.MatchForecastsCached_1_1_2_True")
                 .Returns(expectedMatchForecasts);
 
             //// Act

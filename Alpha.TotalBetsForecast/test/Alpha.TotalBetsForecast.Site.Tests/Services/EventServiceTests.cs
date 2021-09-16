@@ -15,7 +15,7 @@
     public class EventServiceTests
     {
         private IDynamicRepository _dynamicRepository;
-        private ICache _cacheManager;
+        private ICacheService cacheService;
         private PartialUMService _partialUMService;
         private EventService _eventService;
 
@@ -23,10 +23,10 @@
         public void SetUp()
         {
             _dynamicRepository = Substitute.For<IDynamicRepository>();
-            _cacheManager = Substitute.For<ICache>();
+            cacheService = Substitute.For<ICacheService>();
             _partialUMService = Substitute.For<PartialUMService>();
 
-            _eventService = new EventService(_dynamicRepository, _cacheManager, _partialUMService);
+            _eventService = new EventService(_dynamicRepository, cacheService, _partialUMService);
         }
 
         #region Get Leagues
@@ -39,7 +39,7 @@
             _eventService.GetLeagues(isLive, true);
 
             //// Assert
-            _cacheManager.Received().Get<IEnumerable<League>>($"Alpha.TotalBetsForecast.Site.LeagueCaching_{isLive}");
+            cacheService.Received().Get<IEnumerable<League>>($"Alpha.TotalBetsForecast.Site.LeagueCaching_{isLive}");
         }
 
         [Test]
@@ -53,7 +53,7 @@
                     Id = 1
                 }
             };
-            _cacheManager.Get<IEnumerable<League>>(Arg.Any<string>()).Returns(expectedLeague);
+            cacheService.Get<IEnumerable<League>>(Arg.Any<string>()).Returns(expectedLeague);
 
             //// Act
             var actualLeagues = _eventService.GetLeagues(false, true);
@@ -74,7 +74,7 @@
                 }
             };
             IEnumerable<League> cachedLeagues = null;
-            _cacheManager.Get<IEnumerable<League>>(Arg.Any<string>()).Returns(cachedLeagues);
+            cacheService.Get<IEnumerable<League>>(Arg.Any<string>()).Returns(cachedLeagues);
             _dynamicRepository.Fetch<League>(Arg.Is<GetLeaguesCriteria>(
                 criteria => !criteria.IsLive)).Returns(expectedLeague);
 
