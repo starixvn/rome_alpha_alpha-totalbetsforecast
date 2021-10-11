@@ -1,7 +1,7 @@
 ﻿@model IndexViewModel
 
 @section Styles {
-    @StaticResources.RenderStyles($"~/assets/bundles/forecast/forecast{ViewData["DarkModeName"]}")
+    @StaticResources.RenderStylesWithDarkMode("~/assets/bundles/forecast/forecast")
 }
 
 <div id="browser-warning" class="note-browser" style="display:none;">

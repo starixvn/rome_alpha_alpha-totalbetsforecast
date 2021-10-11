@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@Resources.BetsAndForecast</title>
 
-    @StaticResources.AssetStyles.Render($"/bundles/site-totalbetsforecast/default{ViewData["DarkModeName"]}")
+    @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")
     @RenderSection("ComponentStyles", false)
     @RenderSection("Styles", false)
 </head>

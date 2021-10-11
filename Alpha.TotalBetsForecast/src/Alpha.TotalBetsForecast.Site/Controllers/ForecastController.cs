@@ -8,9 +8,12 @@
 
     public class ForecastController : TotalBetsForecastBaseController
     {
+        private readonly IUserSession userSession;
+
         public ForecastController(IMediator mediator, IUserSession userSession)
-            : base(mediator, userSession)
+            : base(mediator)
         {
+            this.userSession = userSession;
         }
 
         public ActionResult Index(IndexQuery query) => View(query);
