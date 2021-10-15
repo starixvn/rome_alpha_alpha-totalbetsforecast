@@ -69,9 +69,11 @@
 
 .guidelinesModal {
     font-size: 13px;
+
     .modal-header {
         margin: 0 20px;
-        border-bottom: 1px solid #ddd !important;
+        border-bottom: 1px solid #313334 !important;
+
         .header-title {
             margin: 20px 0 15px;
             font-weight: 600;
@@ -98,7 +100,6 @@
             .title-Guideline {
                 font-weight: 600;
                 padding: 15px;
-                background: #f0f0f0;
             }
 
 
@@ -123,10 +124,11 @@
                 .img-small {
                     text-align: center;
                     margin-top: 20px;
-                    
+
                     &.img-ex {
                         margin: 5px 0 8px;
                     }
+
                     img {
                         width: auto;
 
