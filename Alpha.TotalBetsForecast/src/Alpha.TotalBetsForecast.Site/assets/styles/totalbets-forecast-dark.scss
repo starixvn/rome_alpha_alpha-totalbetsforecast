@@ -371,11 +371,19 @@ table * {
 .multiselect-container.dropdown-menu {
     font-size: 13px;
 
+    .active {
+        a {
+            background-color: #36587D !important;
+        }
+    }
+
     > li > a {
-        color : #ededed;
+        color: #E7E7E7;
+
         &:hover {
             background-color: #3c3c3c;
         }
+
         > label {
             padding: 3px 20px 3px 35px;
         }
