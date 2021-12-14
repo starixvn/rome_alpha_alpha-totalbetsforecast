@@ -8,7 +8,7 @@ $back-ground-focus-color: #2D4372;
 
 $component-bg: #2B2B2B;
 $component-color: #E7E7E7;
-$component-border-color: #3E3F41;
+$component-border-color: #5F626B;
 
 body {
     font-size: 13px;
@@ -187,9 +187,6 @@ table * {
         }
     }
 
-    &.tblRpt-bordered tr.last-row td.ex-col {
-        border-bottom: 1px solid $component-border-color;
-    }
 
     tr.cl-league td {
         text-transform: uppercase;
@@ -206,8 +203,6 @@ table * {
 
     &.tblRpt-bordered tr td.ex-col {
         border-top: none;
-        border-bottom: none;
-
         &.head {
             background: $win-loss-name-background-color;
             border-bottom: 1px solid $component-border-color;
