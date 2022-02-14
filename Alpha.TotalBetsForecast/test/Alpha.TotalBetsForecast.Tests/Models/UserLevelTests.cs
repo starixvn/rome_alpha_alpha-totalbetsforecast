@@ -18,7 +18,7 @@
             var result = userLevel.IsAgentLevel();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -31,7 +31,7 @@
             var result = userLevel.IsNotAgentLevel();
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -44,7 +44,7 @@
             var result = userLevel.IsMasterLevel();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -57,7 +57,7 @@
             var result = userLevel.IsNotMasterLevel();
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -70,7 +70,7 @@
             var result = userLevel.IsSuperLevel();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
 
         [Theory]
@@ -85,7 +85,7 @@
             var result = userLevel.IsMasterOrSuperLevel();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -98,7 +98,7 @@
             var result = userLevel.IsMemberLevel();
 
             // Assert
-            Assert.AreEqual(true, result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -111,7 +111,7 @@
             var result = userLevel.IsNotSuperLevel();
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -124,7 +124,7 @@
             var result = userLevel.IsDirectUplineOf(null);
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
 
@@ -138,7 +138,7 @@
             var result = userLevel.IsDirectDownlineOf(null);
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
         [TestCase(4)]
@@ -153,7 +153,7 @@
             var result = userLevel.Is(null);
 
             // Assert
-            Assert.AreEqual(false, result);
+            Assert.IsFalse(result);
         }
 
 
