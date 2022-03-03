@@ -10,7 +10,8 @@
     {
         private readonly IUserSession userSession;
 
-        public ForecastController(IMediator mediator, IUserSession userSession) : base(mediator)
+        public ForecastController(IMediator mediator, IUserSession userSession)
+            : base(mediator)
         {
             this.userSession = userSession;
         }
