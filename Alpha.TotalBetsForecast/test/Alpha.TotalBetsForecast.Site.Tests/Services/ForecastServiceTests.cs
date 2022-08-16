@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using NSubstitute;
@@ -21,7 +21,7 @@
     {
         private IDynamicRepository dynamicRepository;
         private ICacheService cacheService;
-        private PartialUMService _partialUMService;
+        private IPartialUMService _partialUMService;
         private ForecastService _forecastService;
         private IUserSession user;
 
@@ -30,7 +30,7 @@
         {
             dynamicRepository = Substitute.For<IDynamicRepository>();
             cacheService = Substitute.For<ICacheService>();
-            _partialUMService = Substitute.For<PartialUMService>();
+            _partialUMService = Substitute.For<IPartialUMService>();
 
             _forecastService = new ForecastService(cacheService, dynamicRepository, _partialUMService);
 

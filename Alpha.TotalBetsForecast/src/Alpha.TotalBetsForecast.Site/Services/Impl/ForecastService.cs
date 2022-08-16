@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Common;
@@ -23,12 +23,12 @@
 
         private readonly ICacheService cacheService;
         private readonly IDynamicRepository dynamicRepository;
-        private readonly PartialUMService partialUMService;
+        private readonly IPartialUMService partialUMService;
 
         public ForecastService(
             ICacheService cacheService,
             IDynamicRepository dynamicRepository,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             this.cacheService = cacheService;
             this.dynamicRepository = dynamicRepository;
@@ -74,7 +74,7 @@
                 IsLive = query.IsLive
             };
 
-            partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             var matchForecastRaw = dynamicRepository.FetchMultiple<MatchForecast, BetTypeForecastDto, WinLossColumnNameDto>(criteria);
 

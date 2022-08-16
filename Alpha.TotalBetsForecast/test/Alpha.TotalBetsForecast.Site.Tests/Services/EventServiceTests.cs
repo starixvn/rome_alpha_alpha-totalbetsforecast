@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Fanex.Caching;
     using Fanex.Data.Repository;
     using NSubstitute;
@@ -16,7 +16,7 @@
     {
         private IDynamicRepository _dynamicRepository;
         private ICacheService cacheService;
-        private PartialUMService _partialUMService;
+        private IPartialUMService _partialUMService;
         private EventService _eventService;
 
         [SetUp]
@@ -24,7 +24,7 @@
         {
             _dynamicRepository = Substitute.For<IDynamicRepository>();
             cacheService = Substitute.For<ICacheService>();
-            _partialUMService = Substitute.For<PartialUMService>();
+            _partialUMService = Substitute.For<IPartialUMService>();
 
             _eventService = new EventService(_dynamicRepository, cacheService, _partialUMService);
         }
