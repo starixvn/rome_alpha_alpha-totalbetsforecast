@@ -1,13 +1,14 @@
 ﻿
 @{
     Layout = null;
+    var language = Sunplus.Agent.Model.Entities.UserSession.Current.Language;
 }
 
 <p class="main-desc">
     Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
     It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of each Live event.
 </p>
-<img class="img-big" src="~/assets/styles/images/1.png" />
+<img class="img-big" src="~/assets/styles/images/@language/1.png" />
 <div class="block-Guideline">
     <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
     <div class="detail">
@@ -22,7 +23,7 @@
                 <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
             </div>
             <div class="img-small">
-                <img src="~/assets/styles/images/2.png" />
+                <img src="~/assets/styles/images/@language/2.png" />
             </div>
         </div>
         <div class="left">
@@ -38,7 +39,7 @@
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/3.png" />
+                <img src="~/assets/styles/images/@language/3.png" />
             </div>
         </div>
     </div>
@@ -58,7 +59,7 @@
                 <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
             </div>
             <div class="img-small">
-                <img src="~/assets/styles/images/4.png" />
+                <img src="~/assets/styles/images/@language/4.png" />
             </div>
         </div>
         <div class="left">
@@ -74,7 +75,7 @@
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/5.png" />
+                <img src="~/assets/styles/images/@language/5.png" />
             </div>
         </div>
     </div>
@@ -96,7 +97,7 @@
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/6.png" />
+                <img src="~/assets/styles/images/@language/6.png" />
             </div>
         </div>
         <div class="left">
@@ -105,7 +106,7 @@
                 <li>
                     If Handicap bet type is offered to the event.
                     <div class="img-small img-ex">
-                        <img src="~/assets/styles/images/7.png" />
+                        <img src="~/assets/styles/images/@language/7.png" />
                     </div>
                 </li>
                 <li class="ex-text">If Handicap bet type is NOT offered to the event, there is NO highlighted header.</li>
@@ -121,7 +122,7 @@
                 </li>
             </ul>
             <div class="img-small img-ex">
-                <img src="~/assets/styles/images/8.png" />
+                <img src="~/assets/styles/images/@language/8.png" />
             </div>
         </div>
     </div>

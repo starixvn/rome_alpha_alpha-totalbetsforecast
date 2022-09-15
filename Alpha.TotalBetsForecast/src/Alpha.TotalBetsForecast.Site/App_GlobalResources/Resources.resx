@@ -231,4 +231,31 @@
   <data name="Player" xml:space="preserve">
     <value>Player</value>
   </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>Take a quick tour of Bets &amp; Forecast</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>It’s the fastest and most centralized Total Bets and Forecast ever.</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>Not now</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>Let’s go</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>It starts with the new and intuitive menu</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>The meaningful LIVE Forecast Win Loss of Handicap</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>Current Forecast Win Loss always starts from Score 0.</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>New Forecast Win Loss starts from Current Score.</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details.</value>
+  </data>
 </root>
