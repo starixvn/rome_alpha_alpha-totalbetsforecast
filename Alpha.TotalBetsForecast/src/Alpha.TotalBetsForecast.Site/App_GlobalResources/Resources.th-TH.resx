@@ -211,7 +211,7 @@
     <value>Goal</value>
   </data>
   <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>Bets &amp; Forecast Guidelines</value>
+    <value>แนวทางการใช้งาน 'เดิมพันและการคาดการณ์การแข่งขัน'</value>
   </data>
   <data name="soccer" xml:space="preserve">
     <value>ฟุตบอล</value>
@@ -224,5 +224,32 @@
   </data>
   <data name="Player" xml:space="preserve">
     <value>Player</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>ดูการเดิมพันและการคาดการณ์การแข่งขันอย่างรวดเร็ว</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>นี่คือการรวบรวมข้อมูลเดิมพันและการคาดการณ์การแข่งขันที่รวดเร็วและเข้มข้นที่สุด</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>ไม่ใช่ตอนนี้</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>เริ่มเลย</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>เริ่มต้นด้วยเมนูใหม่ที่ใช้งานง่าย</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>ความสำคัญของการคาดการณ์การชนะหรือแพ้ของราคาต่อรองแบบสด</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>คาดการณ์ผลการชนะหรือแพ้ปัจจุบันจะเริ่มต้นจากคะแนน 0 เสมอ</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>การชนะ/แพ้ที่คาดการณ์ไว้ใหม่เริ่มต้นจากคะแนนปัจจุบัน</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>การเดิมพันแต่ละประเภทมีการแสดงการชนะหรือแพ้ที่คาดการณ์ไว้ โปรดศึกษาคู่มือนี้สำหรับรายละเอียดเพิ่มเติม</value>
   </data>
 </root>

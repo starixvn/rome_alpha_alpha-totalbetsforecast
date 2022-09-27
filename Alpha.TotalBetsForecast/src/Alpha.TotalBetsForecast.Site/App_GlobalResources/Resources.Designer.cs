@@ -19,7 +19,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -219,6 +219,87 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         public static string Forecast {
             get {
                 return ResourceManager.GetString("Forecast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It starts with the new and intuitive menu.
+        /// </summary>
+        public static string Forecast_Popup_1 {
+            get {
+                return ResourceManager.GetString("Forecast_Popup_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The meaningful LIVE Forecast Win Loss of Handicap.
+        /// </summary>
+        public static string Forecast_Popup_2 {
+            get {
+                return ResourceManager.GetString("Forecast_Popup_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Forecast Win Loss always starts from Score 0..
+        /// </summary>
+        public static string Forecast_Popup_3 {
+            get {
+                return ResourceManager.GetString("Forecast_Popup_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Forecast Win Loss starts from Current Score..
+        /// </summary>
+        public static string Forecast_Popup_4 {
+            get {
+                return ResourceManager.GetString("Forecast_Popup_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Each bet type has its own Forecast Win Loss display, please refer to this guideline for more details..
+        /// </summary>
+        public static string Forecast_Popup_5 {
+            get {
+                return ResourceManager.GetString("Forecast_Popup_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Take a quick tour of Bets &amp; Forecast.
+        /// </summary>
+        public static string Forecast_Title {
+            get {
+                return ResourceManager.GetString("Forecast_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It’s the fastest and most centralized Total Bets and Forecast ever..
+        /// </summary>
+        public static string Forecast_Title_Content {
+            get {
+                return ResourceManager.GetString("Forecast_Title_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Let’s go.
+        /// </summary>
+        public static string Forecast_Title_LetsGo {
+            get {
+                return ResourceManager.GetString("Forecast_Title_LetsGo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not now.
+        /// </summary>
+        public static string Forecast_Title_NotNow {
+            get {
+                return ResourceManager.GetString("Forecast_Title_NotNow", resourceCulture);
             }
         }
         

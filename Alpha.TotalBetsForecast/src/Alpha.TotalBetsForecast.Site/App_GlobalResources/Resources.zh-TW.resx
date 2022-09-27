@@ -191,7 +191,7 @@
     <value>Goal</value>
   </data>
   <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>Bets &amp; Forecast Guidelines</value>
+    <value>投注&amp;預測指導方針</value>
   </data>
   <data name="soccer" xml:space="preserve">
     <value>足球</value>
@@ -204,5 +204,32 @@
   </data>
   <data name="Player" xml:space="preserve">
     <value>玩家</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>快速瀏覽投注&amp;預測</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>這是最快、最集中的總投注和預測。</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>不是現在</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>現在開始</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>它始於新的直觀目錄</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>意味著預測滾球讓球盤的輸/贏</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>目前預測輸贏總是從零比分開始。</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>新預測輸贏從目前比分開始。</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>每種投注類型都有各自預測輸贏顯示，請參閱本指南了解更多詳情。</value>
   </data>
 </root>

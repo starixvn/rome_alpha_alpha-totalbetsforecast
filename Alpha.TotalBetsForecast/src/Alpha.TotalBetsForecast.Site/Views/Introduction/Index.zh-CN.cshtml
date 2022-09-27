@@ -1,127 +1,126 @@
 ﻿
 @{
     Layout = null;
+    var language = Sunplus.Agent.Model.Entities.UserSession.Current.Language;
 }
 
 <p class="main-desc">
-    Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
-    It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of each Live event.
+    投注&预测功能根据每场赛事进行中的注单总结主要投注类型、注单数量和本金。它还根据目前比分预测注单的输赢金额，并显示每个滚球赛事的总预测输赢。
 </p>
-<img class="img-big" src="~/assets/styles/images/1.png" />
+<img class="img-big" src="~/assets/styles/images/@language/1.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
+    <h4 class="title-Guideline">预测让球盘输/赢</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>滚球</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Current Score Difference.</li>
-                <li>Example: Current live score 2 - 0</li>
+                <li>预测输赢总从目前比分差距开始。</li>
+                <li>例子： 目前实时比分 2 - 0</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Current Score Difference (X)</p>
-                <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
+                <p>目前比分差距 (X) = 主队实时比分 - 客队实时比分 = 2 - 0 = 2</p>
             </div>
             <div class="img-small">
-                <img src="~/assets/styles/images/2.png" />
+                <img src="~/assets/styles/images/@language/2.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>非滚球</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from rounding down the Handicap Average.</li>
+                <li>预测输赢从取其整数让球盘平均值开始。</li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    例子：该赛事让盘球值：1.5 – 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (Y) = 1</li>
+                        <li>让球盘平均值= (1.5 + 2)/2 = 1.75</li>
+                        <li>取其整数让球值 (Y) = 1</li>
                     </ul>
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/3.png" />
+                <img src="~/assets/styles/images/@language/3.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
     </div>
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Over Under</h4>
+    <h4 class="title-Guideline">预测大小盘输/赢</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>滚球</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Total Current Score</li>
-                <li>Example: Current live score 0 – 4</li>
+                <li>预测输赢从目前总比分开始。</li>
+                <li>例子： 目前实时比分 0 - 4</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Total Current Score (X)</p>
-                <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
+                <p>总目前比分（X）</p>
+                <p>= 主队实时比分 + 客队实时比分 = 0 + 4 = 4</p>
             </div>
             <div class="img-small">
-                <img src="~/assets/styles/images/4.png" />
+                <img src="~/assets/styles/images/@language/4.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>非滚球</h5>
             <ul class="circle">
-                <li>Forecast Win Lost starts from rounding down the Total Goal Average.</li>
+                <li>预测输赢从取其整数总进球平均值开始。</li>
                 <li>
-                    Example: The event has values: 2 – 2.5
+                    例子：该赛事大小值：2 – 2.5
                     <ul class="circle c-red txt-bold">
-                        <li>Total Goal Average = (2 + 2.5)/2 = 2.25</li>
-                        <li>Round down the Handicap Average (Y) = 2</li>
+                        <li>总进球平均值 = (2 + 2.5)/2 = 2.25</li>
+                        <li>取其整数让球盘值 (Y) = 2</li>
                     </ul>
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/5.png" />
+                <img src="~/assets/styles/images/@language/5.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
     </div>
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of 1X2</h4>
+    <h4 class="title-Guideline">预测独赢盘输/赢</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>滚球</h5>
             <ul class="circle">
-                <li>Highlight Current result.</li>
+                <li>突出显示当前成绩。</li>
                 <li>
-                    Example: Current Live score 2 – 0
+                    例子： 目前实时比分 2 - 0
                     <ul class="arrow txt-bold">
-                        <li>Home Win</li>
-                        <li>Highlight header 1</li>
+                        <li>主队赢</li>
+                        <li>突出显示标题 1</li>
                     </ul>
                 </li>
             </ul>
             <div class="img-small">
-                <img src="~/assets/styles/images/6.png" />
+                <img src="~/assets/styles/images/@language/6.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>非滚球</h5>
             <ul class="circle">
                 <li>
-                    If Handicap bet type is offered to the event.
+                    若该赛事提供让球盘投注类型。
                     <div class="img-small img-ex">
-                        <img src="~/assets/styles/images/7.png" />
+                        <img src="~/assets/styles/images/@language/7.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
                     </div>
                 </li>
-                <li>If Handicap bet type is NOT offered to the event, there is NO highlighted header.</li>
+                <li>若该赛事未提供让球盘投注类型，则不会突出显示标题。</li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    例子：该赛事让球盘值：1.5 – 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (X) = 1 > 0</li>
+                        <li>让球盘平均值= (1.5 + 2)/2 = 1.75</li>
+                        <li>取其整数让球平均值（X）= 1 > 0</li>
                     </ul>
                     <ul class="arrow txt-bold">
-                        <li>Highlight header 1</li>
+                        <li>突出显示标题 1</li>
                     </ul>
                 </li>
             </ul>
             <div class="img-small img-ex">
-                <img src="~/assets/styles/images/8.png" />
+                <img src="~/assets/styles/images/@language/8.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
     </div>
