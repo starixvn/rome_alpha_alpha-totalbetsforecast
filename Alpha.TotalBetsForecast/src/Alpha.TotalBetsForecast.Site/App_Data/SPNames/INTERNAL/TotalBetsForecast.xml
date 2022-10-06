@@ -26,4 +26,7 @@
       <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
     </Setting>
   </Function>
+  <Function Name="Partial UM">
+    <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.BODBDownlineNetView" />
+  </Function>
 </Functions>

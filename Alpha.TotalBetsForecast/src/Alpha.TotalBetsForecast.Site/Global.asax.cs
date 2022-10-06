@@ -7,6 +7,7 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Alpha.Logging;
+    using Alpha.PartialUM.Filters;
     using App_Start;
     using Fanex.Caching;
     using Fanex.Data;

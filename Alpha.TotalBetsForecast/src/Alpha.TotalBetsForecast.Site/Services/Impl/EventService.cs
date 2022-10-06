@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Alpha.Web.Helpers;
+    using Alpha.PartialUM.Services;
     using Criteria;
     using Fanex.Caching;
     using Fanex.Common.Helper;
@@ -17,12 +17,12 @@
 
         private readonly IDynamicRepository _dynamicRepository;
         private readonly ICacheService cacheService;
-        private readonly PartialUMService _partialUMService;
+        private readonly IPartialUMService _partialUMService;
 
         public EventService(
             IDynamicRepository dynamicRepository,
             ICacheService cacheService,
-            PartialUMService partialUMService)
+            IPartialUMService partialUMService)
         {
             _dynamicRepository = dynamicRepository;
             this.cacheService = cacheService;
@@ -37,7 +37,7 @@
             {
                 var criteria = new GetLeaguesCriteria(isLive, isLocalTest);
 
-                _partialUMService.CheckPartialUM(criteria.GetSettingKey());
+                _partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
                 leagues = _dynamicRepository.Fetch<League>(criteria);
 
@@ -56,7 +56,7 @@
 
             var criteria = new GetEventsCriteria(leagueId, isLive);
 
-            _partialUMService.CheckPartialUM(criteria.GetSettingKey());
+            _partialUMService.ThrowIfUM(criteria.GetSettingKey());
 
             return _dynamicRepository.Fetch<Match>(criteria);
         }
