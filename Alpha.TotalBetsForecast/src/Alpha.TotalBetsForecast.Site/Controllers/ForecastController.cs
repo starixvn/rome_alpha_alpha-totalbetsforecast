@@ -5,6 +5,8 @@
     using MediatR;
     using Models.Requests;
     using Sunplus.Agent.Model.Entities;
+    using System.Linq;
+    using System;
 
     public class ForecastController : TotalBetsForecastBaseController
     {
@@ -41,6 +43,6 @@
             => !string.IsNullOrWhiteSpace(AppConfig.AllowSitesToViewForecast)
             && userSession != null
             && !string.IsNullOrWhiteSpace(userSession.Site)
-            && !AppConfig.AllowSitesToViewForecast.Contains(userSession.Site.ToLowerInvariant());
+            && !AppConfig.NewTBFAllowedSites.Any(site => string.Equals(site, "*") || string.Equals(site, userSession.Site, StringComparison.OrdinalIgnoreCase));
     }
 }

@@ -20,7 +20,9 @@
 
         public static bool DisableHighlightChange => GetValue(DisableHighlightChangeConfigName) == "1";
 
-        public static string AllowSitesToViewForecast => GetValue(AllowSitesToViewForecastConfigName).ToLowerInvariant();
+        public static string AllowSitesToViewForecast => GetValue(AllowSitesToViewForecastConfigName);
+
+        public static string[] NewTBFAllowedSites => (AllowSitesToViewForecast ?? string.Empty).Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
 
         public static string StoredProcedurePath => GetValue("StoredProcedurePath");
 
