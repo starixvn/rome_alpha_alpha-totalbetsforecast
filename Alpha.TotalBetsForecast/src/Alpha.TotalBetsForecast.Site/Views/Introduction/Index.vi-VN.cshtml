@@ -5,36 +5,36 @@
 }
 
 <p class="main-desc">
-    Bets & Forecast function summarizes major bet types, number of tickets and stakes on running tickets of each event.
-    It also predicts win loss amount on these tickets based on the current score and displays Total Forecast Win Loss of each Live event.
+    Chức năng Tổng Cược & Dự Đoán tổng hợp thông tin các loại cược chính, số vé cược và số tiền cược trên các vé cược đang diễn ra trong mỗi sự kiện. 
+    Chức năng này cũng dự đoán tiền thắng thua cho các cược dựa trên tỷ số hiện tại và hiển thị Tổng Dự Đoán Thắng Thua cho từng sự kiện Trực Tiếp.
 </p>
 <img class="img-big" src="~/assets/styles/images/@language/1.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Handicap</h4>
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho Cược Chấp</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>Trực tiếp</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Current Score Difference.</li>
-                <li>Example: Current live score 2 - 0</li>
+                <li>Dự Đoán Thắng Thua bắt đầu từ Hiệu Số Điểm Số Hiện Tại</li>
+                <li>Ví dụ: Tỷ số Trực Tiếp hiện tại đang là 2 - 0</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Current Score Difference (X)</p>
-                <p>= Live Home Score - Live Away Score = 2 – 0 = 2</p>
+                <p>Hiệu Số Điểm Số Hiện Tại (X)</p>
+                <p>= Tỷ Số Trực Tiếp của Đội Nhà - Tỷ Số Trực Tiếp của Đội Khách = 2 – 0 = 2</p>
             </div>
             <div class="img-small">
                 <img src="~/assets/styles/images/@language/2.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>Không Trực Tiếp</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from rounding down the Handicap Average.</li>
+                <li>Dự đoán Thắng Thua bắt đầu từ Tỷ Số Chấp Trung Bình được làm tròn xuống.</li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    Ví dụ: Sự kiện có giá trị Cược Chấp: 1.5 - 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (Y) = 1</li>
+                        <li>Tỷ Số Chấp Trung Bình = (1.5 +2)/2 = 1.75</li>
+                        <li>Tỷ Số Chấp Trung Bình được làm tròn xuống (Y) = 1</li>
                     </ul>
                 </li>
             </ul>
@@ -46,31 +46,31 @@
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of Over Under</h4>
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho Tài Xỉu</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>Trực tiếp</h5>
             <ul class="circle">
-                <li>Forecast Win Loss starts from Total Current Score</li>
-                <li>Example: Current live score 0 – 4</li>
+                <li>Dự Đoán Thắng Thua bắt đầu từ Tổng Tỷ Số Hiện Tại.</li>
+                <li>Ví dụ: Tỷ số Trực Tiếp hiện tại đang là 0 - 4</li>
             </ul>
             <div class="c-red txt-bold">
-                <p>Total Current Score (X)</p>
-                <p>= Live Home Score + Live Away Score = 0 + 4 = 4</p>
+                <p>Tổng Tỷ Số Hiện Tại (X)</p>
+                <p>= Tỷ Số Trực Tiếp của Đội Nhà + Tỷ Số Trực Tiếp của Đội Khách = 0 + 4 = 4</p>
             </div>
             <div class="img-small">
                 <img src="~/assets/styles/images/@language/4.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>Không Trực Tiếp</h5>
             <ul class="circle">
-                <li>Forecast Win Lost starts from rounding down the Total Goal Average.</li>
+                <li>Dự đoán Thắng Thua bắt đầu từ tỷ lệ Tổng Tỷ Số Trung Bình được làm tròn xuống.</li>
                 <li>
-                    Example: The event has values: 2 – 2.5
+                    Ví dụ: Sự kiện có giá trị Tài Xỉu: 2-2.5
                     <ul class="circle c-red txt-bold">
-                        <li>Total Goal Average = (2 + 2.5)/2 = 2.25</li>
-                        <li>Round down the Handicap Average (Y) = 2</li>
+                        <li>Tổng Tỷ Số Trung Bình = (2 + 2.5)/2 = 2.25</li>
+                        <li>Tổng Tỷ Số Trung Bình được làm tròn xuống (Y) = 2</li>
                     </ul>
                 </li>
             </ul>
@@ -82,17 +82,17 @@
 </div>
 
 <div class="block-Guideline">
-    <h4 class="title-Guideline">Forecast Win/Loss of 1X2</h4>
+    <h4 class="title-Guideline">Dự Đoán Thắng Thua cho 1X2</h4>
     <div class="detail">
         <div class="left">
-            <h5>Live</h5>
+            <h5>Trực tiếp</h5>
             <ul class="circle">
-                <li>Highlight Current result.</li>
+                <li>Kết quả hiện tại sẽ được đánh dấu.</li>
                 <li>
-                    Example: Current Live score 2 – 0
+                    Ví dụ: Tỷ Số Trực Tiếp hiện Tại 2 - 0
                     <ul class="arrow txt-bold">
-                        <li>Home Win</li>
-                        <li>Highlight header 1</li>
+                        <li>Đội Nhà Thắng</li>
+                        <li>Tiêu đề 1 sẽ được đánh dấu</li>
                     </ul>
                 </li>
             </ul>
@@ -101,23 +101,23 @@
             </div>
         </div>
         <div class="left">
-            <h5>Non-Live</h5>
+            <h5>Không Trực Tiếp</h5>
             <ul class="circle">
                 <li>
-                    If Handicap bet type is offered to the event.
+                    Nếu sự kiện cho phép Cược Chấp.
                     <div class="img-small img-ex">
                         <img src="~/assets/styles/images/@language/7.png?v=@Sunplus.Agent.Model.BL.Definitions.AppSettings.JsVersion" />
                     </div>
                 </li>
-                <li>If Handicap bet type is NOT offered to the event, there is NO highlighted header.</li>
+                <li>Nếu sự kiện không cho phép Cược Chấp, sẽ KHÔNG có tiêu đề nào được đánh dấu</li>
                 <li>
-                    Example: The event has handicap values: 1.5 – 2
+                    Ví dụ: Sự kiện có giá trị Cượ̣c Chấp: 1.5 - 2
                     <ul class="circle c-red txt-bold">
-                        <li>Handicap Average = (1.5 + 2)/2 = 1.75</li>
-                        <li>Round down the Handicap Average (X) = 1 > 0</li>
+                        <li>Tỷ Số Chấp Trung Bình = (1.5 + 2)/2 = 1.75</li>
+                        <li>Tỷ Số Chấp Trung Bình được làm tròn xuống (X) = 1 > 0</li>
                     </ul>
                     <ul class="arrow txt-bold">
-                        <li>Highlight header 1</li>
+                        <li>Tiêu đề 1 sẽ được đánh dấu</li>
                     </ul>
                 </li>
             </ul>

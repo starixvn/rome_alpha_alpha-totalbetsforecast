@@ -250,7 +250,7 @@
     <value>The meaningful LIVE Forecast Win Loss of Handicap</value>
   </data>
   <data name="Forecast_Popup_3" xml:space="preserve">
-    <value>Current Forecast Win Loss always starts from Score 0.</value>
+    <value>Old Forecast Win Loss always starts from Score 0.</value>
   </data>
   <data name="Forecast_Popup_4" xml:space="preserve">
     <value>New Forecast Win Loss starts from Current Score.</value>

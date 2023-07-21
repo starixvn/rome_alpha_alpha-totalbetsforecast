@@ -87,7 +87,7 @@ var forecast = {
                 forecast.domElements.ddlRefresh.text(forecast.countDownSeconds);
                 forecast.loadLeagues();
 
-                $.cookie(forecast.cookies.status, statusValue, { expires: forecast.cookieExpireTime, path: '/' });
+                $.cookie(forecast.cookies.status, statusValue, { expires: forecast.cookieExpireTime });
             }).trigger('change');
 
         forecast.domElements.btnSubmit
@@ -169,7 +169,7 @@ var forecast = {
             forecast.processAjaxError(jqXHR);
         });
 
-        $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime, path: '/' });
+        $.cookie(forecast.cookies.match, matchIds.join(','), { expires: forecast.cookieExpireTime });
     },
 
     removeLoadingIcon: function () {
@@ -299,7 +299,7 @@ var forecast = {
                 forecast.domElements.mainContent.parent().hide().find('tbody').remove();
                 forecast.stopCountdown();
 
-                $.cookie(forecast.cookies.league, forecast.domElements.ddlLeague.val(), { expires: forecast.cookieExpireTime, path: '/' });
+                $.cookie(forecast.cookies.league, forecast.domElements.ddlLeague.val(), { expires: forecast.cookieExpireTime });
             }
         });
 
