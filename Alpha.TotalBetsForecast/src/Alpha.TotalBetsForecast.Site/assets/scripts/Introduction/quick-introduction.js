@@ -30,7 +30,7 @@
         
     },
     registerEvents: function () {
-        var cookieExpire = { expires: 365 };
+        var cookieExpire = { expires: 365, path: '/' };
 
         quickIntroduction.domElements.btnLetGo.click(function () {
             quickIntroduction.domElements.beginModel.on('hidden.bs.modal', function () {
