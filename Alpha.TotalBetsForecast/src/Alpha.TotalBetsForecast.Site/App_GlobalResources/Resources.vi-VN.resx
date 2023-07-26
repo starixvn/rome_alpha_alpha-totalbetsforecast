@@ -98,7 +98,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Live" xml:space="preserve">
-    <value>Trực Tuyến</value>
+    <value>Trực tiếp</value>
   </data>
   <data name="League" xml:space="preserve">
     <value>Giải</value>
@@ -116,10 +116,10 @@
     <value>Thời Gian</value>
   </data>
   <data name="BetCount" xml:space="preserve">
-    <value>Số lượng cược</value>
+    <value>Số Cược</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>Tiền Cược</value>
+    <value>Doanh Thu</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Xác nhận</value>
@@ -131,7 +131,7 @@
     <value>Tổng Cược</value>
   </data>
   <data name="NoData" xml:space="preserve">
-    <value>There is no data</value>
+    <value>Không có dữ liệu</value>
   </data>
   <data name="BetType_1" xml:space="preserve">
     <value>HDP</value>
@@ -149,10 +149,10 @@
     <value>Tổng cộng</value>
   </data>
   <data name="MatchOfferLive" xml:space="preserve">
-    <value>Trực Tuyến</value>
+    <value>Trực tiếp</value>
   </data>
   <data name="ForecastWinLoss" xml:space="preserve">
-    <value>Dự đoán thắng / thua</value>
+    <value>Dự đoán Thắng Thua</value>
   </data>
   <data name="BetsAndForecast" xml:space="preserve">
     <value>Tổng Cược &amp; Dự Đoán</value>
@@ -167,7 +167,7 @@
     <value>Sự Kiện Đã Chọn</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>Chưa bắt đầu</value>
+    <value>Không Trực Tiếp</value>
   </data>
   <data name="AllEvents" xml:space="preserve">
     <value>Tất cả sự kiện</value>
@@ -191,7 +191,7 @@
     <value>Goal</value>
   </data>
   <data name="BetsAndForecastGuidelines" xml:space="preserve">
-    <value>Bets &amp; Forecast Guidelines</value>
+    <value>Hướng dẫn sử dụng Tổng Cược &amp; Dự Đoán</value>
   </data>
   <data name="soccer" xml:space="preserve">
     <value>Bóng Đá</value>
@@ -204,5 +204,35 @@
   </data>
   <data name="Player" xml:space="preserve">
     <value>Người chơi</value>
+  </data>
+  <data name="Forecast_Popup_5" xml:space="preserve">
+    <value>Mỗi loại cược sẽ hiển thị thông tin Dự Đoán Thắng Thua khác nhau, vui lòng tham khảo hướng dẫn để biết thêm chi tiết.</value>
+  </data>
+  <data name="Forecast_Popup_1" xml:space="preserve">
+    <value>Bắt đầu bằng menu mới, hấp dẫn và trực quan hơn</value>
+  </data>
+  <data name="Forecast_Title_Content" xml:space="preserve">
+    <value>Trải nghiệm tính năng tối ưu và tập trung nhất từ trước đến nay của Tổng Cược và Dự Đoán.</value>
+  </data>
+  <data name="Forecast_Title_LetsGo" xml:space="preserve">
+    <value>Bắt đầu nào</value>
+  </data>
+  <data name="Forecast_Popup_4" xml:space="preserve">
+    <value>Dự Đoán Thắng Thua mới sẽ bắt đầu từ Tỷ số hiện tại</value>
+  </data>
+  <data name="Forecast_Title_NotNow" xml:space="preserve">
+    <value>Không phải bây giờ</value>
+  </data>
+  <data name="Forecast_Title" xml:space="preserve">
+    <value>Hãy cùng khám phá những tính năng Tổng Cược &amp; Dự Đoán</value>
+  </data>
+  <data name="Forecast_Popup_2" xml:space="preserve">
+    <value>Thông tin Dự Đoán Thắng Thua Cược Chấp TRỰC TIẾP hoàn chỉnh hơn</value>
+  </data>
+  <data name="MatchOfferNonLive" xml:space="preserve">
+    <value>Không Trực Tiếp</value>
+  </data>
+  <data name="Forecast_Popup_3" xml:space="preserve">
+    <value>Dự Đoán Thắng Thua cũ luôn bắt đầu từ tỷ số 0.</value>
   </data>
 </root>

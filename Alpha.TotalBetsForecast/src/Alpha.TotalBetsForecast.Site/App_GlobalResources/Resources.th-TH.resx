@@ -244,12 +244,15 @@
     <value>ความสำคัญของการคาดการณ์การชนะหรือแพ้ของราคาต่อรองแบบสด</value>
   </data>
   <data name="Forecast_Popup_3" xml:space="preserve">
-    <value>คาดการณ์ผลการชนะหรือแพ้ปัจจุบันจะเริ่มต้นจากคะแนน 0 เสมอ</value>
+    <value>จากเดิม คาดการณ์ผลการชนะหรือแพ้ จะเริ่มต้นจากคะแนน 0 เสมอ</value>
   </data>
   <data name="Forecast_Popup_4" xml:space="preserve">
     <value>การชนะ/แพ้ที่คาดการณ์ไว้ใหม่เริ่มต้นจากคะแนนปัจจุบัน</value>
   </data>
   <data name="Forecast_Popup_5" xml:space="preserve">
     <value>การเดิมพันแต่ละประเภทมีการแสดงการชนะหรือแพ้ที่คาดการณ์ไว้ โปรดศึกษาคู่มือนี้สำหรับรายละเอียดเพิ่มเติม</value>
+  </data>
+  <data name="MatchOfferNonLive" xml:space="preserve">
+    <value>ไม่มีเกมสด</value>
   </data>
 </root>

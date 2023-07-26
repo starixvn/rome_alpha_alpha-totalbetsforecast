@@ -170,7 +170,7 @@
     <value>非现场</value>
   </data>
   <data name="AllEvents" xml:space="preserve">
-    <value>所有赛事</value>
+    <value>全部赛事</value>
   </data>
   <data name="ForecastTotal" xml:space="preserve">
     <value>Forecast Total</value>
@@ -224,12 +224,15 @@
     <value>意味着预测滚球让球盘的输/赢</value>
   </data>
   <data name="Forecast_Popup_3" xml:space="preserve">
-    <value>目前预测输赢总是从零比分开始。</value>
+    <value>旧预测输/赢从0比分开始。</value>
   </data>
   <data name="Forecast_Popup_4" xml:space="preserve">
     <value>新预测输赢从目前比分开始。</value>
   </data>
   <data name="Forecast_Popup_5" xml:space="preserve">
     <value>每种投注类型都有各自预测输赢显示，请参阅本指南了解更多详情。</value>
+  </data>
+  <data name="MatchOfferNonLive" xml:space="preserve">
+    <value>非现场</value>
   </data>
 </root>

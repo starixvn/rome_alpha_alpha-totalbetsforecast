@@ -241,7 +241,7 @@ namespace Alpha.TotalBetsForecast.Site.App_GlobalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Forecast Win Loss always starts from Score 0..
+        ///   Looks up a localized string similar to Old Forecast Win Loss always starts from Score 0..
         /// </summary>
         public static string Forecast_Popup_3 {
             get {
