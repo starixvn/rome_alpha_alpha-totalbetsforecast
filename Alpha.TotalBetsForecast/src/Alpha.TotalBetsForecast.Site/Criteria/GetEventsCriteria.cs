@@ -1,7 +1,6 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Criteria
 {
     using Fanex.Data.Repository;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public class GetEventsCriteria : CriteriaBase
     {

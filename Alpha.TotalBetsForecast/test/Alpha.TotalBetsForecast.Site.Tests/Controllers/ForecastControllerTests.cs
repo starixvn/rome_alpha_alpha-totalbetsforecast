@@ -3,11 +3,11 @@
     using System.Collections.Specialized;
     using Alpha.TotalBetsForecast.Site.Controllers;
     using Alpha.TotalBetsForecast.Site.Models.Requests;
+    using AlphaPlus.User.Models;
     using MediatR;
     using NSubstitute;
     using NUnit.Framework;
     using Site.App_Start;
-    using Sunplus.Agent.Model.Entities;
 
     [TestFixture]
     public class ForecastControllerTests

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Helpers
 {
+    using AlphaPlus.User.Models;
     using System;
     using System.Web.Mvc;
-    using Sunplus.Agent.Model.Entities;
 
     public class QueryEntityModelBinder : DefaultModelBinder
     {

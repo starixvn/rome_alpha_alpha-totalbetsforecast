@@ -1,9 +1,9 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Tests.Models.Requests
 {
     using Alpha.TotalBetsForecast.Site.Models.Requests;
+    using AlphaPlus.User.Models;
     using NSubstitute;
     using NUnit.Framework;
-    using Sunplus.Agent.Model.Entities;
 
     [TestFixture]
     public class MatchForecastsQueryTests

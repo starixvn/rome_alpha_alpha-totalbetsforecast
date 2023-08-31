@@ -4,9 +4,9 @@
     using App_Start;
     using MediatR;
     using Models.Requests;
-    using Sunplus.Agent.Model.Entities;
     using System.Linq;
     using System;
+    using AlphaPlus.User.Models;
 
     public class ForecastController : TotalBetsForecastBaseController
     {

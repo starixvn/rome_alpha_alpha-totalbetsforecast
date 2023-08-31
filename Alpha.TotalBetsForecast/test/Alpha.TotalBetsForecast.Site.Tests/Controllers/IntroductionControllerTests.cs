@@ -2,10 +2,10 @@
 {
     using System.Web.Mvc;
     using Alpha.TotalBetsForecast.Site.Controllers;
+    using AlphaPlus.User.Models;
     using MediatR;
     using NSubstitute;
     using NUnit.Framework;
-    using Sunplus.Agent.Model.Entities;
 
     public class IntroductionControllerTests
     {
