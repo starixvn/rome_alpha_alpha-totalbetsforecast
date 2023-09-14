@@ -1,9 +1,5 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.App_Start
 {
-    using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Reflection;
-    using System.Web.Mvc;
     using Alpha.PartialUM.Helpers;
     using Alpha.Web.Helpers;
     using AlphaPlus.Configurations;
@@ -20,7 +16,10 @@
     using SimpleInjector;
     using SimpleInjector.Integration.Web;
     using SimpleInjector.Integration.Web.Mvc;
-    using StaticData;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using System.Web.Mvc;
 
     public static class DependencyConfig
     {
@@ -79,14 +78,7 @@
 
         private static void RegisterDataAccesses(Container container)
         {
-            if (AppConfig.EnabledStaticData)
-            {
-                container.Register<IDynamicRepository, ExcelDynamicRepositoryBase>(Lifestyle.Scoped);
-            }
-            else
-            {
-                container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
-            }
+            container.Register<IDynamicRepository, DynamicRepository>(Lifestyle.Scoped);
 
             container.RegisterSingleton<IPartialUMDataAccess, PartialUMDataAccess>();
         }
