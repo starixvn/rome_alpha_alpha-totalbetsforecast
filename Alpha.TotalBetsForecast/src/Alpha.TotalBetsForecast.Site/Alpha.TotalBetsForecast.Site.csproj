@@ -60,7 +60,7 @@
       <HintPath>..\..\packages\AlphaPlus.Configurations.1.0.0-beta5\lib\netstandard2.0\AlphaPlus.Configurations.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Logging, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.Logging.1.0.0-beta1\lib\netstandard2.0\AlphaPlus.Logging.dll</HintPath>
+      <HintPath>..\..\packages\AlphaPlus.Logging.1.0.0-beta2\lib\netstandard2.0\AlphaPlus.Logging.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Logging.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AlphaPlus.Logging.Web.1.0.0-beta2\lib\net461\AlphaPlus.Logging.Web.dll</HintPath>
