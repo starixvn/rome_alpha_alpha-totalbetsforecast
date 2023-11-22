@@ -2,7 +2,9 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Configuration;
     using System.Diagnostics;
+    using System.Linq;
     using System.Reflection;
     using System.Web.Mvc;
     using System.Web.Routing;
@@ -13,8 +15,6 @@
     using App_Start;
     using Fanex.Caching;
     using Fanex.Data;
-    using Fanex.Data.SqlServer;
-    using Fanex.Logging.Extensions.Database;
     using Fanex.Logging.Extensions.Web;
     using Fanex.RemotingRef;
     using Helpers;
@@ -35,17 +35,24 @@
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MvcHandler.DisableMvcResponseHeader = true;
-            DependencyConfig.Init();
 
+            var connectionStrings = ConfigurationManager.ConnectionStrings
+                .Cast<ConnectionStringSettings>()
+                .ToDictionary(
+                    connection => connection.Name,
+                    connection => new ConnectionConfiguration(connection.Name, connection.ConnectionString, connection.ProviderName),
+                StringComparer.OrdinalIgnoreCase);
             DbSettingProviderManager
                 .StartNewSession()
-                .WithSqlServer(resourcePath: AppConfig.StoredProcedurePath)
+                .Use(connectionStrings)
+                .Use(AppConfig.FanexDataServiceApi)
+                .Register(resourcePath: AppConfig.StoredProcedurePath)
                 .Run();
 
+            DependencyConfig.Init();
             ShareSession.Init();
-
             LoggingConfig.ExceptionHandler = new ExceptionHandlerAdapter();
-            LoggingConfig.Init(getDbExceptionInfo: DatabaseInfoGetters.GetDbExceptionInfo);
+            LoggingConfig.Init();
 
             var umConfig = new UMClientConfiguration().Initialize();
             UMClientManager
