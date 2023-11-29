@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using App_GlobalResources;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public class BetTypeForecast
     {

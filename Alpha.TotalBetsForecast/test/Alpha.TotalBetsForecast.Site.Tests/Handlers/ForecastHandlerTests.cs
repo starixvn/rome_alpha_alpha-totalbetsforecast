@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using AlphaPlus.User.Models;
     using App_GlobalResources;
     using Fanex.RemotingRef;
     using NSubstitute;
@@ -11,8 +12,6 @@
     using Site.Models;
     using Site.Models.Requests;
     using Site.Services;
-    using Sunplus.Agent.Model.BL.Definitions;
-    using Sunplus.Agent.Model.Entities;
     using TotalBetsForecast.Helpers;
 
     [TestFixture]

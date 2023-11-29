@@ -1,8 +1,8 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models.Requests
 {
     using System.Collections.Generic;
+    using AlphaPlus.User.Models;
     using MediatR;
-    using Sunplus.Agent.Model.Entities;
     using Views;
 
     public class MatchForecastsQuery : IRequest<IEnumerable<MatchForecastViewModel>>

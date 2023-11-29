@@ -1,8 +1,8 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Models.Requests
 {
     using System.Collections.Generic;
+    using Alpha.TotalBetsForecast.Site.Helpers;
     using MediatR;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public class LeaguesQuery : IRequest<IEnumerable<League>>
     {

@@ -1,8 +1,8 @@
 ﻿namespace Alpha.TotalBetsForecast.Site.Controllers
 {
     using System.Web.Mvc;
+    using AlphaPlus.User.Models;
     using MediatR;
-    using Sunplus.Agent.Model.Entities;
 
     public class IntroductionController : TotalBetsForecastBaseController
     {

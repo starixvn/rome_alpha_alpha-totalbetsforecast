@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using MediatR;
-    using Sunplus.Agent.Model.BL.Definitions;
 
     public class MatchesQuery : IRequest<IEnumerable<Match>>
     {
