@@ -618,6 +618,12 @@
     <Content Include="Web.napinternali7.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
+    <Content Include="Web.AppSettings.drinternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.drinternal.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
