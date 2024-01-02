@@ -459,6 +459,12 @@
       <DependentUpon>totalbets-forecast.scss</DependentUpon>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="Web.dr.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <None Include="Web.AppSettings.dr.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </None>
     <Content Include="Web.uati7.config">
       <DependentUpon>Web.local.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -610,6 +616,12 @@
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <Content Include="Web.napinternali7.config">
+      <DependentUpon>Web.local.config</DependentUpon>
+    </Content>
+    <Content Include="Web.AppSettings.drinternal.config">
+      <DependentUpon>Web.AppSettings.config</DependentUpon>
+    </Content>
+    <Content Include="Web.drinternal.config">
       <DependentUpon>Web.local.config</DependentUpon>
     </Content>
     <None Include="Web.Release.config">
