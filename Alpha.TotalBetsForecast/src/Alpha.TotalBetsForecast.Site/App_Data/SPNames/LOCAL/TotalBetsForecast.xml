@@ -19,11 +19,11 @@
       <Mapping ObjectProperty="Id" DataField="matchid" Class="MatchForecast" />
     </Setting>
     <Setting Key="Age_NewTotalBetsForeCast_EventSel" SpName="Age_NewTotalBetsForeCast_EventSel" DbName="DBBOF.bodb02.BODBDownlineNet">
-      <Mapping ObjectProperty="Id" DataField="matchid" Class="Match" />
-      <Mapping ObjectProperty="Code" DataField="matchcode" Class="Match" />
+      <Mapping ObjectProperty="Id" DataField="matchid" />
+      <Mapping ObjectProperty="Code" DataField="matchcode" />
     </Setting>
     <Setting Key="Age_NewTotalBetsForeCast_LeagueSel" SpName="Age_NewTotalBetsForeCast_LeagueSel" DbName="DBBOF.bodb02.BODBDownlineNet">
-      <Mapping ObjectProperty="Id" DataField="leagueid" Class="League" />
+      <Mapping ObjectProperty="Id" DataField="leagueid" />
     </Setting>
   </Function>
   <Function Name="Partial UM">

@@ -26,6 +26,8 @@
 
         public static string StoredProcedurePath => GetValue("StoredProcedurePath");
 
+        public static string FanexDataServiceApi => GetValue("FanexDataServiceApi");
+
         public static bool EnabledStaticData => GetValue("EnabledStaticData") == "1";
 
         public static string RemoteRefURL => GetValue("RemoteRefURL");
