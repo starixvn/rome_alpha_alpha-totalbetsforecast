@@ -5,10 +5,12 @@
 
     public static class CacheRefServiceHelper
     {
-        private static IRemotingRefService remotingRefService;
+        private static IRemotingRefService remotingRefService;        
 
         public static string GetLeagueName(int leagueId)
             => Instance.GetLeagueName(leagueId.ToString(), LanguageCode, string.Empty);
+        public static string GetLeagueName(int leagueId, int leagueGroupId)
+            => Instance.GetLeagueName(leagueId.ToString(), leagueGroupId.ToString(), LanguageCode, string.Empty);
 
         public static string GetLeagueName3rd(int league3rdId)
             => Instance.GetLeagueName3rd(league3rdId.ToString(), LanguageCode, string.Empty);
