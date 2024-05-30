@@ -53,8 +53,8 @@
     <Reference Include="Alpha.PartialUM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.PartialUM.2.0.0\lib\net461\Alpha.PartialUM.dll</HintPath>
     </Reference>
-    <Reference Include="Alpha.Web, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.2.0.0\lib\net461\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.2.0.0.1\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Configurations, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AlphaPlus.Configurations.1.0.1\lib\netstandard2.0\AlphaPlus.Configurations.dll</HintPath>
@@ -71,8 +71,8 @@
     <Reference Include="AlphaPlus.PartialUM.DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AlphaPlus.PartialUM.DataAccess.1.0.0.1\lib\netstandard2.0\AlphaPlus.PartialUM.DataAccess.dll</HintPath>
     </Reference>
-    <Reference Include="AlphaPlus.User.Models, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AlphaPlus.User.Models.1.1.1\lib\netstandard2.0\AlphaPlus.User.Models.dll</HintPath>
+    <Reference Include="AlphaPlus.User.Models, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AlphaPlus.User.Models.1.2.0\lib\netstandard2.0\AlphaPlus.User.Models.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
