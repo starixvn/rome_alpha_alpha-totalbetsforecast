@@ -53,8 +53,8 @@
     <Reference Include="Alpha.PartialUM, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Alpha.PartialUM.2.0.0\lib\net461\Alpha.PartialUM.dll</HintPath>
     </Reference>
-    <Reference Include="Alpha.Web, Version=2.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Alpha.Web.2.0.0.1\lib\net461\Alpha.Web.dll</HintPath>
+    <Reference Include="Alpha.Web, Version=2.0.0.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Alpha.Web.2.0.0.2\lib\net461\Alpha.Web.dll</HintPath>
     </Reference>
     <Reference Include="AlphaPlus.Configurations, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AlphaPlus.Configurations.1.0.1\lib\netstandard2.0\AlphaPlus.Configurations.dll</HintPath>
