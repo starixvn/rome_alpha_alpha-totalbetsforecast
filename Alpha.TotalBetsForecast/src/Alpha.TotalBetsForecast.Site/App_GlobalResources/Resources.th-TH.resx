@@ -136,19 +136,19 @@
     <value>เวลา</value>
   </data>
   <data name="BetCount" xml:space="preserve">
-    <value>นับเดิมพัน</value>
+    <value>จำนวนตั๋วเดิมพัน</value>
   </data>
   <data name="Turnover" xml:space="preserve">
-    <value>เงินหมุนเวียน</value>
+    <value>มูลค่าการเดิมพัน</value>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>ตกลง</value>
+    <value>ส่ง</value>
   </data>
   <data name="Forecast" xml:space="preserve">
     <value>การทำนายผลล่วงหน้า</value>
   </data>
   <data name="totalbets" xml:space="preserve">
-    <value>จำนวนการวางเดิมพันทั้งหมด</value>
+    <value>ยอดเดิมพันทั้งหมด</value>
   </data>
   <data name="NoData" xml:space="preserve">
     <value>ไม่พบข้อมูลเป็น</value>
@@ -187,7 +187,7 @@
     <value>กรุณาเลือกอย่างน้อยหนึ่งการแข่งขัน</value>
   </data>
   <data name="NonLive" xml:space="preserve">
-    <value>ไม่มีเกมสด</value>
+    <value>ไม่สด</value>
   </data>
   <data name="AllEvents" xml:space="preserve">
     <value>ทุกการแข่งขัน</value>
@@ -253,6 +253,6 @@
     <value>การเดิมพันแต่ละประเภทมีการแสดงการชนะหรือแพ้ที่คาดการณ์ไว้ โปรดศึกษาคู่มือนี้สำหรับรายละเอียดเพิ่มเติม</value>
   </data>
   <data name="MatchOfferNonLive" xml:space="preserve">
-    <value>ไม่มีเกมสด</value>
+    <value>ไม่สด</value>
   </data>
 </root>
